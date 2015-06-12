@@ -61,7 +61,8 @@ INSTALLED_APPS = (
 
     'core',
     'blog',
-    'persons'
+    'persons',
+    'projects'
 )
 
 MIDDLEWARE_CLASSES = (
