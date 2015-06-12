@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<div class="container">
+<h1>{{ self.title }}</h1>
+    <div id="blog_list" class="list-group">
+        {% for blog in blogs %}
+            {% include "blog/includes/blog_list_item.html" %}
+        {% empty %}
+            No blogs found
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block pages_js %}
+<script type="text/javascript">
+    var number_pages = {{ blogs.paginator.num_pages }};
+    var count = 2;
+    $(window).scroll(function(){
+        if  (($(window).scrollTop() == $(document).height() - $(window).height()) && count <= number_pages){
+            loadArticle(count);
+            count ++;
+        }
+
+        function loadArticle(pageNumber){
+            $.ajax({
+                url: "?page=" + count,
+                type:'GET',
+                success: function(html){
+                    $("#blog_list").append(html);
+                }
+            });
+        return false;
+        }
+    });
+</script>
+{% endblock %}

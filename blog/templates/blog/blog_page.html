@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <div class="blog_page_title_area">
+        <div class="container">
+          <div class="row row-centered">
+            <div class="col-md-8 col-md-offset-2">
+              <h1 class="blog_page_title">
+                <b>{{ self.title | upper }}</b>
+              </h1>
+              {% if self.subtitle %}
+             <h2 class="blog_page_subtitle">
+              {{ self.subtitle }}
+            </h2>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row row-centered">
+          <p class="blog_page_title_metainfo">
+          {% if self.author or self.author_string %}
+            by
+            {% if self.author %}
+            <a href="{{ self.author.url }}">{{ self.author.first_name }} {{ self.author.last_name }}</a>, {% endif %}
+            {{ self.author_string }}</a></br>
+        {% endif %}
+        {{ self.date }}</p>
+      </div>
+    {% include "blog/includes/body.html" with body=self.body only %}
+    </div>
+
+    {% include "blog/includes/paragraphs.html" with paragraphs=self.paragraphs.all only %}
+
+{% endblock %}

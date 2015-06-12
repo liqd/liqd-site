@@ -1,0 +1,37 @@
+{% load wagtailcore_tags %}
+{% for paragraph in paragraphs %}
+{% if forloop.counter|divisibleby:2 %}
+<div class="paragraph2">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="row row-centered">
+					<h2 class="paragraph_title" style="color: #ffffff;">{{ paragraph.title }}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="paragraph container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+	      {{ paragraph.body|richtext }}
+	    </div>
+	</div>
+</div>
+
+{% else %}
+<div class="paragraph container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-2">
+		<h2 class="paragraph_title">{{ paragraph.title }}</h2>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+	      {{ paragraph.body|richtext }}
+	    </div>
+	</div>
+{% endif %}
+</div>
+{% endfor %}
