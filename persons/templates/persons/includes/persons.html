@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+<div class="row">
+	{% for  person in persons %}
+		<div class="col-md-3 person_list_person">
+		{% if person.image %}
+		{% image person.image width-100 as photo %}
+			<div class="row row-centered">
+	            <img src="{{ photo.url }}" alt="{{ photo.alt }}"  class="person_index_page_circular_image" />
+	    	</div>
+		{% endif %}
+			<div class="row row-centered">
+				<a href="{{ person.url }}">
+					<h4>{{ person.first_name}} {{person.last_name }}</h4>
+				</a>
+	    	</div>
+	    	<div class="row row-centered">
+	            <p>{{ person.area }}</p>
+	    	</div>
+		</div>
+	{% if forloop.counter|divisibleby:4 %}
+	</div>
+	<div class="row">
+    {% endif %}
+	{% endfor %}
+</div>

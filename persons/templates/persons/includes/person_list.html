@@ -1,0 +1,15 @@
+{% load wagtailimages_tags %}
+<div class="person_list">
+	<div class="row row-centered">
+		<h3>{{ title }}</h3>
+	</div>
+	<div class="row row-centered">
+		{% for choice in choices %}
+			<button class="btn btn-default" onclick="filter(this,'{{ choice }}')" class="person_list_choice">{{ choice }}</button>
+		{% endfor %}
+	</div>
+	<div id="persons">
+		{% include "persons/includes/persons.html" %}
+	</div>
+</div>
+

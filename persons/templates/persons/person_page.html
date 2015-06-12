@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+{% if self.image %}
+    {# Person image - first store image as a variable in order to construct an image tag with a class applied #}
+    {% image self.image width-300 as photo %}
+    <div class="row row-centered">
+            <img src="{{ photo.url }}" alt="{{ photo.alt }}"  class="person_page_circular_image" />
+    </div>
+{% endif %}
+
+    <div class="row row-centered">
+        <h1>{{ self.first_name }} {{ self.last_name }}</h1>
+    </div>
+
+    <div class="row row-centered">
+        <p>{{ self.area }}</p>
+    </div>
+
+    <hr/>
+
+    <div class="row row-centered">
+         <div class="col-md-8 col-md-offset-2">
+            <p>{{ self.biography|richtext }}</p>
+        </div>
+    </div>
+
+    <div class="row row-centered">
+        <a class="btn btn-default" href="mailto:{{ self.email }}" role="button">{{ self.first_name }} schreiben</a>
+    </div>
+
+    <div class"row">
+    {% if blogpages.all.count > 0 %}
+    {% include "persons/includes/blogpage_list.html" with title="Letzte Artikel" %}
+    {% endif %}
+    </div>
+
+    {% include "persons/includes/person_list.html" with title=title blogpages=blogpages %}
+
+</div>
+{% endblock %}
+
+{% block pages_js %}
+    <script type="text/javascript" src="{% static 'js/peoplefilter.js' %}"></script>
+{% endblock %}
