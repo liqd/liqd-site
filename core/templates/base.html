@@ -1,0 +1,64 @@
+{% load compress static wagtailuserbar %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# External stylesheets #}
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        {% compress css %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/fonts.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/navbar.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/footer.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/liquidsite.scss' %}">
+        {% endcompress %}
+
+        {% block extra_css %}
+
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+        {% include "navbar.html" %}
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        {% include "footer.html" %}
+
+        <a href="#" class="back-to-top">
+        <i class="glyphicon glyphicon-arrow-up"></i>
+        </a>
+
+        {% block extra_js %}
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+            <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+        {% endblock %}
+
+        {% compress js %}
+
+            <script type="text/javascript" src="{% static 'js/liquidsite.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/uparrow.js' %}"></script>
+        {% endcompress %}
+
+        {% block pages_js %}
+        {% endblock %}
+
+    </body>
+</html>
