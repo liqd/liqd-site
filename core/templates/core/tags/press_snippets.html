@@ -1,0 +1,33 @@
+{% for snippet in press_snippets %}
+<div class="row">
+	{% if forloop.counter|divisibleby:2 %}
+	<div class="col-md-6 col-md-offset-1">
+		<div class="text">
+			<div class="background">
+				<h1>{{ snippet.date | date:"j F" }}</h1>
+			</div>
+			<p>{{ snippet.source }}</p>
+			<h3>
+				<a href="{{ snippet.url }}">
+				{{ snippet.title }}
+				</a>
+			</h3>
+		</div>
+	</div>
+	{% else %}
+	<div class="col-md-6 col-md-offset-6">
+		<div class="text">
+			<div class="background">
+				<h1>{{ snippet.date | date:"j F" }}</h1>
+			</div>
+			<p>{{ snippet.source }}</p>
+			<h3>
+				<a href="{{ snippet.url }}">
+				{{ snippet.title }}
+				</a>
+			</h3>
+		</div>
+	</div>
+	{% endif %}
+</div>
+{% endfor %}
