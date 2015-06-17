@@ -1,12 +1,13 @@
 from django import template
+from core.models import PressLink
 
 register = template.Library()
 
 
-# persons tags
-@register.inclusion_tag('core/includes/person_list.html', takes_context=True)
-def persons(context):
-  return {
-    'adverts': Advert.objects.all(),
-    'request': context['request'],
-  }
+# press snippets tags
+@register.inclusion_tag('core/tags/press_snippets.html', takes_context=True)
+def press_snippets(context):
+    return {
+        'press_snippets': PressLink.objects.all().order_by('-date'),
+        'request': context['request']
+    }

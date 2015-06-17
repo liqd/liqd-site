@@ -2,11 +2,23 @@ from wagtail.wagtailcore.models import Page
 from django.db import models
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailsnippets.models import register_snippet
 
 
 class HomePage(Page):
     pass
+
+
+class PressPage(Page):
+    intro = RichTextField(blank=True)
+
+    subpage_types = []
+
+PressPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+    FieldPanel('intro', classname="full")
+]
 
 
 @register_snippet
