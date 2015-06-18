@@ -1,5 +1,7 @@
 from django import template
 from core.models import PressLink
+from django.db import connections
+from django.db.models import Count
 
 register = template.Library()
 

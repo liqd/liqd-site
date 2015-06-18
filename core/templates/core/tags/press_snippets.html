@@ -1,4 +1,7 @@
-{% for snippet in press_snippets %}
+{% regroup press_snippets by date.year as year_list %}
+{% for year in year_list %}
+Year: {{ year.grouper }}
+{% for snippet in year.list %}
 <div class="row">
 	{% if forloop.counter|divisibleby:2 %}
 	<div class="col-md-6 col-md-offset-1">
@@ -30,4 +33,5 @@
 	</div>
 	{% endif %}
 </div>
+{% endfor %}
 {% endfor %}
