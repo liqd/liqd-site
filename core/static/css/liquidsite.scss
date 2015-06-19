@@ -1,0 +1,137 @@
+/* navbar.scss */
+
+@import 'navbar';
+
+.content {
+	margin-top: $navbar_hight;
+}
+
+a {
+	color: #333;
+  	text-decoration: none;
+}
+
+.person_page_circular_image {
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+}
+
+.person_index_page_circular_image {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+}
+
+.person_list {
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+.article_list {
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+.person_list_person {
+	margin-top: 60px;
+}
+
+.person_list_choice {
+	margin-right: 20px;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    text-align:left;
+    margin-right:-4px;
+}
+
+.blog_page_title_area {
+	background-color: #29CAC5;
+	padding: 60px;
+	min-height: 400px;
+}
+
+.blog_page_title {
+	color: #ffffff;
+	font-family: 'Open Sans';
+	letter-spacing:1px;
+	font-size: 58px;
+}
+
+.blog_page_subtitle {
+	font-family: 'Open Sans';
+	margin-top: 60px;
+	color: #78FFFE;
+	font-size: 32px;
+}
+
+.blog_page_title_metainfo {
+	margin-top: 40px;
+	margin-bottom: 95px;
+	font-family: 'Open Sans';
+	color: #4D4D4D;
+	font-size: 20px;
+}
+
+.paragraph{
+	font-family: 'Open Sans';
+	padding-bottom: 40px;
+	font-size: 18px;
+	color: #4D4D4D
+}
+
+.paragraph2{
+	background-color:#FE9A2E;
+	padding:80px;
+	margin-bottom: 60px;
+}
+
+.paragraph_title{
+	font-family: 'Open Sans';
+	color: #2A8FE1;
+	font-size: 60px;
+}
+
+.btn {border-radius: 0;}
+
+.btn-default {
+	border: 1px solid #000000;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-primary {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.list-group-item {
+	border: none;
+}
+
+.back-to-top {
+background: none;
+margin: 0;
+position: fixed;
+bottom: 0;
+right: 0;
+width: 70px;
+height: 70px;
+z-index: 100;
+display: none;
+text-decoration: none;
+color: #ffffff;
+background-color: #ff9000;
+}
+
+.back-to-top i {
+  font-size: 60px;
+}
