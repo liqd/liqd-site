@@ -1,37 +1,23 @@
 {% regroup press_snippets by date.year as year_list %}
 {% for year in year_list %}
-Year: {{ year.grouper }}
-{% for snippet in year.list %}
 <div class="row">
+	<div class="col-md-6 col-md-offset-2">
+		<h1 class="press-year-title">{{ year.grouper }}</h1>
+	</div>
+</div>
+<div class="press-year-section">
+{% for snippet in year.list %}
+<div class="row press-snippet-row">
 	{% if forloop.counter|divisibleby:2 %}
-	<div class="col-md-6 col-md-offset-1">
-		<div class="text">
-			<div class="background">
-				<h1>{{ snippet.date | date:"j F" }}</h1>
-			</div>
-			<p>{{ snippet.source }}</p>
-			<h3>
-				<a href="{{ snippet.url }}">
-				{{ snippet.title }}
-				</a>
-			</h3>
-		</div>
+	<div class="col-md-6 col-md-offset-2">
+		{% include "core/tags/single_press_snippet.html" %}
 	</div>
 	{% else %}
 	<div class="col-md-6 col-md-offset-6">
-		<div class="text">
-			<div class="background">
-				<h1>{{ snippet.date | date:"j F" }}</h1>
-			</div>
-			<p>{{ snippet.source }}</p>
-			<h3>
-				<a href="{{ snippet.url }}">
-				{{ snippet.title }}
-				</a>
-			</h3>
-		</div>
+		{% include "core/tags/single_press_snippet.html" %}
 	</div>
 	{% endif %}
 </div>
 {% endfor %}
+</div>
 {% endfor %}

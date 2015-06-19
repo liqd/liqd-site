@@ -1,0 +1,15 @@
+<div class="text">
+	<div class="press-snippet-date">
+		<h1>{{ snippet.date | date:"j M" }}</h1>
+	</div>
+	<div class="press-snippet-info">
+		<p>{{ snippet.source }}</p>
+		<div class="press-snippet-title">
+			<h3>
+				<a target="_blank" href="{{ snippet.url }}">
+				{{ snippet.title }}
+				</a>
+			</h3>
+		</div>
+	</div>
+</div>
