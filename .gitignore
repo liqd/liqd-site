@@ -1,6 +1,6 @@
 *.pyc
 .DS_Store
 */settings/local.py
-static/
+static/CACHE/*
 media/
 db.sqlite3
