@@ -109,8 +109,8 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-gb'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'de-de'
+TIME_ZONE = 'Europe/Berlin'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -168,5 +168,6 @@ WAGTAIL_SITE_NAME = "liquidsite"
 # }
 
 
-# Whether to use face/feature detection to improve image cropping - requires OpenCV
+# Whether to use face/feature detection to improve image cropping -
+# requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
