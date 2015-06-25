@@ -1,5 +1,10 @@
 # Website for Liquid Democracy e.V.
 
+Note::
+
+    Work in progress! This isn't meant for general consumption at this stage. Many expected
+    things do not work yet!
+
 The website uses the [django-based CMS Wagtail](https://wagtail.io/), and Python 2.7
 
 ## How to start
