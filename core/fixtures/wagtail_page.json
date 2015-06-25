@@ -1,0 +1,172 @@
+[
+{
+  "fields": {
+    "locked": false,
+    "title": "Root",
+    "numchild": 1,
+    "show_in_menus": false,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": null,
+    "depth": 1,
+    "search_description": "",
+    "content_type": [
+      "wagtailcore",
+      "page"
+    ],
+    "has_unpublished_changes": false,
+    "owner": null,
+    "path": "0001",
+    "url_path": "/",
+    "expired": false,
+    "slug": "root",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 1
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Homepage",
+    "numchild": 4,
+    "show_in_menus": false,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": null,
+    "depth": 2,
+    "search_description": "",
+    "content_type": [
+      "core",
+      "homepage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": null,
+    "path": "00010001",
+    "url_path": "/home/",
+    "expired": false,
+    "slug": "home",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 3
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Unser Team",
+    "numchild": 0,
+    "show_in_menus": false,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-06-25T10:11:01.744Z",
+    "depth": 3,
+    "search_description": "",
+    "content_type": [
+      "persons",
+      "personindexpage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "magda"
+    ],
+    "path": "000100010001",
+    "url_path": "/home/team/",
+    "expired": false,
+    "slug": "team",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 4
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Presse",
+    "numchild": 0,
+    "show_in_menus": false,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-06-25T10:11:43.682Z",
+    "depth": 3,
+    "search_description": "",
+    "content_type": [
+      "core",
+      "presspage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "magda"
+    ],
+    "path": "000100010002",
+    "url_path": "/home/presse/",
+    "expired": false,
+    "slug": "presse",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 5
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Projekte",
+    "numchild": 0,
+    "show_in_menus": false,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-06-25T10:12:33.729Z",
+    "depth": 3,
+    "search_description": "",
+    "content_type": [
+      "projects",
+      "projectindexpage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "magda"
+    ],
+    "path": "000100010003",
+    "url_path": "/home/projects/",
+    "expired": false,
+    "slug": "projects",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 6
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Blog",
+    "numchild": 0,
+    "show_in_menus": false,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-06-25T10:12:58.947Z",
+    "depth": 3,
+    "search_description": "",
+    "content_type": [
+      "blog",
+      "blogindexpage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "magda"
+    ],
+    "path": "000100010004",
+    "url_path": "/home/blog/",
+    "expired": false,
+    "slug": "blog",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 7
+}
+]
