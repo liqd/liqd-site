@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'wagtail.wagtailsearch',
     'wagtail.wagtailredirects',
     'wagtail.wagtailforms',
+    'wagtail.contrib.wagtailstyleguide',
 
     'core',
     'blog',
