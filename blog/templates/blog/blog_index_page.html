@@ -19,7 +19,7 @@
 var number_pages = {{ blogs.paginator.num_pages }};
 var count = 2;
 $(window).scroll(function(){
-    if  (($(window).scrollTop() == $(document).height() - $(window).height()) && count <= number_pages){
+    if  (($(window).scrollTop() >= $(document).height() - $(window).height() - 60) && count <= number_pages){
         loadArticle(count);
         count ++;
     }

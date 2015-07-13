@@ -1,7 +1,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% for blog in blogs %}
-	{% include "core/includes/blog_list_item.html" %}
+	{% include "blog/includes/blog_list_item.html" %}
 {% empty %}
     No blogs found
 {% endfor %}
