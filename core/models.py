@@ -5,9 +5,22 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailsnippets.models import register_snippet
 
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore import blocks
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailimages.blocks import ImageChooserBlock
+
 
 class HomePage(Page):
-    pass
+    body = StreamField([
+        ('heading', blocks.CharBlock(classname="full title", icon="title")),
+        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
+        ('image', ImageChooserBlock(icon="image")),
+    ], null=True)
+
+HomePage.content_panels = [
+    StreamFieldPanel('body')
+]
 
 
 class PressPage(Page):
