@@ -8,29 +8,11 @@ from modelcluster.fields import ParentalKey
 from persons.models import PersonPage
 from wagtail.wagtailadmin.edit_handlers import InlinePanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-
-
-class Paragraph(models.Model):
-    title = models.CharField(max_length=255, help_text="Title")
-    body = RichTextField()
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        on_delete=models.SET_NULL,
-        related_name='+',
-        null=True,
-        blank=True
-    )
-    visible = models.BooleanField(default=True)
-
-    panels = [
-        FieldPanel('title'),
-        FieldPanel('body'),
-        ImageChooserPanel('image'),
-        FieldPanel('visible'),
-    ]
-
-    class Meta:
-        abstract = True
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore import blocks
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.wagtailembeds.blocks import EmbedBlock
 
 
 class Person(models.Model):
@@ -43,16 +25,6 @@ class Person(models.Model):
 
     class Meta:
         abstract = True
-
-
-class ProjectParagraphTop(Orderable, Paragraph):
-    page = ParentalKey(
-        'projects.ProjectPage', related_name='project_paragraphs_top')
-
-
-class ProjectParagraphBottom(Orderable, Paragraph):
-    page = ParentalKey(
-        'projects.ProjectPage', related_name='project_paragraphs_bottom')
 
 
 class ProjectPersons(Orderable, Person):
@@ -69,15 +41,26 @@ class ProjectPage(Page):
         related_name='+'
     )
     shorttext = RichTextField(max_length=300, blank=True)
+    streamFieldTop = StreamField([
+        ('heading', blocks.CharBlock(classname="full title", icon="title")),
+        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
+        ('image', ImageChooserBlock(icon="image")),
+        ('video', EmbedBlock(icon="media"))
+    ], null=True)
+    streamFieldBottom = StreamField([
+        ('heading', blocks.CharBlock(classname="full title", icon="title")),
+        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
+        ('image', ImageChooserBlock(icon="image")),
+    ], null=True)
 
 ProjectPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle', classname="full title"),
     FieldPanel('shorttext', classname="full"),
     ImageChooserPanel('image'),
-    InlinePanel(ProjectPage, 'project_paragraphs_top', label="Paragraphs"),
+    StreamFieldPanel('streamFieldTop'),
     InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
-    InlinePanel(ProjectPage, 'project_paragraphs_bottom', label="Paragraphs")
+    StreamFieldPanel('streamFieldBottom')
 ]
 
 

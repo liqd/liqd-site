@@ -1,9 +1,39 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 <div class="container">
 <h1>{{ self.title }}</h1>
+<h2>{{ self.subtitle }}</h2>
+<p>{{ self.shorttext | richtext }}</p>
+
+{% image self.image width-400 as img %}
+<img src="{{ img.url }}" />
+
+{% for block in self.streamFieldTop %}
+    {% if block.block_type == 'heading' %}
+        <h1>{{ block.value }}</h1>
+    {% else %}
+        <section class="block-{{ block.block_type }}">
+            {{ block }}
+        </section>
+    {% endif %}
+{% endfor %}
+
+<h1>Beteiligte Mitarbeiter</h1>
+{% for person in self.projects_persons.all %}
+<a href="{% pageurl person.person %}"><h3>{{ person.person }}</h3></a>
+{% endfor %}
+
+{% for block in self.streamFieldBottom %}
+    {% if block.block_type == 'heading' %}
+        <h1>{{ block.value }}</h1>
+    {% else %}
+        <section class="block-{{ block.block_type }}">
+            {{ block }}
+        </section>
+    {% endif %}
+{% endfor %}
 
 
 {% endblock %}
