@@ -2,6 +2,7 @@
 .DS_Store
 */settings/local.py
 static/CACHE/*
+static/.sass-cache/*
 media/
 db.sqlite3
 .sass-cache/*
