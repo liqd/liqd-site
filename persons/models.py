@@ -7,6 +7,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
 from wagtail.wagtailadmin.edit_handlers import InlinePanel
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.http import HttpResponse
 
 
@@ -76,7 +77,7 @@ class PersonPage(Page, ContactFields):
 
         if request.is_ajax():
             html = render_to_string(
-                'core/includes/person_list.html', {'request': request, 'persons': persons})
+                'persons/includes/person_list.html', {'request': request, 'persons': persons})
             return HttpResponse(html)
 
         return render(request, self.template, {
@@ -132,7 +133,7 @@ class PersonIndexPage(Page):
 
         if request.is_ajax():
             html = render_to_string(
-                'core/includes/person_list.html', {'request': request, 'persons': persons})
+                'persons/includes/person_list.html', {'request': request, 'persons': persons})
             return HttpResponse(html)
 
         return render(request, self.template, {
