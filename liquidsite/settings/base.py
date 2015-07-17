@@ -108,12 +108,10 @@ MEDIA_ROOT = join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
 
 
-# Django compressor settings
-# http://django-compressor.readthedocs.org/en/latest/settings/
+COMPRESS_ENABLED = False
 
 COMPRESS_PRECOMPILERS = (
-    # FIXME: Attempt to create source maps not working
-    ('text/x-scss', 'sass --style compressed --sourcemap {infile} {outfile}'),
+    ('text/x-scss', 'contrib.sass.sass.SassMapFilter'),
 )
 
 
