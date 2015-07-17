@@ -112,7 +112,8 @@ MEDIA_URL = '/media/'
 # http://django-compressor.readthedocs.org/en/latest/settings/
 
 COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
+    # FIXME: Attempt to create source maps not working
+    ('text/x-scss', 'sass --style compressed --sourcemap {infile} {outfile}'),
 )
 
 
