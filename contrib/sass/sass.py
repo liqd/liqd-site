@@ -51,7 +51,7 @@ class SassMapFilter(CompilerFilter):
     # cd to the static root so that sass can find included libraries
     # --scss for the type of sass files we're processing
     # --sourcemap generates the .map file in the same directory as outfile
-    command = "cd {static_root}; sass --scss --sourcemap {infile} {outfile}"
+    command = "cd {static_root}; sass --style compressed --sourcemap {infile} {outfile}"
 
     options = (
         ("static_root", settings.STATIC_ROOT),
