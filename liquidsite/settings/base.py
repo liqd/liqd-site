@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'wagtail.contrib.settings',
 
     'compressor',
     'taggit',
@@ -60,10 +61,12 @@ INSTALLED_APPS = (
     'wagtail.wagtailforms',
     'wagtail.contrib.wagtailstyleguide',
 
+    'wagtail_modeltranslation',
+
     'core',
     'blog',
     'persons',
-    'projects'
+    'projects',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -73,6 +76,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
@@ -90,7 +95,11 @@ TIME_ZONE = 'Europe/Berlin'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
+LANGUAGES = (
+    ('de', u'Deutsch'),
+    ('en', u'English'),
+)
+# MODELTRANSLATION_LANGUAGES = ('de', 'en')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -111,9 +120,10 @@ MEDIA_URL = '/media/'
 COMPRESS_ENABLED = False
 
 COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'contrib.sass.sass.SassMapFilter'),
+    # ('text/x-scss', 'contrib.sass.sass.SassMapFilter'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
-
+LIBSASS_SOURCEMAPS = True
 
 # Template configuration
 
@@ -121,6 +131,7 @@ from django.conf import global_settings
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
+    'wagtail.contrib.settings.context_processors.settings',
 )
 
 
