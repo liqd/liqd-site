@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block content %}
+
+{% include "core/includes/enhancedpage_simpleheader.html" %}
+
+<div class="row row-centered">
+	<div class="contentwrapper">
+		<div class="textpage">
+			{{ page.body|richtext }}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
