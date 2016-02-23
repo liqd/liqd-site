@@ -41,6 +41,7 @@ class ProjectPage(Page):
         related_name='+'
     )
     shorttext = RichTextField(max_length=300, blank=True)
+    external_url = models.CharField(max_length=200, blank=True)
     streamFieldTop = StreamField([
         ('heading', blocks.CharBlock(classname="full title", icon="title")),
         ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -59,8 +60,9 @@ ProjectPage.content_panels = [
     FieldPanel('shorttext', classname="full"),
     ImageChooserPanel('image'),
     StreamFieldPanel('streamFieldTop'),
-    InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
-    StreamFieldPanel('streamFieldBottom')
+    # InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
+    StreamFieldPanel('streamFieldBottom'),
+    FieldPanel('external_url'),
 ]
 
 

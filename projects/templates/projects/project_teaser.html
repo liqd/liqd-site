@@ -1,0 +1,21 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<div class="row row-centered">
+	<div class="teaser project-teaser">
+		{% image teaser.image height-400 %}
+		<div class="inner">
+			{{ teaser.shorttext|richtext }}
+			<h2>{{ teaser.title }}</h2>
+			<div class="links">
+				{% if teaser.external_url %}
+					<a href="//{{ teaser.external_url }}" class="button button-white" target="_blank">www</a>
+				{% endif %}
+				{% if not settings.core.LiqdSettings.liqd_preliminary_site %}
+					<a href="/projekte/{{ teaser.slug }}" class="button button-white project-link" target="_blank">Details</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
