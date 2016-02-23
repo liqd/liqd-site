@@ -16,7 +16,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: $footer_height;
+  /*height: $footer_height;*/
   background-color: $footer_background_color;
 }
 
@@ -34,4 +34,8 @@ body {
 .footer > .container {
   padding-right: 15px;
   padding-left: 15px;
+}
+
+.footer .social-sites a {
+  color: $footer_color;
 }

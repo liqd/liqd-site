@@ -1,0 +1,46 @@
+.block {
+	@extend .xs-pb-40;
+	@extend .sm-pb-60;
+	@extend .md-pb-85;
+
+	padding-bottom: 8.5rem;
+	/* p:last-of-type {
+		margin-bottom: 0px;
+	} */
+}
+
+.block-column {
+	padding-bottom: 0px;
+	// background-color:red;
+	div {
+		// margin-bottom: 5rem;
+		padding-bottom: 5rem;
+	}
+}
+
+// .row-block-column ~ .row-block-column {
+// 	background-color: lightgreen;
+// }
+
+.block-carousel {	
+	margin: 6rem 0;
+}
+
+.block-highlight {
+	// @extend .paddingTop;
+	padding-top: 7rem;
+	background-color: lightgrey;
+}
+
+.block-linkbox,
+.block-highlight-paragraph {
+	a {
+		display: inline-block;
+		min-width: 35rem;
+		margin: 0.4rem auto;
+	}
+
+	.rich-text {
+		margin-bottom: 9.5rem;
+	}
+}

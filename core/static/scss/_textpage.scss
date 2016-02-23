@@ -1,0 +1,14 @@
+.textpage {
+	text-align: left;
+	h1 {
+		text-align: center;
+	}
+
+	h5 {
+		padding-top: 3rem;
+	}
+
+	h5:first-of-type {
+		padding-top: 0px;
+	}
+}

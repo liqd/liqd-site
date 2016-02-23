@@ -1,0 +1,64 @@
+.simpleheader {
+	// min-height: 20rem;
+
+	padding-top: 7rem;
+	/* @extend .paddingTop;
+	
+	@extend .xs-mb-55;
+	@extend .sm-mb-75;
+	@extend .md-mb-105; */
+
+	margin-bottom: 10.5rem;
+	// p:last-of-type {
+	// 	margin-bottom: 0px;
+	// }
+
+	.rich-text {
+		font-size: 1.7rem;
+		letter-spacing: 0.028rem;
+		line-height: 2.3rem;
+	}
+}
+
+
+.homepage-header {
+
+	padding-top: 7rem;
+	
+	h1 {
+		text-align: left;
+	}
+
+	.rich-text {
+		width: 100%;
+		padding-left: 45%;
+		padding-right: 20%;
+		background-color: lightgreen;
+		text-align: left;
+
+		p {
+			font-size: 1.8rem;
+			line-height: 2.6rem;
+		}
+	}
+
+	.icon {
+		float: right;
+	}
+
+	.icon_1 {
+		background: (url("/static/images/plattform.png") no-repeat center);
+		background-size: 120% 120%;
+		width: 85px;
+		height: 62px;
+		margin-top: -3rem;
+		margin-left: -5rem;
+	}
+
+	
+}
+
+
+.inlinesvg .homepage-header .icon_1 {
+    background-image: url("/static/images/plattform.svg");
+}

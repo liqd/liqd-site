@@ -1,0 +1,14 @@
+.button {
+	line-height: 7rem;
+	padding: 0px 1.78571rem;
+	transition: background-color 0.4s ease 0s;
+	border: 1px solid #4D4D4D;
+	color: #4D4D4D;
+	display: inline-block;
+	/*font-size: 1.8rem;*/
+}
+
+.button-white {
+	color: white !important;
+	border-color: white !important;
+}
