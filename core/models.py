@@ -25,8 +25,10 @@ class HomePage(Page):
         ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
         ('image', ImageChooserBlock(icon="image")),
     ], null=True)
-    # content_panels = [
-    # ]
+    content_panels = Page.content_panels + [
+        FieldPanel('heading'),
+        FieldPanel('intro')
+    ]
     # de_content_panels = [
     #     FieldPanel('heading_de'),
     #     FieldPanel('intro_de'),
