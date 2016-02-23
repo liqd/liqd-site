@@ -17,7 +17,7 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
 
-class HomePage(TranslationMixin, Page):
+class HomePage(Page):
     heading = models.CharField(max_length=255, default="")
     intro = RichTextField(blank=True)
     body = StreamField([
@@ -25,43 +25,43 @@ class HomePage(TranslationMixin, Page):
         ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
         ('image', ImageChooserBlock(icon="image")),
     ], null=True)
-    content_panels = [
-    ]
-    de_content_panels = [
-        FieldPanel('heading_de'),
-        FieldPanel('intro_de'),
-        StreamFieldPanel('body_de'),
-    ]
+    # content_panels = [
+    # ]
+    # de_content_panels = [
+    #     FieldPanel('heading_de'),
+    #     FieldPanel('intro_de'),
+    #     StreamFieldPanel('body_de'),
+    # ]
 
-    en_content_panels = [
-        FieldPanel('heading_en'),
-        FieldPanel('intro_en'),
-        StreamFieldPanel('body_en'),
-    ]
+    # en_content_panels = [
+    #     FieldPanel('heading_en'),
+    #     FieldPanel('intro_en'),
+    #     StreamFieldPanel('body_en'),
+    # ]
 
-    promote_panels = [
-        FieldPanel('slug'),
-        MultiFieldPanel([
-            FieldPanel('seo_title_de'),
-            FieldPanel('search_description_de'),
-        ],
-        heading = "SEO settings de",
-        classname="collapsible"),
-        MultiFieldPanel([
-            FieldPanel('seo_title_en'),
-            FieldPanel('search_description_en'),
-        ],
-        heading = "SEO settings en",
-        classname="collapsible")
-    ]
+    # promote_panels = [
+    #     FieldPanel('slug'),
+    #     MultiFieldPanel([
+    #         FieldPanel('seo_title_de'),
+    #         FieldPanel('search_description_de'),
+    #     ],
+    #     heading = "SEO settings de",
+    #     classname="collapsible"),
+    #     MultiFieldPanel([
+    #         FieldPanel('seo_title_en'),
+    #         FieldPanel('search_description_en'),
+    #     ],
+    #     heading = "SEO settings en",
+    #     classname="collapsible")
+    # ]
 
-    edit_handler = TabbedInterface([
-        # ObjectList(content_panels, heading='Content'),
-        ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
-        ObjectList(promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
-    ])
+    # edit_handler = TabbedInterface([
+    #     # ObjectList(content_panels, heading='Content'),
+    #     ObjectList(de_content_panels, heading='Content de'),
+    #     ObjectList(en_content_panels, heading='Content en'),
+    #     ObjectList(promote_panels, heading='Promote'),
+    #     ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    # ])
 
 
 class TextPage(TranslationMixin, Page):
@@ -69,6 +69,7 @@ class TextPage(TranslationMixin, Page):
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('title_de'),
     ]
 
     de_content_panels = [
