@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	if($(window).width()>768){
+	if($(window).width()>screen_sm){
 		$('.navbar .dropdown').hover(function(e) {
 			var dropdown_width = $(this).outerWidth();
 			var dropdown_menu = $(this).find('.dropdown-menu').first();
