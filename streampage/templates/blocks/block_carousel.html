@@ -1,0 +1,14 @@
+
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<div class="row row-centered">
+	<div class="contentwrapper content-fullwidth">
+		<div class="block block-carousel">
+			{% for img in value %}
+				<div>{% image img width-250 %}</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

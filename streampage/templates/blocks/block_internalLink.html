@@ -1,0 +1,16 @@
+
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+
+<div class="row row-centered">
+	<div class="contentwrapper">
+		<div class="block block-linkbox">
+			<h3>{{ value.headline }}</h3>
+			{% for link in value.links %}
+				{{ link }}
+			{% endfor %}
+		</div>
+	</div>
+</div>

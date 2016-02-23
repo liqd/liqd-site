@@ -1,0 +1,17 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<div class="row row-centered">
+	<div class="contentwrapper content-fullwidth">
+		<div class="block block-highlight block-highlight-paragraph">
+			<h3>{{ value.headline }}</h3>
+			{{value.text}}
+			{% if value.link %}
+			<div class="links">
+				<a href="{{ value.link.url }}" class="button">{{value.link.title}}</a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
