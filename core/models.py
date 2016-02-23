@@ -18,7 +18,8 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
 class HomePage(Page):
-    heading = models.CharField(max_length=255, default="")
+    heading1 = models.CharField(max_length=255)
+    heading2 = models.CharField(max_length=255)
     intro = RichTextField(blank=True)
     body = StreamField([
         ('heading', blocks.CharBlock(classname="full title", icon="title")),
@@ -26,8 +27,10 @@ class HomePage(Page):
         ('image', ImageChooserBlock(icon="image")),
     ], null=True)
     content_panels = Page.content_panels + [
-        FieldPanel('heading'),
-        FieldPanel('intro')
+        FieldPanel('heading1'),
+        FieldPanel('heading2'),
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
     ]
     # de_content_panels = [
     #     FieldPanel('heading_de'),

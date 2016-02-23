@@ -5,6 +5,9 @@
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
+
+{% include "core/includes/homepage_header.html" %}
+
 <div class="container">
 	<article>
     {% for block in self.body %}

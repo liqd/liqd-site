@@ -1,64 +1,130 @@
 .simpleheader {
-	// min-height: 20rem;
 
-	padding-top: 7rem;
-	/* @extend .paddingTop;
-	
-	@extend .xs-mb-55;
-	@extend .sm-mb-75;
-	@extend .md-mb-105; */
+    padding-top: 7rem;
+    margin-bottom: 10.5rem;
 
-	margin-bottom: 10.5rem;
-	// p:last-of-type {
-	// 	margin-bottom: 0px;
-	// }
-
-	.rich-text {
-		font-size: 1.7rem;
-		letter-spacing: 0.028rem;
-		line-height: 2.3rem;
-	}
+    .rich-text {
+        font-size: 1.7rem;
+        letter-spacing: 0.028rem;
+        line-height: 2.3rem;
+    }
 }
+
+
+
+// ******************** 
+// HomePage Header
+
+
+$icon-1-width: 10rem;
+$icon-2-width: 22rem;
+$icon-3-width: 20rem;
 
 
 .homepage-header {
 
-	padding-top: 7rem;
-	
-	h1 {
-		text-align: left;
-	}
+    padding-top: 7rem;
+    position: relative;
+    
+    h1 {
+        text-align: left;
+        margin-left: 5rem;
+    }
+    h1:first-of-type {
+        padding-bottom: 0px;
+        padding-left: 15rem;
+        @media screen and (max-width: $screen-xs) {
+            padding-left: 10rem;
+        }
+    }
 
-	.rich-text {
-		width: 100%;
-		padding-left: 45%;
-		padding-right: 20%;
-		background-color: lightgreen;
-		text-align: left;
+    .rich-text {
+        width: 100%;
+        padding-left: 40%;
+        padding-right: 25%;
+        padding-top: 2%;
+        text-align: left;
 
-		p {
-			font-size: 1.8rem;
-			line-height: 2.6rem;
-		}
-	}
+        @media screen and (max-width: $screen-xs) {
+            padding-left: 50%;
+            padding-right: 5%;
+        }
 
-	.icon {
-		float: right;
-	}
+        p {
+            font-size: 1.8rem;
+            line-height: 2.6rem;
+            @media screen and (max-width: $screen-xs) {
+                font-size: 2.6rem;
+                line-height: 3rem;
+            }
+        }
+    }
 
-	.icon_1 {
-		background: (url("/static/images/plattform.png") no-repeat center);
-		background-size: 120% 120%;
-		width: 85px;
-		height: 62px;
-		margin-top: -3rem;
-		margin-left: -5rem;
-	}
+    .icon {
+        background-repeat: no-repeat;
+        position: absolute;
+    }
 
-	
+    .icon_1 {
+        background: (url("/static/images/plattform.png") no-repeat center);
+        background-size: 80%;
+        right: 17%;
+        width: $icon-1-width;
+        height: ( 150 / 225 ) * $icon-1-width;
+        @media screen and (max-width: $screen-xs) {
+            right: 5%;
+        }
+    }
+
+    .icon_2 {
+        background: (url("/static/images/software.png") no-repeat center);
+        background-size: 100%;
+        width: $icon-2-width;
+        height: ( 150 / 225 ) * $icon-2-width;
+        left: 7%;
+        top: 20rem;
+        @media screen and (max-width: $screen-xs) {
+            top: 55%;
+        }
+    }
+
+    .icon_3 {
+        background: (url("/static/images/forschen.png") no-repeat center);
+        background-size: 50%;
+        width: $icon-3-width;
+        height: ( 150 / 225 ) * $icon-3-width;
+        right: 0%;
+        top: 22rem;
+        @media screen and (max-width: $screen-xs) {
+            display: none;
+        }
+    }
+    
 }
 
+.inlinesvgs .homepage-header {
 
-.inlinesvg .homepage-header .icon_1 {
-    background-image: url("/static/images/plattform.svg");
+    .icon {
+        background-size: cover;
+        margin: 0 auto;
+        background-color: #fff;
+    }
+
+    .icon_1 {
+        background-image: url("/static/images/plattform.svg");
+        width: $icon-1-width;
+        padding-top: ( 124 / 158 ) * $icon-1-width;
+    }
+
+    .icon_2 {
+        background-image: url("/static/images/software.svg");
+        width: $icon-2-width;
+        padding-top: ( 108 / 139 ) * $icon-2-width;
+    }
+
+    .icon_3 {
+        background-image: url("/static/images/forschen.svg");
+        width: $icon-3-width;
+        padding-top: ( 150 / 225 ) * $icon-3-width;
+    }
 }

@@ -26,28 +26,29 @@ class StreamPage(Page):
             [
                 ('headline', blocks.CharBlock(required=False, length=256)),
                 ('text', blocks.RichTextBlock(required=True)),
-            ], template="blocks/block_standard_paragraph.html")
+            ], template="blocks/block_standard_paragraph.html", icon="pilcrow")
         ),
         ('highlight_paragraph', blocks.StructBlock(
             [
                 ('headline', blocks.CharBlock(required=False, length=256)),
                 ('text', blocks.RichTextBlock(required=True)),
                 ('link', blocks.PageChooserBlock(required=False)),
-            ], template="blocks/block_highlight_paragraph.html")
+            ], template="blocks/block_highlight_paragraph.html", icon="pilcrow")
         ),
-        ('image', ImageChooserBlock()),
+        ('image', ImageChooserBlock(icon="image"), ),
         ('columns', blocks.StructBlock(
             [
                 ('col1_headline', blocks.CharBlock(required=True, length=256)),
                 ('col1_text', blocks.RichTextBlock()),
                 ('col2_headline', blocks.CharBlock(required=True, length=256)),
                 ('col2_text', blocks.RichTextBlock()),
-            ], template = "blocks/block_column.html")
+            ], template = "blocks/block_column.html", icon="grip")
         ),
         ('carousel', blocks.ListBlock(
             ImageChooserBlock(), 
             template = "blocks/block_carousel.html",
-            help_text = "Please choose up to 4 images."
+            help_text = "Please choose up to 4 images.",
+            icon="image"
             ),
         ),
         ('linkbox', blocks.StructBlock(
@@ -59,7 +60,7 @@ class StreamPage(Page):
                     ),
                 ),
                 
-            ], template = "blocks/block_linkbox.html")
+            ], template = "blocks/block_linkbox.html", icon="link")
         ),
     ])
 
