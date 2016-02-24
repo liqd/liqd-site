@@ -114,9 +114,3 @@ class ProjectIndexPage(TranslationMixin, Page):
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
-
-
-# ProjectIndexPage.content_panels = [
-#     FieldPanel('title', classname="full title"),
-#     FieldPanel('intro', classname="full")
-# ]
