@@ -24,24 +24,30 @@ $icon-3-width: 20rem;
 .homepage-header {
 
     padding-top: 7rem;
+    margin-bottom: 7rem;
     position: relative;
     
     h1 {
         text-align: left;
         margin-left: 5rem;
+        @media screen and (max-width: $screen-xs) {
+            margin-left: 2rem;
+        }
     }
+    
+
     h1:first-of-type {
         padding-bottom: 0px;
         padding-left: 15rem;
         @media screen and (max-width: $screen-xs) {
-            padding-left: 10rem;
+            padding-left: 8rem;
         }
     }
 
     .rich-text {
         width: 100%;
-        padding-left: 40%;
-        padding-right: 25%;
+        padding-left: 36%;
+        padding-right: 30%;
         padding-top: 2%;
         text-align: left;
 
@@ -57,6 +63,11 @@ $icon-3-width: 20rem;
                 font-size: 2.6rem;
                 line-height: 3rem;
             }
+
+            @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
+                font-size: 2.1rem;
+                line-height: 2.6rem;
+            }
         }
     }
 
@@ -68,11 +79,11 @@ $icon-3-width: 20rem;
     .icon_1 {
         background: (url("/static/images/plattform.png") no-repeat center);
         background-size: 80%;
-        right: 17%;
+        right: 10%;
         width: $icon-1-width;
         height: ( 150 / 225 ) * $icon-1-width;
         @media screen and (max-width: $screen-xs) {
-            right: 5%;
+            right: 2%;
         }
     }
 
@@ -81,10 +92,11 @@ $icon-3-width: 20rem;
         background-size: 100%;
         width: $icon-2-width;
         height: ( 150 / 225 ) * $icon-2-width;
-        left: 7%;
+        left: 0%;
         top: 20rem;
         @media screen and (max-width: $screen-xs) {
             top: 55%;
+            left: 0%;
         }
     }
 
@@ -102,7 +114,7 @@ $icon-3-width: 20rem;
     
 }
 
-.inlinesvgs .homepage-header {
+.inlinesvg .homepage-header {
 
     .icon {
         background-size: cover;
