@@ -14,6 +14,8 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 
+from wagtail_modeltranslation.models import TranslationMixin
+from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
 
 class Person(models.Model):
     person = models.ForeignKey(
@@ -66,7 +68,7 @@ ProjectPage.content_panels = [
 ]
 
 
-class ProjectIndexPage(Page):
+class ProjectIndexPage(TranslationMixin, Page):
     intro = RichTextField(blank=True)
     subpage_types = ['projects.ProjectPage']
 
@@ -80,7 +82,41 @@ class ProjectIndexPage(Page):
         projects = projects.order_by('title')
         return projects
 
-ProjectIndexPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('intro', classname="full")
-]
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('intro_de'),
+    ]
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('intro_en'),
+    ]
+
+    promote_panels = [
+        FieldPanel('slug'),
+        MultiFieldPanel([
+            FieldPanel('seo_title_de'),
+            FieldPanel('search_description_de'),
+        ],
+        heading = "SEO settings de",
+        classname="collapsible"),
+        MultiFieldPanel([
+            FieldPanel('seo_title_en'),
+            FieldPanel('search_description_en'),
+        ],
+        heading = "SEO settings en",
+        classname="collapsible")
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    ])
+
+
+# ProjectIndexPage.content_panels = [
+#     FieldPanel('title', classname="full title"),
+#     FieldPanel('intro', classname="full")
+# ]
