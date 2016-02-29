@@ -1,6 +1,7 @@
 
-// ******************** 
-// navbar
+//
+// Top-Navigation
+// --------------------------------------------------
 
 .navbar {
     min-height: $navbar_height;
@@ -82,8 +83,9 @@
 
 
 
-// ******************** 
-// dropdown
+//
+// Dropdown Menus
+// --------------------------------------------------
 
 @media (min-width: $screen-xs-max) {
     .navbar-right .dropdown-menu {
@@ -119,8 +121,9 @@
 }
 
 
-// ********************
-// triangle
+//
+// Triangle
+// --------------------------------------------------
 
 .dropdown-menu:before {
     position: absolute;
@@ -143,22 +146,4 @@
     border-bottom: 7px solid #112233;
     border-left: 7px solid transparent;
     content: '';
-}
-
-
-
-
-// ********************
-// MOBILE
-
-@media screen and (max-width: $screen-xs-max) {
-/*
-    .navbar-brand {
-        font-size: $navbar_menu_font_size;
-    }
-
-    .navbar-nav > li > a {
-        font-size: $navbar_mobile_font_size;
-    }*/
-
 }

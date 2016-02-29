@@ -1,3 +1,7 @@
+//
+// Document styles
+// --------------------------------------------------
+
 hmtl,body {
 	font-family: 'Cabin', sans-serif !important;
 	font-size: 62.5%;
@@ -26,29 +30,34 @@ hmtl,body {
 } 
 
 
+//
+// Basic HTML-Elements
+// --------------------------------------------------
+
 
 body,h5,p,ul,ol,li,div,span,a {
 	font-size: inherit;
 }
 
 body,p,li,div,span {
-	// although we do not officially support old IE versions, this is an easy fallback for basic font sizes with rem
+	//** although we do not officially support old IE versions, this is an easy fallback for basic font sizes with rem
 	font-size: 17px; font-size: $font-size;
 }
 @media screen and (max-width: $screen-xs) {
 	body,p,li,div,span {
-		// background-color: green;
 		font-size: 3.0rem;
 		line-height: 4rem;
 	}
 }
 @media screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
 	body,p,li,div,span {
-		// background-color: green;
 		font-size: 2.2rem;
 		line-height: 3rem;
 	}
 }
+
+
+//** Headings 
 
 h1,h2,h3,h4,h5 {
 	color: #4D4D4D;
@@ -56,24 +65,11 @@ h1,h2,h3,h4,h5 {
 
 h1 {
 	@extend .resetMargin;
-	/* @extend .xs-pb-10;
-	@extend .sm-pb-20;
-	@extend .md-pb-35; */
 	
 	padding-bottom: 3.5rem;
 	text-align: center;
 	font-size: 45px; font-size: 4.5rem;
 	line-height: 5.4rem;
-
-	// @media screen and (max-width: $screen-xs) {
-	// 	font-size: 28px; font-size: 2.8rem;
-	// 	line-height: 4rem;
-	// }
-
-	// @media screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
-	// 	font-size: 36px; font-size: 3.6rem;
-	// 	line-height: 5rem;
-	// }
 }
 
 h2 {
@@ -85,10 +81,6 @@ h2 {
 		font-size: 40px; font-size: 4rem;
 		line-height: 4.4rem;
 	}
-	/* @media screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
-		font-size: 36px; font-size: 3.6rem;
-		line-height: 5rem;
-	} */
 }
 
 h3 {
@@ -101,10 +93,6 @@ h3 {
 		font-size: 34px; font-size: 3.4rem;
 		line-height: 4rem;
 	}
-	// @media screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
-	// 	font-size: 25px; font-size: 2.5rem;
-	// 	line-height: 2.8rem;
-	// }
 }
 
 h4 {
@@ -133,6 +121,12 @@ h5 {
 	}
 }
 
+
+//
+// Basic layout classes
+// --------------------------------------------------
+
+
 .content {
 	margin-bottom: 4.5rem
 }
@@ -144,14 +138,6 @@ h5 {
 		padding: 0 5%;
 		// background-color: green;
 	}
-	// @media screen and (min-width: $screen-sm) and (max-width: $screen-md-max){
-	// 	padding: 0 15%;
-	// 	// background-color: yellow;
-	// }
-// 	@media screen and (min-width: $screen-md) {
-// 		padding: 0 15%;
-// 		// background-color: lightblue;
-// 	}
 }
 
 .content-fullwidth {
@@ -159,14 +145,13 @@ h5 {
 	padding-right: 0px;
 }
 
-// use this is pageheaders and block elements with background-color
-/* .paddingTop {
-	@extend .xs-pt-30;
-	@extend .sm-pt-50;
-	@extend .md-pt-70;
-} */
 
 
+//
+// Helper classes
+// --------------------------------------------------
+
+// remove margin from last paragraph
 .block,
 .simpleheader,
 .teaser {
@@ -177,6 +162,7 @@ h5 {
 	}
 }
 
+//** reset margin if needed
 .resetMargin {
 	margin:0px;
 }

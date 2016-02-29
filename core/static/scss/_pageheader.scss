@@ -1,3 +1,9 @@
+//
+// Pageheader styles:
+// --------------------------------------------------
+
+
+//** Simple Header: used in most pages, content pushed from page properties (not StreamFields)
 .simpleheader {
 
     padding-top: 7rem;
@@ -12,9 +18,9 @@
 
 
 
-// ******************** 
-// HomePage Header
-
+//
+// Special Header: Homepage
+// --------------------------------------------------
 
 $icon-1-width: 10rem;
 $icon-2-width: 22rem;
@@ -50,7 +56,6 @@ $icon-3-width: 20rem;
         padding-right: 30%;
         padding-top: 2%;
         text-align: left;
-
         @media screen and (max-width: $screen-xs) {
             padding-left: 50%;
             padding-right: 5%;
@@ -63,7 +68,6 @@ $icon-3-width: 20rem;
                 font-size: 2.6rem;
                 line-height: 3rem;
             }
-
             @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
                 font-size: 2.1rem;
                 line-height: 2.6rem;
@@ -114,6 +118,8 @@ $icon-3-width: 20rem;
     
 }
 
+
+//** use svg graphics if supported
 .inlinesvg .homepage-header {
 
     .icon {
@@ -139,4 +145,5 @@ $icon-3-width: 20rem;
         width: $icon-3-width;
         padding-top: ( 150 / 225 ) * $icon-3-width;
     }
+    
 }
