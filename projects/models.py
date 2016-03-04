@@ -43,7 +43,7 @@ class ProjectPage(Page):
         related_name='+'
     )
     shorttext = RichTextField(max_length=300, blank=True)
-    external_url = models.CharField(max_length=200, blank=True)
+    external_url = models.URLField(max_length=200, blank=True)
     streamFieldTop = StreamField([
         ('heading', blocks.CharBlock(classname="full title", icon="title")),
         ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
