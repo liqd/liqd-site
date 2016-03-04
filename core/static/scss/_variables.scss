@@ -6,6 +6,17 @@ $font-size: 1.7rem;
 
 
 //
+// Footer
+// --------------------------------------------------
+
+$footer_background_color: #4D4D4D;
+$footer_color: #9E9E9E;
+$footer_highlight_color: lighten($footer_color, 20%);
+$footer_font_size: 1.5rem;
+$footer_height: 65px;
+
+
+//
 // Navbar
 // --------------------------------------------------
 $navbar_background_color: #FFFFFF;

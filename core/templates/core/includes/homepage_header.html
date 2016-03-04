@@ -2,14 +2,13 @@
 {% load wagtailcore_tags %}
 {% load static %}
 
-<div class="row row-centered">
-	<div class="contentwrapper">
+<div class="container">
+	<div class="contentwrapper text">
 		<div class="homepage-header">
 			<div class="icon icon_1"></div>
 			<h1>{{page.heading1}}</h1>
 			<h1>{{page.heading2}}</h1>
 			{{page.intro|richtext}}
-			
 			<div class="icon icon_2"></div>
 			<div class="icon icon_3"></div>
 		</div>
