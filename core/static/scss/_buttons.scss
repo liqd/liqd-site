@@ -1,11 +1,41 @@
+
+//
+// Button & link styles
+// --------------------------------------------------
+
+$link_color: #4d4d4d;
+$link_color_hover: #0d0d0d;
+
+
+a {
+	color: $link_color;
+  	text-decoration: none;
+}
+
+
+button:focus, 
+button:hover, 
+a:focus,
+a:hover {
+	outline: none;
+	color: $link_color_hover;
+	background-color: rgba(255,255,255,0.3);
+	text-decoration: none;
+}
+
+.button {
+	transition: background-color 0.4s;
+}
+
+
+
 .button {
 	line-height: 7rem;
 	padding: 0px 1.78571rem;
 	transition: background-color 0.4s ease 0s;
-	border: 1px solid #4D4D4D;
-	color: #4D4D4D;
+	border: 1px solid $link_color;
+	color: $link_color;
 	display: inline-block;
-	/*font-size: 1.8rem;*/
 }
 
 .button-white {
