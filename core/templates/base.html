@@ -27,7 +27,9 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
+
         {% wagtailuserbar %}
+    
         {% if settings.core.LiqdSettings.liqd_preliminary_site %}
             {% include "navbar-simple.html" %}
         {% else %}
@@ -41,11 +43,11 @@
             </div>
         </div>
 
-        {% include "footer.html" %}
-
-        <a href="#" class="back-to-top">
-            <i class="glyphicon glyphicon-arrow-up"></i>
+        <a href="#" class="back-to-top pull-right">
+            <i class="glyphicon glyphicon-arrow-up"></i>Back to top
         </a>
+
+        {% include "footer.html" %}
 
         {% block extra_js %}
             <script type="text/javascript" src="/static/js/third-party/modernizr-custom.min.js"></script>

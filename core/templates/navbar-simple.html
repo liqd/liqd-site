@@ -1,8 +1,11 @@
 {% load i18n %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags core_tags %}
 {% get_current_language as LANGUAGE_CODE %}
+{% load_site_menu "footer" as footer_menu_items %}
+{% load_site_menu "mainmenu" as main_menu_items %}
+{% load_site_menu "mainmenu-dropdown-software" as software_menu_items %}
 
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
+<nav id="mainmenu" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/{{LANGUAGE_CODE}}/">Liquid Democracy e.V.</a>
         <div class="navbar-header">
@@ -16,35 +19,43 @@
         <div id="navbar-liqd-main" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
 
-                <li class="active"><a href="/{{LANGUAGE_CODE}}/projects/">Projects</a></li>
-                <li><a href="/{{LANGUAGE_CODE}}/software/">Our Software</a></li>
-                <li><a href="/{{LANGUAGE_CODE}}/join-us/">Join Us</a></li>
+                {% for menuitem in main_menu_items %}
+                    <li><a class="{% if request.path == menuitem.url %}active{% endif %} {% if forloop.last %}lastItem{% endif %}" href="{{ menuitem.url }}">{{ menuitem.menu_title }}</a></li>
+                {% endfor %}
 
                 {% if LANGUAGE_CODE == 'de' %}
-                    <li class="select-lang hidden-xs"><a>De</a></li>
+                    <li class="select-lang hidden-xs"><a class="active" >De</a></li>
+                    <li class="select-lang hidden-xs"><a href="/en/{{ self.slug_en }}/">En</a></li>
                 {% else %}
-                    <li class="select-lang active hidden-xs"><a href="/de/{{ self.slug_en }}/">De</a></li>
-                {% endif %}
-
-                {% if LANGUAGE_CODE == 'en' %}
-                    <li class="select-lang hidden-xs"><a>En</a></li>
-                {% else %}
-                    <li class="select-lang active hidden-xs"><a href="/en/{{ self.slug_en }}/">En</a></li>
+                    <li class="select-lang hidden-xs"><a href="/de/{{ self.slug_en }}/">De</a></li>
+                    <li class="select-lang hidden-xs"><a class="active">En</a></li>
                 {% endif %}
                 
-                <li class="visible-xs">
+                <li class="hidden-sm hidden-md hidden-lg">
                     <div id="select-lang-mobile" class="styled-select">
                         <select class="select-lang button">
-                            <option value="none" selected="true" disabled="disabled">Select language</option>
-                            <!-- <optgroup label="Select language" selected="selected"> -->
-                                <option value="de"{% if LANGUAGE_CODE == 'de' %} selected="selected"{% endif %}>Deutsch</option>
-                                <option value="en"{% if LANGUAGE_CODE == 'en' %} selected="selected"{% endif %}>English</option>
-                            <!-- </optgroup> -->
+                            <option value="" disabled="disabled" selected="selected">Select language</option>
+                            <option value="de">Deutsch</option>
+                            <option value="en">English</option>
                         </select>
                     </div>
                 </li>
 
             </ul>
+
+            <ul class="hidden-sm hidden-md hidden-lg footer-nav">
+                {% for menuitem in footer_menu_items %}
+                    <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="{{ menuitem.url }}">{{ menuitem.menu_title }}</a></li>
+                {% endfor %}
+            </ul>
+
+            <div class="social-sites hidden-sm hidden-md hidden-lg">
+                <a href="https://www.facebook.com/LiquidDemocracy.eV" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/liqd_de" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://vimeo.com/liqd/videos" target="_blank"><i class="fa fa-vimeo-square"></i></a>
+                <a href="https://github.com/liqd" target="_blank"><i class="fa fa-github"></i></a>
+            </div>
+
         </div>
     </div>
 </nav>

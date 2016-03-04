@@ -30,3 +30,19 @@
 	-o-text-shadow: $value;
 	text-shadow: $value;
 }
+
+
+@mixin center($width) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: 0;
+	margin-right: -50%;
+	text-align: center;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	width: $width;
+}

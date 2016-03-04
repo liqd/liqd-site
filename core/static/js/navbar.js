@@ -1,4 +1,22 @@
 $(document).ready(function() {
+
+	// overlay content while mobile menu is open
+	$('#navbar-liqd-main').on(
+		{
+			'show.bs.collapse': function() {
+				$('button.navbar-toggle').addClass('active');
+			},
+			'shown.bs.collapse': function() {
+				$('body').addClass("overlay");
+			},
+			'hide.bs.collapse': function() {
+				$('body').removeClass("overlay");
+				$('button.navbar-toggle').removeClass('active');
+			}
+		}
+	);
+
+
 	if($(window).width()>screen_sm){
 		$('.navbar .dropdown').hover(function(e) {
 			var dropdown_width = $(this).outerWidth();

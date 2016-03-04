@@ -7,14 +7,10 @@ $block-offset: 8.5rem;
 
 
 //
-// Basic block classes
+// Basic block styles
 // --------------------------------------------------
 
 .block {
-	@extend .xs-pb-40;
-	@extend .sm-pb-60;
-	@extend .md-pb-85;
-
 	margin-bottom: $block-offset;
 }
 
@@ -35,7 +31,7 @@ $block-offset: 8.5rem;
 
 
 //
-// Class definitions for specific block types
+// Style definitions for specific block types
 // --------------------------------------------------
 
 
@@ -48,7 +44,18 @@ $block-offset: 8.5rem;
 
 
 .block-carousel {
+
 	margin: 6rem 0;
+
+	figure {
+		padding: 0 10px;
+		text-align: center;
+		img {
+			width: 100%;
+			max-width: 450px;
+			display: inline-block;
+		}
+	}
 }
 
 
@@ -64,6 +71,7 @@ $block-offset: 8.5rem;
 
 .block-linkbox,
 .block-highlight-paragraph {
+
 	a {
 		display: inline-block;
 		min-width: 35rem;
@@ -78,6 +86,8 @@ $block-offset: 8.5rem;
 
 .block-quote-paragraph {
 
+	position: relative;
+
 	&.block-quote-noimage {
 		height: 45rem;
 		@media screen and (max-width: $screen-xs) {
@@ -85,28 +95,11 @@ $block-offset: 8.5rem;
 		}
 	}
 
-	position: relative;
-
 	img {
 		display: block;
 		width: 100%;
 		max-width: 100%;
 		height: auto;
-	}
-
-	div.rich-text {
-	    position: absolute;
-		top: 50%;
-		left: 50%;
-		margin: 0;
-		margin-right: -50%;
-		text-align: center;
-		-webkit-transform: translate(-50%,-50%);
-		-moz-transform: translate(-50%,-50%);
-		-ms-transform: translate(-50%,-50%);
-		-o-transform: translate(-50%,-50%);
-		transform: translate(-50%,-50%);
-		width: 70%;
 	}
 	
 	p {
@@ -117,6 +110,10 @@ $block-offset: 8.5rem;
 			font-size: 3rem;
 			line-height: 3.6rem;
 		}
+	}
+
+	div.rich-text {
+	    @include center(70%);
 	}
 	
 }

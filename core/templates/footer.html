@@ -1,19 +1,23 @@
-<footer class="footer">
-    <div class="container">
-        <div class="text-muted">
-        	<div class="pull-right social-sites">
-	        	<a href="https://www.facebook.com/LiquidDemocracy.eV" target="_blank"><i class="fa fa-facebook"></i></a>
-	        	<a href="https://twitter.com/liqd_de" target="_blank"><i class="fa fa-twitter"></i></a>
-	        	<a href="https://vimeo.com/liqd/videos" target="_blank"><i class="fa fa-vimeo-square"></i></a>
-                <a href="https://github.com/liqd" target="_blank"><i class="fa fa-github"></i></a>
-	        </div>
-    		<a href="#">FAQs</a>
-    		<a href="#">Satzung</a>
-    		<a href="#">Transparenz</a>
-    		<a href="#">Presse</a>
-    		<a href="#">Kontakt</a>
-    		<a href="#">Impressum</a>
-    	</div>
-    </div>
-</footer>
+{% load i18n %}
+{% load wagtailcore_tags core_tags %}
+{% load static from staticfiles %}
+{% load_site_menu "footer" as footer_menu_items %}
 
+
+<footer id="footer" class="footer hidden-xs">
+    <nav class="navbar navbar-default navbars-fixed-bottom">
+        <div class="container">
+            <div class="pull-right social-sites">
+                <a href="https://www.facebook.com/LiquidDemocracy.eV" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/liqd_de" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://vimeo.com/liqd/videos" target="_blank"><i class="fa fa-vimeo-square"></i></a>
+                <a href="https://github.com/liqd" target="_blank"><i class="fa fa-github"></i></a>
+            </div>
+            <ul class="nav navbar-nav">
+            {% for menuitem in footer_menu_items %}
+                <li><a href="{{ menuitem.url }}">{{ menuitem.menu_title }}</a></li>
+            {% endfor %}
+            </ul>
+         </div>
+    </nav>
+</footer>
