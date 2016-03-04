@@ -7,7 +7,8 @@
 	<div class="contentwrapper content-fullwidth">
 		<div class="block block-carousel">
 			{% for img in value %}
-				<div>{% image img width-250 %}</div>
+				{% image img width-450 as tmp_image %}
+				<div><figure><img src="{{ tmp_image.url }}" alt="{{ tmp_image.alt }}"></figure></div>
 			{% endfor %}
 		</div>
 	</div>

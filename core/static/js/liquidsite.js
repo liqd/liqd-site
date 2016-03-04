@@ -17,33 +17,15 @@ $(document).ready(function(){
         arrows: false,
         accessibility: true,
         dots: false,
-        respondTo: 'slider',
-        rows: 1,
         slidesToShow: 4,
-        swipe: true,
         responsive: [
-            {
-                breakpoint: 980,
-                settings: {
-                    centerMode: true,
-                    variableWidth: true,
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 760,
-                settings: {
-                    centerMode: true,
-                    variableWidth: true,
-                    slidesToShow: 2
-                }
-            },
             {
                 breakpoint: screen_xs,
                 settings: {
                     centerMode: true,
-                    variableWidth: true,
-                    slidesToShow: 1
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    swipe: true,
                 }
             }
         ],
