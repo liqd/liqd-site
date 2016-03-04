@@ -4,53 +4,77 @@
 // Variables
 
 var screen_xs = 480;
-var screen_xs_max = screen_xs-1;
 var screen_sm = 768;
-var screen_sm_max = screen_sm-1;
+var screen_xs_max = screen_sm-1;
+
+
+
+var liqd = (function($, self) {
+
+
+    self.phone = ($(window).innerWidth() > screen_xs_max) ? false : true;
+
+
+    // ******************** 
+    // init slick slider
+
+    self.init_slickSlider = function() {
+
+        $('.block-carousel').slick({
+            arrows: false,
+            accessibility: true,
+            dots: false,
+            slidesToShow: 4,
+            responsive: [
+                {
+                    breakpoint: screen_xs,
+                    settings: {
+                        centerMode: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        swipe: true,
+                    }
+                }
+            ],
+        });
+
+    };
+
+
+    return self;
+
+}(jQuery, liqd || {} ));
 
 
 // ******************** 
-// slick slider init
+// document ready
 
-$(document).ready(function(){
-    $('.block-carousel').slick({
-        arrows: false,
-        accessibility: true,
-        dots: false,
-        slidesToShow: 4,
-        responsive: [
-            {
-                breakpoint: screen_xs,
-                settings: {
-                    centerMode: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    swipe: true,
-                }
-            }
-        ],
-    });
+$(document).ready(function() {
+    liqd.init_backToTop();
+    liqd.init_slickSlider();
 });
 
 
 // ******************** 
-// Language selector mobile
+// check for orientation change
+// remove backToTop layout switches from mobile to desktop (and restore)
 
-$('#select-lang-mobile').change(function(e)
-{
-    var selectedVal = $('#select-lang-mobile option:selected').val();
-    if (selectedVal != "none") 
-    {    
-        var chunks = window.location.href.split('/');
-        if (chunks[3] != selectedVal)
-        {
-            chunks[3] = selectedVal;
-            window.location.href = chunks.join('/');
-        }
-        else
-        {
-            $('.navbar-toggle').click();
-        }
+$(window).smartresize(function(){
+
+    if (liqd.phone && $(window).innerWidth() > screen_xs_max) {
+        // $(window).off('scroll');
+        // $('.back-to-top').fadeOut();
+        // liqd.bTT_initialised = false;
+        // liqd.phone = false;
+        // liqd.init_slickSlider();
+        window.location.href = window.location.href;
+
+    }
+
+    if (!liqd.phone && $(window).innerWidth() < screen_sm) {
+        liqd.phone = true;
+        liqd.init_backToTop();
+        //window.location.href = window.location.href;
     }
 
 });

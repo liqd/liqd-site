@@ -48,3 +48,26 @@ $(document).ready(function() {
     }
 
 });
+
+
+// ******************** 
+// Language selector mobile
+
+$('#select-lang-mobile').change(function(e)
+{
+    var selectedVal = $('#select-lang-mobile option:selected').val();
+    if (selectedVal != "none") 
+    {    
+        var chunks = window.location.href.split('/');
+        if (chunks[3] != selectedVal)
+        {
+            chunks[3] = selectedVal;
+            window.location.href = chunks.join('/');
+        }
+        else
+        {
+            $('.navbar-toggle').click();
+        }
+    }
+
+});

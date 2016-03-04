@@ -1,22 +1,41 @@
-$(document).ready(function() {
+// ******************** 
+// init functions
 
-    var offset = 400;
-    var duration = 300;
-    if($(window).width()<screen_sm_max){
-        console.log("setup backtotop");
-        $(window).scroll(function() {
-            console.log($(this).scrollTop());
-            if ($(this).scrollTop() > offset) {
-                $('.back-to-top').fadeIn(duration);
-            } else {
-                $('.back-to-top').fadeOut(duration);
-            }
-        });
+var liqd = (function($, self) {
 
-        $('.back-to-top').click(function(event) {
-            event.preventDefault();
-            $('html, body').animate({scrollTop: 0}, duration);
-            return false;
-        })
+    self.bTT_initialised = false;
+
+
+    // ******************** 
+    // init backToTop Button
+
+    self.init_backToTop = function() {
+
+        if (self.bTT_initialised) return;
+        if ($(window).innerWidth() < screen_sm) {
+
+            var offset = 400;
+            var duration = 300;
+
+            $(window).on('scroll', function() {
+                if ($(this).scrollTop() > offset) {
+                    $('.back-to-top').fadeIn(duration);
+                } else {
+                    $('.back-to-top').fadeOut(duration);
+                }
+            });
+
+            $('.back-to-top').on('click', function(event) {
+                event.preventDefault();
+                $('html, body').animate({scrollTop: 0}, duration);
+                return false;
+            });
+
+            self.bTT_initialised = true;
+        }
+
     };
-});
+
+    return self;
+
+}(jQuery, liqd || {} ));
