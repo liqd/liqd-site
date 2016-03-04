@@ -61,8 +61,10 @@
             @media screen and (max-width: $screen-xs-max) {
                 font-size: $navbar_mobile_font_size;
             }
-            &.lastItem {
-                margin-right: 4rem;
+            @media screen and (min-width: $screen-sm) {
+                &.lastItem {
+                    margin-right: 4rem;
+                }
             }
         }
 

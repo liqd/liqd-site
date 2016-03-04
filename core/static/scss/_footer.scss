@@ -46,8 +46,9 @@
     &:visited {
         color: white;
         text-decoration: none;
+        background-color: $footer_background_color;
+        transition: none;
     }
-
 
 }
 
