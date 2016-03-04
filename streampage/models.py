@@ -61,6 +61,19 @@ class StreamPage(Page):
                 ),
                 
             ], template = "blocks/block_linkbox.html", icon="link")
+        ),('project_teaser', blocks.StructBlock(
+            [
+                ('title', blocks.CharBlock(required=False, length=256)),
+                ('shorttext', blocks.RichTextBlock(required=True)),
+                ('image', ImageChooserBlock(icon="image")),
+                ('slug', blocks.ListBlock(
+                    blocks.PageChooserBlock(),
+                    template = "blocks/block_internalLink.html",
+                    required=False
+                    ),
+                ),
+                ('external_url', blocks.CharBlock(required=False, length=256)),
+            ], template="blocks/block_project_teaser.html", icon="")
         ),
     ])
 
@@ -77,7 +90,7 @@ class StreamPage(Page):
     ]
 
     promote_panels = [
-        FieldPanel('slug_de'),
+        FieldPanel('slug'),
         MultiFieldPanel([
             FieldPanel('seo_title_de'),
             FieldPanel('search_description_de'),
