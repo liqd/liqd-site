@@ -137,9 +137,9 @@ h5 {
 }
 
 .contentwrapper {
-	width: 1170px;
-	padding: 0 15%;
+	max-width: 1170px;
 	display: inline-block;
+	text-align: center;
 
 	@media screen and (max-width: $screen-xs-max) {
 		padding: 0 5%;
@@ -152,9 +152,8 @@ h5 {
 	padding: 0;
 }
 
-.contentwrapper.columnwidth {
-	width: 1170px;
-	padding: 0;
+.contentwrapper.text {
+	padding: 0 15%;
 }
 
 
