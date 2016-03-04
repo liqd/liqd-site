@@ -7,8 +7,10 @@
 {% include "streampage/includes/streampage_simpleheader.html" %}
 
 {% for project in self.projects %}
-        {% include "projects/project_teaser.html" with teaser=project %}
-    {% empty %}
-        No projects found
-    {% endfor %}
+    {% include "projects/project_teaser.html" with teaser=project %}
+{% empty %}
+    No projects found
+{% endfor %}
+
+ </div>
 {% endblock %}
