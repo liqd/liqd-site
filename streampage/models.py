@@ -55,9 +55,7 @@ class StreamPage(Page):
             [
                 ('headline', blocks.CharBlock(required=False, length=256)),
                 ('links', blocks.ListBlock(
-                    blocks.PageChooserBlock(),
-                    template = "blocks/block_internalLink.html"
-                    ),
+                    blocks.PageChooserBlock()),
                 ),
                 
             ], template = "blocks/block_linkbox.html", icon="link")
@@ -67,10 +65,7 @@ class StreamPage(Page):
                 ('shorttext', blocks.RichTextBlock(required=True)),
                 ('image', ImageChooserBlock(icon="image")),
                 ('slug', blocks.ListBlock(
-                    blocks.PageChooserBlock(),
-                    template = "blocks/block_internalLink.html",
-                    required=False
-                    ),
+                    blocks.PageChooserBlock(), required=False),
                 ),
                 ('external_url', blocks.CharBlock(required=False, length=256)),
             ], template="blocks/block_project_teaser.html", icon="")

@@ -8,17 +8,13 @@
 
 {% include "core/includes/homepage_header.html" %}
 
-<div class="container">
-	<article>
-    {% for block in self.body %}
-        {% if block.block_type == 'heading' %}
-            <h1>{{ block.value }}</h1>
-        {% else %}
-            <section class="block-{{ block.block_type }}">
-                {{ block }}
-            </section>
-        {% endif %}
-    {% endfor %}
-	</article>
-</div>
+
+{% for block in page.body %}
+    {% if block.block_type == 'columns' %}
+        {{ block.value }}
+    {% else %}
+        {{ block }}
+    {% endif %}
+{% endfor %}
+
 {% endblock %}

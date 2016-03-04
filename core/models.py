@@ -88,7 +88,6 @@ class HomePage(Page):
                 ('shorttext', blocks.RichTextBlock(required=True)),
                 ('image', ImageChooserBlock(icon="image")),
                 ('slug', blocks.PageChooserBlock(
-                    template="blocks/block_internalLink.html",
                     help_text="Please choose an internal page from the list."
                     )
                 ),

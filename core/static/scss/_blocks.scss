@@ -114,6 +114,9 @@ $block-offset: 8.5rem;
 
 	div.rich-text {
 	    @include center(70%);
+	    @media screen and (min-width: $screen-md) {
+	    	width: 50%;
+	    }
 	}
 	
 }
