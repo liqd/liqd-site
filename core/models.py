@@ -1,6 +1,6 @@
 from wagtail.wagtailcore.models import Page, Orderable
 from django.db import models
-from streampage.models import StreamPage
+
 
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
@@ -14,8 +14,6 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
-
-from wagtail_modeltranslation.models import TranslationMixin
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
 
 from wagtail.contrib.settings.models import BaseSetting, register_setting
@@ -23,83 +21,196 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalKey
 
+from core import blocks
+
 # from contrib.translations.translations import TranslatedField
+
+
+STREAMFIELD_DEFAULT_BLOCKS = [
+    ('standard_paragraph', blocks.StandardParagraphBlock()),
+    ('highlight_paragraph', blocks.HighlightParagraphBlock()),
+    ('quote_paragraph', blocks.QuoteParagraph()),
+    ('image', ImageChooserBlock(label='Single image',icon='image')),
+    ('columns', blocks.ColumnBlock()),
+    ('image_slider', blocks.ListBlock(ImageChooserBlock(),
+        template='blocks/block_carousel.html',
+        label='Image Slider',
+        icon='image',
+        help_text='Responsive image slider (swipe on mobile). Please choose 4 images.')),
+    ('linkbox', blocks.LinkboxBlock()),
+    ('project_teaser', blocks.ProjectTeaserBlock()),
+]
+
+class StreamFieldPage(Page):
+    
+    intro = RichTextField(blank=True)
+    body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+
+    de_content_panels = [
+        FieldPanel('title'),
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
+    ]
+
+    en_content_panels = [
+        FieldPanel('title'),
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
+    ]
+
+    promote_panels = [
+        FieldPanel('slug'),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+        heading = "SEO settings de",
+        classname="collapsible"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+        heading = "SEO settings en",
+        classname="collapsible")
+    ]
+
+    edit_handler = TabbedInterface([
+        # ObjectList(content_panels, heading='Content'),
+        ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    ])
+
+    class Meta:
+        verbose_name = 'Stream Page'
+        managed = True
+        # abstract = True
+
+
+class JoinUsPage(Page):
+
+    intro = RichTextField(blank=True)
+    body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+
+    # de_content_panels = [
+    #     FieldPanel('title'),
+    #     FieldPanel('intro'),
+    #     StreamFieldPanel('body'),
+    # ]
+
+    en_content_panels = [
+        FieldPanel('title'),
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
+    ]
+
+    promote_panels = [
+        FieldPanel('slug'),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+        heading = "SEO settings de",
+        classname="collapsible"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+        heading = "SEO settings en",
+        classname="collapsible")
+    ]
+
+    edit_handler = TabbedInterface([
+        # ObjectList(content_panels, heading='Content'),
+        # ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    ])
+
+    class Meta:
+        verbose_name = 'JoinUs Page'
+
 
 
 class HomePage(Page):
     heading1 = models.CharField(max_length=255, default="")
     heading2 = models.CharField(max_length=255, default="")
     intro = RichTextField(blank=True)
-    body = StreamField([
-        # ('heading', blocks.CharBlock(classname="full title", icon="title")),
-        ('standard_paragraph', blocks.StructBlock(
-            [
-                ('headline', blocks.CharBlock(required=False, length=256)),
-                ('text', blocks.RichTextBlock(required=True)),
-            ],
-            template="blocks/block_standard_paragraph.html",
-            icon="pilcrow",
-            help_text="Standard paragraph"
-            )
-        ),
-        # ('image', ImageChooserBlock(icon="image")),
-        ('highlight_paragraph', blocks.StructBlock(
-            [
-                ('headline', blocks.CharBlock(required=False, length=256)),
-                ('text', blocks.RichTextBlock(required=True)),
-                ('link', blocks.PageChooserBlock(required=False)),
-            ],
-            template="blocks/block_highlight_paragraph.html",
-            icon="pilcrow",
-            help_text="Paragraph with grey background. Use this as linkbox also (e.g. job offers)."
-            )
-        ),
-        ('quote_paragraph', blocks.StructBlock(
-            [
-                ('text', blocks.RichTextBlock(required=True)),
-                ('color',blocks.ChoiceBlock(
-                    choices=[('green','Gruen'),('orange','Orange'),('red','Rot')],
-                    required=True,
-                    help_text="Select a color from the listself."
-                ))
-            ], 
-            template="blocks/block_quote_paragraph_image.html",
-            icon="pilcrow",
-            help_text="Textquote with background color."
-            )
-        ),
-        ('quote_paragraph_image', blocks.StructBlock(
-            [
-                ('text', blocks.RichTextBlock(required=True)),
-                ('image', ImageChooserBlock(
-                    icon="image",
-                    required=True,
-                    help_text="Please use an image with at least 813x400px and a similar aspect ratio."
-                    )),
-            ],
-            template="blocks/block_quote_paragraph_image.html",
-            icon="pilcrow",
-            help_text="Textquote with background image."
-            )
-        ),
-        ('project_teaser', blocks.StructBlock(
-            [
-                ('title', blocks.CharBlock(required=False, length=256)),
-                ('shorttext', blocks.RichTextBlock(required=True)),
-                ('image', ImageChooserBlock(icon="image")),
-                ('slug', blocks.PageChooserBlock(
-                    help_text="Please choose an internal page from the list."
-                    )
-                ),
-                ('external_url', blocks.CharBlock(required=False, length=256)),
-            ],
-            template="blocks/block_project_teaser.html",
-            icon="pilcrow",
-            help_text="Generic teaser / Project teaser with manual content"
-            )
-        ),
+    body = StreamField(
+        STREAMFIELD_DEFAULT_BLOCKS
+    #     [
+    #     # ('heading', blocks.CharBlock(classname="full title", icon="title")),
+    #     ('standard_paragraph', blocks.StructBlock(
+    #         [
+    #             ('headline', blocks.CharBlock(required=False, length=256)),
+    #             ('text', blocks.RichTextBlock(required=True)),
+    #         ],
+    #         template="blocks/block_standard_paragraph.html",
+    #         icon="pilcrow",
+    #         help_text="Standard paragraph"
+    #         )
+    #     ),
+    #     # ('image', ImageChooserBlock(icon="image")),
+    #     ('highlight_paragraph', blocks.StructBlock(
+    #         [
+    #             ('headline', blocks.CharBlock(required=False, length=256)),
+    #             ('text', blocks.RichTextBlock(required=True)),
+    #             ('link', blocks.PageChooserBlock(required=False)),
+    #         ],
+    #         template="blocks/block_highlight_paragraph.html",
+    #         icon="pilcrow",
+    #         help_text="Paragraph with grey background. Use this as linkbox also (e.g. job offers)."
+    #         )
+    #     ),
+    #     ('quote_paragraph', blocks.StructBlock(
+    #         [
+    #             ('text', blocks.RichTextBlock(required=True)),
+    #             ('color',blocks.ChoiceBlock(
+    #                 choices=[('green','Gruen'),('orange','Orange'),('red','Rot')],
+    #                 required=True,
+    #                 help_text="Select a color from the listself."
+    #             ))
+    #         ], 
+    #         template="blocks/block_quote_paragraph_image.html",
+    #         icon="pilcrow",
+    #         help_text="Textquote with background color."
+    #         )
+    #     ),
+    #     ('quote_paragraph_image', blocks.StructBlock(
+    #         [
+    #             ('text', blocks.RichTextBlock(required=True)),
+    #             ('image', ImageChooserBlock(
+    #                 icon="image",
+    #                 required=True,
+    #                 help_text="Please use an image with at least 813x400px and a similar aspect ratio."
+    #                 )),
+    #         ],
+    #         template="blocks/block_quote_paragraph_image.html",
+    #         icon="pilcrow",
+    #         help_text="Textquote with background image."
+    #         )
+    #     ),
+    #     ('project_teaser', blocks.StructBlock(
+    #         [
+    #             ('title', blocks.CharBlock(required=False, length=256)),
+    #             ('shorttext', blocks.RichTextBlock(required=True)),
+    #             ('image', ImageChooserBlock(icon="image")),
+    #             ('slug', blocks.PageChooserBlock(
+    #                 help_text="Please choose an internal page from the list."
+    #                 )
+    #             ),
+    #             ('external_url', blocks.CharBlock(required=False, length=256)),
+    #         ],
+    #         template="blocks/block_project_teaser.html",
+    #         icon="pilcrow",
+    #         help_text="Generic teaser / Project teaser with manual content"
+    #         )
+    #     ),
 
-    ], null=True)
+    # ]
+    , null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('heading1'),
@@ -144,35 +255,35 @@ class HomePage(Page):
     # ])
 
 
-class TextPage(TranslationMixin, Page):
+class TextPage(Page):
     
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('title_de'),
+        FieldPanel('title'),
     ]
 
     de_content_panels = [
-        FieldPanel('title_de'),
-        FieldPanel('body_de'),
+        FieldPanel('title'),
+        FieldPanel('body'),
     ]
 
     en_content_panels = [
-        FieldPanel('title_en'),
-        FieldPanel('body_en'),
+        FieldPanel('title'),
+        FieldPanel('body'),
     ]
 
     promote_panels = [
         FieldPanel('slug'),
         MultiFieldPanel([
-            FieldPanel('seo_title_de'),
-            FieldPanel('search_description_de'),
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
         ],
         heading = "SEO settings de",
         classname="collapsible"),
         MultiFieldPanel([
-            FieldPanel('seo_title_en'),
-            FieldPanel('search_description_en'),
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
         ],
         heading = "SEO settings en",
         classname="collapsible")
