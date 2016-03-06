@@ -11,9 +11,13 @@ from wagtail_modeltranslation.decorators import register
 #         'body',
 #     )
 
-@register(TextPage)
-class TextPageTR(TranslationOptions):
-    fields = (
-    	'title',
-        'body',
-    )
+# @register(TextPage)
+# class TextPageTR(TranslationOptions):
+#     fields = (
+#     )
+
+
+# @register(JoinUsPage)
+# class JoinUsPageTR(TranslationOptions):
+#     fields = (
+#     )
