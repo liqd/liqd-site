@@ -1,21 +1,12 @@
 //
-// Variables
-// --------------------------------------------------
-
-
-$block-offset: 8.5rem;
-
-
-//
 // Basic block styles
 // --------------------------------------------------
 
 .block {
-	margin-bottom: $block-offset;
+	margin-bottom: $block-margin-bottom;
 }
 
 //** Block background colors
-
 .block-bg-green {
 	background-color: #29CAC5;
 }
@@ -27,7 +18,6 @@ $block-offset: 8.5rem;
 .block-bg-red {
 	background-color: #FF0047;
 }
-
 
 
 //
@@ -64,7 +54,7 @@ $block-offset: 8.5rem;
 	background-color: lightgrey;
 
 	//** convert margin to padding for background-color
-	padding-bottom: $block-offset;
+	padding-bottom: $block-margin-bottom;
 }
 
 
@@ -89,9 +79,6 @@ $block-offset: 8.5rem;
 
 	&.block-quote-noimage {
 		height: 45rem;
-		@media screen and (max-width: $screen-xs) {
-			height: 40rem;
-		}
 	}
 
 	img {
@@ -105,17 +92,36 @@ $block-offset: 8.5rem;
 		color: white;
 		font-size: 4rem;
 		line-height: 5rem;
-		@media screen and (max-width: $screen-xs) {
-			font-size: 3rem;
-			line-height: 3.6rem;
-		}
 	}
 
 	div.rich-text {
 	    @include center(70%);
-	    @media screen and (min-width: $screen-md) {
-	    	width: 50%;
-	    }
 	}
+
+	//** mobile view
+	@media screen and (max-width: $screen-xs) {
+
+		&.block-quote-noimage {
+			height: 40rem;
+		}
+
+		p {
+			font-size: 3rem;
+			line-height: 3.6rem;
+		}
+
+	}
+
+	//** up to and including tablet
+	@media screen and (min-width: $screen-md) {
+
+		div.rich-text {
+			width: 50%;
+		}
+
+	}
+
 	
 }
+
+

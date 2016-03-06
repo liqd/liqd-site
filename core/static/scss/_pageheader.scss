@@ -36,18 +36,12 @@ $icon-3-width: 20rem;
     h1 {
         text-align: left;
         margin-left: 5rem;
-        @media screen and (max-width: $screen-xs) {
-            margin-left: 2rem;
-        }
     }
     
 
     h1:first-of-type {
         padding-bottom: 0px;
         padding-left: 15rem;
-        @media screen and (max-width: $screen-xs) {
-            padding-left: 8rem;
-        }
     }
 
     .rich-text {
@@ -56,22 +50,10 @@ $icon-3-width: 20rem;
         padding-right: 30%;
         padding-top: 2%;
         text-align: left;
-        @media screen and (max-width: $screen-xs) {
-            padding-left: 50%;
-            padding-right: 5%;
-        }
 
         p {
             font-size: 1.8rem;
             line-height: 2.6rem;
-            @media screen and (max-width: $screen-xs) {
-                font-size: 2.6rem;
-                line-height: 3rem;
-            }
-            @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
-                font-size: 2.1rem;
-                line-height: 2.6rem;
-            }
         }
     }
 
@@ -86,9 +68,6 @@ $icon-3-width: 20rem;
         right: 10%;
         width: $icon-1-width;
         height: ( 150 / 225 ) * $icon-1-width;
-        @media screen and (max-width: $screen-xs) {
-            right: 2%;
-        }
     }
 
     .icon_2 {
@@ -98,10 +77,6 @@ $icon-3-width: 20rem;
         height: ( 150 / 225 ) * $icon-2-width;
         left: 0%;
         top: 20rem;
-        @media screen and (max-width: $screen-xs) {
-            top: 55%;
-            left: 0%;
-        }
     }
 
     .icon_3 {
@@ -111,10 +86,52 @@ $icon-3-width: 20rem;
         height: ( 150 / 225 ) * $icon-3-width;
         right: 0%;
         top: 22rem;
-        @media screen and (max-width: $screen-xs) {
+    }
+
+    //** mobile view
+    @media screen and (max-width: $screen-xs) {
+
+        h1 {
+            margin-left: 2rem;
+        }
+
+        h1:first-of-type {
+            padding-left: 8rem;
+        }
+
+        .rich-text {
+            padding-left: 50%;
+            padding-right: 5%;
+            p {
+                font-size: 2.6rem;
+                line-height: 3rem;
+            }
+        }
+
+        .icon_1 {
+            right: 2%;
+        }
+
+        .icon_2 {
+            top: 55%;
+            left: 0%;
+        }
+
+        .icon_3 { 
             display: none;
         }
     }
+
+    //** tablet view
+    @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
+        .rich-text {
+            p {
+                font-size: 2.1rem;
+                line-height: 2.6rem;
+            }
+        }
+    }
+
     
 }
 

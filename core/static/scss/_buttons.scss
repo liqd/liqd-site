@@ -3,9 +3,6 @@
 // Button & link styles
 // --------------------------------------------------
 
-$link_color: #4d4d4d;
-$link_color_hover: #0d0d0d;
-
 
 a {
 	color: $link_color;
@@ -14,9 +11,11 @@ a {
 
 
 button:focus, 
-button:hover, 
+button:hover,
+button:visited,
 a:focus,
-a:hover {
+a:hover,
+a:visited {
 	outline: none;
 	color: $link_color_hover;
 	background-color: rgba(255,255,255,0.3);

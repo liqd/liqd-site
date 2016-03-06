@@ -1,6 +1,7 @@
-/* navbar.scss */
-
-@import 'mainmenu';
+//
+// basic styles unfinished pages
+// TODO: refactor styles when pages reach final build stage
+// --------------------------------------------------
 
 .person_page_circular_image {
 	width: 300px;
@@ -70,7 +71,7 @@
 	margin-top: 40px;
 	margin-bottom: 95px;
 	font-family: 'Open Sans';
-	color: #4D4D4D;
+	color: $headline_color;
 	font-size: 20px;
 }
 
@@ -78,7 +79,7 @@
 	font-family: 'Open Sans';
 	padding-bottom: 40px;
 	font-size: 18px;
-	color: #4D4D4D
+	color: $headline_color
 }
 
 .paragraph2{

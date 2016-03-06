@@ -6,14 +6,13 @@
 
     .navbar {
         background-color: $footer_background_color;
-        border-radius: 0;
+        @include border-radius(0);
         border: 0 none;
         margin: 0;
     }
 
     a {
         color: $footer_color;
-        text-decoration: none;
         font-size: $footer_font_size;
 
         &:hover {
@@ -29,15 +28,12 @@
 }
 
 .back-to-top {
+
     display: none;
     position: fixed;
     margin: 0;
     bottom: 0;
     right: 0;
-    z-index: 2000;
-    display: none;
-    text-decoration: none;
-    text-align: center;
     color: white;
     background-color: $footer_background_color;
     font-size: 2.5rem;
@@ -49,7 +45,6 @@
     &:focus,
     &:visited {
         color: white;
-        text-decoration: none;
         background-color: $footer_background_color;
         transition: none;
     }
