@@ -19,23 +19,27 @@ from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList
 
 from streampage import blocks
 
+
+STREAMFIELD_DEFAULT_BLOCKS = [
+    ('standard_paragraph', blocks.StandardParagraphBlock()),
+    ('highlight_paragraph', blocks.HighlightParagraphBlock()),
+    ('quote_paragraph', blocks.QuoteParagraph()),
+    ('image', ImageChooserBlock(label='Single image',icon='image')),
+    ('columns', blocks.ColumnBlock()),
+    ('image_slider', blocks.ListBlock(ImageChooserBlock(),
+        template='blocks/block_carousel.html',
+        label='Image Slider',
+        icon='image',
+        help_text='Responsive image slider (swipe on mobile). Please choose 4 images.')),
+    ('linkbox', blocks.LinkboxBlock()),
+    ('project_teaser', blocks.ProjectTeaserBlock()),
+]
+
+
 class StreamPage(Page):
     
     intro = RichTextField(blank=True)
-    body = StreamField([
-        ('standard_paragraph', blocks.StandardParagraphBlock()),
-        ('highlight_paragraph', blocks.HighlightParagraphBlock()),
-        ('quote_paragraph', blocks.QuoteParagraph()),
-        ('image', ImageChooserBlock(label='Single image',icon='image')),
-        ('columns', blocks.ColumnBlock()),
-        ('image_slider', blocks.ListBlock(ImageChooserBlock(),
-            template='blocks/block_carousel.html',
-            label='Image Slider',
-            icon='image',
-            help_text='Responsive image slider (swipe on mobile). Please choose 4 images.')),
-        ('linkbox', blocks.LinkboxBlock()),
-        ('project_teaser', blocks.ProjectTeaserBlock()),
-    ])
+    body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
 
     de_content_panels = [
         FieldPanel('title_de'),
