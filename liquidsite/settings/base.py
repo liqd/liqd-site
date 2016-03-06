@@ -61,8 +61,6 @@ INSTALLED_APPS = (
     'wagtail.wagtailforms',
     'wagtail.contrib.wagtailstyleguide',
 
-    'wagtail_modeltranslation',
-
     'core',
     'blog',
     'persons',
