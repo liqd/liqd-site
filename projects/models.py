@@ -68,7 +68,7 @@ ProjectPage.content_panels = [
 ]
 
 
-class ProjectIndexPage(TranslationMixin, Page):
+class ProjectIndexPage(Page):
     intro = RichTextField(blank=True)
     subpage_types = ['projects.ProjectPage']
 
@@ -82,34 +82,34 @@ class ProjectIndexPage(TranslationMixin, Page):
         projects = projects.order_by('title')
         return projects
 
-    de_content_panels = [
-        FieldPanel('title_de'),
-        FieldPanel('intro_de'),
-    ]
+    # de_content_panels = [
+    #     FieldPanel('title'),
+    #     FieldPanel('intro'),
+    # ]
 
     en_content_panels = [
-        FieldPanel('title_en'),
-        FieldPanel('intro_en'),
+        FieldPanel('title'),
+        FieldPanel('intro'),
     ]
 
     promote_panels = [
         FieldPanel('slug'),
         MultiFieldPanel([
-            FieldPanel('seo_title_de'),
-            FieldPanel('search_description_de'),
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
         ],
         heading = "SEO settings de",
         classname="collapsible"),
         MultiFieldPanel([
-            FieldPanel('seo_title_en'),
-            FieldPanel('search_description_en'),
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
         ],
         heading = "SEO settings en",
         classname="collapsible")
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(de_content_panels, heading='Content de'),
+        # ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
