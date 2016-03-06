@@ -46,3 +46,13 @@
 	transform: translate(-50%,-50%);
 	width: $width;
 }
+
+@mixin flexBox() {
+	//** include -webkit prefixes for iOS/Safari 8
+	display: flex !important;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: -webkit-flex;
+    -webkit-justify-content: space-around;
+    -webkit-flex-wrap: wrap;
+}
