@@ -92,7 +92,7 @@ class ColumnBlock(StructBlock):
 class ImageSliderBlock(ListBlock):
 
     ImageChooserBlock(
-        # label = 'Image',
+        label = 'Image',
         help_text = 'Images will be used with a 950x450px size.'
     )
 

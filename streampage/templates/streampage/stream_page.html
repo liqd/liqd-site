@@ -8,11 +8,7 @@
 {% include "streampage/includes/streampage_simpleheader.html" %}
 
 {% for block in page.body %}
-    {% if block.block_type == 'columns' %}
-        {{ block.value }}
-    {% else %}
-    	{{ block }}
-    {% endif %}
+    {{ block }}
 {% endfor %}
 
 {% endblock %}
