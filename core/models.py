@@ -139,6 +139,7 @@ class StreamFieldPage(Page):
 class HomePage(Page):
     heading1 = models.CharField(max_length=255, default="")
     heading2 = models.CharField(max_length=255, default="")
+    intro = RichTextField(blank=True)
     body = StreamField(
         STREAMFIELD_DEFAULT_BLOCKS
     #     [
