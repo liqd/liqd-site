@@ -136,6 +136,7 @@ h5 {
 .contentwrapper.fullwidth {
 	max-width: 100%;
 	margin: 0;
+	overflow: hidden;
 }
 
 .contentwrapper.text {
@@ -157,6 +158,15 @@ h5 {
 	.rich-text {
 		p:last-of-type {
 			margin-bottom: 0px;
+		}
+	}
+}
+
+// remove margin from last block
+.content {
+	> section:last-of-type {
+		.block {
+			margin-bottom: 0;
 		}
 	}
 }

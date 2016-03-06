@@ -5,7 +5,7 @@
 {% load wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
-<div class="container">
+<section class="container">
 	<div class="contentwrapper">
 		{% image teaser.image fill-950x450-c100 as bg %}
 		<div class="teaser project-teaser" style="background-image: url({{ bg.url }})">
@@ -23,4 +23,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</section>
