@@ -3,6 +3,16 @@
 // Typography
 // --------------------------------------------------
 $font-size: 1.7rem;
+$headline-color: #4D4D4D;
+$text-color: #898989;
+
+
+//
+// Button & links
+// --------------------------------------------------
+
+$link_color: #4d4d4d;
+$link_color_hover: #0d0d0d;
 
 
 //
@@ -14,6 +24,12 @@ $footer_color: #9E9E9E;
 $footer_highlight_color: lighten($footer_color, 20%);
 $footer_font_size: 1.5rem;
 $footer_height: 65px;
+
+
+//
+// Blocks
+// --------------------------------------------------
+$block-margin-bottom: 8.5rem;
 
 
 //

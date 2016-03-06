@@ -5,35 +5,12 @@
 hmtl,body {
 	font-family: 'Cabin', sans-serif !important;
 	font-size: 62.5%;
-	color: #898989;
+	color: $text-color;
 }
-
-@media screen and (max-width: $screen-xs) {
-	html {
-		font-size: 0.35rem;
-	}
-}
-@media screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
-	html {
-		font-size: 0.4rem;
-	}
-}
-@media screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) {
-	html {
-		font-size: 0.5rem;
-	}
-}
-@media screen and (min-width: $screen-md) {
-	html {
-		font-size: 0.6rem;
-	}
-} 
-
 
 //
 // Basic HTML-Elements
 // --------------------------------------------------
-
 
 body,h5,p,ul,ol,li,div,span,a {
 	font-size: inherit;
@@ -43,24 +20,12 @@ body,p,li,div,span {
 	//** although we do not officially support old IE versions, this is an easy fallback for basic font sizes with rem
 	font-size: 17px; font-size: $font-size;
 }
-@media screen and (max-width: $screen-xs) {
-	body,p,li,div,span {
-		font-size: 3.0rem;
-		line-height: 4rem;
-	}
-}
-@media screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
-	body,p,li,div,span {
-		font-size: 2.2rem;
-		line-height: 3rem;
-	}
-}
 
 
 //** Headings 
 
 h1,h2,h3,h4,h5 {
-	color: #4D4D4D;
+	color: $headline-color;
 }
 
 h1 {
@@ -77,10 +42,6 @@ h2 {
 	padding-bottom: 3.5rem;
 
 	font-size: 35px; font-size: 3.5rem;
-	@media screen and (max-width: $screen-xs) {
-		font-size: 40px; font-size: 4rem;
-		line-height: 4.4rem;
-	}
 }
 
 h3 {
@@ -89,10 +50,6 @@ h3 {
 	font-size: 30px; font-size: 3rem;
 	line-height: 3.7rem;
 	padding-bottom: 5.5rem;
-	@media screen and (max-width: $screen-xs) {
-		font-size: 34px; font-size: 3.4rem;
-		line-height: 4rem;
-	}
 }
 
 h4 {
@@ -100,9 +57,6 @@ h4 {
 	padding-bottom: 3rem;
 
 	font-size: 26px; font-size: 2.6rem;
-	@media screen and (max-width: $screen-xs) {
-		font-size: 40px; font-size: 4rem;
-	}
 }
 
 h5 {
@@ -111,14 +65,6 @@ h5 {
 
 	font-size: 20px; font-size: 2rem;
 	line-height: 2.4rem;
-	@media screen and (max-width: $screen-xs) {
-		font-size: 38px; font-size: 3.8rem;
-		line-height: 4rem;
-	}
-	@media screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
-		font-size: 26px; font-size: 2.6rem;
-		line-height: 3rem;
-	}
 }
 
 
@@ -141,8 +87,83 @@ h5 {
 
 .contentwrapper.text {
 	padding: 0 15%;
-	@media screen and (max-width: $screen-xs-max) {
+}
+
+
+
+//
+// Responsive view basic styles
+// --------------------------------------------------
+
+//** phone view
+@media screen and (max-width: $screen-xs) {
+
+	html {
+		font-size: 0.35rem;
+	}
+
+	body,p,li,div,span {
+		font-size: 3.0rem;
+		line-height: 4rem;
+	}
+
+	h2 {
+		font-size: 40px; font-size: 4rem;
+		line-height: 4.4rem;
+	}
+
+	h3 {
+		font-size: 34px; font-size: 3.4rem;
+		line-height: 4rem;
+	}
+
+	h4 {
+		font-size: 40px; font-size: 4rem;
+	}
+
+	h5 {
+		font-size: 38px; font-size: 3.8rem;
+		line-height: 4rem;
+	}
+
+	.contentwrapper.text {
 		padding: 0 5%;
+	}
+}
+
+//** phablet view
+@media screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) {
+	html {
+		font-size: 0.4rem;
+	}
+}
+
+//** tablet view
+@media screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+	html {
+		font-size: 0.5rem;
+	}
+}
+
+// phablet && tablet view
+@media screen and (min-width: $screen-xs) and (max-width: $screen-sm-max) {
+
+	body,p,li,div,span {
+		font-size: 2.2rem;
+		line-height: 3rem;
+	}
+
+	h5 {
+		font-size: 26px; font-size: 2.6rem;
+		line-height: 3rem;
+	}
+
+}
+
+//** desktop view
+@media screen and (min-width: $screen-md) {
+	html {
+		font-size: 0.6rem;
 	}
 }
 
@@ -151,7 +172,7 @@ h5 {
 // Helper classes
 // --------------------------------------------------
 
-// remove margin from last paragraph
+//** remove margin from last paragraph
 .block,
 .simpleheader,
 .teaser {
@@ -162,7 +183,7 @@ h5 {
 	}
 }
 
-// remove margin from last block
+//** remove margin from last block
 .content {
 	> section:last-of-type {
 		.block {
@@ -171,7 +192,7 @@ h5 {
 	}
 }
 
-//** reset margin if needed
+//** reset margins
 .resetMargin {
 	margin:0px;
 }
