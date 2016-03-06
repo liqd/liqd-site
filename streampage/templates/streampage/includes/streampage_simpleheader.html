@@ -2,7 +2,7 @@
 {% load wagtailcore_tags %}
 {% load static %}
 
-<div class="container">
+<section class="container">
 	<div class="contentwrapper text">
 		<div class="simpleheader">
 			<h1 {% if not page.intro %}class="no-vertical-space"{% endif %}>{{ page.title }}</h1>
@@ -11,4 +11,4 @@
 			{% endif %}
 		</div>
 	</div>
-</div>
+</section>
