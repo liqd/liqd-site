@@ -17,59 +17,20 @@ from django.http import HttpResponse
 from wagtail_modeltranslation.models import TranslationMixin
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList
 
+from streampage import blocks
 
 class StreamPage(Page):
     
     intro = RichTextField(blank=True)
     body = StreamField([
-        ('standard_paragraph', blocks.StructBlock(
-            [
-                ('headline', blocks.CharBlock(required=False, length=256)),
-                ('text', blocks.RichTextBlock(required=True)),
-            ], template="blocks/block_standard_paragraph.html", icon="pilcrow")
-        ),
-        ('highlight_paragraph', blocks.StructBlock(
-            [
-                ('headline', blocks.CharBlock(required=False, length=256)),
-                ('text', blocks.RichTextBlock(required=True)),
-                ('link', blocks.PageChooserBlock(required=False)),
-            ], template="blocks/block_highlight_paragraph.html", icon="pilcrow")
-        ),
-        ('image', ImageChooserBlock(icon="image"), ),
-        ('columns', blocks.StructBlock(
-            [
-                ('col1_headline', blocks.CharBlock(required=True, length=256)),
-                ('col1_text', blocks.RichTextBlock()),
-                ('col2_headline', blocks.CharBlock(required=True, length=256)),
-                ('col2_text', blocks.RichTextBlock()),
-            ], template = "blocks/block_column.html", icon="grip")
-        ),
-        ('carousel', blocks.ListBlock(
-            ImageChooserBlock(), 
-            template = "blocks/block_carousel.html",
-            help_text = "Please choose up to 4 images.",
-            icon="image"
-            ),
-        ),
-        ('linkbox', blocks.StructBlock(
-            [
-                ('headline', blocks.CharBlock(required=False, length=256)),
-                ('links', blocks.ListBlock(
-                    blocks.PageChooserBlock()),
-                ),
-                
-            ], template = "blocks/block_linkbox.html", icon="link")
-        ),('project_teaser', blocks.StructBlock(
-            [
-                ('title', blocks.CharBlock(required=False, length=256)),
-                ('shorttext', blocks.RichTextBlock(required=True)),
-                ('image', ImageChooserBlock(icon="image")),
-                ('slug', blocks.ListBlock(
-                    blocks.PageChooserBlock(), required=False),
-                ),
-                ('external_url', blocks.CharBlock(required=False, length=256)),
-            ], template="blocks/block_project_teaser.html", icon="")
-        ),
+        ('standard_paragraph', blocks.StandardParagraphBlock()),
+        ('highlight_paragraph', blocks.HighlightParagraphBlock()),
+        ('quote_paragraph', blocks.QuoteParagraph()),
+        ('image', ImageChooserBlock(label='Single image')),
+        ('columns', blocks.ColumnBlock()),
+        # ('image_slider', blocks.ListBlock(ImageChooserBlock(label = 'Image Slider', icon='image', help_text = 'Responsive image slider (weipe on mobile). Please choose 4 images.'))),
+        ('linkbox', blocks.LinkboxBlock()),
+        ('project_teaser', blocks.ProjectTeaserBlock()),
     ])
 
     de_content_panels = [
