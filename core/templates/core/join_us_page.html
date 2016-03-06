@@ -7,12 +7,8 @@
 
 {% include "core/includes/streamfieldpage_simpleheader.html" %}
 
-<div class="container">
-	<div class="contentwrapper text">
-		<div class="textpage">
-			{{ page.body|richtext }}
-		</div>
-	</div>
-</div>
+{% for block in page.body %}
+    {{ block }}
+{% endfor %}
 
 {% endblock %}

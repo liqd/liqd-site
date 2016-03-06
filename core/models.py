@@ -1,6 +1,6 @@
 from wagtail.wagtailcore.models import Page, Orderable
 from django.db import models
-from streampage.models import StreamPage
+
 
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
@@ -90,49 +90,49 @@ class StreamFieldPage(Page):
         # abstract = True
 
 
-# class JoinUsPage(Page):
+class JoinUsPage(Page):
 
-#     intro = RichTextField(blank=True)
-#     body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+    intro = RichTextField(blank=True)
+    body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
 
-#     de_content_panels = [
-#         FieldPanel('title'),
-#         FieldPanel('intro'),
-#         StreamFieldPanel('body'),
-#     ]
+    # de_content_panels = [
+    #     FieldPanel('title'),
+    #     FieldPanel('intro'),
+    #     StreamFieldPanel('body'),
+    # ]
 
-#     en_content_panels = [
-#         FieldPanel('title'),
-#         FieldPanel('intro'),
-#         StreamFieldPanel('body'),
-#     ]
+    en_content_panels = [
+        FieldPanel('title'),
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
+    ]
 
-#     promote_panels = [
-#         FieldPanel('slug'),
-#         MultiFieldPanel([
-#             FieldPanel('seo_title'),
-#             FieldPanel('search_description'),
-#         ],
-#         heading = "SEO settings de",
-#         classname="collapsible"),
-#         MultiFieldPanel([
-#             FieldPanel('seo_title'),
-#             FieldPanel('search_description'),
-#         ],
-#         heading = "SEO settings en",
-#         classname="collapsible")
-#     ]
+    promote_panels = [
+        FieldPanel('slug'),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+        heading = "SEO settings de",
+        classname="collapsible"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+        heading = "SEO settings en",
+        classname="collapsible")
+    ]
 
-#     edit_handler = TabbedInterface([
-#         # ObjectList(content_panels, heading='Content'),
-#         ObjectList(de_content_panels, heading='Content de'),
-#         ObjectList(en_content_panels, heading='Content en'),
-#         ObjectList(promote_panels, heading='Promote'),
-#         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
-#     ])
+    edit_handler = TabbedInterface([
+        # ObjectList(content_panels, heading='Content'),
+        # ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    ])
 
-#     class Meta:
-#         verbose_name = 'JoinUs Page'
+    class Meta:
+        verbose_name = 'JoinUs Page'
 
 
 
@@ -255,6 +255,52 @@ class HomePage(Page):
     #     ObjectList(promote_panels, heading='Promote'),
     #     ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     # ])
+
+
+# class JoinPage(Page):
+
+#     intro = RichTextField(blank=True)
+#     body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+
+#     de_content_panels = [
+#         FieldPanel('title'),
+#         FieldPanel('intro'),
+#         StreamFieldPanel('body'),
+#     ]
+
+#     en_content_panels = [
+#         FieldPanel('title'),
+#         FieldPanel('intro'),
+#         StreamFieldPanel('body'),
+#     ]
+
+#     promote_panels = [
+#         FieldPanel('slug'),
+#         MultiFieldPanel([
+#             FieldPanel('seo_title'),
+#             FieldPanel('search_description'),
+#         ],
+#         heading = "SEO settings de",
+#         classname="collapsible"),
+#         MultiFieldPanel([
+#             FieldPanel('seo_title'),
+#             FieldPanel('search_description'),
+#         ],
+#         heading = "SEO settings en",
+#         classname="collapsible")
+#     ]
+
+#     edit_handler = TabbedInterface([
+#         # ObjectList(content_panels, heading='Content'),
+#         ObjectList(de_content_panels, heading='Content de'),
+#         ObjectList(en_content_panels, heading='Content en'),
+#         ObjectList(promote_panels, heading='Promote'),
+#         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+#     ])
+
+#     class Meta:
+#         verbose_name = 'JoinUs Page'
+
 
 
 class TextPage(Page):

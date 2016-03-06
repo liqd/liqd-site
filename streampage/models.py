@@ -36,56 +36,56 @@ STREAMFIELD_DEFAULT_BLOCKS = [
 ]
 
 
-class StreamPage(Page):
+# class StreamPage(Page):
     
-    intro = RichTextField(blank=True)
-    body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+#     intro = RichTextField(blank=True)
+#     body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
 
-    de_content_panels = [
-        FieldPanel('title_de'),
-        FieldPanel('intro_de'),
-        StreamFieldPanel('body_de'),
-    ]
+#     de_content_panels = [
+#         FieldPanel('title_de'),
+#         FieldPanel('intro_de'),
+#         StreamFieldPanel('body_de'),
+#     ]
 
-    en_content_panels = [
-        FieldPanel('title_en'),
-        FieldPanel('intro_en'),
-        StreamFieldPanel('body_en'),
-    ]
+#     en_content_panels = [
+#         FieldPanel('title_en'),
+#         FieldPanel('intro_en'),
+#         StreamFieldPanel('body_en'),
+#     ]
 
-    promote_panels = [
-        FieldPanel('slug'),
-        MultiFieldPanel([
-            FieldPanel('seo_title_de'),
-            FieldPanel('search_description_de'),
-        ],
-        heading = "SEO settings de",
-        classname="collapsible"),
-        MultiFieldPanel([
-            FieldPanel('seo_title_en'),
-            FieldPanel('search_description_en'),
-        ],
-        heading = "SEO settings en",
-        classname="collapsible")
-    ]
+#     promote_panels = [
+#         FieldPanel('slug'),
+#         MultiFieldPanel([
+#             FieldPanel('seo_title_de'),
+#             FieldPanel('search_description_de'),
+#         ],
+#         heading = "SEO settings de",
+#         classname="collapsible"),
+#         MultiFieldPanel([
+#             FieldPanel('seo_title_en'),
+#             FieldPanel('search_description_en'),
+#         ],
+#         heading = "SEO settings en",
+#         classname="collapsible")
+#     ]
 
-    edit_handler = TabbedInterface([
-        # ObjectList(content_panels, heading='Content'),
-        ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
-        ObjectList(promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
-    ])
+#     edit_handler = TabbedInterface([
+#         # ObjectList(content_panels, heading='Content'),
+#         ObjectList(de_content_panels, heading='Content de'),
+#         ObjectList(en_content_panels, heading='Content en'),
+#         ObjectList(promote_panels, heading='Promote'),
+#         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+#     ])
 
-    class Meta:
-        verbose_name = 'Stream Page'
-        managed = True
-        abstract = True
+#     class Meta:
+#         verbose_name = 'Stream Page'
+#         managed = True
+#         abstract = True
 
 
-class JoinUsPage(TranslationMixin, StreamPage):
-    content_panels = [
-    ]
+# class JoinUsPage(TranslationMixin, StreamPage):
+#     content_panels = [
+#     ]
 
-    class Meta:
-        verbose_name = 'JoinUs Page'
+#     class Meta:
+#         verbose_name = 'JoinUs Page'

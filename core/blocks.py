@@ -37,23 +37,6 @@ class HighlightParagraphBlock(StructBlock):
         help_text = 'Paragraph with gray background and optional single link.'
 
 
-
-# class QuoteParagraph(StructBlock):
-
-#     text = RichTextBlock(required=True)
-#     color = ChoiceBlock(
-#                 choices=[('green','Gruen'),('orange','Orange'),('red','Rot')],
-#                 required=True,
-#                 help_text="Select a color from the list."
-#             )
-#     author = CharBlock(required=False, length=256)
-
-#     class Meta:
-#         template="blocks/block_quote_paragraph_image.html",
-#         icon="pilcrow",
-#         help_text="Centered text (set quotemarks manually) with background color and optional author field."
-
-
 class QuoteParagraph(StructBlock):
 
     text = RichTextBlock(required=True)
@@ -134,5 +117,3 @@ class ProjectTeaserBlock(StructBlock):
         icon = 'placeholder'
         label = 'Project Teaser'
         help_text = 'Use as project teaser, internal link to project page, external link to project URL.'
-
-    

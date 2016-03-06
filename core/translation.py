@@ -1,23 +1,23 @@
-from .models import HomePage
-from .models import TextPage
-from wagtail_modeltranslation.translation import TranslationOptions
-from wagtail_modeltranslation.decorators import register
+# from .models import HomePage
+# from .models import TextPage
+# from wagtail_modeltranslation.translation import TranslationOptions
+# from wagtail_modeltranslation.decorators import register
 
-# @register(HomePage)
-# class HomePageTR(TranslationOptions):
-#     fields = (
-#     	'heading',
-#     	'intro',
-#         'body',
-#     )
+# # @register(HomePage)
+# # class HomePageTR(TranslationOptions):
+# #     fields = (
+# #     	'heading',
+# #     	'intro',
+# #         'body',
+# #     )
 
-# @register(TextPage)
-# class TextPageTR(TranslationOptions):
-#     fields = (
-#     )
+# # @register(TextPage)
+# # class TextPageTR(TranslationOptions):
+# #     fields = (
+# #     )
 
 
-# @register(JoinUsPage)
-# class JoinUsPageTR(TranslationOptions):
-#     fields = (
-#     )
+# # @register(JoinUsPage)
+# # class JoinUsPageTR(TranslationOptions):
+# #     fields = (
+# #     )

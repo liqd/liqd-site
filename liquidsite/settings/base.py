@@ -64,7 +64,6 @@ INSTALLED_APPS = (
     'wagtail_modeltranslation',
 
     'core',
-    'streampage',
     'blog',
     'persons',
     'projects',

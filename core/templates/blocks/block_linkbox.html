@@ -1,0 +1,15 @@
+
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<section class="contentwrapper fullwidth">
+	<div class="block block-highlight block-linkbox">
+		<h3>{{ value.headline }}</h3>
+		<div class="links">
+			{% for link in value.links %}
+				<a href="{{ link.url }}" class="button">{{link.title}}</a></br>
+			{% endfor %}
+		</div>
+	</div>
+</section>
