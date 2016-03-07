@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 {% for menuitem in main_menu_items %}
-                    <li><a class="{% if request.path == menuitem.url %}active{% endif %} {% if forloop.last %}lastItem{% endif %}" href="{{ menuitem.url }}">{{ menuitem.menu_title }}</a></li>
+                    <li><a class="{% if request.path == menuitem.url %}active{% endif %} {% if forloop.last %}lastItem{% endif %}" href="{{ menuitem.url }}">{{ menuitem.translated_menu_title }}</a></li>
                 {% endfor %}
 
                 {% if LANGUAGE_CODE == 'de' %}
@@ -46,7 +46,7 @@
 
             <ul class="hidden-sm hidden-md hidden-lg footer-nav">
                 {% for menuitem in footer_menu_items %}
-                    <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="{{ menuitem.url }}">{{ menuitem.menu_title }}</a></li>
+                    <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="{{ menuitem.url }}">{{ menuitem.translated_menu_title }}</a></li>
                 {% endfor %}
             </ul>
 
