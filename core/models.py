@@ -23,39 +23,64 @@ from modelcluster.fields import ParentalKey
 
 from core import blocks
 
-# from contrib.translations.translations import TranslatedField
+from contrib.translations.translations import TranslatedField
 
 
 STREAMFIELD_DEFAULT_BLOCKS = [
     ('standard_paragraph', blocks.StandardParagraphBlock()),
     ('highlight_paragraph', blocks.HighlightParagraphBlock()),
     ('quote_paragraph', blocks.QuoteParagraph()),
-    ('image', ImageChooserBlock(label='Single image',icon='image')),
-    ('columns', blocks.ColumnBlock()),
+    ('single_image', ImageChooserBlock(
+        template='blocks/block_image.html',
+        label='Single image',
+        icon='image')),
     ('image_slider', blocks.ListBlock(ImageChooserBlock(),
         template='blocks/block_carousel.html',
         label='Image Slider',
         icon='image',
         help_text='Responsive image slider (swipe on mobile). Please choose 4 images.')),
+    ('columns', blocks.ColumnBlock()),
     ('linkbox', blocks.LinkboxBlock()),
     ('project_teaser', blocks.ProjectTeaserBlock()),
 ]
 
-class StreamFieldPage(Page):
+class TranslatedStreamFieldPage(Page):
     
-    intro = RichTextField(blank=True)
-    body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+    title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+    title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+
+    intro_en = RichTextField(blank=True)
+    intro_de = RichTextField(blank=True)
+
+    body_en = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True)
+    body_de = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+
+
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
+
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
+    translated_intro = TranslatedField(
+        'intro_de',
+        'intro_en',
+    )
 
     de_content_panels = [
-        FieldPanel('title'),
-        FieldPanel('intro'),
-        StreamFieldPanel('body'),
+        FieldPanel('title_de'),
+        FieldPanel('intro_de'),
+        StreamFieldPanel('body_de'),
     ]
 
     en_content_panels = [
-        FieldPanel('title'),
-        FieldPanel('intro'),
-        StreamFieldPanel('body'),
+        FieldPanel('title_en'),
+        FieldPanel('intro_en'),
+        StreamFieldPanel('body_en'),
     ]
 
     promote_panels = [
@@ -66,80 +91,58 @@ class StreamFieldPage(Page):
         ],
         heading = "SEO settings de",
         classname="collapsible"),
-        MultiFieldPanel([
-            FieldPanel('seo_title'),
-            FieldPanel('search_description'),
-        ],
-        heading = "SEO settings en",
-        classname="collapsible")
+        # MultiFieldPanel([
+        #     FieldPanel('seo_title'),
+        #     FieldPanel('search_description'),
+        # ],
+        # heading = "SEO settings en",
+        # classname="collapsible")
     ]
 
     edit_handler = TabbedInterface([
         # ObjectList(content_panels, heading='Content'),
-        ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(de_content_panels, heading='Content de'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
     class Meta:
-        verbose_name = 'Stream Page'
+        verbose_name = 'Extended Page'
         managed = True
-        # abstract = True
+        abstract = True
 
 
-class JoinUsPage(Page):
-
-    intro = RichTextField(blank=True)
-    body = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
-
-    # de_content_panels = [
-    #     FieldPanel('title'),
-    #     FieldPanel('intro'),
-    #     StreamFieldPanel('body'),
-    # ]
-
-    en_content_panels = [
-        FieldPanel('title'),
-        FieldPanel('intro'),
-        StreamFieldPanel('body'),
-    ]
-
-    promote_panels = [
-        FieldPanel('slug'),
-        MultiFieldPanel([
-            FieldPanel('seo_title'),
-            FieldPanel('search_description'),
-        ],
-        heading = "SEO settings de",
-        classname="collapsible"),
-        MultiFieldPanel([
-            FieldPanel('seo_title'),
-            FieldPanel('search_description'),
-        ],
-        heading = "SEO settings en",
-        classname="collapsible")
-    ]
-
-    edit_handler = TabbedInterface([
-        # ObjectList(content_panels, heading='Content'),
-        # ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
-        ObjectList(promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
-    ])
+class JoinUsPage(TranslatedStreamFieldPage):
 
     class Meta:
         verbose_name = 'JoinUs Page'
 
 
 
-class HomePage(Page):
-    heading1 = models.CharField(max_length=255, default="")
-    heading2 = models.CharField(max_length=255, default="")
-    intro = RichTextField(blank=True)
-    body = StreamField(
-        STREAMFIELD_DEFAULT_BLOCKS
+class HomePage(TranslatedStreamFieldPage):
+
+    heading1_en = models.CharField(max_length=255, default="")
+    heading1_de = models.CharField(max_length=255, default="")
+    
+    heading2_en = models.CharField(max_length=255, default="")
+    heading2_de = models.CharField(max_length=255, default="")
+
+    translated_heading1 = TranslatedField(
+        'heading1_de',
+        'heading1_en',
+    )
+
+    translated_heading2 = TranslatedField(
+        'heading2_de',
+        'heading2_en',
+    )
+    
+    # intro_en = RichTextField(blank=True)
+    # intro_de = RichTextField(blank=True)
+
+    # body_en = StreamField(
+    #     STREAMFIELD_DEFAULT_BLOCKS
     #     [
     #     # ('heading', blocks.CharBlock(classname="full title", icon="title")),
     #     ('standard_paragraph', blocks.StructBlock(
@@ -210,67 +213,28 @@ class HomePage(Page):
     #     ),
 
     # ]
-    , null=True)
+    # , null=True)
+    # body_en = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
 
-    content_panels = Page.content_panels + [
-        FieldPanel('heading1'),
-        FieldPanel('heading2'),
-        FieldPanel('intro'),
-        StreamFieldPanel('body'),
-    ]
-    # de_content_panels = [
-    #     FieldPanel('heading_de'),
-    #     FieldPanel('intro_de'),
-    #     StreamFieldPanel('body_de'),
+    # content_panels = Page.content_panels + [
+    #     FieldPanel('heading1_de'),
+    #     FieldPanel('heading2'),
+    #     FieldPanel('intro'),
+    #     StreamFieldPanel('body'),
     # ]
 
-    # en_content_panels = [
-    #     FieldPanel('heading_en'),
-    #     FieldPanel('intro_en'),
-    #     StreamFieldPanel('body_en'),
-    # ]
-
-    # promote_panels = [
-    #     FieldPanel('slug'),
-    #     MultiFieldPanel([
-    #         FieldPanel('seo_title_de'),
-    #         FieldPanel('search_description_de'),
-    #     ],
-    #     heading = "SEO settings de",
-    #     classname="collapsible"),
-    #     MultiFieldPanel([
-    #         FieldPanel('seo_title_en'),
-    #         FieldPanel('search_description_en'),
-    #     ],
-    #     heading = "SEO settings en",
-    #     classname="collapsible")
-    # ]
-
-    # edit_handler = TabbedInterface([
-    #     # ObjectList(content_panels, heading='Content'),
-    #     ObjectList(de_content_panels, heading='Content de'),
-    #     ObjectList(en_content_panels, heading='Content en'),
-    #     ObjectList(promote_panels, heading='Promote'),
-    #     ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
-    # ])
-
-
-class TextPage(Page):
-    
-    body = RichTextField(blank=True)
-
-    content_panels = Page.content_panels + [
-        FieldPanel('title'),
+    en_content_panels = [
+        FieldPanel('heading1_en'),
+        FieldPanel('heading2_en'),
+        FieldPanel('intro_en'),
+        StreamFieldPanel('body_en'),
     ]
 
     de_content_panels = [
-        FieldPanel('title'),
-        FieldPanel('body'),
-    ]
-
-    en_content_panels = [
-        FieldPanel('title'),
-        FieldPanel('body'),
+        FieldPanel('heading1_de'),
+        FieldPanel('heading2_de'),
+        FieldPanel('intro_de'),
+        StreamFieldPanel('body_de'),
     ]
 
     promote_panels = [
@@ -280,19 +244,73 @@ class TextPage(Page):
             FieldPanel('search_description'),
         ],
         heading = "SEO settings de",
-        classname="collapsible"),
+        classname="collapsible")
+    ]
+    # promote_panels = [
+    #     FieldPanel('slug'),
+    #     MultiFieldPanel([
+    #         FieldPanel('seo_title_de'),
+    #         FieldPanel('search_description_de'),
+    #     ],
+    #     heading = "SEO settings de",
+    #     classname="collapsible"),
+        # MultiFieldPanel([
+        #     FieldPanel('seo_title_en'),
+        #     FieldPanel('search_description_en'),
+        # ],
+        # heading = "SEO settings en",
+        # classname="collapsible")
+    # ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    ])
+
+
+class TextPage(Page):
+    
+    title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+    title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+
+    body_en = RichTextField(blank=True)
+    body_de = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('title'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('body_de'),
+    ]
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('body_en'),
+    ]
+
+    promote_panels = [
+        FieldPanel('slug'),
         MultiFieldPanel([
             FieldPanel('seo_title'),
             FieldPanel('search_description'),
         ],
-        heading = "SEO settings en",
-        classname="collapsible")
+        heading = "SEO settings",
+        classname="collapsible"),
+        # MultiFieldPanel([
+        #     FieldPanel('seo_title'),
+        #     FieldPanel('search_description'),
+        # ],
+        # heading = "SEO settings en",
+        # classname="collapsible")
     ]
 
     edit_handler = TabbedInterface([
-        # ObjectList(content_panels, heading='Content'),
-        ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(de_content_panels, heading='Content de'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
