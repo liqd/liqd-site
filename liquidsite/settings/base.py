@@ -8,12 +8,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 from local import *
+import os
 from os.path import abspath, dirname, join
 from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
-
+BASE_DIR = os.path.dirname(PROJECT_ROOT)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -90,8 +91,8 @@ WSGI_APPLICATION = 'liquidsite.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LOCALE_PATHS = [
-    # os.path.join(BASE_DIR, 'locale'),
-    PROJECT_ROOT
+    os.path.join(BASE_DIR, 'locale')
+    # PROJECT_ROOT
 ]
 
 LANGUAGE_CODE = 'en-us'
