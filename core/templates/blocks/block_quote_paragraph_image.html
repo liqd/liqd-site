@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<section class="contentwrapper fullwidth">
+	<div class="block block-quote-paragraph {% if not value.image %} block-quote-noimage block-bg-{{value.color}} {% endif %}">
+		{% if value.image %}
+			{% image value.image height-400 %}
+		{% endif %}
+		{{value.text|richtext}}
+	</div>
+</section>

@@ -1,4 +1,6 @@
 from django.db import models
+# from core import models
+from core.models import TranslatedStreamFieldPage
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
@@ -14,6 +16,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 
+from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
 
 class Person(models.Model):
     person = models.ForeignKey(
@@ -41,6 +44,7 @@ class ProjectPage(Page):
         related_name='+'
     )
     shorttext = RichTextField(max_length=300, blank=True)
+    external_url = models.URLField(max_length=200, blank=True)
     streamFieldTop = StreamField([
         ('heading', blocks.CharBlock(classname="full title", icon="title")),
         ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -59,17 +63,19 @@ ProjectPage.content_panels = [
     FieldPanel('shorttext', classname="full"),
     ImageChooserPanel('image'),
     StreamFieldPanel('streamFieldTop'),
-    InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
-    StreamFieldPanel('streamFieldBottom')
+    # InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
+    StreamFieldPanel('streamFieldBottom'),
+    FieldPanel('external_url'),
 ]
 
 
-class ProjectIndexPage(Page):
-    intro = RichTextField(blank=True)
+class ProjectIndexPage(TranslatedStreamFieldPage):
+    
     subpage_types = ['projects.ProjectPage']
 
     search_fields = Page.search_fields + (
-        index.SearchField('intro'),
+        index.SearchField('intro_de'),
+        index.SearchField('intro_en'),
     )
 
     @property
@@ -77,8 +83,3 @@ class ProjectIndexPage(Page):
         projects = ProjectPage.objects.all()
         projects = projects.order_by('title')
         return projects
-
-ProjectIndexPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('intro', classname="full")
-]

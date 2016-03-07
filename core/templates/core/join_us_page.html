@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block content %}
+
+{% include "core/includes/streamfieldpage_simpleheader.html" %}
+
+{% for block in page.body %}
+    {{ block }}
+{% endfor %}
+
+{% endblock %}

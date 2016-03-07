@@ -1,0 +1,70 @@
+//
+// Basic styles for project pages
+// --------------------------------------------------
+
+
+
+
+//
+// Project-Teaser
+// --------------------------------------------------
+
+.project-teaser {
+	position: relative;
+	background-color: grey;
+	background-size: cover;
+	overflow: hidden;
+	img {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: auto;
+		left: 0px;
+	}
+	.inner {
+		position: relative;
+		text-align: left;
+		padding-top: 7rem;
+		padding-left: 7rem;
+		h2 {
+			display: inline-block;
+			font-size: 2rem;
+			color: white;
+		}
+		.rich-text {
+			padding-bottom: 3rem;
+			p {
+				display: inline-block;
+				padding: 0 auto;
+				font-size: 3rem;
+				color: white;
+				width: 70%;
+			}
+		}
+		.links {
+			padding-bottom: 10.5rem;
+			line-height: 5.5rem;
+		}
+		a {
+			display: inline-block;
+			
+			width: 20rem;
+			text-align: center;
+		}
+	}
+}
+
+//** mobile view
+@media screen and (max-width: $screen-xs) {
+	.project-teaser > .inner {
+
+		> .rich-text {
+			display: none;
+		}
+
+		> h2 {
+			font-size: 40px; font-size: 4rem;
+			line-height: 4.4rem;
+		}
+	}
+}

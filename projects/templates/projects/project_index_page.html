@@ -2,12 +2,13 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-<div class="container">
-<h1>{{ self.title }}</h1>
 
- {% for project in self.projects %}
-            <a href="{% pageurl project %}">{{ project }}</a>
-        {% empty %}
-            No projects found
-        {% endfor %}
+{% include "core/includes/streamfieldpage_simpleheader.html" %}
+
+{% for project in self.projects %}
+    {% include "projects/project_teaser.html" with teaser=project %}
+{% empty %}
+    No projects found
+{% endfor %}
+
 {% endblock %}

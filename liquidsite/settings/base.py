@@ -8,11 +8,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 from local import *
+import os
 from os.path import abspath, dirname, join
+from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
-
+BASE_DIR = os.path.dirname(PROJECT_ROOT)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -42,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'wagtail.contrib.settings',
 
     'compressor',
     'taggit',
@@ -63,7 +66,7 @@ INSTALLED_APPS = (
     'core',
     'blog',
     'persons',
-    'projects'
+    'projects',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -73,6 +76,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
@@ -85,12 +90,21 @@ WSGI_APPLICATION = 'liquidsite.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+    # PROJECT_ROOT
+]
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Europe/Berlin'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
+LANGUAGES = (
+    ('de', _('German')),
+    ('en', _('English')),
+)
+# MODELTRANSLATION_LANGUAGES = ('de', 'en')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -111,9 +125,10 @@ MEDIA_URL = '/media/'
 COMPRESS_ENABLED = False
 
 COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'contrib.sass.sass.SassMapFilter'),
+    # ('text/x-scss', 'contrib.sass.sass.SassMapFilter'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
-
+LIBSASS_SOURCEMAPS = True
 
 # Template configuration
 
@@ -121,6 +136,7 @@ from django.conf import global_settings
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
+    'wagtail.contrib.settings.context_processors.settings',
 )
 
 

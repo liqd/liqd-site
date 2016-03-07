@@ -1,0 +1,137 @@
+//
+// Basic block styles
+// --------------------------------------------------
+
+.block {
+	margin-bottom: $block-margin-bottom;
+}
+
+//** Block background colors
+.block-bg-green {
+	background-color: #29CAC5;
+}
+
+.block-bg-orange {
+	background-color: #FFB946;
+}
+
+.block-bg-red {
+	background-color: #FF0047;
+}
+
+
+//
+// Style definitions for specific block types
+// --------------------------------------------------
+
+
+.block-column {
+	padding-bottom: 0px;
+	div {
+		padding-bottom: 5rem;
+	}
+}
+
+
+.block-carousel,
+.block-image {
+
+	margin: 6rem 0;
+
+	figure {
+		padding: 0 10px;
+		text-align: center;
+		img {
+			width: 100%;
+			max-width: 450px;
+			display: inline-block;
+		}
+	}
+}
+
+.block-image {
+	figure {
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+	}
+}
+
+
+.block-highlight {
+	padding-top: 7rem;
+	background-color: lightgrey;
+
+	//** convert margin to padding for background-color
+	padding-bottom: $block-margin-bottom;
+}
+
+
+.block-linkbox,
+.block-highlight-paragraph {
+
+	a {
+		display: inline-block;
+		min-width: 35rem;
+		margin: 0.4rem auto;
+	}
+
+	.rich-text {
+		margin-bottom: 9.5rem;
+	}
+}
+
+
+.block-quote-paragraph {
+
+	position: relative;
+
+	&.block-quote-noimage {
+		height: 45rem;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+	}
+	
+	p {
+		color: white;
+		font-size: 4rem;
+		line-height: 5rem;
+	}
+
+	div.rich-text {
+	    @include center(70%);
+	}
+
+	//** mobile view
+	@media screen and (max-width: $screen-xs) {
+
+		&.block-quote-noimage {
+			height: 40rem;
+		}
+
+		p {
+			font-size: 3rem;
+			line-height: 3.6rem;
+		}
+
+	}
+
+	//** up to and including tablet
+	@media screen and (min-width: $screen-md) {
+
+		div.rich-text {
+			width: 50%;
+		}
+
+	}
+
+	
+}
+
+

@@ -1,0 +1,250 @@
+
+//
+// Top-Navigation
+// --------------------------------------------------
+
+.content {
+    margin-top: $navbar_height;
+}
+
+
+//
+// Liqd-Logo
+// --------------------------------------------------
+
+.navbar-brand {
+    background: url("/static/images/logo.png") no-repeat left center;
+    padding-left: 80px;
+    font-size: 15px;
+    @media screen and (min-width: $screen-xs) {
+        font-size: 18px;
+    }
+}
+
+.inlinesvg .navbar-brand {
+    background: url("../images/logo.svg") no-repeat left center;
+}
+
+
+//
+// Main-Menu
+// --------------------------------------------------
+
+#mainmenu {
+
+    min-height: $navbar_height;
+    background-color: $navbar_background_color;
+    border-color: $navbar_border_color;
+
+    .navbar-nav {
+        padding-right: 1.5rem;
+    }
+
+    .navbar-toggle:hover,
+    .navbar-toggle:focus {
+        background-color: white;
+    }
+
+    .navbar-toggle.active:hover,
+    .navbar-toggle.active:focus {
+        background-color: $navbar-default-toggle-hover-bg;
+    }
+
+    li {
+        text-align: center;
+        line-height: $navbar_height;
+        > a {
+            display: inline-block;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-size: $navbar_menu_font_size;
+        }
+
+        > a.active {
+            color: $gray-darker;
+        }
+
+        &.select-lang > a {
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+        }
+    }
+
+    li.active > a {
+        color: $gray-darker;
+        font-weight: 500;
+        background-color: $navbar_background_color;
+    }
+
+    li.select-lang + li.select-lang::before {
+        content: "|";
+        line-height: $navbar-height;
+        font-size: $navbar_menu_font_size;
+    }
+
+    .styled-select {
+        line-height: $navbar_menu_font_size;
+    }
+
+
+    #select-lang-mobile {
+        padding: 1.2rem 2rem;
+    }
+
+
+
+    //
+    // Footer links in main menu on mobile devices
+    // --------------------------------------------------
+
+    @media screen and (max-width: $screen-xs-max) {
+
+        li {
+            line-height: $navbar_height / 1.3;
+
+            > a {
+                font-size: $navbar_mobile_font_size;
+            }
+        }
+
+        .social-sites {
+            @include flexBox();
+            margin: 0 5%;
+            a {
+                font-size: 5rem;
+                &:hover {
+                    color: $gray-darker;
+                }
+            }
+            margin: 3rem 0;
+            padding-top: 3rem;
+            border-top: $navbar_border_color 1px solid;
+        }
+
+        ul.footer-nav {
+            padding-left: 0;
+            @include flexBox();
+            list-style: none;
+            margin: 0 5%;
+        }
+
+        ul.footer-nav li {
+            display: inline-block;
+            margin: 0;
+            line-height: $navbar_height / 2.2;
+
+            span.glyphicon {
+                color: $gray-darker;
+                font-size: 1.3rem;
+                top: -1px;
+                padding-right: 2px;
+            }
+
+            a {
+                font-size: $navbar_mobile_font_size / 1.3;
+                text-decoration: none;
+            }
+        }
+    }
+
+    //** add extra space between page and language links in desktop menu view
+    @media screen and (min-width: $screen-sm) {
+        li {
+
+            > a {
+                &.lastItem {
+                    margin-right: 4rem;
+                }
+            }
+        }
+    }
+
+    //
+    // Dropdown Menus
+    // TODO: refactor and finalize when dropdowns are built in
+    // --------------------------------------------------
+
+    @media (min-width: $screen-xs-max) {
+        .navbar-right .dropdown-menu {
+            right: 0px;
+            left: auto;
+        }
+    }
+
+    .dropdown-menu {
+        background-color: $navbar_dropdown_menu_background_color;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        border-radius: 0;
+        min-width: 300px;
+    }
+
+    .dropdown-menu .list-inline > li > a {
+        color: $navbar_background_color;
+    }
+
+    .dropdown-menu .list-inline {
+        margin-left : 0px;
+        padding-left: $navbar_dropdown_menu_padding;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+    }
+
+    .dropdown-menu .list-inline > li {
+        padding-left: 0px;
+        padding-right: $navbar_dropdown_menu_padding;
+    }
+
+
+    //
+    // Triangle
+    // --------------------------------------------------
+
+    .dropdown-menu::before {
+        position: absolute;
+        top: -7px;
+        left: 48%;
+        display: inline-block;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #112233;
+        border-left: 7px solid transparent;
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        content: '';
+    }
+
+    .dropdown-menu::after {
+        position: absolute;
+        top: -7px;
+        left: 48%;
+        display: inline-block;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #112233;
+        border-left: 7px solid transparent;
+        content: '';
+    }
+
+}
+
+
+//
+// Overlay content when collapsed menu opens
+// --------------------------------------------------
+
+body::after{
+    content: "";
+    opacity: 0;
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #000;
+}
+
+body.overlay::after {
+    opacity: 0.4;
+    display: block;
+}

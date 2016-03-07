@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+{% block content %}
+
+{% include "core/includes/streamfieldpage_simpleheader.html" %}
+
+<div class="container">
+	<div class="contentwrapper text">
+		<div class="textpage">
+			{{ page.body|richtext }}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

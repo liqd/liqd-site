@@ -1,0 +1,17 @@
+//
+// Form styles
+// --------------------------------------------------
+
+.styled-select {
+    border: 1px solid black;
+    display: inline-block;
+    position: relative;
+
+    select {
+        background: transparent;
+        border: none !important;
+        @include appearance(0);
+        @include border-radius(0);
+        @include box-shadow(none);
+    }
+}

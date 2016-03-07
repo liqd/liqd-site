@@ -1,15 +1,7 @@
-/* navbar.scss */
-
-@import 'navbar';
-
-.content {
-	margin-top: $navbar_hight;
-}
-
-a {
-	color: #333;
-  	text-decoration: none;
-}
+//
+// basic styles unfinished pages
+// TODO: refactor styles when pages reach final build stage
+// --------------------------------------------------
 
 .person_page_circular_image {
 	width: 300px;
@@ -79,7 +71,7 @@ a {
 	margin-top: 40px;
 	margin-bottom: 95px;
 	font-family: 'Open Sans';
-	color: #4D4D4D;
+	color: $headline_color;
 	font-size: 20px;
 }
 
@@ -87,7 +79,7 @@ a {
 	font-family: 'Open Sans';
 	padding-bottom: 40px;
 	font-size: 18px;
-	color: #4D4D4D
+	color: $headline_color
 }
 
 .paragraph2{
@@ -115,23 +107,4 @@ a {
 
 .list-group-item {
 	border: none;
-}
-
-.back-to-top {
-background: none;
-margin: 0;
-position: fixed;
-bottom: 0;
-right: 0;
-width: 70px;
-height: 70px;
-z-index: 100;
-display: none;
-text-decoration: none;
-color: #ffffff;
-background-color: #ff9000;
-}
-
-.back-to-top i {
-  font-size: 60px;
 }

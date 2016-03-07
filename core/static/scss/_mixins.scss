@@ -1,0 +1,58 @@
+
+@mixin appearance($value) {
+	-webkit-appearance: $value !important;
+	-moz-appearance: $value !important;
+	-ms-appearance: $value !important;
+	-o-appearance: $value !important;
+	appearance: $value !important;
+}
+
+@mixin border-radius($value){
+	-webkit-border-radius: $value;
+	-moz-border-radius: $value;
+	-ms-border-radius: $value;
+	-o-border-radius: $value;
+	border-radius: $value;
+}
+
+@mixin box-shadow($value){
+	-webkit-box-shadow: $value;
+	-moz-box-shadow: $value;
+	-ms-box-shadow: $value;
+	-o-box-shadow: $value;
+	box-shadow: $value;
+}
+
+@mixin text-shadow($value){
+	-webkit-text-shadow: $value;
+	-moz-text-shadow: $value;
+	-ms-text-shadow: $value;
+	-o-text-shadow: $value;
+	text-shadow: $value;
+}
+
+
+@mixin center($width) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: 0;
+	margin-right: -50%;
+	text-align: center;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	width: $width;
+}
+
+@mixin flexBox() {
+	//** include -webkit prefixes for iOS/Safari 8
+	display: flex !important;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: -webkit-flex;
+    -webkit-justify-content: space-around;
+    -webkit-flex-wrap: wrap;
+}

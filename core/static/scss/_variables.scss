@@ -1,0 +1,52 @@
+
+//
+// Typography
+// --------------------------------------------------
+$font-size: 1.7rem;
+$headline-color: #4D4D4D;
+$text-color: #898989;
+
+
+//
+// Button & links
+// --------------------------------------------------
+
+$link_color: #4d4d4d;
+$link_color_hover: #0d0d0d;
+
+
+//
+// Footer
+// --------------------------------------------------
+
+$footer_background_color: #4D4D4D;
+$footer_color: #9E9E9E;
+$footer_highlight_color: lighten($footer_color, 20%);
+$footer_font_size: 1.5rem;
+$footer_height: 65px;
+
+
+//
+// Blocks
+// --------------------------------------------------
+$block-margin-bottom: 8.5rem;
+
+
+//
+// Navbar
+// --------------------------------------------------
+$navbar_background_color: #FFFFFF;
+$navbar_border_color: #E7E7E7;
+$navbar_menu_font_size: 14px;
+$navbar_mobile_font_size: 20px;
+$navbar_dropdown_menu_background_color: #112233;
+$navbar_dropdown_menu_padding: 15px;
+
+
+//** adjust bootstrap defaults
+$navbar-default-link-color:                	#777;
+$navbar-height: 							65px;
+$navbar-default-brand-color:               	$navbar-default-link-color;
+$navbar-default-bg: 						$navbar_background_color;
+$navbar-default-brand-hover-color: 			darken($navbar-default-brand-color, 15%);
+$navbar-collapse-max-height: 				auto;

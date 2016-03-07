@@ -1,0 +1,166 @@
+//
+// Pageheader styles:
+// --------------------------------------------------
+
+
+//** Simple Header: used in most pages, content pushed from page properties (not StreamFields)
+.simpleheader {
+
+    padding-top: 7rem;
+    margin-bottom: 10.5rem;
+
+    .rich-text {
+        font-size: 1.7rem;
+        letter-spacing: 0.028rem;
+        line-height: 2.3rem;
+    }
+}
+
+
+
+//
+// Special Header: Homepage
+// --------------------------------------------------
+
+$icon-1-width: 10rem;
+$icon-2-width: 22rem;
+$icon-3-width: 20rem;
+
+
+.homepage-header {
+
+    padding-top: 7rem;
+    margin-bottom: 7rem;
+    position: relative;
+    
+    h1 {
+        text-align: left;
+        margin-left: 5rem;
+    }
+    
+
+    h1:first-of-type {
+        padding-bottom: 0px;
+        padding-left: 15rem;
+    }
+
+    .rich-text {
+        width: 100%;
+        padding-left: 36%;
+        padding-right: 30%;
+        padding-top: 2%;
+        text-align: left;
+
+        p {
+            font-size: 1.8rem;
+            line-height: 2.6rem;
+        }
+    }
+
+    .icon {
+        background-repeat: no-repeat;
+        position: absolute;
+    }
+
+    .icon_1 {
+        background: (url("/static/images/plattform.png") no-repeat center);
+        background-size: 80%;
+        right: 10%;
+        width: $icon-1-width;
+        height: ( 150 / 225 ) * $icon-1-width;
+    }
+
+    .icon_2 {
+        background: (url("/static/images/software.png") no-repeat center);
+        background-size: 100%;
+        width: $icon-2-width;
+        height: ( 150 / 225 ) * $icon-2-width;
+        left: 0%;
+        top: 20rem;
+    }
+
+    .icon_3 {
+        background: (url("/static/images/forschen.png") no-repeat center);
+        background-size: 50%;
+        width: $icon-3-width;
+        height: ( 150 / 225 ) * $icon-3-width;
+        right: 0%;
+        top: 22rem;
+    }
+
+    //** mobile view
+    @media screen and (max-width: $screen-xs) {
+
+        h1 {
+            margin-left: 2rem;
+        }
+
+        h1:first-of-type {
+            padding-left: 8rem;
+        }
+
+        .rich-text {
+            padding-left: 50%;
+            padding-right: 5%;
+            p {
+                font-size: 2.6rem;
+                line-height: 3rem;
+            }
+        }
+
+        .icon_1 {
+            right: 2%;
+        }
+
+        .icon_2 {
+            top: 55%;
+            left: 0%;
+        }
+
+        .icon_3 { 
+            display: none;
+        }
+    }
+
+    //** tablet view
+    @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
+        .rich-text {
+            p {
+                font-size: 2.1rem;
+                line-height: 2.6rem;
+            }
+        }
+    }
+
+    
+}
+
+
+//** use svg graphics if supported
+.inlinesvg .homepage-header {
+
+    .icon {
+        background-size: cover;
+        margin: 0 auto;
+        background-color: #fff;
+    }
+
+    .icon_1 {
+        background-image: url("/static/images/plattform.svg");
+        width: $icon-1-width;
+        padding-top: ( 124 / 158 ) * $icon-1-width;
+    }
+
+    .icon_2 {
+        background-image: url("/static/images/software.svg");
+        width: $icon-2-width;
+        padding-top: ( 108 / 139 ) * $icon-2-width;
+    }
+
+    .icon_3 {
+        background-image: url("/static/images/forschen.svg");
+        width: $icon-3-width;
+        padding-top: ( 150 / 225 ) * $icon-3-width;
+    }
+    
+}

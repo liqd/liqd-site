@@ -1,37 +1,59 @@
-$footer_background_color: #4D4D4D;
-$footer_color: #9E9E9E;
-$footer_height: 60px;
+//
+// Footer styles
+// --------------------------------------------------
 
+#footer {
 
-html {
-  position: relative;
-  min-height: 100%;
+    .navbar {
+        background-color: $footer_background_color;
+        @include border-radius(0);
+        border: 0 none;
+        margin: 0;
+    }
+
+    a {
+        color: $footer_color;
+        font-size: $footer_font_size;
+
+        &:hover {
+            background-color: $footer_background_color;
+            color: $footer_highlight_color;
+        }
+    }
+
+    .social-sites a {
+        line-height: $footer_height;
+        font-size: 2rem;
+        padding: 0 5px;
+    }
+    
 }
 
-body {
-  margin-bottom: $footer_height;
+.back-to-top {
+
+    display: none;
+    position: fixed;
+    margin: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+    background-color: $footer_background_color;
+    font-size: 2.5rem;
+    line-height: 10rem;
+    padding: 0% 3%;
+    opacity: 0.9;
+    border-top-left-radius: 2rem;
+
+    &:hover, 
+    &:focus,
+    &:visited {
+        color: white;
+        background-color: $footer_background_color;
+        transition: none;
+    }
+
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: $footer_height;
-  background-color: $footer_background_color;
-}
-
-.container .text-muted {
-  margin: 20px;
-  color: $footer_color;
-}
-
-.text-muted > a {
-  color: $footer_color;
-  margin-right: 15px;
-  text-decoration: none;
-}
-
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+.back-to-top i {
+    padding-right: 1rem;
 }
