@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 from local import *
 from os.path import abspath, dirname, join
+from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
@@ -88,14 +89,19 @@ WSGI_APPLICATION = 'liquidsite.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
+LOCALE_PATHS = [
+    # os.path.join(BASE_DIR, 'locale'),
+    PROJECT_ROOT
+]
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Europe/Berlin'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 LANGUAGES = (
-    ('de', u'Deutsch'),
-    ('en', u'English'),
+    ('de', _('German')),
+    ('en', _('English')),
 )
 # MODELTRANSLATION_LANGUAGES = ('de', 'en')
 

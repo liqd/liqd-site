@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar %}
+{% load i18n compress static wagtailuserbar %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -42,7 +42,7 @@
         </div>
 
         <a href="#" class="back-to-top pull-right">
-            <i class="glyphicon glyphicon-arrow-up"></i>Back to top
+            <i class="glyphicon glyphicon-arrow-up"></i>{% trans "Back to top" %}
         </a>
 
         {% include "footer.html" %}
