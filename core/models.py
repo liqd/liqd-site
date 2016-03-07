@@ -91,16 +91,9 @@ class TranslatedStreamFieldPage(Page):
         ],
         heading = "SEO settings de",
         classname="collapsible"),
-        # MultiFieldPanel([
-        #     FieldPanel('seo_title'),
-        #     FieldPanel('search_description'),
-        # ],
-        # heading = "SEO settings en",
-        # classname="collapsible")
     ]
 
     edit_handler = TabbedInterface([
-        # ObjectList(content_panels, heading='Content'),
         ObjectList(en_content_panels, heading='Content en'),
         ObjectList(de_content_panels, heading='Content de'),
         ObjectList(promote_panels, heading='Promote'),
@@ -137,91 +130,6 @@ class HomePage(TranslatedStreamFieldPage):
         'heading2_de',
         'heading2_en',
     )
-    
-    # intro_en = RichTextField(blank=True)
-    # intro_de = RichTextField(blank=True)
-
-    # body_en = StreamField(
-    #     STREAMFIELD_DEFAULT_BLOCKS
-    #     [
-    #     # ('heading', blocks.CharBlock(classname="full title", icon="title")),
-    #     ('standard_paragraph', blocks.StructBlock(
-    #         [
-    #             ('headline', blocks.CharBlock(required=False, length=256)),
-    #             ('text', blocks.RichTextBlock(required=True)),
-    #         ],
-    #         template="blocks/block_standard_paragraph.html",
-    #         icon="pilcrow",
-    #         help_text="Standard paragraph"
-    #         )
-    #     ),
-    #     # ('image', ImageChooserBlock(icon="image")),
-    #     ('highlight_paragraph', blocks.StructBlock(
-    #         [
-    #             ('headline', blocks.CharBlock(required=False, length=256)),
-    #             ('text', blocks.RichTextBlock(required=True)),
-    #             ('link', blocks.PageChooserBlock(required=False)),
-    #         ],
-    #         template="blocks/block_highlight_paragraph.html",
-    #         icon="pilcrow",
-    #         help_text="Paragraph with grey background. Use this as linkbox also (e.g. job offers)."
-    #         )
-    #     ),
-    #     ('quote_paragraph', blocks.StructBlock(
-    #         [
-    #             ('text', blocks.RichTextBlock(required=True)),
-    #             ('color',blocks.ChoiceBlock(
-    #                 choices=[('green','Gruen'),('orange','Orange'),('red','Rot')],
-    #                 required=True,
-    #                 help_text="Select a color from the listself."
-    #             ))
-    #         ], 
-    #         template="blocks/block_quote_paragraph_image.html",
-    #         icon="pilcrow",
-    #         help_text="Textquote with background color."
-    #         )
-    #     ),
-    #     ('quote_paragraph_image', blocks.StructBlock(
-    #         [
-    #             ('text', blocks.RichTextBlock(required=True)),
-    #             ('image', ImageChooserBlock(
-    #                 icon="image",
-    #                 required=True,
-    #                 help_text="Please use an image with at least 813x400px and a similar aspect ratio."
-    #                 )),
-    #         ],
-    #         template="blocks/block_quote_paragraph_image.html",
-    #         icon="pilcrow",
-    #         help_text="Textquote with background image."
-    #         )
-    #     ),
-    #     ('project_teaser', blocks.StructBlock(
-    #         [
-    #             ('title', blocks.CharBlock(required=False, length=256)),
-    #             ('shorttext', blocks.RichTextBlock(required=True)),
-    #             ('image', ImageChooserBlock(icon="image")),
-    #             ('slug', blocks.PageChooserBlock(
-    #                 help_text="Please choose an internal page from the list."
-    #                 )
-    #             ),
-    #             ('external_url', blocks.CharBlock(required=False, length=256)),
-    #         ],
-    #         template="blocks/block_project_teaser.html",
-    #         icon="pilcrow",
-    #         help_text="Generic teaser / Project teaser with manual content"
-    #         )
-    #     ),
-
-    # ]
-    # , null=True)
-    # body_en = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
-
-    # content_panels = Page.content_panels + [
-    #     FieldPanel('heading1_de'),
-    #     FieldPanel('heading2'),
-    #     FieldPanel('intro'),
-    #     StreamFieldPanel('body'),
-    # ]
 
     en_content_panels = [
         FieldPanel('heading1_en'),
@@ -246,21 +154,6 @@ class HomePage(TranslatedStreamFieldPage):
         heading = "SEO settings de",
         classname="collapsible")
     ]
-    # promote_panels = [
-    #     FieldPanel('slug'),
-    #     MultiFieldPanel([
-    #         FieldPanel('seo_title_de'),
-    #         FieldPanel('search_description_de'),
-    #     ],
-    #     heading = "SEO settings de",
-    #     classname="collapsible"),
-        # MultiFieldPanel([
-        #     FieldPanel('seo_title_en'),
-        #     FieldPanel('search_description_en'),
-        # ],
-        # heading = "SEO settings en",
-        # classname="collapsible")
-    # ]
 
     edit_handler = TabbedInterface([
         ObjectList(en_content_panels, heading='Content en'),
@@ -300,12 +193,6 @@ class TextPage(Page):
         ],
         heading = "SEO settings",
         classname="collapsible"),
-        # MultiFieldPanel([
-        #     FieldPanel('seo_title'),
-        #     FieldPanel('search_description'),
-        # ],
-        # heading = "SEO settings en",
-        # classname="collapsible")
     ]
 
     edit_handler = TabbedInterface([
@@ -366,22 +253,12 @@ class LinkFields(models.Model):
 
 class MenuItem(LinkFields):
     menu_title = models.CharField(max_length=255)
-#     menu_title_de = models.CharField(max_length=255, blank=True)
-#     menu_title_it = models.CharField(max_length=255, blank=True)
-#     menu_title_fr = models.CharField(max_length=255, blank=True)
-#     menu_title_sv = models.CharField(max_length=255, blank=True)
-#     menu_title_sl = models.CharField(max_length=255, blank=True)
-#     menu_title_da = models.CharField(max_length=255, blank=True)
+    menu_title_de = models.CharField(max_length=255, blank=True)
 
-    # translated_menu_title = TranslatedField(
-    #     'menu_title_de',
-    #     'menu_title_it',
-    #     'menu_title',
-    #     'menu_title_fr',
-    #     'menu_title_sv',
-    #     'menu_title_sl',
-    #     'menu_title_da',
-    # )
+    translated_menu_title = TranslatedField(
+        'menu_title_de',
+        'menu_title',
+    )
 
     @property
     def url(self):
@@ -392,18 +269,7 @@ class MenuItem(LinkFields):
 
     panels = [
         FieldPanel('menu_title'),
-        # MultiFieldPanel(
-        #     [
-    #             FieldPanel('menu_title_de'),
-    #             FieldPanel('menu_title_it'),
-    #             FieldPanel('menu_title_fr'),
-    #             FieldPanel('menu_title_sv'),
-    #             FieldPanel('menu_title_sl'),
-    #             FieldPanel('menu_title_da'),
-    #         ],
-    #         heading="Translations",
-    #         classname="collapsible collapsed"
-    #     )
+        FieldPanel('menu_title_de'),
         ] + LinkFields.panels
 
 

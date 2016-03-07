@@ -33,7 +33,8 @@
 }
 
 
-.block-carousel {
+.block-carousel,
+.block-image {
 
 	margin: 6rem 0;
 
@@ -44,6 +45,15 @@
 			width: 100%;
 			max-width: 450px;
 			display: inline-block;
+		}
+	}
+}
+
+.block-image {
+	figure {
+		img {
+			max-width: 100%;
+			height: auto;
 		}
 	}
 }
