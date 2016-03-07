@@ -1,4 +1,6 @@
 from django.db import models
+# from core import models
+from core.models import TranslatedStreamFieldPage
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
@@ -67,12 +69,13 @@ ProjectPage.content_panels = [
 ]
 
 
-class ProjectIndexPage(Page):
-    intro = RichTextField(blank=True)
+class ProjectIndexPage(TranslatedStreamFieldPage):
+    
     subpage_types = ['projects.ProjectPage']
 
     search_fields = Page.search_fields + (
-        index.SearchField('intro'),
+        index.SearchField('intro_de'),
+        index.SearchField('intro_en'),
     )
 
     @property
@@ -80,36 +83,3 @@ class ProjectIndexPage(Page):
         projects = ProjectPage.objects.all()
         projects = projects.order_by('title')
         return projects
-
-    # de_content_panels = [
-    #     FieldPanel('title'),
-    #     FieldPanel('intro'),
-    # ]
-
-    en_content_panels = [
-        FieldPanel('title'),
-        FieldPanel('intro'),
-    ]
-
-    promote_panels = [
-        FieldPanel('slug'),
-        MultiFieldPanel([
-            FieldPanel('seo_title'),
-            FieldPanel('search_description'),
-        ],
-        heading = "SEO settings de",
-        classname="collapsible"),
-        MultiFieldPanel([
-            FieldPanel('seo_title'),
-            FieldPanel('search_description'),
-        ],
-        heading = "SEO settings en",
-        classname="collapsible")
-    ]
-
-    edit_handler = TabbedInterface([
-        # ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
-        ObjectList(promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
-    ])

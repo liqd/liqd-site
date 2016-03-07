@@ -171,6 +171,16 @@ class TextPage(Page):
     body_en = RichTextField(blank=True)
     body_de = RichTextField(blank=True)
 
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
+
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel('title'),
     ]
