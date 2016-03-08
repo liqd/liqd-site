@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .block {
-	margin-bottom: $block-margin-bottom;
+	margin-top: $block-margin;
 }
 
 //** Block background colors
@@ -20,23 +20,29 @@
 }
 
 
+.collapse-mt + .collapse-mt {
+	.block {
+		margin-top: 0;
+	}
+}
+
+
 //
 // Style definitions for specific block types
 // --------------------------------------------------
 
 
 .block-column {
-	padding-bottom: 0px;
-	div {
-		padding-bottom: 5rem;
+	@media screen and (max-width : $screen-md) {
+		div:nth-of-type(2) {
+			margin-top: $block-margin;
+		}
 	}
 }
 
 
 .block-carousel,
 .block-image {
-
-	margin: 6rem 0;
 
 	figure {
 		padding: 0 10px;
@@ -60,11 +66,11 @@
 
 
 .block-highlight {
-	padding-top: 7rem;
+	padding-top: $block-inner-padding;
 	background-color: lightgrey;
 
 	//** convert margin to padding for background-color
-	padding-bottom: $block-margin-bottom;
+	padding-bottom: $block-inner-padding;
 }
 
 
@@ -78,7 +84,7 @@
 	}
 
 	.rich-text {
-		margin-bottom: 9.5rem;
+		margin-bottom: $block-inner-padding;
 	}
 }
 

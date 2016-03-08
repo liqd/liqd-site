@@ -27,9 +27,20 @@ $footer_height: 65px;
 
 
 //
+// Pageheader
+// --------------------------------------------------
+
+//** space between navbar and page header
+$header-navbar-offset: 7rem;
+//** add space between page header and content
+$header-content-offset: 4rem;
+
+
+//
 // Blocks
 // --------------------------------------------------
-$block-margin-bottom: 8.5rem;
+$block-margin: 8.5rem;
+$block-inner-padding: 7rem;
 
 
 //

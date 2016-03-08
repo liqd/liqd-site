@@ -2,12 +2,14 @@
 // Pageheader styles:
 // --------------------------------------------------
 
+.header {
+    padding-top: $header-navbar-offset;
+    margin-bottom: $header-content-offset;
+}
+
 
 //** Simple Header: used in most pages, content pushed from page properties (not StreamFields)
 .simpleheader {
-
-    padding-top: 7rem;
-    margin-bottom: 10.5rem;
 
     .rich-text {
         font-size: 1.7rem;
@@ -29,8 +31,6 @@ $icon-3-width: 20rem;
 
 .homepage-header {
 
-    padding-top: 7rem;
-    margin-bottom: 7rem;
     position: relative;
     
     h1 {
@@ -124,6 +124,15 @@ $icon-3-width: 20rem;
 
     //** tablet view
     @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
+
+        /* h1 {
+            margin-left: 0rem;
+        }
+
+        h1:first-of-type {
+            padding-left: 12rem;
+        } */
+
         .rich-text {
             p {
                 font-size: 2.1rem;
