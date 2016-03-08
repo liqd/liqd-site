@@ -7,6 +7,11 @@
 		{% if value.image %}
 			{% image value.image height-400 %}
 		{% endif %}
-		{{value.text|richtext}}
+		<div class="inner">
+			{{value.text|richtext}}
+			{% if value.author %}
+			<div class="author">{{ value.author }}</div>
+			{% endif %}
+		</span>
 	</div>
 </section>

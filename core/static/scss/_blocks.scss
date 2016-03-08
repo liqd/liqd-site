@@ -110,8 +110,13 @@
 		line-height: 5rem;
 	}
 
-	div.rich-text {
+	.inner {
 	    @include center(70%);
+	}
+
+	.author {
+		color: white;
+		font-size: 1.7rem;
 	}
 
 	//** mobile view
@@ -131,7 +136,7 @@
 	//** up to and including tablet
 	@media screen and (min-width: $screen-md) {
 
-		div.rich-text {
+		.inner {
 			width: 50%;
 		}
 
