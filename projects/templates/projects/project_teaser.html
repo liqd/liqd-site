@@ -21,7 +21,7 @@
 					{% if teaser.internal_link %}
 						{# this is used when including a projectTeaser block in a streamfield: target page is set through PageChooser #}
 						<a href="{% pageurl teaser.internal_link %}" class="button button-white project-link">Details</a>
-					{% else %}
+					{% elif teaser.slug %}
 						{# used when project teaser is included in the project index page: target page is the slug of the project page object #}
 						<a href="{% pageurl teaser %}" class="button button-white project-link">Details</a>
 					{% endif %}

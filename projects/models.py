@@ -133,34 +133,12 @@ class ProjectPage(Page):
         FieldPanel('external_url_en'),
     ]
 
-    # promote_panels = [
-    #     FieldPanel('slug'),
-    #     MultiFieldPanel([
-    #         FieldPanel('seo_title'),
-    #         FieldPanel('search_description'),
-    #     ],
-    #     heading = "SEO settings de",
-    #     classname="collapsible"),
-    # ]
-
     edit_handler = TabbedInterface([
         ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
         ObjectList(Page.promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
-
-
-# ProjectPage.content_panels = [
-#     FieldPanel('title', classname="full title"),
-#     FieldPanel('subtitle', classname="full title"),
-#     FieldPanel('shorttext', classname="full"),
-#     ImageChooserPanel('image'),
-#     StreamFieldPanel('streamFieldTop'),
-#     # InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
-#     StreamFieldPanel('streamFieldBottom'),
-#     FieldPanel('external_url'),
-# ]
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):
