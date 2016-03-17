@@ -35,27 +35,37 @@ class ProjectPersons(Orderable, Person):
         'projects.ProjectPage', related_name='projects_persons')
 
 
+STREAMFIELD_PROJECT_BLOCKS = [
+    ('heading', blocks.CharBlock(classname="full title", icon="title")),
+    ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
+    ('image', ImageChooserBlock(icon="image")),
+    ('video', EmbedBlock(icon="media"))
+]
+
 class ProjectPage(Page):
-    subtitle = models.CharField(max_length=255)
+    
+    subtitle_de = models.CharField(max_length=255)
+    subtitle_en = models.CharField(max_length=255)
+
     image = models.ForeignKey(
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
         null=True,
         related_name='+'
     )
-    shorttext = RichTextField(max_length=300, blank=True)
-    external_url = models.URLField(max_length=200, blank=True)
-    streamFieldTop = StreamField([
-        ('heading', blocks.CharBlock(classname="full title", icon="title")),
-        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-        ('image', ImageChooserBlock(icon="image")),
-        ('video', EmbedBlock(icon="media"))
-    ], null=True)
-    streamFieldBottom = StreamField([
-        ('heading', blocks.CharBlock(classname="full title", icon="title")),
-        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-        ('image', ImageChooserBlock(icon="image")),
-    ], null=True)
+
+    shorttext_de = RichTextField(max_length=300, blank=True)
+    shorttext_en = RichTextField(max_length=300, blank=True)
+
+    external_url_de = models.URLField(max_length=200, blank=True)
+    external_url_en = models.URLField(max_length=200, blank=True)
+
+    streamFieldTop_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+    streamFieldTop_en = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True)
+
+    streamFieldBottom_de =StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+    streamFieldBottom_en =StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+
 
 ProjectPage.content_panels = [
     FieldPanel('title', classname="full title"),
