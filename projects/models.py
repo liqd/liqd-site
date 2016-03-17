@@ -18,6 +18,8 @@ from wagtail.wagtailembeds.blocks import EmbedBlock
 
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
 
+from contrib.translations.translations import TranslatedField
+
 class Person(models.Model):
     person = models.ForeignKey(
         PersonPage)
