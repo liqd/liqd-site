@@ -107,11 +107,11 @@ class LinkboxBlock(StructBlock):
 
 class ProjectTeaserBlock(StructBlock):
 
-    title = CharBlock(required=False, length=256)
-    shorttext = RichTextBlock(required=True)
-    image = ImageChooserBlock(icon="image")
+    translated_title = CharBlock(required=False, length=256)
+    translated_shorttext = RichTextBlock(required=True)
+    translated_image = ImageChooserBlock(icon="image")
     internal_link = PageChooserBlock(required=False)
-    external_url = URLBlock(required=False, length=256)
+    translated_external_url = URLBlock(required=False, length=256)
 
     class Meta:
         template = 'blocks/block_project_teaser.html'

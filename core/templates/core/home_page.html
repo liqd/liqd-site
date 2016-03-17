@@ -10,8 +10,8 @@
 
 
 {% for block in page.body %}
-    {% if block.block_type == 'columns' %}
-        {{ block.value }}
+    {% if block.block_type == 'project_teaser' %}
+    	{% project_teaser block.value request %}
     {% else %}
         {{ block }}
     {% endif %}

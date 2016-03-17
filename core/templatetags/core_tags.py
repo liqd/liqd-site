@@ -25,3 +25,11 @@ def load_site_menu(menu_name):
         return menu[0].menu_items.all()
     else:
         return None
+
+
+@register.inclusion_tag('projects/project_teaser.html')
+def project_teaser(teaser, request):
+    return {
+        'teaser': teaser,
+        'request': request
+    }
