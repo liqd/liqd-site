@@ -94,8 +94,8 @@ class TranslatedStreamFieldPage(Page):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(en_content_panels, heading='Content en'),
         ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
@@ -156,8 +156,8 @@ class HomePage(TranslatedStreamFieldPage):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(en_content_panels, heading='Content en'),
         ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
@@ -206,8 +206,8 @@ class TextPage(Page):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(en_content_panels, heading='Content en'),
         ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
@@ -262,8 +262,8 @@ class LinkFields(models.Model):
 
 
 class MenuItem(LinkFields):
-    menu_title = models.CharField(max_length=255)
-    menu_title_de = models.CharField(max_length=255, blank=True)
+    menu_title = models.CharField(max_length=255, verbose_name="Menu Title en")
+    menu_title_de = models.CharField(max_length=255, blank=True, verbose_name="Menu Title de")
 
     translated_menu_title = TranslatedField(
         'menu_title_de',
@@ -278,8 +278,8 @@ class MenuItem(LinkFields):
         return self.title
 
     panels = [
-        FieldPanel('menu_title'),
         FieldPanel('menu_title_de'),
+        FieldPanel('menu_title'),
         ] + LinkFields.panels
 
 
