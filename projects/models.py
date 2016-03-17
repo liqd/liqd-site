@@ -43,11 +43,20 @@ STREAMFIELD_PROJECT_BLOCKS = [
 ]
 
 class ProjectPage(Page):
+
+    title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+    title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
     
     subtitle_de = models.CharField(max_length=255)
     subtitle_en = models.CharField(max_length=255)
 
-    image = models.ForeignKey(
+    image_de = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+'
+    )
+    image_en= models.ForeignKey(
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
         null=True,
@@ -67,16 +76,89 @@ class ProjectPage(Page):
     streamFieldBottom_en =StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
 
 
-ProjectPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('subtitle', classname="full title"),
-    FieldPanel('shorttext', classname="full"),
-    ImageChooserPanel('image'),
-    StreamFieldPanel('streamFieldTop'),
-    # InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
-    StreamFieldPanel('streamFieldBottom'),
-    FieldPanel('external_url'),
-]
+    streamFieldTop = TranslatedField(
+        'streamFieldTop_de',
+        'streamFieldTop_en'
+    )
+
+    streamFieldTop = TranslatedField(
+        'streamFieldBottom_de',
+        'streamFieldBottom_en'
+    )
+
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
+    translated_subtitle = TranslatedField(
+        'subtitle_de',
+        'subtitle_en',
+    )
+
+    translated_image = TranslatedField(
+        'image_de',
+        'image_en',
+    )
+
+    translated_shorttext = TranslatedField(
+        'shorttext_de',
+        'shorttext_en',
+    )
+
+    translated_external_url = TranslatedField(
+        'external_url_de',
+        'external_url_en',
+    )
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('subtitle_de'),
+        FieldPanel('shorttext_de'),
+        StreamFieldPanel('streamFieldTop_de'),
+        ImageChooserPanel('image_de'),
+        StreamFieldPanel('streamFieldBottom_de'),
+        FieldPanel('external_url_de'),
+    ]
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('subtitle_en'),
+        FieldPanel('shorttext_en'),
+        StreamFieldPanel('streamFieldTop_en'),
+        ImageChooserPanel('image_en'),
+        StreamFieldPanel('streamFieldBottom_en'),
+        FieldPanel('external_url_en'),
+    ]
+
+    # promote_panels = [
+    #     FieldPanel('slug'),
+    #     MultiFieldPanel([
+    #         FieldPanel('seo_title'),
+    #         FieldPanel('search_description'),
+    #     ],
+    #     heading = "SEO settings de",
+    #     classname="collapsible"),
+    # ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    ])
+
+
+# ProjectPage.content_panels = [
+#     FieldPanel('title', classname="full title"),
+#     FieldPanel('subtitle', classname="full title"),
+#     FieldPanel('shorttext', classname="full"),
+#     ImageChooserPanel('image'),
+#     StreamFieldPanel('streamFieldTop'),
+#     # InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
+#     StreamFieldPanel('streamFieldBottom'),
+#     FieldPanel('external_url'),
+# ]
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):
