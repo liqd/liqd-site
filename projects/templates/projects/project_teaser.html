@@ -1,22 +1,30 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
-{% load static %} 
+{% load static i18n %} 
+
+{% get_current_language as LANGUAGE_CODE %}
 
 {% load wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
 <section class="contentwrapper fullwidth collapse-mt">
-	{% image teaser.image fill-950x450-c100 as bg %}
+	{% image teaser.translated_image fill-950x450-c100 as bg %}
 	<div class="block teaser project-teaser" style="background-image: url({{ bg.url }})">
 		<div class="inner">
-			{{ teaser.shorttext|richtext }}
-			<h2>{{ teaser.title }}</h2>
+			{{ teaser.translated_shorttext|richtext }}
+			<h2>{{ teaser.translated_title }}</h2>
 			<div class="links">
-				{% if teaser.external_url %}
-					<a href="{{ teaser.external_url }}" class="button button-white" target="_blank">www</a>
+				{% if teaser.translated_external_url %}
+					<a href="{{ teaser.translated_external_url }}" class="button button-white" target="_blank">www</a>
 				{% endif %}
 				{% if not settings.core.LiqdSettings.liqd_preliminary_site %}
-					<a href="/projekte/{{ teaser.slug }}" class="button button-white project-link" target="_blank">Details</a>
+					{% if teaser.internal_link %}
+						{# this is used when including a projectTeaser block in a streamfield: target page is set through PageChooser #}
+						<a href="{% pageurl teaser.internal_link %}" class="button button-white project-link">Details</a>
+					{% elif teaser.slug %}
+						{# used when project teaser is included in the project index page: target page is the slug of the project page object #}
+						<a href="{% pageurl teaser %}" class="button button-white project-link">Details</a>
+					{% endif %}
 				{% endif %}
 			</div>
 		</div>

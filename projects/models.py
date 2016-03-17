@@ -18,6 +18,8 @@ from wagtail.wagtailembeds.blocks import EmbedBlock
 
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
 
+from contrib.translations.translations import TranslatedField
+
 class Person(models.Model):
     person = models.ForeignKey(
         PersonPage)
@@ -35,38 +37,108 @@ class ProjectPersons(Orderable, Person):
         'projects.ProjectPage', related_name='projects_persons')
 
 
+STREAMFIELD_PROJECT_BLOCKS = [
+    ('heading', blocks.CharBlock(classname="full title", icon="title")),
+    ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
+    ('image', ImageChooserBlock(icon="image")),
+    ('video', EmbedBlock(icon="media"))
+]
+
 class ProjectPage(Page):
-    subtitle = models.CharField(max_length=255)
-    image = models.ForeignKey(
+
+    title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+    title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+    
+    subtitle_de = models.CharField(max_length=255, default="")
+    subtitle_en = models.CharField(max_length=255, default="")
+
+    image_de = models.ForeignKey(
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
         null=True,
         related_name='+'
     )
-    shorttext = RichTextField(max_length=300, blank=True)
-    external_url = models.URLField(max_length=200, blank=True)
-    streamFieldTop = StreamField([
-        ('heading', blocks.CharBlock(classname="full title", icon="title")),
-        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-        ('image', ImageChooserBlock(icon="image")),
-        ('video', EmbedBlock(icon="media"))
-    ], null=True)
-    streamFieldBottom = StreamField([
-        ('heading', blocks.CharBlock(classname="full title", icon="title")),
-        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-        ('image', ImageChooserBlock(icon="image")),
-    ], null=True)
+    image_en= models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+'
+    )
 
-ProjectPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('subtitle', classname="full title"),
-    FieldPanel('shorttext', classname="full"),
-    ImageChooserPanel('image'),
-    StreamFieldPanel('streamFieldTop'),
-    # InlinePanel(ProjectPage, 'projects_persons', label="Staff"),
-    StreamFieldPanel('streamFieldBottom'),
-    FieldPanel('external_url'),
-]
+    shorttext_de = RichTextField(max_length=300, blank=True, default="")
+    shorttext_en = RichTextField(max_length=300, blank=True, default="")
+
+    external_url_de = models.URLField(max_length=200, blank=True)
+    external_url_en = models.URLField(max_length=200, blank=True)
+
+    streamFieldTop_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+    streamFieldTop_en = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True)
+
+    streamFieldBottom_de =StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+    streamFieldBottom_en =StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+
+
+    streamFieldTop = TranslatedField(
+        'streamFieldTop_de',
+        'streamFieldTop_en'
+    )
+
+    streamFieldTop = TranslatedField(
+        'streamFieldBottom_de',
+        'streamFieldBottom_en'
+    )
+
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
+    translated_subtitle = TranslatedField(
+        'subtitle_de',
+        'subtitle_en',
+    )
+
+    translated_image = TranslatedField(
+        'image_de',
+        'image_en',
+    )
+
+    translated_shorttext = TranslatedField(
+        'shorttext_de',
+        'shorttext_en',
+    )
+
+    translated_external_url = TranslatedField(
+        'external_url_de',
+        'external_url_en',
+    )
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('subtitle_de'),
+        FieldPanel('shorttext_de'),
+        StreamFieldPanel('streamFieldTop_de'),
+        ImageChooserPanel('image_de'),
+        StreamFieldPanel('streamFieldBottom_de'),
+        FieldPanel('external_url_de'),
+    ]
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('subtitle_en'),
+        FieldPanel('shorttext_en'),
+        StreamFieldPanel('streamFieldTop_en'),
+        ImageChooserPanel('image_en'),
+        StreamFieldPanel('streamFieldBottom_en'),
+        FieldPanel('external_url_en'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+    ])
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):
