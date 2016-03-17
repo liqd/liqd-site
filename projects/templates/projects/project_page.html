@@ -30,6 +30,8 @@
 {% for block in self.streamFieldBottom %}
     {% if block.block_type == 'heading' %}
         <h1>{{ block.value }}</h1>
+    {% elif block.block_type == 'project_teaser' %}
+        {% project_teaser block.value request %}
     {% else %}
         <section class="block-{{ block.block_type }}">
             {{ block }}
