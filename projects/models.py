@@ -49,8 +49,8 @@ class ProjectPage(Page):
     title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
     title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
     
-    subtitle_de = models.CharField(max_length=255)
-    subtitle_en = models.CharField(max_length=255)
+    subtitle_de = models.CharField(max_length=255, default="")
+    subtitle_en = models.CharField(max_length=255, default="")
 
     image_de = models.ForeignKey(
         'wagtailimages.Image',
@@ -65,8 +65,8 @@ class ProjectPage(Page):
         related_name='+'
     )
 
-    shorttext_de = RichTextField(max_length=300, blank=True)
-    shorttext_en = RichTextField(max_length=300, blank=True)
+    shorttext_de = RichTextField(max_length=300, blank=True, default="")
+    shorttext_en = RichTextField(max_length=300, blank=True, default="")
 
     external_url_de = models.URLField(max_length=200, blank=True)
     external_url_en = models.URLField(max_length=200, blank=True)
