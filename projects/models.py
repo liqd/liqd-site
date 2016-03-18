@@ -133,10 +133,24 @@ class ProjectPage(Page):
         FieldPanel('external_url_en'),
     ]
 
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('slug'),
+            FieldPanel('title'),
+        ],
+        heading = "Slug and CMS Page Name"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+        heading = "SEO settings",
+        classname="collapsible"),
+    ]
+
     edit_handler = TabbedInterface([
         ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
-        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
