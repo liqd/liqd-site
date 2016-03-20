@@ -43,7 +43,7 @@ STREAMFIELD_DEFAULT_BLOCKS = [
 ]
 
 class TranslatedStreamFieldPage(Page):
-    
+
     title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
     title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
 
@@ -82,12 +82,16 @@ class TranslatedStreamFieldPage(Page):
     ]
 
     promote_panels = [
-        FieldPanel('slug'),
+        MultiFieldPanel([
+            FieldPanel('slug'),
+            FieldPanel('title'),
+        ],
+        heading = "Slug and CMS Page Name"),
         MultiFieldPanel([
             FieldPanel('seo_title'),
             FieldPanel('search_description'),
         ],
-        heading = "SEO settings de",
+        heading = "SEO settings",
         classname="collapsible"),
     ]
 
@@ -146,7 +150,11 @@ class HomePage(TranslatedStreamFieldPage):
     ]
 
     promote_panels = [
-        FieldPanel('slug'),
+        MultiFieldPanel([
+            FieldPanel('slug'),
+            FieldPanel('title'),
+        ],
+        heading = "Slug and CMS Page Name"),
         MultiFieldPanel([
             FieldPanel('seo_title'),
             FieldPanel('search_description'),
@@ -198,7 +206,11 @@ class TextPage(Page):
     ]
 
     promote_panels = [
-        FieldPanel('slug'),
+        MultiFieldPanel([
+            FieldPanel('slug'),
+            FieldPanel('title'),
+        ],
+        heading = "Slug and CMS Page Name"),
         MultiFieldPanel([
             FieldPanel('seo_title'),
             FieldPanel('search_description'),
