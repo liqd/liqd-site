@@ -44,6 +44,7 @@ STREAMFIELD_PROJECT_BLOCKS = [
     ('video', EmbedBlock(icon="media"))
 ]
 
+
 class ProjectPage(Page):
 
     title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
@@ -139,6 +140,8 @@ class ProjectPage(Page):
         ObjectList(Page.promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
+
+    subpage_types = []
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):

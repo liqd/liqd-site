@@ -1,8 +1,6 @@
 from wagtail.wagtailcore.models import Page, Orderable
 from django.db import models
 
-
-
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailadmin.edit_handlers import InlinePanel
 from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
@@ -109,7 +107,9 @@ class TranslatedStreamFieldPage(Page):
 class JoinUsPage(TranslatedStreamFieldPage):
 
     class Meta:
-        verbose_name = 'JoinUs Page'
+        verbose_name = 'default header and streamfield'
+
+    subpage_types = ['JoinUsPage', 'TextPage']
 
 
 
@@ -162,6 +162,8 @@ class HomePage(TranslatedStreamFieldPage):
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
+    subpage_types = ['JoinUsPage', 'TextPage']
+
 
 class TextPage(Page):
     
@@ -211,6 +213,8 @@ class TextPage(Page):
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
+
+    subpage_types = ['TextPage']
 
 
 class PressPage(Page):
