@@ -20,6 +20,7 @@ from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, Mult
 
 from contrib.translations.translations import TranslatedField
 
+
 class Person(models.Model):
     person = models.ForeignKey(
         PersonPage)
@@ -47,11 +48,13 @@ STREAMFIELD_PROJECT_BLOCKS = [
 
 class ProjectPage(Page):
 
-    title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
-    title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
-    
-    subtitle_de = models.CharField(max_length=255, default="")
-    subtitle_en = models.CharField(max_length=255, default="")
+    title_en = models.CharField(
+        max_length=255, blank=True, verbose_name="Header Title")
+    title_de = models.CharField(
+        max_length=255, blank=True, verbose_name="Header Title")
+
+    subtitle_de = models.CharField(max_length=255, default="", blank=True)
+    subtitle_en = models.CharField(max_length=255, default="", blank=True)
 
     image_de = models.ForeignKey(
         'wagtailimages.Image',
@@ -59,9 +62,10 @@ class ProjectPage(Page):
         null=True,
         related_name='+'
     )
-    image_en= models.ForeignKey(
+    image_en = models.ForeignKey(
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
+        blank=True,
         null=True,
         related_name='+'
     )
@@ -73,18 +77,18 @@ class ProjectPage(Page):
     external_url_en = models.URLField(max_length=200, blank=True)
 
     streamFieldTop_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
-    streamFieldTop_en = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True)
+    streamFieldTop_en = StreamField(
+        STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True)
 
-    streamFieldBottom_de =StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
-    streamFieldBottom_en =StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
-
+    streamFieldBottom_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+    streamFieldBottom_en = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
 
     streamFieldTop = TranslatedField(
         'streamFieldTop_de',
         'streamFieldTop_en'
     )
 
-    streamFieldTop = TranslatedField(
+    streamFieldBottom = TranslatedField(
         'streamFieldBottom_de',
         'streamFieldBottom_en'
     )
@@ -139,33 +143,37 @@ class ProjectPage(Page):
             FieldPanel('slug'),
             FieldPanel('title'),
         ],
-        heading = "Slug and CMS Page Name"),
+            heading="Slug and CMS Page Name"),
         MultiFieldPanel([
             FieldPanel('seo_title'),
             FieldPanel('search_description'),
         ],
-        heading = "SEO settings",
-        classname="collapsible"),
+            heading="SEO settings",
+            classname="collapsible"),
     ]
 
     edit_handler = TabbedInterface([
         ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
         ObjectList(promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+        ObjectList(
+            Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
     subpage_types = []
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):
-    
+
     subpage_types = ['projects.ProjectPage']
 
     search_fields = Page.search_fields + (
         index.SearchField('intro_de'),
         index.SearchField('intro_en'),
     )
+
+    class Meta:
+        verbose_name = 'ProjectIndexPage'
 
     @property
     def projects(self):

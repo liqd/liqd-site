@@ -23,7 +23,6 @@ class StandardParagraphBlock(StructBlock):
         help_text = 'Basic text paragraph with optional heading.'
 
 
-
 class HighlightParagraphBlock(StructBlock):
 
     headline = CharBlock(required=False, length=256)
@@ -41,22 +40,21 @@ class QuoteParagraph(StructBlock):
 
     text = RichTextBlock(required=True)
     color = ChoiceBlock(
-                choices=[('green','Gruen'),('orange','Orange'),('red','Rot')],
-                required=False,
-                help_text='Select a color from the list.'
-            )
+        choices=[('green', 'Gruen'), ('orange', 'Orange'), ('red', 'Rot')],
+        required=False,
+        help_text='Select a color from the list.'
+    )
     image = ImageChooserBlock(
-                required=False,
-                help_text='Please use an image with at least 800x400px or a similar aspect ratio.'
-            )
+        required=False,
+        help_text='Please use an image with at least 800x400px or a similar aspect ratio.'
+    )
     author = CharBlock(required=False, length=256)
 
     class Meta:
         template = 'blocks/block_quote_paragraph_image.html'
         icon = 'pilcrow'
         label = 'Quote Paragraph'
-        help_text='Centered text (set quotemarks manually) with background color or background image and optional author field.'
-
+        help_text = 'Centered text (set quotemarks manually) with background color or background image and optional author field.'
 
 
 class ColumnBlock(StructBlock):
@@ -73,12 +71,11 @@ class ColumnBlock(StructBlock):
         help_text = 'Text in 2 columns with optional column heading.'
 
 
-
 class ImageSliderBlock(ListBlock):
 
     ImageChooserBlock(
-        label = 'Image',
-        help_text = 'Images will be used with a 950x450px size.'
+        label='Image',
+        help_text='Images will be used with a 950x450px size.'
     )
 
     class Meta:
@@ -88,21 +85,24 @@ class ImageSliderBlock(ListBlock):
         help_text = 'Responsive image slider (weipe on mobile). Please choose 4 images.'
 
 
+class LinkwithTitleBlock(StructBlock):
+    internal_link = PageChooserBlock()
+    link_text = CharBlock(length=256)
+
 
 class LinkboxBlock(StructBlock):
 
     headline = CharBlock(required=False, length=256)
     text = RichTextBlock(required=False)
     links = ListBlock(
-                PageChooserBlock(),
-            )
+        LinkwithTitleBlock(),
+    )
 
     class Meta:
         template = 'blocks/block_linkbox.html'
         icon = 'link'
         label = 'Link Box'
         help_text = 'Section with gray background, optional text/heading and arbitrary amount of links. Use as link box e.g. with job offers.'
-
 
 
 class ProjectTeaserBlock(StructBlock):

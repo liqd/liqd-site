@@ -119,10 +119,10 @@ class JoinUsPage(TranslatedStreamFieldPage):
 
 class HomePage(TranslatedStreamFieldPage):
 
-    heading1_en = models.CharField(max_length=255, default="")
+    heading1_en = models.CharField(max_length=255, default="", blank=True)
     heading1_de = models.CharField(max_length=255, default="")
-    
-    heading2_en = models.CharField(max_length=255, default="")
+
+    heading2_en = models.CharField(max_length=255, default="", blank=True)
     heading2_de = models.CharField(max_length=255, default="")
 
     translated_heading1 = TranslatedField(
@@ -170,11 +170,11 @@ class HomePage(TranslatedStreamFieldPage):
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
-    subpage_types = ['JoinUsPage', 'TextPage']
+    subpage_types = ['JoinUsPage', 'TextPage', 'projects.ProjectIndexPage']
 
 
 class TextPage(Page):
-    
+
     title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
     title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
 
@@ -278,12 +278,12 @@ class LinkFields(models.Model):
 
 
 class MenuItem(LinkFields):
-    menu_title = models.CharField(max_length=255, verbose_name="Menu Title en")
-    menu_title_de = models.CharField(max_length=255, blank=True, verbose_name="Menu Title de")
+    menu_title_de = models.CharField(max_length=255, verbose_name="Menu Title de")
+    menu_title_en = models.CharField(max_length=255, blank=True, verbose_name="Menu Title en")
 
     translated_menu_title = TranslatedField(
         'menu_title_de',
-        'menu_title',
+        'menu_title_en',
     )
 
     @property
@@ -295,7 +295,7 @@ class MenuItem(LinkFields):
 
     panels = [
         FieldPanel('menu_title_de'),
-        FieldPanel('menu_title'),
+        FieldPanel('menu_title_en'),
         ] + LinkFields.panels
 
 
