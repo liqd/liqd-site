@@ -14,92 +14,18 @@ from wagtail.wagtailsearch import index
 from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
 from wagtail.wagtailadmin.edit_handlers import InlinePanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
+from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
-# Paragraph
-
-
-class Paragraph(models.Model):
-    title = models.CharField(max_length=255, help_text="Title")
-    body = RichTextField(blank=True)
-
-    panels = [
-        FieldPanel('title'),
-        FieldPanel('body'),
-    ]
-
-    class Meta:
-        abstract = True
-
-# Blog page
-
-
-class BlogParagraph(Orderable, Paragraph):
-    page = ParentalKey('blog.BlogPage', related_name='paragraphs')
-
-
-class BlogPageTag(TaggedItemBase):
-    content_object = ParentalKey('blog.BlogPage', related_name='tagged_items')
-
-
-class BlogPage(Page):
-    parent_page_types = ['blog.BlogIndexPage']
-    subpage_types = []
-    body = RichTextField()
-    subtitle = models.CharField(max_length=255, blank=True, null=True)
-    author = models.ForeignKey(
-        PersonPage, blank=True, null=True, related_name='blogpages', on_delete=models.SET_NULL)
-    author_string = models.CharField(max_length=255, blank=True, null=True)
-    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    date = models.DateField("Post date")
-    feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    search_fields = Page.search_fields + (
-        index.SearchField('body'),
-    )
-
-    @property
-    def blog_index(self):
-        # Find closest ancestor which is a blog index
-        return self.get_ancestors().type(BlogIndexPage).last()
-
-AUTHORS = [
-    FieldPanel('author'),
-    FieldPanel('author_string'),
-]
-
-BlogPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('subtitle', classname="full title"),
-    FieldPanel('date'),
-    MultiFieldPanel(
-        AUTHORS,
-        heading="Authors"
-    ),
-    FieldPanel('body', classname="full"),
-    InlinePanel(BlogPage, 'paragraphs', label="Paragraphs")
-]
-
-BlogPage.promote_panels = Page.promote_panels + [
-    ImageChooserPanel('feed_image'),
-    FieldPanel('tags'),
-]
+from core.models import TranslatedStreamFieldPage
+from contrib.translations.translations import TranslatedField
 
 
 # Blog index page
-class BlogIndexPage(Page):
-    intro = RichTextField(blank=True)
-    subpage_types = ['blog.BlogPage']
 
-    search_fields = Page.search_fields + (
-        index.SearchField('intro'),
-    )
+
+class BlogIndexPage(TranslatedStreamFieldPage):
+    subpage_types = ['blog.BlogPage']
 
     @property
     def blogs(self):
@@ -109,13 +35,8 @@ class BlogIndexPage(Page):
 
     def get_context(self, request):
         blogs = self.blogs
-
-        tag = request.GET.get('tag')
-        if tag:
-            blogs = blogs.filter(tags__name=tag)
-
         page = request.GET.get('page')
-        paginator = Paginator(blogs, 10)
+        paginator = Paginator(blogs, 5)
         try:
             blogs = paginator.page(page)
         except PageNotAnInteger:
@@ -129,17 +50,72 @@ class BlogIndexPage(Page):
 
     def serve(self, request):
         blogs = self.get_context(request)['blogs']
-
         if request.is_ajax():
             html = render_to_string(
                 'blog/ajax/blog_list.html', {'request': request, 'blogs': blogs.object_list})
             return HttpResponse(html)
-
         return render(request, self.template, {'blogs': blogs, 'self': self})
 
-BlogIndexPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('intro', classname="full")
-]
+    class Meta:
+        verbose_name = 'Blog Index Page'
 
-BlogIndexPage.promote_panels = Page.promote_panels
+
+class BlogPage(TranslatedStreamFieldPage):
+
+    class Meta:
+        verbose_name = 'Blog Entry'
+
+    subpage_types = []
+
+    subtitle_en = models.CharField(max_length=255, default="", blank=True)
+    subtitle_de = models.CharField(max_length=255, default="", blank=True)
+
+    author = models.CharField(max_length=255, blank=True, null=True)
+    date = models.DateField("Post date")
+
+    translated_heading1 = TranslatedField(
+        'subtitle_de',
+        'subtitle_en',
+    )
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('subtitle_en'),
+        FieldPanel('intro_en'),
+        StreamFieldPanel('body_en'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('subtitle_de'),
+        FieldPanel('intro_de'),
+        StreamFieldPanel('body_de'),
+    ]
+
+    common_panels = [
+        FieldPanel('author'),
+        FieldPanel('date'),
+    ]
+
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('slug'),
+            FieldPanel('title'),
+        ],
+            heading="Slug and CMS Page Name"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+            heading="SEO settings de",
+            classname="collapsible")
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(de_content_panels, heading='Content de'),
+        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(common_panels, heading='Author and Date'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(
+            Page.settings_panels, heading='Settings', classname="settings"),
+    ])
