@@ -2,16 +2,18 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-<div class="container">
-    <h1>{{ self.title }}</h1>
-    <div id="blog_list" class="list-group">
-        {% for blog in blogs %}
-        {% include "blog/includes/blog_list_item.html" %}
-        {% empty %}
-        No blogs found
-        {% endfor %}
-    </div>
-</div>
+    <section class="container">
+        <div class="contentwrapper text">
+            <div id="blog_list" class="blog-list">
+                {% for blog in blogs %}
+                {% include "blog/includes/blog_list_item.html" %}
+                {% empty %}
+                No blogs found
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
 {% endblock %}
 
 {% block pages_js %}

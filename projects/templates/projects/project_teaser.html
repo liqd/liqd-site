@@ -1,6 +1,6 @@
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
-{% load static i18n %} 
+{% load static i18n %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -10,7 +10,7 @@
 <section class="contentwrapper fullwidth collapse-mt">
 	{% image teaser.translated_image fill-950x450-c100 as bg %}
 	<div class="block teaser project-teaser" style="background-image: url({{ bg.url }})">
-		<div class="inner">
+		<div class="container inner">
 			{{ teaser.translated_shorttext|richtext }}
 			<h2>{{ teaser.translated_title }}</h2>
 			<div class="links">

@@ -1,0 +1,17 @@
+<section class="container">
+        <div class="contentwrapper text">
+            <div class="blog-list-tag">
+                <div class="blog-list-tag-title">
+                    <h2>Lies unsere letzen Blogartikel</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    {% include "blog/includes/blog_list_item.html" with  blog=blog_entries.0 %}
+                    </div>
+                    <div class="col-md-6">
+                    {% include "blog/includes/blog_list_item.html" with  blog=blog_entries.1 %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

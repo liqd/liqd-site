@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
-{% load static core_tags %}
+{% load static core_tags blog_tags %}
 
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
 
 {% include "core/includes/homepage_header.html" %}
-
 
 {% for block in page.body %}
     {% if block.block_type == 'project_teaser' %}
@@ -16,5 +15,7 @@
         {{ block }}
     {% endif %}
 {% endfor %}
+
+{% blog_entries %}
 
 {% endblock %}
