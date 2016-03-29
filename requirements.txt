@@ -1,5 +1,5 @@
 # Minimal requirements
-Django>=1.8<1.9
+Django>=1.8.11
 wagtail==1.3.1
 django-libsass==0.3
 
