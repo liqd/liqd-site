@@ -26,12 +26,12 @@
 
                 {% if LANGUAGE_CODE == 'de' %}
                     <li class="select-lang hidden-xs"><a class="active" >De</a></li>
-                    <li class="select-lang hidden-xs"><a href="/en/{% if self.slug != 'home' %}{{ self.slug }}/{% endif %}">En</a></li>
+                    <li class="select-lang hidden-xs"><a href="{% translate_url 'en' %}">En</a></li>
                 {% else %}
-                    <li class="select-lang hidden-xs"><a href="/de/{% if self.slug != 'home' %}{{ self.slug }}/{% endif %}">De</a></li>
+                    <li class="select-lang hidden-xs"><a href="{% translate_url 'de' %}">De</a></li>
                     <li class="select-lang hidden-xs"><a class="active">En</a></li>
                 {% endif %}
-                
+
                 <li class="hidden-sm hidden-md hidden-lg">
                     <div id="select-lang-mobile" class="styled-select">
                         <select class="select-lang button">
