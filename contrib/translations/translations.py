@@ -15,7 +15,7 @@ class TranslatedField(object):
                 return True
             else:
                 return False
-        elif isinstance(field, str):
+        elif isinstance(field, unicode):
             if field:
                 return True
             else:
@@ -27,9 +27,7 @@ class TranslatedField(object):
         de = getattr(instance, self.de_field)
         en = getattr(instance, self.en_field)
 
-
-        # if translation.get_language() == 'de' and self.hasContent(de):
-        if translation.get_language() == 'de':
-            return de
-        else:
+        if translation.get_language() == 'en' and self.hasContent(en):
             return en
+        else:
+            return de
