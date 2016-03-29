@@ -170,7 +170,7 @@ class HomePage(TranslatedStreamFieldPage):
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
-    subpage_types = ['JoinUsPage', 'TextPage', 'projects.ProjectIndexPage']
+    subpage_types = ['JoinUsPage', 'TextPage', 'projects.ProjectIndexPage', 'blog.BlogIndexPage']
 
 
 class TextPage(Page):
