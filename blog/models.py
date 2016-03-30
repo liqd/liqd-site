@@ -12,6 +12,10 @@ from persons.models import PersonPage
 from modelcluster.tags import ClusterTaggableManager
 from wagtail.wagtailsearch import index
 from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
+from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailcore import blocks
+from wagtail.wagtailembeds.blocks import EmbedBlock
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailadmin.edit_handlers import InlinePanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
@@ -60,23 +64,64 @@ class BlogIndexPage(TranslatedStreamFieldPage):
         verbose_name = 'Blog Index Page'
 
 
-class BlogPage(TranslatedStreamFieldPage):
+class BlogPage(Page):
 
     class Meta:
         verbose_name = 'Blog Entry'
 
     subpage_types = []
 
+    # Translatable Fields
+
+    title_en = models.CharField(
+        max_length=255, blank=True, verbose_name="Header Title")
+    title_de = models.CharField(
+        max_length=255, blank=True, verbose_name="Header Title")
+
     subtitle_en = models.CharField(max_length=255, default="", blank=True)
     subtitle_de = models.CharField(max_length=255, default="", blank=True)
 
-    author = models.CharField(max_length=255, blank=True, null=True)
-    date = models.DateField("Post date")
+    intro_en = RichTextField(blank=True)
+    intro_de = RichTextField(blank=True)
 
-    translated_heading1 = TranslatedField(
+    body_en = StreamField([
+        ('heading', blocks.CharBlock(classname="full title", icon='title')),
+        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
+        ('image', ImageChooserBlock(icon='image')),
+        ('video', EmbedBlock(icon='media')),
+    ], null=True)
+
+    body_de = StreamField([
+        ('heading', blocks.CharBlock(classname="full title", icon='title')),
+        ('paragraph', blocks.RichTextBlock(icon='pilcrow')),
+        ('image', ImageChooserBlock(icon='image')),
+        ('video', EmbedBlock(icon='media')),
+    ], null=True, blank=True)
+
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
+    translated_subtitle = TranslatedField(
         'subtitle_de',
         'subtitle_en',
     )
+
+    translated_intro = TranslatedField(
+        'intro_de',
+        'intro_en',
+    )
+
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
+
+    # Common Fields
+
+    author = models.CharField(max_length=255, blank=True, null=True)
+    date = models.DateField("Post date")
 
     en_content_panels = [
         FieldPanel('title_en'),

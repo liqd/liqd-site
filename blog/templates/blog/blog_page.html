@@ -1,37 +1,81 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags i18n %}
 
 {% block content %}
-    <div class="blog_page_title_area">
-        <div class="container">
-          <div class="row row-centered">
-            <div class="col-md-8 col-md-offset-2">
-              <h1 class="blog_page_title">
-                <b>{{ self.title | upper }}</b>
-              </h1>
-              {% if self.subtitle %}
-             <h2 class="blog_page_subtitle">
-              {{ self.subtitle }}
-            </h2>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="blog_page_title_area">
     <div class="container">
-        <div class="row row-centered">
-          <p class="blog_page_title_metainfo">
-          {% if self.author or self.author_string %}
-            by
+        <div class="contentwrapper text">
+            <div class="blog_page-header-content">
+                <h1 class="blog_page_title">
+                {{ self.translated_title }}
+                </h1>
+                <h2 class="blog_page_subtitle">
+                    {{ self.translated_subtitle }}
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="contentwrapper text">
+        <div class="blog_page-metadata-content">
             {% if self.author %}
-            <a href="{{ self.author.url }}">{{ self.author.first_name }} {{ self.author.last_name }}</a>, {% endif %}
-            {{ self.author_string }}</a></br>
-        {% endif %}
-        {{ self.date }}</p>
-      </div>
-    {% include "blog/includes/body.html" with body=self.body only %}
+            <div class="text">{% trans 'von' %} {{ self.author}}</div>
+            {% endif %}
+            <div class="text">{{ self.date }}</div>
+        </div>
+    </div>
+</div>
+
+
+{% for block in self.body %}
+
+    {% if block.block_type == 'heading' %}
+    <div class="blog_page_block_heading">
+        <div class="container">
+            <div class="contentwrapper text">
+                <h2>{{ block.value }}</h2>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if block.block_type == 'image' %}
+    <div class="blog_page_block_image">
+        <div class="container">
+            <div class="contentwrapper text">
+                {% image block.value fill-800x600 as my_image %}
+                <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if block.block_type == 'video' %}
+    <div class="blog_page_block_image">
+        <div class="container">
+            <div class="contentwrapper text">
+                <div class="embed-responsive embed-responsive-16by9">
+                {{ block.value }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if block.block_type == 'paragraph' %}
+    <div class="blog_page_block_paragraph">
+        <div class="container">
+            <div class="contentwrapper text">
+                <div>{{ block.value }}</div>
+            </div>
+        </div>
     </div>
 
-    {% include "blog/includes/paragraphs.html" with paragraphs=self.paragraphs.all only %}
+    {% endif %}
+{% endfor %}
 
 {% endblock %}
+
+
