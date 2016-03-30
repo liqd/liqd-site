@@ -4,6 +4,15 @@
 
 .block {
 	margin-top: $block-margin;
+	margin-bottom: $block-margin !important;
+}
+
+.buckets {
+	margin-top: 71px;
+
+	& .bucket {
+		border-right: 1px solid #e4e4e4;
+	}
 }
 
 //** Block background colors
@@ -103,7 +112,7 @@
 		max-width: 100%;
 		height: auto;
 	}
-	
+
 	p {
 		color: white;
 		font-size: 4rem;
