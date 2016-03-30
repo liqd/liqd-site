@@ -1,6 +1,6 @@
 
 
-// ******************** 
+// ********************
 // Variables
 
 var screen_xs = 480;
@@ -15,7 +15,7 @@ var liqd = (function($, self) {
     self.phone = ($(window).innerWidth() > screen_xs_max) ? false : true;
 
 
-    // ******************** 
+    // ********************
     // init slick slider
 
     self.init_slickSlider = function() {
@@ -46,7 +46,7 @@ var liqd = (function($, self) {
 }(jQuery, liqd || {} ));
 
 
-// ******************** 
+// ********************
 // document ready
 
 $(document).ready(function() {
@@ -55,18 +55,18 @@ $(document).ready(function() {
 });
 
 
-// ******************** 
+// ********************
 // check for orientation change
 // remove backToTop layout switches from mobile to desktop (and restore)
 
 $(window).smartresize(function(){
 
     if (liqd.phone && $(window).innerWidth() > screen_xs_max) {
-        if ($('.block-carousel').length != 0) 
+        if ($('.block-carousel').length != 0)
         {
             window.location.href = window.location.href;
-        } 
-        else 
+        }
+        else
         {
             $(window).off('scroll');
             $('.back-to-top').fadeOut();
@@ -79,7 +79,6 @@ $(window).smartresize(function(){
 
     if (!liqd.phone && $(window).innerWidth() < screen_sm) {
         liqd.phone = true;
-        console.log('reinit');
         liqd.init_backToTop();
     }
 

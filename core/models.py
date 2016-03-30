@@ -40,6 +40,7 @@ STREAMFIELD_DEFAULT_BLOCKS = [
     ('columns', blocks.ColumnBlock()),
     ('linkbox', blocks.LinkboxBlock()),
     ('project_teaser', blocks.ProjectTeaserBlock()),
+    ('ThreeImageLinks', blocks.ThreeImageWithLinkBlock()),
 ]
 
 class TranslatedStreamFieldPage(Page):
