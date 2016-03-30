@@ -1,24 +1,24 @@
 .contentwrapper {
 	& .blog-list {
 		text-align: left;
-		margin-top: 70px;
+		@include rem(margin-top, 70px);
 	}
 
 	& .blog-list-tag {
 		text-align: left;
-		margin-top: 90px;
+		@include rem(margin-top, 90px);
 	}
 }
 
 .blog-list-item {
-	padding-bottom: 100px;
+	@include rem(padding-bottom, 100px);
+
 
 	& h2 {
 		font-family: 'Cabin', medium;
-		font-size: 35px;
+		@include rem(font-size, 35px);
+		@include rem(line-height, 50px);
 		color: #4D4D4D;
-		line-height: 50px;
-
 		& a {
 			text-decoration: none;
 			color: inherit;
@@ -28,32 +28,30 @@
 
 .blog-list-item-date {
 	font-family: 'Cabin', regular;
-	font-size: 17px;
+	@include rem(font-size, 17px);
 	color: #898989;
-	letter-spacing: 0.3px;
-	line-height: 22px;
+	@include rem(letter-spacing, 0.3px);
+	@include rem(line-height, 22px);
 }
 
 .blog-list-item-intro {
 	font-family: 'Cabin', regular;
-	font-size: 17px;
+	@include rem(font-size, 17px);
 	color: #4D4D4D;
-	letter-spacing: 0.3px;
-	line-height: 24px;
+	@include rem(letter-spacing, 0.3px);
+	@include rem(line-height, 24px);
 }
 
 .blog-list-tag-title {
 	text-align: center;
-	margin-bottom: 70px;
+	@include rem(margin-bottom, 70px);
+	@include rem(font-size, 18px);
+	@include rem(letter-spacing, 0.44px);
+	@include rem(line-height, 50px);
+	text-transform: uppercase;
+	color: #4D4D4D;
+	font-family: 'Cabin', bold;
 
-	& h2 {
-		font-family: 'Cabin', bold;
-		font-size: 18px;
-		color: #4D4D4D;
-		letter-spacing: 0.44px;
-		line-height: 50px;
-		text-transform: uppercase;
-	}
 }
 
 .blog_page_title_area {
@@ -62,55 +60,54 @@
 
 .blog_page-header-content {
 	display: block;
-	margin: 100px 0px 100px 0px;
+	@include rem(margin, 100px 0px 100px 0px);
 }
 
 .blog_page-metadata-content {
-	margin: 30px 0px 0px 0px;
+	@include rem(margin, 100px 0px 100px 0px);
 	& .text {
 		font-family: 'Cabin', medium;
-		font-size: 20px;
+		@include rem(font-size, 20px);
+		@include rem(line-height, 27px);
 		color: #4D4D4D;
-		line-height: 27px;
 	}
 }
 
 .blog_page_title {
 	color: #ffffff;
 	font-family: 'Cabin', medium;
-	letter-spacing:0.3px;
-	font-size: 60px;
-	line-height: 65px;
+	@include rem(letter-spacing, 0.3px);
+	@include rem(font-size, 60px);
+	@include rem(line-height, 65px);
 	text-transform: uppercase;
-	padding-bottom: 20px;
+	@include rem(padding-bottom, 20px);
 }
 
 .blog_page_subtitle {
 	font-family: 'Cabin', regular;
 	color: #78FFFE;
-	font-size: 24px;
-	padding-bottom: 0px;
+	@include rem(font-size, 24px);
+	@include rem(padding-bottom, 0px);
 }
 
 .blog_page_block_heading {
 	background-color: #FE9A2E;
-	padding: 120px 0px 120px 0px;
+	@include rem(padding, 120px 0px 120px 0px);
 
 	& .container {
 		& .contentwrapper {
 			& h2 {
 				color: #ffffff;
 				font-family: 'Cabin', regular;
-				font-size: 50px;
-				line-height: 55px;
+				@include rem(font-size, 50px);
+				@include rem(line-height, 55px);
 			}
 		}
 	}
 }
 
 .blog_page_block_image {
-	margin: 105px 0px 105px 0px;
-
+	@include rem(margin, 105px 0px 105px 0px);
 	& .container {
 		& .contentwrapper {
 			& img {
@@ -121,7 +118,7 @@
 }
 
 .blog_page_block_paragraph {
-	margin: 105px 0px 105px 0px;
+	@include rem(margin, 105px 0px 105px 0px);
 	& .container {
 		& .contentwrapper {
 			text-align: left;
