@@ -1,0 +1,67 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<section class="container">
+    <div class="contentwrapper text">
+        <div class="buckets row">
+            <div class="bucket col-md-4">
+                <figure>
+                    {% if value.image_left.internal_link %}
+                    <a href="{{ value.image_left.internal_link.url }}">
+                        {% image value.image_left.image fill-150x150 as image %}
+                        <img src="{{ image.url }}" alt="{{ image.alt }}"/>
+                    </a>
+                    {% endif %}
+                    {% if value.image_left.external_url %}
+                    <a href="{{ value.image_left.external_url }}" target="_blank">
+                        {% image value.image_left.image fill-150x150 as image %}
+                        <img src="{{ image.url }}" alt="{{ image.alt }}"/>
+                    </a>
+                    {% endif %}
+                    <figcaption>
+                        {{ value.image_left.link_text }}
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="bucket col-md-4">
+                <figure>
+                    {% if value.image_middle.internal_link %}
+                    <a href="{{ value.image_middle.internal_link.url }}">
+                        {% image value.image_middle.image fill-150x150 as image %}
+                        <img src="{{ image.url }}" alt="{{ image.alt }}"/>
+                    </a>
+                    {% endif %}
+                    {% if value.image_middle.external_url %}
+                    <a href="{{ value.image_middle.external_url }}" target="_blank">
+                        {% image value.image_middle.image fill-150x150 as image %}
+                        <img src="{{ image.url }}" alt="{{ image.alt }}"/>
+                    </a>
+                    {% endif %}
+                    <figcaption>
+                        {{ value.image_middle.link_text }}
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-md-4">
+                <figure>
+                    {% if value.image_right.internal_link %}
+                    <a href="{{ value.image_right.internal_link.url }}">
+                        {% image value.image_right.image fill-150x150 as image %}
+                        <img src="{{ image.url }}" alt="{{ image.alt }}"/>
+                    </a>
+                    {% endif %}
+                    {% if value.image_right.external_url %}
+                    <a href="{{ value.image_right.external_url }}" target="_blank">
+                        {% image value.image_right.image fill-150x150 as image %}
+                        <img src="{{ image.url }}" alt="{{ image.alt }}"/>
+                    </a>
+                    {% endif %}
+                    <figcaption>
+                        {{ value.image_right.link_text }}
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>

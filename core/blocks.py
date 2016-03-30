@@ -90,8 +90,25 @@ class LinkwithTitleBlock(StructBlock):
     link_text = CharBlock(length=256)
 
 
-class LinkboxBlock(StructBlock):
+class ImagewithLinkandTitleBlock(StructBlock):
+    image = ImageChooserBlock(required=True, label='Image')
+    internal_link = PageChooserBlock(required=False)
+    external_url = URLBlock(required=False, length=256)
+    link_text = CharBlock(length=256)
 
+
+class ThreeImageWithLinkBlock(StructBlock):
+    image_left = ImagewithLinkandTitleBlock(required=True)
+    image_middle = ImagewithLinkandTitleBlock(required=True)
+    image_right = ImagewithLinkandTitleBlock(required=True)
+
+    class Meta:
+        template = 'blocks/three_image_with_link.html'
+        icon = 'image'
+        label = 'Three Images'
+
+
+class LinkboxBlock(StructBlock):
     headline = CharBlock(required=False, length=256)
     text = RichTextBlock(required=False)
     links = ListBlock(
