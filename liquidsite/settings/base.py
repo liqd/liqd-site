@@ -91,18 +91,18 @@ WSGI_APPLICATION = 'liquidsite.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale')
+    os.path.join(BASE_DIR, 'liquidsite/locale/')
     # PROJECT_ROOT
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de'
 TIME_ZONE = 'Europe/Berlin'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 LANGUAGES = (
-    ('de', _('German')),
-    ('en', _('English')),
+    ('de', _('Deutsch')),
+    ('en', _('Englisch')),
 )
 # MODELTRANSLATION_LANGUAGES = ('de', 'en')
 
