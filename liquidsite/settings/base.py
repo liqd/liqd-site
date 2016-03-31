@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wagtail.contrib.settings',
+    'django_bleach',
 
     'compressor',
     'taggit',
@@ -148,6 +149,10 @@ BOWER_INSTALLED_APPS = (
     'slick-carousel',
     'jquery-smartresize'
 )
+
+BLEACH_ALLOWED_TAGS = []
+BLEACH_ALLOWED_ATTRIBUTES = []
+BLEACH_STRIP_TAGS = True
 
 
 # Wagtail settings

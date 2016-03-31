@@ -1,7 +1,17 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags %}
-{% load wagtailcore_tags core_tags %}
+{% load wagtailimages_tags i18n %}
+{% load wagtailcore_tags core_tags bleach_tags %}
 {% load static %}
+
+{% block fb_meta_tags %}
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{{ page.translated_title }}" />
+	{% with description=page.translated_intro|richtext %}
+	<meta property="og:description" content="{{ description|bleach }}" />
+	{% endwith %}
+
+	<meta property="og:image" content="{{ request.get_host }}{% static 'images/liqd_homepage.png' %}" />
+{% endblock %}
 
 {% block content %}
 
