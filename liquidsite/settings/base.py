@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'compressor',
     'taggit',
     'modelcluster',
+    'djangobower',
 
     'wagtail.wagtailcore',
     'wagtail.wagtailadmin',
@@ -91,7 +92,7 @@ WSGI_APPLICATION = 'liquidsite.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'liquidsite/locale/')
+    os.path.join(BASE_DIR, 'liquidsite', 'locale')
     # PROJECT_ROOT
 ]
 
@@ -137,6 +138,15 @@ from django.conf import global_settings
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
     'wagtail.contrib.settings.context_processors.settings',
+)
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'liquidsite', 'core', 'static', 'third-party')
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'bootstrap-sass',
+    'fontawesome',
+    'slick-carousel',
+    'jquery-smartresize'
 )
 
 
