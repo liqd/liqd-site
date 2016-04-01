@@ -30,14 +30,6 @@ def load_site_menu(menu_name):
         return None
 
 
-@register.inclusion_tag('projects/project_teaser.html')
-def project_teaser(teaser, request):
-    return {
-        'teaser': teaser,
-        'request': request
-    }
-
-
 @register.simple_tag(takes_context=True, name='translate_url')
 def do_translate_url(context, language):
     try:
