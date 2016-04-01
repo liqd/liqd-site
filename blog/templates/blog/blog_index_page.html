@@ -23,23 +23,7 @@
 {% block pages_js %}
 <script type="text/javascript">
 var number_pages = {{ blogs.paginator.num_pages }};
-var count = 2;
-$(window).scroll(function(){
-    if  (($(window).scrollTop() >= $(document).height() - $(window).height() - 60) && count <= number_pages){
-        loadArticle(count);
-        count ++;
-    }
-
-    function loadArticle(pageNumber){
-        $.ajax({
-            url: "?page=" + count,
-            type:'GET',
-            success: function(html){
-                $("#blog_list").append(html);
-            }
-        });
-        return false;
-    }
-});
 </script>
+<script type="text/javascript" src="{% static 'js/endless_scroll.js' %}"></script>
+
 {% endblock %}
