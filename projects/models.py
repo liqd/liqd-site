@@ -38,19 +38,24 @@ class ProjectPage(Page):
 
     # translateable fields
     title_en = models.CharField(
-        max_length=255, blank=True, verbose_name="Header Title")
+        max_length=255, verbose_name="Title")
     title_de = models.CharField(
-        max_length=255, blank=True, verbose_name="Header Title")
+        max_length=255, blank=True, verbose_name="Title")
 
-    subtitle_de = models.CharField(max_length=255, default="", blank=True)
-    subtitle_en = models.CharField(max_length=255, default="", blank=True)
+    subtitle_de = models.CharField(
+        max_length=255, default="", blank=True, verbose_name="Subtitle")
+    subtitle_en = models.CharField(
+        max_length=255, default="", blank=True, verbose_name="Subtitle")
 
-    shorttext_de = RichTextField(max_length=300, blank=True, default="")
-    shorttext_en = RichTextField(max_length=300, blank=True, default="")
+    shorttext_de = RichTextField(
+        max_length=300, blank=True, default="", verbose_name="Teasertext")
+    shorttext_en = RichTextField(
+        max_length=300, blank=True, default="", verbose_name="Teasertext")
 
-    body_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+    body_de = StreamField(
+        STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True, verbose_name="Body")
     body_en = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True)
+        STREAMFIELD_PROJECT_BLOCKS, null=True, verbose_name="Body")
 
     body = TranslatedField(
         'body_de',
@@ -110,8 +115,8 @@ class ProjectPage(Page):
 
     promote_panels = [
         MultiFieldPanel([
-            FieldPanel('slug'),
             FieldPanel('title'),
+            FieldPanel('slug'),
         ],
             heading="Slug and CMS Page Name"),
         MultiFieldPanel([
@@ -123,9 +128,9 @@ class ProjectPage(Page):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
-        ObjectList(common_panels, heading='Common'),
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(common_panels, heading='Image and Url'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
