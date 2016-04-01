@@ -126,7 +126,7 @@ class ProjectTeaserBlock(StructBlock):
 
     translated_title = CharBlock(required=False, length=256)
     translated_shorttext = RichTextBlock(required=True)
-    translated_image = ImageChooserBlock(icon="image")
+    image = ImageChooserBlock(icon="image")
     internal_link = PageChooserBlock(required=False)
     translated_external_url = URLBlock(required=False, length=256)
 

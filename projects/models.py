@@ -21,23 +21,6 @@ from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, Mult
 from contrib.translations.translations import TranslatedField
 
 
-class Person(models.Model):
-    person = models.ForeignKey(
-        PersonPage)
-
-    panels = [
-        FieldPanel('person')
-    ]
-
-    class Meta:
-        abstract = True
-
-
-class ProjectPersons(Orderable, Person):
-    page = ParentalKey(
-        'projects.ProjectPage', related_name='projects_persons')
-
-
 STREAMFIELD_PROJECT_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -48,6 +31,12 @@ STREAMFIELD_PROJECT_BLOCKS = [
 
 class ProjectPage(Page):
 
+    class Meta:
+        verbose_name = 'Project'
+
+    subpage_types = []
+
+    # translateable fields
     title_en = models.CharField(
         max_length=255, blank=True, verbose_name="Header Title")
     title_de = models.CharField(
@@ -56,41 +45,16 @@ class ProjectPage(Page):
     subtitle_de = models.CharField(max_length=255, default="", blank=True)
     subtitle_en = models.CharField(max_length=255, default="", blank=True)
 
-    image_de = models.ForeignKey(
-        'wagtailimages.Image',
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='+'
-    )
-    image_en = models.ForeignKey(
-        'wagtailimages.Image',
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        related_name='+'
-    )
-
     shorttext_de = RichTextField(max_length=300, blank=True, default="")
     shorttext_en = RichTextField(max_length=300, blank=True, default="")
 
-    external_url_de = models.URLField(max_length=200, blank=True)
-    external_url_en = models.URLField(max_length=200, blank=True)
-
-    streamFieldTop_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
-    streamFieldTop_en = StreamField(
+    body_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
+    body_en = StreamField(
         STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True)
 
-    streamFieldBottom_de = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
-    streamFieldBottom_en = StreamField(STREAMFIELD_PROJECT_BLOCKS, null=True)
-
-    streamFieldTop = TranslatedField(
-        'streamFieldTop_de',
-        'streamFieldTop_en'
-    )
-
-    streamFieldBottom = TranslatedField(
-        'streamFieldBottom_de',
-        'streamFieldBottom_en'
+    body = TranslatedField(
+        'body_de',
+        'body_en'
     )
 
     translated_title = TranslatedField(
@@ -103,11 +67,6 @@ class ProjectPage(Page):
         'subtitle_en',
     )
 
-    translated_image = TranslatedField(
-        'image_de',
-        'image_en',
-    )
-
     translated_shorttext = TranslatedField(
         'shorttext_de',
         'shorttext_en',
@@ -118,24 +77,35 @@ class ProjectPage(Page):
         'external_url_en',
     )
 
+    # common fields
+
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='+'
+    )
+
+    external_url = models.URLField(max_length=200, blank=True)
+
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
         FieldPanel('shorttext_de'),
-        StreamFieldPanel('streamFieldTop_de'),
-        ImageChooserPanel('image_de'),
-        StreamFieldPanel('streamFieldBottom_de'),
-        FieldPanel('external_url_de'),
+        StreamFieldPanel('body_de')
     ]
 
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
         FieldPanel('shorttext_en'),
-        StreamFieldPanel('streamFieldTop_en'),
-        ImageChooserPanel('image_en'),
-        StreamFieldPanel('streamFieldBottom_en'),
-        FieldPanel('external_url_en'),
+        StreamFieldPanel('body_en')
+    ]
+
+    common_panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('external_url')
     ]
 
     promote_panels = [
@@ -155,6 +125,7 @@ class ProjectPage(Page):
     edit_handler = TabbedInterface([
         ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
