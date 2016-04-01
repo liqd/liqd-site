@@ -128,7 +128,7 @@ class ProjectTeaserBlock(StructBlock):
     translated_shorttext = RichTextBlock(required=True)
     image = ImageChooserBlock(icon="image")
     internal_link = PageChooserBlock(required=False)
-    translated_external_url = URLBlock(required=False, length=256)
+    external_url = URLBlock(required=False, length=256)
 
     class Meta:
         template = 'blocks/block_project_teaser.html'
