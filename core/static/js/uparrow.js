@@ -1,4 +1,4 @@
-// ******************** 
+// ********************
 // init functions
 
 var liqd = (function($, self) {
@@ -6,13 +6,14 @@ var liqd = (function($, self) {
     self.bTT_initialised = false;
 
 
-    // ******************** 
+    // ********************
     // init backToTop Button
 
     self.init_backToTop = function() {
 
+        console.log($(window).innerWidth() < screen_sm);
+
         if (self.bTT_initialised) return;
-        if ($(window).innerWidth() < screen_sm) {
 
             var offset = 400;
             var duration = 300;
@@ -32,7 +33,7 @@ var liqd = (function($, self) {
             });
 
             self.bTT_initialised = true;
-        }
+
 
     };
 
