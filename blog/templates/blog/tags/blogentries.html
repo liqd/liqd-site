@@ -1,6 +1,7 @@
 {% load i18n %}
 <section class="container">
         <div class="contentwrapper text">
+            {% if blog_entries.count == 2 %}
             <div class="blog-list-tag">
                 <div class="blog-list-tag-title">
                 {% trans "Read our latest blogposts" %}
@@ -14,5 +15,9 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
 </section>
+
+
+
