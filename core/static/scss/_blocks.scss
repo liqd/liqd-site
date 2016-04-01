@@ -4,7 +4,6 @@
 
 .block {
 	margin-top: $block-margin;
-	margin-bottom: $block-margin !important;
 }
 
 .buckets {
@@ -150,6 +149,10 @@
 		}
 
 	}
+}
+
+.block-paragraph {
+	margin-bottom: $block-margin !important;
 }
 
 
