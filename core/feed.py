@@ -1,10 +1,9 @@
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse
 from blog.models import BlogPage
 
 class LatestEntriesFeed(Feed):
     title = "Liquid Democracy Blogposts"
-    link = "/blog/"
+    link = "/"
 
     def items(self):
         return BlogPage.objects.all().live().order_by('-date')[:5]
