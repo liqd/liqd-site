@@ -146,7 +146,8 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'fontawesome',
     'slick-carousel',
-    'jquery-smartresize'
+    'jquery-smartresize',
+    'bootstrap-sass',
 )
 
 BLEACH_ALLOWED_TAGS = []
