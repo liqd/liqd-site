@@ -27,7 +27,7 @@ class TranslatedField(object):
         de = getattr(instance, self.de_field)
         en = getattr(instance, self.en_field)
 
-        if translation.get_language() == 'en' and self.hasContent(en):
-            return en
-        else:
+        if translation.get_language() == 'de' and self.hasContent(de):
             return de
+        else:
+            return en

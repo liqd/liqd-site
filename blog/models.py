@@ -25,6 +25,7 @@ from core.models import TranslatedStreamFieldPage
 from contrib.translations.translations import TranslatedField
 
 
+
 STREAMFIELD_BLOG_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -40,20 +41,19 @@ class BlogPage(Page):
     subpage_types = []
 
     # Translatable Fields
-
     title_en = models.CharField(
-        max_length=255, blank=True, verbose_name="Header Title")
+        max_length=255, verbose_name="Title")
     title_de = models.CharField(
-        max_length=255, blank=True, verbose_name="Header Title")
+        max_length=255, blank=True, verbose_name="Title")
 
-    subtitle_en = models.CharField(max_length=255, default="", blank=True)
-    subtitle_de = models.CharField(max_length=255, default="", blank=True)
+    subtitle_en = models.CharField(max_length=255, default="", verbose_name="Subtitle")
+    subtitle_de = models.CharField(max_length=255, default="", blank=True, verbose_name="Subtitle")
 
-    intro_en = RichTextField(blank=True)
-    intro_de = RichTextField(blank=True)
+    intro_en = RichTextField(verbose_name="Teasertext")
+    intro_de = RichTextField(blank=True, verbose_name="Teasertext")
 
-    body_en = StreamField(STREAMFIELD_BLOG_BLOCKS, null=True)
-    body_de = StreamField(STREAMFIELD_BLOG_BLOCKS, null=True, blank=True)
+    body_en = StreamField(STREAMFIELD_BLOG_BLOCKS, null=True, verbose_name="Body")
+    body_de = StreamField(STREAMFIELD_BLOG_BLOCKS, null=True, blank=True, verbose_name="Body")
 
     translated_title = TranslatedField(
         'title_de',
@@ -101,8 +101,8 @@ class BlogPage(Page):
 
     promote_panels = [
         MultiFieldPanel([
-            FieldPanel('slug'),
             FieldPanel('title'),
+            FieldPanel('slug'),
         ],
             heading="Slug and CMS Page Name"),
         MultiFieldPanel([
@@ -114,8 +114,8 @@ class BlogPage(Page):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
         ObjectList(common_panels, heading='Author and Date'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(

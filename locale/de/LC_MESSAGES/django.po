@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-31 19:13+0200\n"
+"POT-Creation-Date: 2016-04-01 14:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,34 +16,38 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: blog/templates/blog/blog_page.html:24
-msgid "von"
-msgstr "by"
+#: blog/templates/blog/blog_page.html:33
+msgid "by"
+msgstr "von"
 
 #: blog/templates/blog/tags/blogentries.html:6
-msgid "Lies unsere letzen Blogartikel"
-msgstr "Read our latest blogposts"
+msgid "Read our latest blogposts"
+msgstr "Lies unsere letzen Blogartikel"
 
 #: core/templates/base.html:49
-msgid "Zurück"
-msgstr "Back to top"
+msgid "Back to top"
+msgstr "Zurück"
 
 #: core/templates/core/home_page.html:7
-msgid "Homepage des Liquid Democracy e.V."
-msgstr "Homepage of Liquid Democracy"
+msgid "Homepage of Liquid Democracy"
+msgstr "Homepage des Liquid Democracy e.V."
 
 #: core/templates/core/home_page.html:8
 msgid ""
+"Our mission is to promote the advantages of online participation in all "
+"kinds of contexts, from international organisations to small local "
+"initiatives."
+msgstr ""
 "Unser Ziel ist es, die Vorteile von Online-Partizipation in verschiedenen "
 "Bereichen - von lokalen Initiativen bis zu internationalen Organisationen - "
 "zu fördern"
-msgstr "Our mission is to promote the advantages of online participation in all kinds of contexts, from international organisations to small local initiatives."
-
-#: liquidsite/settings/base.py:105
-msgid "Deutsch"
-msgstr "German"
 
 #: liquidsite/settings/base.py:106
-msgid "Englisch"
+msgid "German"
+msgstr "Deutsch"
+
+#: liquidsite/settings/base.py:107
+msgid "English"
 msgstr "Englisch"

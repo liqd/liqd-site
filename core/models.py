@@ -45,14 +45,14 @@ STREAMFIELD_DEFAULT_BLOCKS = [
 
 class TranslatedStreamFieldPage(Page):
 
-    title_en = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
-    title_de = models.CharField(max_length=255, blank=True, verbose_name="Header Title")
+    title_en = models.CharField(max_length=255, verbose_name="Title")
+    title_de = models.CharField(max_length=255, blank=True, verbose_name="Title")
 
-    intro_en = RichTextField(blank=True)
-    intro_de = RichTextField(blank=True)
+    intro_en = RichTextField(blank=True, verbose_name="Teasertext")
+    intro_de = RichTextField(blank=True, verbose_name="Teasertext")
 
-    body_en = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True)
-    body_de = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True)
+    body_en = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, verbose_name="Body")
+    body_de = StreamField(STREAMFIELD_DEFAULT_BLOCKS, null=True, blank=True, verbose_name="Body")
 
 
     body = TranslatedField(
@@ -84,8 +84,8 @@ class TranslatedStreamFieldPage(Page):
 
     promote_panels = [
         MultiFieldPanel([
-            FieldPanel('slug'),
             FieldPanel('title'),
+            FieldPanel('slug'),
         ],
         heading = "Slug and CMS Page Name"),
         MultiFieldPanel([
@@ -97,8 +97,8 @@ class TranslatedStreamFieldPage(Page):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
@@ -112,7 +112,7 @@ class TranslatedStreamFieldPage(Page):
 class JoinUsPage(TranslatedStreamFieldPage):
 
     class Meta:
-        verbose_name = 'default header and streamfield'
+        verbose_name = 'Default header and streamfield Page'
 
     subpage_types = ['JoinUsPage', 'TextPage']
 
@@ -120,11 +120,11 @@ class JoinUsPage(TranslatedStreamFieldPage):
 
 class HomePage(TranslatedStreamFieldPage):
 
-    heading1_en = models.CharField(max_length=255, default="", blank=True)
-    heading1_de = models.CharField(max_length=255, default="")
+    heading1_en = models.CharField(max_length=255, default="", verbose_name="Title top")
+    heading1_de = models.CharField(max_length=255, default="", blank=True, verbose_name="Title top")
 
-    heading2_en = models.CharField(max_length=255, default="", blank=True)
-    heading2_de = models.CharField(max_length=255, default="")
+    heading2_en = models.CharField(max_length=255, default="", verbose_name="Title bottom")
+    heading2_de = models.CharField(max_length=255, default="", blank=True, verbose_name="Title bottom")
 
     translated_heading1 = TranslatedField(
         'heading1_de',
@@ -165,8 +165,8 @@ class HomePage(TranslatedStreamFieldPage):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(de_content_panels, heading='Content de'),
-        ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])
@@ -221,8 +221,8 @@ class TextPage(Page):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(de_content_panels, heading='Content de'),
         ObjectList(en_content_panels, heading='Content en'),
+        ObjectList(de_content_panels, heading='Content de'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
     ])

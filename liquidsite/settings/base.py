@@ -97,14 +97,14 @@ LOCALE_PATHS = [
     # PROJECT_ROOT
 ]
 
-LANGUAGE_CODE = 'de'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'Europe/Berlin'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 LANGUAGES = (
-    ('de', _('Deutsch')),
-    ('en', _('Englisch')),
+    ('de', _('German')),
+    ('en', _('English')),
 )
 # MODELTRANSLATION_LANGUAGES = ('de', 'en')
 
