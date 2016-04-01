@@ -1,43 +1,85 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags core_tags wagtailimages_tags %}
+{% load static wagtailcore_tags projects_tags wagtailimages_tags bleach_tags %}
+
+{% block fb_meta_tags %}
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ page.translated_title }}" />
+    {% with description=page.translated_shorttext|richtext %}
+    <meta property="og:description" content="{{ description|bleach }}" />
+    {% endwith %}
+    {% if page.image %}
+    {% image page.image width-400 as image %}
+    <meta property="og:image" content="{{ request.get_host }}{{ image.url }}" />
+    {% else %}
+    <meta property="og:image" content="{{ request.get_host }}{% static 'images/liqd_homepage.png' %}" />
+    {% endif %}
+{% endblock %}
 
 {% block content %}
+<section class="contentwrapper fullwidth collapse-mt project-detail-page-header-top">
+    {% image page.image fill-950x450-c100 as bg %}
+    <div class="project-detail-page-header" style="background-image: url({{ bg.url }})">
+        <div class="container inner">
+            <div class="center-div">
+                <span>
+                    <h1>{{ page.translated_title }}</h1>
+                    <h2>{{ page.translated_subtitle }}</h2>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contentwrapper fullwidth project-detail-page-shorttext-top">
+    <div class="container">
+        <div class="contentwrapper text">
+            <div class="project-detail-page-shorttext">
+                {{ page.translated_shorttext | richtext }}
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="container">
-<h1>{{ self.title }}</h1>
-<h2>{{ self.subtitle }}</h2>
-<p>{{ self.shorttext | richtext }}</p>
+    <div class="contentwrapper text project_page_body">
+        {% for block in self.body %}
+            {% if block.block_type == 'heading' %}
+            <div class="project_page_block_heading">
+                <h2>{{ block.value }}</h2>
+            </div>
+            {% endif %}
 
-{% image self.image width-400 as img %}
-<img src="{{ img.url }}" />
+            {% if block.block_type == 'image' %}
+            <div class="project_page_block_image">
+                {% image block.value fill-800x600 as my_image %}
+                <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
+            </div>
+            {% endif %}
 
-{% for block in self.streamFieldTop %}
-    {% if block.block_type == 'heading' %}
-        <h1>{{ block.value }}</h1>
-    {% elif block.block_type == 'project_teaser' %}
-        {% project_teaser block.value request %}
-    {% else %}
-        <section class="block-{{ block.block_type }}">
-            {{ block }}
-        </section>
-    {% endif %}
-{% endfor %}
+            {% if block.block_type == 'video' %}
+            <div class="project_page_block_video">
+                <div class="embed-responsive embed-responsive-16by9">
+                    {{ block.value }}
+                </div>
+            </div>
+            {% endif %}
 
-<h1>Beteiligte Mitarbeiter</h1>
-{% for person in self.projects_persons.all %}
-<a href="{% pageurl person.person %}"><h3>{{ person.person }}</h3></a>
-{% endfor %}
+            {% if block.block_type == 'paragraph' %}
+            <div class="project_page_block_paragraph">
+                {{ block.value }}
+            </div>
+            {% endif %}
 
-{% for block in self.streamFieldBottom %}
-    {% if block.block_type == 'heading' %}
-        <h1>{{ block.value }}</h1>
-    {% elif block.block_type == 'project_teaser' %}
-        {% project_teaser block.value request %}
-    {% else %}
-        <section class="block-{{ block.block_type }}">
-            {{ block }}
-        </section>
-    {% endif %}
-{% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
 
 
 {% endblock %}

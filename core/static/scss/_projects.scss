@@ -62,8 +62,125 @@
 		}
 
 		> h2 {
-			font-size: 40px; font-size: 4rem;
+			font-size: 40px;
+			font-size: 4rem;
 			line-height: 4.4rem;
 		}
 	}
 }
+
+.project-detail-page-header-top {
+	@include rem(height, 300px);
+}
+
+.project-detail-page-header {
+	@include rem(height, 300px);
+	background-color: grey;
+    background-size: cover;
+}
+
+.center-div
+{
+    display: table;
+    table-layout:fixed;
+    margin:0 auto;
+    @include rem(height, 300px);
+}
+
+.center-div span
+{
+    display:table-cell;
+    vertical-align:middle;
+	text-align:center;
+
+	& h1{
+		@include rem(padding-bottom, 24px);
+		@include rem(font-size, 60px);
+		@include rem(letter-spacing, 0.3px);
+		@include rem(line-height, 65px);
+		font-family: 'Cabin', medium;
+		text-transform: uppercase;
+		color: #FFFFFF;
+
+	}
+
+	& h2{
+		@include rem(padding-bottom, 24px);
+		@include rem(font-size, 32px);
+		@include rem(line-height, 39px);
+		font-family: 'Cabin', regular;
+		color: #FFFFFF;
+
+	}
+}
+
+.project-detail-page-shorttext-top {
+	background-color: #f8f8f8;
+}
+
+.project-detail-page-shorttext {
+	@include rem(margin, 85px 0px 105px 0px);
+	& .rich-text {
+		& p {
+			font-family: 'Cabin', regular;
+			@include rem(font-size, 19px);
+			@include rem(line-height, 30px);
+			color: #4D4D4D;
+		}
+	}
+}
+
+.project_page_body {
+	@include rem(margin, 85px 0px 0px 0px);
+}
+
+.project_page_block_paragraph {
+	@include rem(margin, 0px 0px 105px 0px);
+	text-align: left;
+
+	& .rich-text {
+
+		& p {
+			font-family: 'Cabin', regular;
+			@include rem(font-size, 19px);
+			color: #898989;
+			@include rem(line-height, 30px);
+		}
+
+		& h2, h3, h4, h5 {
+			@include rem(padding, 50px 0px 35px 0px);
+
+			font-family: 'Cabin', regular;
+			@include rem(font-size, 20px);
+			@include rem(line-height, 20px);
+			color: #898989;
+		}
+
+	}
+}
+
+.project_page_block_heading {
+	@include rem(margin, 0px 0px 35px 0px);
+
+	& h2 {
+		padding-bottom: 0px;
+		font-family: 'Cabin', medium;
+		@include rem(font-size, 25px);
+		@include rem(line-height, 25px);
+		color: #4D4D4D;
+	}
+}
+
+.project_page_block_image {
+	@include rem(margin, 0px 0px 140px 0px);
+
+	& img {
+		width: 100%;
+	}
+}
+
+.project_page_block_video {
+	@include rem(margin, 0px 0px 140px 0px);
+}
+
+
