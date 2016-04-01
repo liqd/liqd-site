@@ -9,8 +9,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
     	User.objects.create_superuser(username='admin', password='admin', email='admin@test.de')
-        call_command('loaddata', 'wagtail_page.json', verbosity=0)
-        call_command('loaddata', 'core.json', verbosity=0)
-        call_command('loaddata', 'blog.json', verbosity=0)
-        call_command('loaddata', 'persons.json', verbosity=0)
-        call_command('loaddata', 'projects.json', verbosity=0)
+        call_command('loaddata', 'initial_data.json', verbosity=0)
