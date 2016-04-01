@@ -15,7 +15,7 @@ var liqd = (function($, self) {
 
         if (self.bTT_initialised) return;
 
-            var offset = 400;
+            var offset = 600;
             var duration = 300;
 
             $(window).on('scroll', function() {
