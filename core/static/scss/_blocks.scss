@@ -76,7 +76,7 @@
 
 .block-highlight {
 	padding-top: $block-inner-padding;
-	background-color: lightgrey;
+	background-color: $highlight-section-color;
 
 	//** convert margin to padding for background-color
 	padding-bottom: $block-inner-padding;
@@ -150,8 +150,6 @@
 		}
 
 	}
-
-	
 }
 
 

@@ -18,7 +18,7 @@
 		font-family: 'Cabin', medium;
 		@include rem(font-size, 35px);
 		@include rem(line-height, 50px);
-		color: #4D4D4D;
+		color: $headline-color;
 		& a {
 			text-decoration: none;
 			color: inherit;
@@ -29,7 +29,7 @@
 .blog-list-item-date {
 	font-family: 'Cabin', regular;
 	@include rem(font-size, 17px);
-	color: #898989;
+	color: $text-color;
 	@include rem(letter-spacing, 0.3px);
 	@include rem(line-height, 22px);
 }
@@ -40,7 +40,7 @@
 		& p {
 			font-family: 'Cabin', regular;
 			@include rem(font-size, 17px);
-			color: #4D4D4D;
+			color: $headline-color;
 			@include rem(letter-spacing, 0.3px);
 			@include rem(line-height, 24px);
 		}
@@ -54,13 +54,13 @@
 	@include rem(letter-spacing, 0.44px);
 	@include rem(line-height, 50px);
 	text-transform: uppercase;
-	color: #4D4D4D;
+	color: $headline-color;
 	font-family: 'Cabin', bold;
 
 }
 
 .blog_page_title_area {
-	background-color: #29CAC5;
+	background-color: $highlight-header-color;
 }
 
 .blog_page-header-content {
@@ -74,7 +74,7 @@
 		font-family: 'Cabin', medium;
 		@include rem(font-size, 20px);
 		@include rem(line-height, 27px);
-		color: #4D4D4D;
+		color: $headline-color;
 	}
 }
 
@@ -90,13 +90,13 @@
 
 .blog_page_subtitle {
 	font-family: 'Cabin', regular;
-	color: #78FFFE;
+	color: $subtitle-color;
 	@include rem(font-size, 24px);
 	@include rem(padding-bottom, 0px);
 }
 
 .blog_page_block_heading {
-	background-color: #FE9A2E;
+	background-color: $orange-section-color;
 	@include rem(padding, 120px 0px 120px 0px);
 
 	& .container {
@@ -127,7 +127,7 @@
 	& .container {
 		& .contentwrapper {
 			text-align: left;
-			color: #4D4D4D;
+			color: $headline-color;
 		}
 	}
 }
