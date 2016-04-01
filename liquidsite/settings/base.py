@@ -144,7 +144,6 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'liquidsite', 'core', 'static', 'third-party')
 BOWER_INSTALLED_APPS = (
     'jquery',
-    'bootstrap-sass',
     'fontawesome',
     'slick-carousel',
     'jquery-smartresize'
