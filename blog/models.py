@@ -25,44 +25,12 @@ from core.models import TranslatedStreamFieldPage
 from contrib.translations.translations import TranslatedField
 
 
-# Blog index page
-
-
-class BlogIndexPage(TranslatedStreamFieldPage):
-    subpage_types = ['blog.BlogPage']
-
-    @property
-    def blogs(self):
-        blogs = BlogPage.objects.live().descendant_of(self)
-        blogs = blogs.order_by('-date')
-        return blogs
-
-    def get_context(self, request):
-        blogs = self.blogs
-        page = request.GET.get('page')
-        paginator = Paginator(blogs, 5)
-        try:
-            blogs = paginator.page(page)
-        except PageNotAnInteger:
-            blogs = paginator.page(1)
-        except EmptyPage:
-            blogs = paginator.page(paginator.num_pages)
-
-        context = super(BlogIndexPage, self).get_context(request)
-        context['blogs'] = blogs
-        return context
-
-    def serve(self, request):
-        blogs = self.get_context(request)['blogs']
-        if request.is_ajax():
-            html = render_to_string(
-                'blog/ajax/blog_list.html', {'request': request, 'blogs': blogs.object_list})
-            return HttpResponse(html)
-        return render(request, self.template, {'blogs': blogs, 'self': self})
-
-    class Meta:
-        verbose_name = 'Blog Index Page'
-
+STREAMFIELD_BLOG_BLOCKS = [
+    ('heading', blocks.CharBlock(classname="full title", icon="title")),
+    ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
+    ('image', ImageChooserBlock(icon="image")),
+    ('video', EmbedBlock(icon="media"))
+]
 
 class BlogPage(Page):
 
@@ -84,19 +52,8 @@ class BlogPage(Page):
     intro_en = RichTextField(blank=True)
     intro_de = RichTextField(blank=True)
 
-    body_en = StreamField([
-        ('heading', blocks.CharBlock(classname="full title", icon='title')),
-        ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-        ('image', ImageChooserBlock(icon='image')),
-        ('video', EmbedBlock(icon='media')),
-    ], null=True)
-
-    body_de = StreamField([
-        ('heading', blocks.CharBlock(classname="full title", icon='title')),
-        ('paragraph', blocks.RichTextBlock(icon='pilcrow')),
-        ('image', ImageChooserBlock(icon='image')),
-        ('video', EmbedBlock(icon='media')),
-    ], null=True, blank=True)
+    body_en = StreamField(STREAMFIELD_BLOG_BLOCKS, null=True)
+    body_de = StreamField(STREAMFIELD_BLOG_BLOCKS, null=True, blank=True)
 
     translated_title = TranslatedField(
         'title_de',
@@ -164,3 +121,39 @@ class BlogPage(Page):
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
     ])
+
+# Blog index page
+class BlogIndexPage(TranslatedStreamFieldPage):
+    subpage_types = ['blog.BlogPage']
+
+    @property
+    def blogs(self):
+        blogs = BlogPage.objects.live().descendant_of(self)
+        blogs = blogs.order_by('-date')
+        return blogs
+
+    def get_context(self, request):
+        blogs = self.blogs
+        page = request.GET.get('page')
+        paginator = Paginator(blogs, 5)
+        try:
+            blogs = paginator.page(page)
+        except PageNotAnInteger:
+            blogs = paginator.page(1)
+        except EmptyPage:
+            blogs = paginator.page(paginator.num_pages)
+
+        context = super(BlogIndexPage, self).get_context(request)
+        context['blogs'] = blogs
+        return context
+
+    def serve(self, request):
+        blogs = self.get_context(request)['blogs']
+        if request.is_ajax():
+            html = render_to_string(
+                'blog/ajax/blog_list.html', {'request': request, 'blogs': blogs.object_list})
+            return HttpResponse(html)
+        return render(request, self.template, {'blogs': blogs, 'self': self})
+
+    class Meta:
+        verbose_name = 'Blog Index Page'
