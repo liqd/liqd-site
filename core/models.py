@@ -208,8 +208,8 @@ class TextPage(Page):
 
     promote_panels = [
         MultiFieldPanel([
-            FieldPanel('slug'),
             FieldPanel('title'),
+            FieldPanel('slug'),
         ],
         heading = "Slug and CMS Page Name"),
         MultiFieldPanel([
@@ -325,3 +325,5 @@ class LiqdSettings(BaseSetting):
         default=False,
         help_text="Phase One of the new site, this setting can be deleted when the full site is ready to go live",
     )
+
+
