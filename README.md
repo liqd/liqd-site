@@ -17,6 +17,7 @@ required: gettext
 4. Copy `/path/to/liquidsite/liquidsite/sample.local.py` to `/path/to/liquidsite/liquidsite/local.py`.
 5. Set up database connection in local.py (if nothing is changed an sqlite db will be created)
 6. run `python manage.py migrate`
+6. run `python manage.py load_initial_data`
 7. run `django-admin.py compilemessages`
 8. run `python manage.py bower install`
 9. run `python manage.py runserver`
