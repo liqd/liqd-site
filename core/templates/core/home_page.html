@@ -6,7 +6,7 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="{% trans 'Homepage of Liquid Democracy' %}" />
 	<meta property="og:description" content="{% trans 'Our mission is to promote the advantages of online participation in all kinds of contexts, from international organisations to small local initiatives.' %}" />
-	<meta property="og:image" content="{{ request.get_host }}{% static 'images/liqd_homepage.png' %}" />
+	<meta property="og:image" content="{{ request.get_host }}{% static 'images/liquid_default.jpg' %}" />
 {% endblock %}
 
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
