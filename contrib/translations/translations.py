@@ -15,7 +15,7 @@ class TranslatedField(object):
                 return True
             else:
                 return False
-        elif isinstance(field, unicode):
+        elif isinstance(field, str):
             if field:
                 return True
             else:

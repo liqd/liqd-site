@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-from local import *
+from .local import *
 import os
 from os.path import abspath, dirname, join
 from django.utils.translation import ugettext_lazy as _
