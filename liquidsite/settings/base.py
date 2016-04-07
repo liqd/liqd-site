@@ -129,9 +129,6 @@ STATICFILES_FINDERS = (
 MEDIA_ROOT = join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/media/'
 
-
-COMPRESS_ENABLED = False
-
 COMPRESS_PRECOMPILERS = (
     # ('text/x-scss', 'contrib.sass.sass.SassMapFilter'),
     ('text/x-scss', 'django_libsass.SassCompiler'),
