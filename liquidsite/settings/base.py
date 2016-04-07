@@ -12,7 +12,7 @@ from os.path import abspath, dirname, join
 from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
-PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
+PROJECT_ROOT = dirname(dirname(abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_ROOT)
 
 # Quick-start development settings - unsuitable for production
@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'liquidsite.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'liquidsite', 'locale')
+    os.path.join(BASE_DIR, 'locale')
     # PROJECT_ROOT
 ]
 
@@ -147,7 +147,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'wagtail.contrib.settings.context_processors.settings',
 )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'liquidsite', 'core', 'static', 'third-party')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'core', 'static', 'third-party')
 BOWER_INSTALLED_APPS = (
     'jquery',
     'fontawesome',
