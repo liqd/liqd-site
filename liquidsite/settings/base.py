@@ -7,7 +7,6 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-from .local import *
 import os
 from os.path import abspath, dirname, join
 from django.utils.translation import ugettext_lazy as _
@@ -29,6 +28,14 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
@@ -87,7 +94,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'liquidsite.urls'
 WSGI_APPLICATION = 'liquidsite.wsgi.application'
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
