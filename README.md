@@ -11,6 +11,7 @@ The website uses the [django-based CMS Wagtail](https://wagtail.io/), and Python
 
 required: gettext
 
+0. install bower `npm install bower`
 1. create virtual env
 2. clone repository
 3. run `pip install -r /path/to/liquidsite/requirements.txt`

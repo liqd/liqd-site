@@ -155,6 +155,7 @@ BOWER_INSTALLED_APPS = (
     'jquery-smartresize',
     'bootstrap-sass',
 )
+BOWER_PATH = os.path.join(BASE_DIR, 'node_modules', '.bin', 'bower')
 
 BLEACH_ALLOWED_TAGS = []
 BLEACH_ALLOWED_ATTRIBUTES = []
