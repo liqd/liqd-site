@@ -92,8 +92,8 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
-ROOT_URLCONF = 'liquidsite.urls'
-WSGI_APPLICATION = 'liquidsite.wsgi.application'
+ROOT_URLCONF = 'website_wagtail.urls'
+WSGI_APPLICATION = 'website_wagtail.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
