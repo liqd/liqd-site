@@ -12,8 +12,7 @@ from os.path import abspath, dirname, join
 from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
-PROJECT_ROOT = dirname(dirname(abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_ROOT)
+BASE_DIR = os.path.dirname(dirname(dirname(abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -100,7 +99,6 @@ WSGI_APPLICATION = 'website_wagtail.wsgi.application'
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
-    # PROJECT_ROOT
 ]
 
 LANGUAGE_CODE = 'en'
@@ -117,7 +115,7 @@ LANGUAGES = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_ROOT = join(PROJECT_ROOT, 'static')
+STATIC_ROOT = join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
@@ -126,7 +124,7 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-MEDIA_ROOT = join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 COMPRESS_PRECOMPILERS = (
