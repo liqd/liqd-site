@@ -9,8 +9,6 @@
 	{% with description=page.translated_intro|richtext %}
 	<meta property="og:description" content="{{ description|bleach }}" />
 	{% endwith %}
-
-	<meta property="og:image" content="{{ request.get_host }}{% static 'images/liquid_default.jpg' %}" />
 {% endblock %}
 
 {% block content %}

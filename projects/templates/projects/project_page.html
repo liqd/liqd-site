@@ -11,7 +11,6 @@
     {% image page.image width-400 as image %}
     <meta property="og:image" content="{{ request.get_host }}{{ image.url }}" />
     {% else %}
-    <meta property="og:image" content="{{ request.get_host }}{% static 'images/liquid_default.jpg' %}" />
     {% endif %}
 {% endblock %}
 
