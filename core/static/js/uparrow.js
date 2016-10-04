@@ -11,8 +11,6 @@ var liqd = (function($, self) {
 
     self.init_backToTop = function() {
 
-        console.log($(window).innerWidth() < screen_sm);
-
         if (self.bTT_initialised) return;
 
             var offset = 600;
