@@ -32,7 +32,7 @@
 
     <body class="{% block body_class %}{% endblock %}">
 
-        {% wagtailuserbar %}
+        {% wagtailuserbar 'top-right' %}
 
         {% if settings.core.LiqdSettings.liqd_preliminary_site %}
             {% include "navbar-simple.html" %}
