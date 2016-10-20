@@ -6,6 +6,7 @@ from wagtail.wagtailcore.blocks import URLBlock
 from wagtail.wagtailcore.blocks import RichTextBlock
 from wagtail.wagtailcore.blocks import ChoiceBlock
 from wagtail.wagtailcore.blocks import PageChooserBlock
+from wagtail.wagtailcore.blocks import RawHTMLBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from wagtail.wagtailimages import blocks
@@ -21,6 +22,17 @@ class StandardParagraphBlock(StructBlock):
         icon = 'pilcrow'
         label = 'Basic Paragraph'
         help_text = 'Basic text paragraph with optional heading.'
+
+
+class HTMLBlock(StructBlock):
+    headline = CharBlock(required=False, length=256)
+    body = RawHTMLBlock()
+
+    class Meta:
+        template = 'blocks/block_html.html'
+        icon = 'code'
+        label = 'HTML Block'
+        help_text = 'Unfiltered HTML block with optional heading. Be sure you know what you do!'
 
 
 class HighlightParagraphBlock(StructBlock):

@@ -22,6 +22,7 @@ from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, Mult
 from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from core.models import TranslatedStreamFieldPage
+from core.blocks import HTMLBlock
 from contrib.translations.translations import TranslatedField
 
 
@@ -30,8 +31,10 @@ STREAMFIELD_BLOG_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
-    ('video', EmbedBlock(icon="media"))
+    ('video', EmbedBlock(icon="media")),
+    ('Raw_HTML', HTMLBlock()),
 ]
+
 
 class BlogPage(Page):
 
