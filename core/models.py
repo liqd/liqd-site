@@ -9,7 +9,7 @@ from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailsnippets.models import register_snippet
 
 from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore import blocks
+from wagtail.wagtailcore import blocks as wagtail_blocks
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
@@ -41,6 +41,7 @@ STREAMFIELD_DEFAULT_BLOCKS = [
     ('linkbox', blocks.LinkboxBlock()),
     ('project_teaser', blocks.ProjectTeaserBlock()),
     ('ThreeImageLinks', blocks.ThreeImageWithLinkBlock()),
+    ('Raw_HTML', blocks.HTMLBlock()),
 ]
 
 class TranslatedStreamFieldPage(Page):

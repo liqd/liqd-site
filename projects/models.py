@@ -17,6 +17,7 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailembeds.blocks import EmbedBlock
 
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
+from core import blocks as core_blocks
 
 from contrib.translations.translations import TranslatedField
 
@@ -25,7 +26,8 @@ STREAMFIELD_PROJECT_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
-    ('video', EmbedBlock(icon="media"))
+    ('video', EmbedBlock(icon="media")),
+    ('Raw_HTML', core_blocks.HTMLBlock()),
 ]
 
 
