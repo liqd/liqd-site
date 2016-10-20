@@ -121,6 +121,7 @@
 .project-detail-page-shorttext {
 	@include rem(margin, 85px 0px 105px 0px);
 	& .rich-text {
+		text-align: center;
 		& p {
 			font-family: 'Cabin', regular;
 			@include rem(font-size, 19px);
