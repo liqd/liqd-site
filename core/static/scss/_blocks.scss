@@ -12,6 +12,10 @@
 	& .bucket {
 		border-right: 1px solid #e4e4e4;
 	}
+
+	figure {
+		text-align: center;
+	}
 }
 
 //** Block background colors
@@ -41,6 +45,14 @@
 
 
 .block-column {
+
+	.rich-text {
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+	}
+
 	@media screen and (max-width : $screen-md) {
 		div:nth-of-type(2) {
 			margin-top: $block-margin;
@@ -84,6 +96,12 @@
 
 .block-linkbox,
 .block-highlight-paragraph {
+
+	.links {
+		a {
+			text-align: center;
+		}
+	}
 
 	a {
 		display: inline-block;

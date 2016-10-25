@@ -70,6 +70,7 @@
 
 .blog_page-metadata-content {
 	@include rem(margin, 30px 0px 105px 0px);
+	text-align: center;
 	& .text {
 		font-family: 'Cabin', medium;
 		@include rem(font-size, 20px);
@@ -93,6 +94,7 @@
 	color: $subtitle-color;
 	@include rem(font-size, 24px);
 	@include rem(padding-bottom, 0px);
+	text-align: center;
 }
 
 .blog_page_block_heading {
