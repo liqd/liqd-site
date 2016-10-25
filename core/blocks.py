@@ -44,7 +44,7 @@ class HighlightParagraphBlock(StructBlock):
     class Meta:
         template = 'blocks/block_highlight_paragraph.html'
         icon = 'pilcrow'
-        label = 'Gray Paragraph'
+        label = 'Grey Paragraph'
         help_text = 'Paragraph with gray background and optional single link.'
 
 
