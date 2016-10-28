@@ -80,11 +80,12 @@
             </div>
         </div>
     </div>
-
-    {% else %}
-    {{ block }}
-
     {% endif %}
+
+    {% if block.block_type == 'Raw_HTML' %}
+    {{ block }}
+    {% endif %}
+
 {% endfor %}
 
 {% endblock %}
