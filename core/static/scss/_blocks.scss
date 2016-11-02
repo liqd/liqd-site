@@ -96,12 +96,7 @@
 
 .block-linkbox,
 .block-highlight-paragraph {
-
-	.links {
-		a {
-			text-align: center;
-		}
-	}
+	text-align: center;
 
 	a {
 		display: inline-block;
@@ -171,6 +166,13 @@
 
 .block-paragraph {
 	margin-bottom: $block-margin !important;
+
+	.rich-text {
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+	}
 }
 
 
