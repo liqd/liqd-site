@@ -24,7 +24,7 @@ msgstr "von"
 
 #: blog/templates/blog/tags/blogentries.html:6
 msgid "Read our latest blogposts"
-msgstr "Lies unsere letzen Blogartikel"
+msgstr "Unsere letzten Blogartikel"
 
 #: core/templates/base.html:49
 msgid "Back to top"
