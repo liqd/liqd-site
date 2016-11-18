@@ -1,3 +1,4 @@
+{% load compress static i18n %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -8,10 +9,36 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Internal server error</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'third-party/bower_components/font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'third-party/bower_components/slick-carousel/slick/slick.css' %}">
+
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/all.scss' %}">
+        {% endcompress %}
+
     </head>
     <body>
-        <h1>Internal server error</h1>
-
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
+        <div class=error>
+            <div class="row">
+                <div class="col-md-5 col-xs-4">
+                    <img class="image-left img-responsive" src="{% static 'images/kabel01.png' %}">
+                </div>
+                <div class="col-md-2 col-xs-4">
+                    <div class="text-center error-text">
+                        <h1>500</h1>
+                    </div>
+                </div>
+                <div class="col-md-5 col-xs-4">
+                    <img class="image-left pull-right img-responsive" src="{% static 'images/kabel02.png' %}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-8 col-md-offset-4 col-xs-offset-2 text-center">
+                    <h2>{% trans 'Oh no, something went wrong!' %}</h2>
+                    <p>{% trans 'Internal Server Error. Please try again soon.' %}</p>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

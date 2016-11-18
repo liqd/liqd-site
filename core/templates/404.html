@@ -1,9 +1,28 @@
 {% extends "base.html" %}
+{% load i18n static %}
 
-{% block body_class %}template-404{% endblock %}
+{% block title %}{% trans 'Error' %}{% endblock %}
 
 {% block content %}
-    <h1>Page not found</h1>
-
-    <h2>Sorry, this page could not be found.</h2>
+<div class=error>
+    <div class="row">
+        <div class="col-md-5 col-xs-4">
+            <img class="image-left img-responsive" src="{% static 'images/kabel01.png' %}">
+        </div>
+        <div class="col-md-2 col-xs-4">
+            <div class="text-center error-text">
+                <h1>404</h1>
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-4">
+            <img class="image-left pull-right img-responsive" src="{% static 'images/kabel02.png' %}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-8 col-md-offset-4 col-xs-offset-2 text-center">
+            <h2>{% trans 'Oh no, something went wrong!' %}</h2>
+            <p>{% trans 'This page could not be found' %}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
