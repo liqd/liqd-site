@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-01 14:46+0200\n"
+"POT-Creation-Date: 2016-11-18 18:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: blog/templates/blog/blog_page.html:33
+#: blog/templates/blog/blog_page.html:32
 msgid "by"
 msgstr "von"
 
-#: blog/templates/blog/tags/blogentries.html:6
+#: blog/templates/blog/tags/blogentries.html:7
 msgid "Read our latest blogposts"
 msgstr "Unsere letzten Blogartikel"
 
-#: core/templates/base.html:49
-msgid "Back to top"
-msgstr "Zurück"
+#: core/templates/404.html:4
+msgid "Error"
+msgstr "Fehler"
+
+#: core/templates/404.html:23 core/templates/500.html:38
+msgid "Oh no, something went wrong!"
+msgstr "Oh nein, da hat was nicht geklappt!"
+
+#: core/templates/404.html:24
+msgid "This page could not be found"
+msgstr "Die Seite konnte nicht gefunden werden"
+
+#: core/templates/500.html:39
+msgid "Internal Server Error. Please try again soon."
+msgstr "Internal Server Error. Bitte später erneut versuchen."
 
 #: core/templates/core/home_page.html:7
 msgid "Homepage of Liquid Democracy"
@@ -44,10 +56,13 @@ msgstr ""
 "Bereichen - von lokalen Initiativen bis zu internationalen Organisationen - "
 "zu fördern"
 
-#: liquidsite/settings/base.py:106
+#: website_wagtail/settings/base.py:110
 msgid "German"
 msgstr "Deutsch"
 
-#: liquidsite/settings/base.py:107
+#: website_wagtail/settings/base.py:111
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Back to top"
+#~ msgstr "Zurück"
