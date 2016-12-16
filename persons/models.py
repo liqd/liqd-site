@@ -45,15 +45,10 @@ class ContactFields(models.Model):
 # Person page
 
 
-class PersonPage(Page, ContactFields):
-    parent_page_types = ['persons.PersonIndexPage']
-    subpage_types = []
 @register_snippet
 class PersonSnippet(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    biography = RichTextField(blank=True)
-    area = models.CharField(max_length=256, choices=AREAS_CHOICES)
     email = models.EmailField(blank=True)
 
     motto_de = RichTextField(blank=True)
@@ -61,6 +56,7 @@ class PersonSnippet(models.Model):
 
     area_de = models.CharField(max_length=256)
     area_en = models.CharField(max_length=256)
+
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -68,72 +64,12 @@ class PersonSnippet(models.Model):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
 
-    @property
-    def persons(self):
-        persons = PersonPage.objects.live()
-        persons = persons.order_by('last_name')
-        return persons
-
-    def serve(self, request):
-        blogpages = self.blogpages
-        persons = self.persons
-        area = request.GET.getlist('area')
-
-        if area:
-            persons = persons.filter(area__in=area)
-
-        if request.is_ajax():
-            html = render_to_string(
-                'persons/includes/person_list.html', {'request': request, 'persons': persons})
-            return HttpResponse(html)
-
-        return render(request, self.template, {
-            'self': self,
-            'persons': persons,
-            'choices': [choice[0] for choice in AREAS_CHOICES],
-            'title': (list(self.get_ancestors()))[-1].title,
-            'blogpages': blogpages
-        })
-
-    search_fields = Page.search_fields + (
-        index.SearchField('first_name'),
-        index.SearchField('last_name'),
-        index.SearchField('intro'),
-        index.SearchField('biography'),
     area = TranslatedField(
         'area_de',
         'area_en'
     )
 
-PersonPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('first_name'),
-    FieldPanel('last_name'),
-    FieldPanel('biography', classname="full"),
-    FieldPanel('area', classname="full"),
-    ImageChooserPanel('image'),
-    MultiFieldPanel(ContactFields.panels, "Contact")
-]
-
-PersonPage.promote_panels = Page.promote_panels + [
-    ImageChooserPanel('feed_image'),
-]
-
-
-class PersonIndexPage(Page):
-    intro = RichTextField(blank=True)
-    subpage_types = ['persons.PersonPage']
-
-    search_fields = Page.search_fields + (
-        index.SearchField('intro'),
     motto = TranslatedField(
         'motto_de',
         'motto_en'
@@ -142,36 +78,6 @@ class PersonIndexPage(Page):
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
 
-    @property
-    def persons(self):
-        persons = PersonPage.objects.live()
-        persons = persons.order_by('last_name')
-        return persons
-
-    def serve(self, request):
-        persons = self.persons
-        area = request.GET.getlist('area')
-
-        if area:
-            persons = persons.filter(area__in=area)
-
-        if request.is_ajax():
-            html = render_to_string(
-                'persons/includes/person_list.html', {'request': request, 'persons': persons})
-            return HttpResponse(html)
-
-        return render(request, self.template, {
-            'self': self,
-            'persons': persons,
-            'choices': [choice[0] for choice in AREAS_CHOICES]
-        })
-
-PersonIndexPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('intro', classname="full")
-]
-
-PersonIndexPage.promote_panels = Page.promote_panels
     base_information_panels = [
         FieldPanel('first_name'),
         FieldPanel('last_name'),

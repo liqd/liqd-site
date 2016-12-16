@@ -7,7 +7,6 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailsearch import index
 from modelcluster.fields import ParentalKey
-from persons.models import PersonPage
 from wagtail.wagtailadmin.edit_handlers import InlinePanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailcore.fields import StreamField
