@@ -1,0 +1,52 @@
+{% load wagtailimages_tags %}
+<div class="person_list person_list_{{ self.background }}">
+	<div class="container">
+		{% if self.title %}
+		<div class="row row-centered person_list_title">
+			<h3>{{ self.title }}</h3>
+		</div>
+		{% endif %}
+		<div id="persons">
+			<div class="row">
+
+			{% if self.personlist|length == 2 %}
+			<div class="col-md-3 person_list_person">
+			</div>
+			<div class="col-md-3 person_list_person">
+			{{ self.personlist.0 }}
+			</div>
+			<div class="col-md-3 person_list_person">
+			{{ self.personlist.1 }}
+			</div>
+			<div class="col-md-3 person_list_person">
+			</div>
+
+			{% elif self.personlist|length == 3 %}
+			<div class="col-md-4 person_list_person">
+			{{ self.personlist.0 }}
+			</div>
+			<div class="col-md-4 person_list_person">
+			{{ self.personlist.1 }}
+			</div>
+			<div class="col-md-4 person_list_person">
+			{{ self.personlist.2 }}
+			</div>
+
+			{% else %}
+			{% for person in self.personlist %}
+				{% if person.person %}
+				<div class="col-md-3 person_list_person">
+				{{ person }}
+				</div>
+				{% endif %}
+			{% if forloop.counter|divisibleby:4 %}
+			</div>
+			<div class="row">
+			{% endif %}
+			{% endfor %}
+			{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+

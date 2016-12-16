@@ -1,0 +1,19 @@
+{% load wagtailimages_tags %}
+{% if value.person.image %}
+{% image value.person.image fill-200x200  as photo %}
+<div class="row row-centered">
+  <img src="{{ photo.url }}" alt="{{ photo.alt }}"  class="person_index_page_circular_image" />
+</div>
+{% endif %}
+<div class="row row-centered {% if not value.person.image %} no-image {% endif %}">
+  {% if value.person.email %}
+  <a href="mailto:{{ value.person.email }}">
+    <h4>{{ value.person.first_name}} {{ value.person.last_name }}</h4>
+  </a>
+  {% else %}
+    <h4>{{ value.person.first_name}} {{ value.person.last_name }}</h4>
+  {% endif %}
+</div>
+<div class="row row-centered">
+  <p>{{ value.person.area }}</p>
+</div>
