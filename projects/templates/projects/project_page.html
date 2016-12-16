@@ -39,33 +39,54 @@
     </div>
 </section>
 
-<div class="container">
-    <div class="contentwrapper text project_page_body">
+
         {% for block in self.body %}
             {% if block.block_type == 'heading' %}
-            <div class="project_page_block_heading">
-                <h2>{{ block.value }}</h2>
+            <div class="container">
+                <div class="contentwrapper text project_page_body">
+                    <div class="project_page_block_heading">
+                        <h2>{{ block.value }}</h2>
+                    </div>
+                </div>
             </div>
             {% endif %}
 
             {% if block.block_type == 'image' %}
-            <div class="project_page_block_image">
-                {% image block.value fill-800x600 as my_image %}
-                <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
+            <div class="container">
+                <div class="contentwrapper text project_page_body">
+                    <div class="project_page_block_image">
+                        {% image block.value fill-800x600 as my_image %}
+                        <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
+                    </div>
+                </div>
             </div>
             {% endif %}
 
             {% if block.block_type == 'video' %}
-            <div class="project_page_block_video">
-                <div class="embed-responsive embed-responsive-16by9">
-                    {{ block.value }}
+            <div class="container">
+                <div class="contentwrapper text project_page_body">
+                    <div class="project_page_block_video">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            {{ block.value }}
+                        </div>
+                    </div>
                 </div>
             </div>
             {% endif %}
 
             {% if block.block_type == 'paragraph' %}
-            <div class="project_page_block_paragraph">
-                {{ block.value }}
+            <div class="container">
+                <div class="contentwrapper text project_page_body">
+                    <div class="project_page_block_paragraph">
+                        {{ block.value }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if block.block_type == 'persons' %}
+            <div>
+            {{ block.value }}
             </div>
             {% endif %}
 

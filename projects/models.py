@@ -17,6 +17,7 @@ from wagtail.wagtailembeds.blocks import EmbedBlock
 
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
 from core import blocks as core_blocks
+from persons import models as persons_models
 
 from contrib.translations.translations import TranslatedField
 
@@ -27,6 +28,7 @@ STREAMFIELD_PROJECT_BLOCKS = [
     ('image', ImageChooserBlock(icon="image")),
     ('video', EmbedBlock(icon="media")),
     ('Raw_HTML', core_blocks.HTMLBlock()),
+    ('persons', persons_models.PersonListBlock()),
 ]
 
 

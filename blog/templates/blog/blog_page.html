@@ -86,6 +86,10 @@
     {{ block }}
     {% endif %}
 
+    {% if block.block_type == 'persons' %}
+    {{ block }}
+    {% endif %}
+
 {% endfor %}
 
 {% endblock %}

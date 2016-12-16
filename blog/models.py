@@ -22,6 +22,7 @@ from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from core.models import TranslatedStreamFieldPage
 from core.blocks import HTMLBlock
+from persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
 
@@ -32,6 +33,7 @@ STREAMFIELD_BLOG_BLOCKS = [
     ('image', ImageChooserBlock(icon="image")),
     ('video', EmbedBlock(icon="media")),
     ('Raw_HTML', HTMLBlock()),
+    ('persons', persons_models.PersonListBlock())
 ]
 
 
