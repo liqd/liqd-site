@@ -20,6 +20,7 @@ from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalKey
 
 from core import blocks
+from persons import models as persons_models
 
 from contrib.translations.translations import TranslatedField
 
@@ -42,6 +43,7 @@ STREAMFIELD_DEFAULT_BLOCKS = [
     ('project_teaser', blocks.ProjectTeaserBlock()),
     ('ThreeImageLinks', blocks.ThreeImageWithLinkBlock()),
     ('Raw_HTML', blocks.HTMLBlock()),
+    ('Person', persons_models.PersonListBlock())
 ]
 
 class TranslatedStreamFieldPage(Page):

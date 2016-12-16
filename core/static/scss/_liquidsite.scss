@@ -48,13 +48,36 @@
 	margin-bottom: 100px;
 }
 
+.person_list_grey {
+  padding-top: 7rem;
+  background-color: $highlight-section-color;
+}
+
+.person_list_white {
+  background-color: #fff;
+}
+
 .article_list {
 	margin-top: 50px;
 	margin-bottom: 100px;
 }
 
 .person_list_person {
-	margin-top: 60px;
+	margin-bottom: 80px;
+
+  h4 {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 0;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .no-image {
+    margin-top: 100px;
+  }
 }
 
 .person_list_choice {

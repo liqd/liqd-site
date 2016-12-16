@@ -172,3 +172,47 @@ PersonIndexPage.content_panels = [
 ]
 
 PersonIndexPage.promote_panels = Page.promote_panels
+    base_information_panels = [
+        FieldPanel('first_name'),
+        FieldPanel('last_name'),
+        FieldPanel('email'),
+        ImageChooserPanel('image'),
+    ]
+
+    en_content_panels = [
+        FieldPanel('motto_en'),
+        FieldPanel('area_en'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('motto_de'),
+        FieldPanel('area_de'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(base_information_panels, heading='Base Informations'),
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
+    ])
+
+
+class PersonDisplayBlock(core_blocks.StructBlock):
+    person = snippet_blocks.SnippetChooserBlock(
+        required=True, target_model=PersonSnippet)
+
+    class Meta:
+        template = 'persons/includes/person.html'
+
+
+class PersonListBlock(core_blocks.StructBlock):
+    title = core_blocks.CharBlock(classname="full title", required=False)
+    background = core_blocks.ChoiceBlock(choices=[
+        ('grey', 'grey'),
+        ('white', 'white'),
+    ])
+    personlist = core_blocks.ListBlock(PersonDisplayBlock)
+
+    class Meta:
+        template = 'persons/person_list.html'
+        icon = 'snippet'
+        label = 'Person Import'
