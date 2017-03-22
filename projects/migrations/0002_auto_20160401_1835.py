@@ -46,10 +46,6 @@ class Migration(migrations.Migration):
         ),
         migrations.RemoveField(
             model_name='projectpage',
-            name='project_staff',
-        ),
-        migrations.RemoveField(
-            model_name='projectpage',
             name='shorttext',
         ),
         migrations.RemoveField(

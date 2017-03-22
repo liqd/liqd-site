@@ -34,7 +34,6 @@ class Migration(migrations.Migration):
                 ('subtitle', models.CharField(max_length=255)),
                 ('shorttext', wagtail.wagtailcore.fields.RichTextField(max_length=300, blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, to='wagtailimages.Image', null=True)),
-                ('project_staff', models.ManyToManyField(to='persons.PersonPage', null=True, blank=True)),
             ],
             options={
                 'abstract': False,
