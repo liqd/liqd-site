@@ -4,6 +4,7 @@ wagtail==1.6.3
 django-bower==5.0.4
 django-libsass==0.3
 django-bleach==0.3.0
+bleach==1.4.3
 html5lib==0.9999999
 django-compressor==2.0
 

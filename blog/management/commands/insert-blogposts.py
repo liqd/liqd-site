@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
-import urllib2
+import bleach
+from urllib.request import urlopen
 
 from datetime import date
 from datetime import timedelta
 from datetime import datetime
 from time import strftime
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.models import ContentType
-from django.utils.encoding import smart_str, smart_unicode
+#from django.utils.encoding import smart_str, smart_unicode
 
 from blog.models import *
 
@@ -52,42 +52,62 @@ class Command(BaseCommand):
         links = []
 
         for i in generator:
-            url = "http://liqd.net/" + i[0].strftime("%Y/%m/")
+            url = "https://www-wp.liqd.net/" + i[0].strftime("%Y/%m/")
 
             try:
-                opener = urllib2.build_opener()
-                opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-                response = opener.open(url)
+                response = urlopen(url)
+                response.addheaders = [('User-agent', 'Mozilla/5.0')]
                 soup = BeautifulSoup(response)
                 headers = soup.findAll("h2", {"class": "entry-title"})
                 for header in headers:
                     link = header.findChildren('a')[0]['href']
-                    print link
                     links.append(link)
-            except:
+            except Exception as e:
                 pass
 
         blog_index = BlogIndexPage.objects.first()
 
         for index, link in enumerate(links):
-            opener = urllib2.build_opener()
-            opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-            response = opener.open(link)
+            response = urlopen(link)
+            response.addheaders = [('User-agent', 'Mozilla/5.0')]
             soup = BeautifulSoup(response)
             title = soup.findAll("h1", {"class": "entry-title"})
-            title = smart_str(title[0].string)
+            title = str(title[0].string)
             entry_date = soup.findAll("span", {"class": "entry-date"})
             entry_date = entry_date[0].string.replace(".", "").split(" ")
+
+
             entry_date = date(
-                int(entry_date[2]), months[entry_date[1].encode('utf8')], int(entry_date[0]))
+                int(entry_date[2]), months[entry_date[1]], int(entry_date[0]))
             entry_date = entry_date
             text = soup.findAll("div", {"class": "entry-content"})
             text = text[0].findChildren("p")
             result = ""
             for t in text:
-                result = result + smart_str(str(t))
+                result = result + str(str(t))
+
+            result = result + '<a href="' + link + '">' + link + '</a>'
+
+            clean_result = bleach.clean(result,
+                                        tags=[],
+                                        attributes={},
+                                        styles=[],
+                                        strip=True
+                                        )
+            subtitle_en = clean_result[0:100]
+            intro_en = clean_result[0:100]
+            title_en = title
+            result = [
+                {'type': 'paragraph', 'value': result
+
+            }]
+
+            result = json.dumps(result, ensure_ascii=False)
 
             slug = slugify(title)[:50] + str(index)
-            page = BlogPage(
-                title=title, date=entry_date, body=result, slug=slug)
-            blog_index.add_child(instance=page)
+            try:
+                page = BlogPage(
+                title=title, live=False, date=entry_date, body_en=result, title_en=title_en, subtitle_en=subtitle_en, intro_en=intro_en, slug=slug)
+                blog_index.add_child(instance=page)
+            except Exception as e:
+                pass
