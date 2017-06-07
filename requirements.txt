@@ -6,7 +6,6 @@ django-libsass==0.3
 django-bleach==0.3.0
 bleach==1.4.3
 html5lib==0.9999999
-django-compressor==2.0
 
 # Recommended components (require additional setup):
 # psycopg2==2.5.2
