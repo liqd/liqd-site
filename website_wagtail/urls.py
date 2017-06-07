@@ -1,7 +1,7 @@
 import os
 
 from django.conf import settings
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -12,20 +12,17 @@ from wagtail.wagtailsearch import urls as wagtailsearch_urls
 
 from core.feed import LatestEntriesFeed
 
-urlpatterns = patterns('',
-                       url(r'^django-admin/', include(admin.site.urls)),
+urlpatterns = [
+                url(r'^django-admin/', include(admin.site.urls)),
+                url(r'^admin/', include(wagtailadmin_urls)),
+                url(r'^documents/', include(wagtaildocs_urls))
+              ]
 
-                       url(r'^admin/', include(wagtailadmin_urls)),
-                       # url(r'^search/', include(wagtailsearch_urls)),
-                       url(r'^documents/', include(wagtaildocs_urls)),
-
-                       )
-
-urlpatterns += i18n_patterns('',
-                             url(r'^search/', include(wagtailsearch_urls)),
-                             url(r'^latest/feed/$', LatestEntriesFeed()),
-                             url(r'', include(wagtail_urls)),
-                             )
+urlpatterns += i18n_patterns(
+  url(r'^search/', include(wagtailsearch_urls)),
+  url(r'^latest/feed/$', LatestEntriesFeed()),
+  url(r'', include(wagtail_urls)),
+)
 
 
 if settings.DEBUG:
