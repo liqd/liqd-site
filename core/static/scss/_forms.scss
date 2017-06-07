@@ -10,8 +10,5 @@
     select {
         background: transparent;
         border: none !important;
-        @include appearance(0);
-        @include border-radius(0);
-        @include box-shadow(none);
     }
 }
