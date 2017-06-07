@@ -2,7 +2,7 @@ from django import template
 from django.core.urlresolvers import resolve
 from django.http import Http404
 
-from core.models import NavigationMenu
+from apps.core.models import NavigationMenu
 
 register = template.Library()
 

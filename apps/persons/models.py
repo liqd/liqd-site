@@ -1,21 +1,13 @@
 from django.db import models
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel, ObjectList,
+                                                TabbedInterface)
 from wagtail.wagtailcore import blocks as core_blocks
-from wagtail.wagtailsnippets import blocks as snippet_blocks
-from wagtail.wagtailsearch import index
-from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailadmin.edit_handlers import MultiFieldPanel
-from wagtail.wagtailadmin.edit_handlers import InlinePanel
-from django.shortcuts import render
-from django.template.loader import render_to_string
-from django.http import HttpResponse
-from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.wagtailsnippets import blocks as snippet_blocks
+from wagtail.wagtailsnippets.models import register_snippet
 
 from contrib.translations.translations import TranslatedField
-
 
 VORSTAND = 'Vorstand'
 PROJEKTMANAGEMENT = 'Projektmanagement'

@@ -1,6 +1,6 @@
 from django import template
 
-from blog.models import BlogPage
+from apps.blog.models import BlogPage
 
 register = template.Library()
 

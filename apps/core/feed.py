@@ -1,6 +1,6 @@
 from django.contrib.syndication.views import Feed
 
-from blog.models import BlogPage
+from apps.blog.models import BlogPage
 
 
 class LatestEntriesFeed(Feed):

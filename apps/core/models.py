@@ -11,9 +11,10 @@ from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailsnippets.models import register_snippet
 
+from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
-from core import blocks
-from persons import models as persons_models
+
+from . import blocks
 
 STREAMFIELD_DEFAULT_BLOCKS = [
     ('standard_paragraph', blocks.StandardParagraphBlock()),

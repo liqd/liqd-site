@@ -12,10 +12,10 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
+from apps.core.blocks import HTMLBlock
+from apps.core.models import TranslatedStreamFieldPage
+from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
-from core.blocks import HTMLBlock
-from core.models import TranslatedStreamFieldPage
-from persons import models as persons_models
 
 STREAMFIELD_BLOG_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),

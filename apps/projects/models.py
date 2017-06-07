@@ -1,26 +1,19 @@
 from django.db import models
-# from core import models
-from core.models import TranslatedStreamFieldPage
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailcore.models import Orderable
-from wagtail.wagtailsearch import index
-from modelcluster.fields import ParentalKey
-from wagtail.wagtailadmin.edit_handlers import InlinePanel
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailcore.fields import StreamField
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
+                                                ObjectList, StreamFieldPanel,
+                                                TabbedInterface)
 from wagtail.wagtailcore import blocks
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtail.wagtailcore.models import Page
 from wagtail.wagtailembeds.blocks import EmbedBlock
+from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailsearch import index
 
-from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
-from core import blocks as core_blocks
-from persons import models as persons_models
-
+from apps.core import blocks as core_blocks
+from apps.core.models import TranslatedStreamFieldPage
+from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
-
 
 STREAMFIELD_PROJECT_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),

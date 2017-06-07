@@ -1,7 +1,7 @@
 all: help
 
 VIRTUAL_ENV ?= .
-SOURCE_DIRS = blog core website_wagtail
+SOURCE_DIRS = apps website_wagtail
 
 help:
 	@echo Liquid Website development tools
