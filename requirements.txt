@@ -1,6 +1,6 @@
 # Minimal requirements
-Django==1.8.11
-wagtail==1.6.3
+Django==1.11
+wagtail==1.10.1
 django-bower==5.0.4
 django-libsass==0.3
 django-bleach==0.3.0
