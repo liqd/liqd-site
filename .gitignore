@@ -1,10 +1,14 @@
 *.pyc
 .DS_Store
 */settings/local.py
-static/CACHE/*
-static/.sass-cache/*
+/static/
 media/
 db.sqlite3
 .sass-cache/*
 *.mo
 /core/static/third-party/bower_components/
+/bin/*
+/lib/*
+/node_modules/*
+/share/*
+/pyvenv.cfg

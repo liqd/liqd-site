@@ -1,4 +1,4 @@
-{% load i18n compress static wagtailuserbar core_tags %}
+{% load i18n static wagtailuserbar core_tags %}
 
 
 <!DOCTYPE html>
@@ -21,9 +21,7 @@
         <link rel="stylesheet" href="{% static 'third-party/bower_components/font-awesome/css/font-awesome.min.css' %}">
         <link rel="stylesheet" href="{% static 'third-party/bower_components/slick-carousel/slick/slick.css' %}">
 
-        {% compress css %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/all.scss' %}">
-        {% endcompress %}
+        <link rel="stylesheet" href="{% static 'all.css' %}">
 
         {% block extra_css %}
 
@@ -54,12 +52,10 @@
             <script type="text/javascript" src="{% static 'third-party/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
         {% endblock %}
 
-        {% compress js %}
-            <script type="text/javascript" src="{% static 'third-party/smartresize.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/liquidsite.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/uparrow.js' %}"></script>
-        {% endcompress %}
+        <script type="text/javascript" src="{% static 'third-party/smartresize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/liquidsite.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/uparrow.js' %}"></script>
 
         {% block pages_js %}
         {% endblock %}

@@ -1,0 +1,54 @@
+{
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.0.0",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^7.1.1",
+    "babel-loader": "^6.2.2",
+    "babel-plugin-syntax-object-rest-spread": "^6.5.0",
+    "babel-plugin-transform-object-rest-spread": "^6.5.0",
+    "babel-polyfill": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-register": "^6.24.0",
+    "bootstrap-4": "^4.0.0",
+    "css-loader": "^0.27.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "node-libs-browser": "^1.0.0",
+    "node-sass": "^4.0.0",
+    "postcss-loader": "^2.0.5",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.0.0"
+  },
+  "scripts": {
+    "lint":"eslint core -c package.json && stylelint 'core/**/*.scss' --syntax scss",
+    "build": "webpack -p --progress --profile",
+    "watch": "webpack -p --progress --profile --watch",
+    "precommit": "make lint"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "indent": [
+      "error",
+      2
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}

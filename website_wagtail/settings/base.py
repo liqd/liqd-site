@@ -70,7 +70,6 @@ INSTALLED_APPS = (
     'wagtail.contrib.settings',
     'django_bleach',
 
-    'compressor',
     'taggit',
     'modelcluster',
     'djangobower',
