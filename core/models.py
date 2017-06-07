@@ -289,14 +289,3 @@ class NavigationMenu(ClusterableModel):
 
 class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('core.NavigationMenu', related_name='menu_items')
-
-
-
-@register_setting
-class LiqdSettings(BaseSetting):
-    liqd_preliminary_site = models.BooleanField(
-        default=False,
-        help_text="Phase One of the new site, this setting can be deleted when the full site is ready to go live",
-    )
-
-
