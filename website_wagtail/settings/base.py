@@ -87,10 +87,10 @@ INSTALLED_APPS = (
     'wagtail.wagtailforms',
     'wagtail.contrib.wagtailstyleguide',
 
-    'core',
-    'blog',
-    'persons',
-    'projects',
+    'apps.core.apps.CoreConfig',
+    'apps.blog.apps.BlogConfig',
+    'apps.persons.apps.PersonsConfig',
+    'apps.projects.apps.ProjectsConfig',
 )
 
 MIDDLEWARE_CLASSES = (
