@@ -8,7 +8,8 @@ const dev = JSON.parse(process.env.BUILD_DEV || 'false');
 module.exports = {
   entry: {
     vendor: [
-      'bootstrap',
+      'bootstrap/js/dist/collapse',
+      'jquery/dist/jquery.min.js',
     ],
     all: [
       './core/static/scss/all.scss',
@@ -69,5 +70,9 @@ module.exports = {
     }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /cs/),
     new ExtractTextPlugin('[name].css'),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    })
   ],
 };

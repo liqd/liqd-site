@@ -45,19 +45,10 @@
 
         {% include "footer.html" %}
 
+        <script type="text/javascript" src="{% static 'vendor.js' %}"></script>
+        <script type="text/javascript" src="{% static 'all.js' %}"></script>
+
         {% block extra_js %}
-            <script type="text/javascript" src="{% static 'third-party/bower_components/jquery/dist/jquery.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'third-party/modernizr-custom.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'third-party/bower_components/slick-carousel/slick/slick.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'third-party/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
-        {% endblock %}
-
-        <script type="text/javascript" src="{% static 'third-party/smartresize.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/liquidsite.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/uparrow.js' %}"></script>
-
-        {% block pages_js %}
         {% endblock %}
 
     </body>
