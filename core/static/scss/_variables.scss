@@ -1,3 +1,5 @@
+$black: #101010;
+
 $body-bg: #fbfbfb;
 $body-color: #060606;
 $inverse-bg: $body-color;
@@ -11,8 +13,8 @@ $font-size-base: 1.4375rem; // Assumes the browser default, typically `16px`
 $font-size-lg: 1.4375rem;
 $font-size-sm: 1rem;
 $font-size-xs: .8rem;
-
 $line-height-base: 1.4;
+
 
 $headings-margin-bottom: 4em;
 
@@ -34,3 +36,5 @@ $container-max-widths: (
     lg: 41.7em,
     xl: 41.7em
 );
+
+$transition-duration: 0.3s;
