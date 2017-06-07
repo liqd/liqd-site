@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 import os
 from os.path import abspath, dirname, join
+
+from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
@@ -149,7 +151,6 @@ LIBSASS_SOURCEMAPS = True
 
 # Template configuration
 
-from django.conf import global_settings
 
 
 

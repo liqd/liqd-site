@@ -32,11 +32,7 @@
 
         {% wagtailuserbar 'top-right' %}
 
-        {% if settings.core.LiqdSettings.liqd_preliminary_site %}
-            {% include "navbar-simple.html" %}
-        {% else %}
-            {% include "navbar.html" %}
-        {% endif %}
+        {% include "navbar-simple.html" %}
 
         <div class="content">
             {% block content %}

@@ -1,24 +1,18 @@
 import json
-import bleach
+from datetime import date, timedelta
 from urllib.request import urlopen
 
-from datetime import date
-from datetime import timedelta
-from datetime import datetime
-from time import strftime
+import bleach
 from bs4 import BeautifulSoup
-
-from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.template.defaultfilters import slugify
-from django.contrib.contenttypes.models import ContentType
-#from django.utils.encoding import smart_str, smart_unicode
 
-from blog.models import *
+from blog.models import BlogIndexPage, BlogPage
 
 
 class Command(BaseCommand):
-    help = u'Collects all Blogposts from the old websites and imports to new website'
+    help = u'Collects all Blogposts'
+    ' from the old websites and imports to new website'
 
     def enumerate_month_dates(self, start_date, end_date):
         current = start_date
@@ -77,7 +71,6 @@ class Command(BaseCommand):
             entry_date = soup.findAll("span", {"class": "entry-date"})
             entry_date = entry_date[0].string.replace(".", "").split(" ")
 
-
             entry_date = date(
                 int(entry_date[2]), months[entry_date[1]], int(entry_date[0]))
             entry_date = entry_date
@@ -101,14 +94,21 @@ class Command(BaseCommand):
             result = [
                 {'type': 'paragraph', 'value': result
 
-            }]
+                 }]
 
             result = json.dumps(result, ensure_ascii=False)
 
             slug = slugify(title)[:50] + str(index)
             try:
                 page = BlogPage(
-                title=title, live=False, date=entry_date, body_en=result, title_en=title_en, subtitle_en=subtitle_en, intro_en=intro_en, slug=slug)
+                    title=title,
+                    live=False,
+                    date=entry_date,
+                    body_en=result,
+                    title_en=title_en,
+                    subtitle_en=subtitle_en,
+                    intro_en=intro_en,
+                    slug=slug)
                 blog_index.add_child(instance=page)
-            except Exception as e:
+            except Exception:
                 pass
