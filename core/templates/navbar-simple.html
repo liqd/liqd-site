@@ -29,14 +29,14 @@
                 {% if LANGUAGE_CODE == 'de' %}
                     <span class="nav-link active">De</span>
                 {% else %}
-                    <a class="nav-link" href="{% translate_url 'de' %}">De</a>
+                    <a class="nav-link header__link" href="{% translate_url 'de' %}">De</a>
                 {% endif %}
             </li>
             <li class="select-lang nav-item hidden-xs-down">
                 {% if LANGUAGE_CODE == 'en' %}
                     <span class="nav-link active">En</span>
                 {% else %}
-                    <a class="nav-link" href="{% translate_url 'en' %}">En</a>
+                    <a class="nav-link header__link" href="{% translate_url 'en' %}">En</a>
                 {% endif %}
             </li>
 
@@ -51,19 +51,6 @@
             </li>
 
         </ul>
-
-        <ul class="hidden-sm hidden-md hidden-lg footer-nav">
-            {% for menuitem in footer_menu_items %}
-                <li><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><a href="{{ menuitem.url }}">{{ menuitem.translated_menu_title }}</a></li>
-            {% endfor %}
-        </ul>
-
-        <div class="social-sites hidden-sm hidden-md hidden-lg">
-            <a href="https://www.facebook.com/LiquidDemocracy.eV" target="_blank"><i class="fa fa-facebook"></i></a>
-            <a href="https://twitter.com/liqd_de" target="_blank"><i class="fa fa-twitter"></i></a>
-            <a href="https://vimeo.com/liqd/videos" target="_blank"><i class="fa fa-vimeo-square"></i></a>
-            <a href="https://github.com/liqd" target="_blank"><i class="fa fa-github"></i></a>
-        </div>
 
     </div>
 </nav>
