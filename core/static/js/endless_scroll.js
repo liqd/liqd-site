@@ -1,3 +1,4 @@
+/* not needed for now
 var count = 2;
 $(window).scroll(function(){
     if  (($(window).scrollTop() >= $(document).height() - $(window).height() - 65) && count <= number_pages){
@@ -16,3 +17,4 @@ $(window).scroll(function(){
         return false;
     }
 });
+*/
