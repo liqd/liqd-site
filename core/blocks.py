@@ -1,15 +1,7 @@
-from wagtail.wagtailcore.blocks import StructBlock
-from wagtail.wagtailcore.blocks import ListBlock
-
-from wagtail.wagtailcore.blocks import CharBlock
-from wagtail.wagtailcore.blocks import URLBlock
-from wagtail.wagtailcore.blocks import RichTextBlock
-from wagtail.wagtailcore.blocks import ChoiceBlock
-from wagtail.wagtailcore.blocks import PageChooserBlock
-from wagtail.wagtailcore.blocks import RawHTMLBlock
+from wagtail.wagtailcore.blocks import (CharBlock, ChoiceBlock, ListBlock,
+                                        PageChooserBlock, RawHTMLBlock,
+                                        RichTextBlock, StructBlock, URLBlock)
 from wagtail.wagtailimages.blocks import ImageChooserBlock
-
-from wagtail.wagtailimages import blocks
 
 
 class StandardParagraphBlock(StructBlock):
@@ -32,7 +24,8 @@ class HTMLBlock(StructBlock):
         template = 'blocks/block_html.html'
         icon = 'code'
         label = 'HTML Block'
-        help_text = 'Unfiltered HTML block with optional heading. Be sure you know what you do!'
+        help_text = 'Unfiltered HTML block with '
+        'optional heading. Be sure you know what you do!'
 
 
 class HighlightParagraphBlock(StructBlock):
@@ -58,7 +51,8 @@ class QuoteParagraph(StructBlock):
     )
     image = ImageChooserBlock(
         required=False,
-        help_text='Please use an image with at least 800x400px or a similar aspect ratio.'
+        help_text='Please use an image with'
+        ' at least 800x400px or a similar aspect ratio.'
     )
     author = CharBlock(required=False, length=256)
 
@@ -66,7 +60,8 @@ class QuoteParagraph(StructBlock):
         template = 'blocks/block_quote_paragraph_image.html'
         icon = 'pilcrow'
         label = 'Quote Paragraph'
-        help_text = 'Centered text (set quotemarks manually) with background color or background image and optional author field.'
+        help_text = 'Centered text (set quotemarks manually)'
+        ' with background color or background image and optional author field.'
 
 
 class ColumnBlock(StructBlock):
@@ -94,7 +89,8 @@ class ImageSliderBlock(ListBlock):
         template = 'blocks/block_carousel.html'
         icon = 'image'
         label = 'Image Slider'
-        help_text = 'Responsive image slider (weipe on mobile). Please choose 4 images.'
+        help_text = 'Responsive image slider '
+        '(weipe on mobile). Please choose 4 images.'
 
 
 class LinkwithTitleBlock(StructBlock):
@@ -131,7 +127,9 @@ class LinkboxBlock(StructBlock):
         template = 'blocks/block_linkbox.html'
         icon = 'link'
         label = 'Link Box'
-        help_text = 'Section with gray background, optional text/heading and arbitrary amount of links. Use as link box e.g. with job offers.'
+        help_text = 'Section with gray background, '
+        'optional text/heading and arbitrary amount of links. '
+        'Use as link box e.g. with job offers.'
 
 
 class ProjectTeaserBlock(StructBlock):
@@ -146,4 +144,5 @@ class ProjectTeaserBlock(StructBlock):
         template = 'blocks/block_project_teaser.html'
         icon = 'placeholder'
         label = 'Project Teaser'
-        help_text = 'Use as project teaser, internal link to project page, external link to project URL.'
+        help_text = 'Use as project teaser, internal'
+        ' link to project page, external link to project URL.'
