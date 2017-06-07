@@ -1,7 +1,7 @@
 *.pyc
 .DS_Store
 */settings/local.py
-static/
+/static/
 media/
 db.sqlite3
 .sass-cache/*
