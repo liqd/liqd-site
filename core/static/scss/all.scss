@@ -1,16 +1,16 @@
-// FIXME: Figure out how to use SASS version rather than compilied one
-@import "scss/variables";
-@import "scss/bootstrap";
-@import "scss/mixins";
-@import "scss/elements";
-@import "scss/blocks";
-@import "scss/pageheader";
-@import "scss/forms";
-@import "scss/buttons";
-@import "scss/textpage";
-@import "scss/projects";
-@import "scss/blog";
-@import "scss/mainmenu";
-@import "scss/footer";
-@import "scss/liquidsite";
-@import "scss/errorpages";
+@import "variables";
+@import "bootstrap";
+@import "mixins";
+
+@import "elements";
+@import "blocks";
+@import "pageheader";
+@import "forms";
+@import "buttons";
+@import "textpage";
+@import "projects";
+@import "blog";
+@import "mainmenu";
+@import "footer";
+@import "liquidsite";
+@import "errorpages";
