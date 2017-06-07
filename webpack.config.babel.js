@@ -12,8 +12,8 @@ module.exports = {
       'jquery/dist/jquery.min.js',
     ],
     all: [
-      './core/static/scss/all.scss',
-      './core/static/js/app.js',
+      './apps/core/static/scss/all.scss',
+      './apps/core/static/js/app.js',
     ],
   },
 
