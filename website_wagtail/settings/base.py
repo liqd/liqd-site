@@ -23,7 +23,22 @@ SECRET_KEY = '49q9cm=n7lbzn7$rr(oekk=s7ymk49t+40-791ywdaxb8u#dzj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATES = [
+{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [os.path.join(BASE_DIR,'templates')],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'debug' : DEBUG,
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+            'wagtail.contrib.settings.context_processors.settings',
+        ],
+    },
+},]
 
 ALLOWED_HOSTS = []
 
@@ -136,10 +151,7 @@ LIBSASS_SOURCEMAPS = True
 
 from django.conf import global_settings
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-    'wagtail.contrib.settings.context_processors.settings',
-)
+
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'core', 'static', 'third-party')
 BOWER_INSTALLED_APPS = (

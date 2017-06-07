@@ -146,10 +146,10 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
 
     subpage_types = ['projects.ProjectPage']
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro_de'),
         index.SearchField('intro_en'),
-    )
+    ]
 
     class Meta:
         verbose_name = 'ProjectIndexPage'
