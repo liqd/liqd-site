@@ -1,6 +1,5 @@
 from .base import *
 
-
 # Disable debug mode
 
 DEBUG = False

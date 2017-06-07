@@ -1,5 +1,7 @@
 from django.contrib.syndication.views import Feed
+
 from blog.models import BlogPage
+
 
 class LatestEntriesFeed(Feed):
     title = "Liquid Democracy Blogposts"

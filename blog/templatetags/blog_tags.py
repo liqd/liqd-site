@@ -1,7 +1,9 @@
 from django import template
+
 from blog.models import BlogPage
 
 register = template.Library()
+
 
 @register.inclusion_tag('blog/tags/blogentries.html', takes_context=True)
 def blog_entries(context):
