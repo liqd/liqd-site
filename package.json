@@ -31,7 +31,8 @@
   },
   "scripts": {
     "build": "webpack -p --progress --profile",
-    "watch": "webpack -p --progress --profile --watch"
+    "watch": "webpack -p --progress --profile --watch",
+    "precommit": "eslint core -c package.json && stylelint 'euth_wagtail/assets/scss/**/*.scss' --syntax scss"
   },
   "eslintConfig": {
     "extends": "standard",
