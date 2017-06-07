@@ -30,9 +30,10 @@
     "webpack": "^2.0.0"
   },
   "scripts": {
+    "lint":"eslint core -c package.json && stylelint 'core/**/*.scss' --syntax scss",
     "build": "webpack -p --progress --profile",
     "watch": "webpack -p --progress --profile --watch",
-    "precommit": "eslint core -c package.json && stylelint 'core/**/*.scss' --syntax scss"
+    "precommit": "make lint"
   },
   "eslintConfig": {
     "extends": "standard",
