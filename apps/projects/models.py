@@ -11,7 +11,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 
 from apps.core import blocks as core_blocks
-from apps.core.models import TranslatedStreamFieldPage
+from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
