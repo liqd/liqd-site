@@ -2,3 +2,17 @@ html {
     // push content down because of fixed header
     padding-top: 3.4em;
 }
+
+input[type="submit"],
+input[type="button"],
+button {
+    border: 0;
+    padding: 0;
+
+    background-color: transparent;
+    border-radius: 0;
+
+    font-family: inherit;
+
+    appearance: none;
+}
