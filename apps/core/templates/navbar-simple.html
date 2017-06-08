@@ -7,14 +7,14 @@
 {% get_available_languages as languages %}
 
 <nav id="mainmenu" class="header navbar navbar-toggleable-sm">
-    <a class="navbar-brand" href="/{{LANGUAGE_CODE}}/">Liquid Democracy e.V.</a>
+    <a class="header__brand navbar-brand" href="/{{LANGUAGE_CODE}}/">Liquid Democracy e.V.</a>
     <button type="button" class="header__bar__toggle navbar-toggler" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false">
         <span class="sr-only">Navigation an/aus</span>
         <span class="header__bar-icon header__bar-icon--first"></span>
         <span class="header__bar-icon header__bar-icon--second"></span>
         <span class="header__bar-icon header__bar-icon--third"></span>
     </button>
-    <div class="navbar-collapse collapse" id="navbar-main">
+    <div class="header__menu navbar-collapse collapse" id="navbar-main">
         <ul class="navbar-nav">
 
             {% for menuitem in main_menu_items %}
@@ -24,21 +24,6 @@
                     </a>
                 </li>
             {% endfor %}
-
-            <li class="select-lang nav-item hidden-xs-down">
-                {% if LANGUAGE_CODE == 'de' %}
-                    <span class="nav-link active">De</span>
-                {% else %}
-                    <a class="nav-link header__link" href="{% translate_url 'de' %}">De</a>
-                {% endif %}
-            </li>
-            <li class="select-lang nav-item hidden-xs-down">
-                {% if LANGUAGE_CODE == 'en' %}
-                    <span class="nav-link active">En</span>
-                {% else %}
-                    <a class="nav-link header__link" href="{% translate_url 'en' %}">En</a>
-                {% endif %}
-            </li>
 
             <li class="hidden-sm-up">
                 <div id="select-lang-mobile" class="styled-select">
@@ -51,6 +36,26 @@
             </li>
 
         </ul>
-
+        <div class="lang-switch hidden-xs-down" id="lang-switch">
+            <button class="lang-switch__active">
+                {{ LANGUAGE_CODE }}
+            </button>
+            <ul class="lang-switch__list">
+                <li>
+                    <a class="lang-switch__link header__link"
+                       href="{% translate_url 'de' %}"
+                       {% if LANGUAGE_CODE == 'de' %}aria-selected="true"{% endif %}>
+                        Deutsch
+                    </a>
+                </li>
+                <li>
+                    <a class="lang-switch__link header__link"
+                       href="{% translate_url 'en' %}"
+                       {% if LANGUAGE_CODE == 'en' %}aria-selected="true"{% endif %}>
+                        English
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

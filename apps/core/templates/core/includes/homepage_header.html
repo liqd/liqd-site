@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
+
+<section class="container">
+    <h1>{{ page.translated_heading1 }}</h1>
+    <h1>{{ page.translated_heading2 }}</h1>
+    {{ page.translated_intro|richtext }}
+</section>

@@ -1,5 +1,21 @@
+.header {
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+}
+
 .header__link {
     text-decoration: none;
+}
+
+.header__brand {
+    position: absolute;
+    left: 1.7em;
+}
+
+.header__menu {
+    justify-content: center;
 }
 
 .header__bar-icon {
