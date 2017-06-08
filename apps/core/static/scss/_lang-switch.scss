@@ -14,6 +14,7 @@
 }
 
 .lang-switch__list {
+    display: none;
     padding: 0;
     margin: 0 1em 0 0;
 
@@ -22,4 +23,13 @@
     top: 0;
 
     list-style: none;
+
+    transition: transform $transition-duration, opacity $transition-duration - 0.05;
+    opacity: 0;
+    transform: translateX(1.5em);
+}
+
+.lang-switch__list--active {
+    transform: translateX(0);
+    opacity: 1;
 }
