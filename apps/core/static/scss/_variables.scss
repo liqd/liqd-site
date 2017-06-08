@@ -14,7 +14,7 @@ $font-family-base: 'Plantin', 'Times New Roman', serif;
 $font-size-base: 1.4375rem; // Assumes the browser default, typically `16px`
 $font-size-lg: 1.4375rem;
 $font-size-sm: 1rem;
-$font-size-xs: .8rem;
+$font-size-xs: 0.8rem;
 $line-height-base: 1.4;
 
 $headings-margin-bottom: 4em;
@@ -24,11 +24,11 @@ $lead-font-weight: 400;
 
 $grid-gutter-width-base: 2.6em;
 $grid-gutter-widths: (
-  xs: $grid-gutter-width-base / 2,
-  sm: $grid-gutter-width-base / 2,
-  md: $grid-gutter-width-base,
-  lg: $grid-gutter-width-base,
-  xl: $grid-gutter-width-base
+    xs: $grid-gutter-width-base / 2,
+    sm: $grid-gutter-width-base / 2,
+    md: $grid-gutter-width-base,
+    lg: $grid-gutter-width-base,
+    xl: $grid-gutter-width-base
 );
 
 $container-max-widths: (

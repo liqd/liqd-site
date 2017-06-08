@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 from django.template.defaultfilters import slugify
 
-from blog.models import BlogIndexPage, BlogPage
+from apps.blog.models import BlogIndexPage, BlogPage
 
 
 class Command(BaseCommand):
