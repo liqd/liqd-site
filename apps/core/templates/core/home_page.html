@@ -12,7 +12,10 @@
 
 {% block content %}
 
-{% include "core/includes/homepage_header.html" %}
+<section class="container">
+    {{ page.translated_intro|richtext }}
+</section>
+
 
 {% for block in page.body %}
     {% if block.block_type == 'project_teaser' %}
