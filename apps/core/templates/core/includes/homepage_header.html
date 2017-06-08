@@ -3,14 +3,7 @@
 {% load static %}
 
 <section class="container">
-	<div class="contentwrapper text">
-		<div class="header homepage-header">
-			<div class="icon icon_1"></div>
-			<h1>{{ page.translated_heading1 }}</h1>
-			<h1>{{ page.translated_heading2 }}</h1>
-			{{ page.translated_intro|richtext }}
-			<div class="icon icon_2"></div>
-			<div class="icon icon_3"></div>
-		</div>
-	</div>
+    <h1>{{ page.translated_heading1 }}</h1>
+    <h1>{{ page.translated_heading2 }}</h1>
+    {{ page.translated_intro|richtext }}
 </section>
