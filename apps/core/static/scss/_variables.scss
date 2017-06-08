@@ -10,8 +10,9 @@ $link-decoration: underline;
 $link-hover-color: lighten($link-color, 15%);
 
 $font-family-base: 'Plantin', 'Times New Roman', serif;
+$font-family-monospace:  'Favorit', monospace ;
 
-$font-size-base: 1.4375rem; // Assumes the browser default, typically `16px`
+$font-size-base: 1.4375rem; // Assumes the browser default, 23px
 $font-size-lg: 1.4375rem;
 $font-size-sm: 1rem;
 $font-size-xs: 0.8rem;

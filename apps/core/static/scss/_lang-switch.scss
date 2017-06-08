@@ -1,0 +1,35 @@
+.lang-switch {
+    position: absolute;
+    right: 1.7em;
+}
+
+.lang-switch__active {
+    text-transform: uppercase;
+}
+
+.lang-switch__active,
+.lang-switch__link {
+    font-family: $font-family-monospace;
+    font-size: $font-size-xs;
+}
+
+.lang-switch__list {
+    display: none;
+    padding: 0;
+    margin: 0 1em 0 0;
+
+    position: absolute;
+    right: 100%;
+    top: 0;
+
+    list-style: none;
+
+    transition: transform $transition-duration, opacity $transition-duration - 0.05;
+    opacity: 0;
+    transform: translateX(1.5em);
+}
+
+.lang-switch__list--active {
+    transform: translateX(0);
+    opacity: 1;
+}
