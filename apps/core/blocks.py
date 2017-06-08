@@ -132,17 +132,13 @@ class LinkboxBlock(StructBlock):
         'Use as link box e.g. with job offers.'
 
 
-class ProjectTeaserBlock(StructBlock):
+class ProjectBlock(StructBlock):
+    project = PageChooserBlock(target_model='projects.ProjectPage')
 
-    translated_title = CharBlock(required=False, length=256)
-    translated_shorttext = RichTextBlock(required=True)
-    image = ImageChooserBlock(icon="image")
-    internal_link = PageChooserBlock(required=False)
-    external_url = URLBlock(required=False, length=256)
+
+class TeaseredProjectsBlock(StructBlock):
+    headline = CharBlock(required=False, length=256)
+    projects = ListBlock(ProjectBlock)
 
     class Meta:
-        template = 'blocks/block_project_teaser.html'
-        icon = 'placeholder'
-        label = 'Project Teaser'
-        help_text = 'Use as project teaser, internal'
-        ' link to project page, external link to project URL.'
+        template = 'blocks/teasered_projects_block.html'
