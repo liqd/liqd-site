@@ -13,7 +13,7 @@ from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from apps.core.blocks import HTMLBlock
-from apps.core.models import TranslatedStreamFieldPage
+from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
