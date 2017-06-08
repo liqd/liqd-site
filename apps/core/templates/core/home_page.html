@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static i18n core_tags projects_tags blog_tags %}
+{% load static i18n wagtailcore_tags wagtailimages_tags core_tags projects_tags blog_tags %}
 
 {% block fb_meta_tags %}
 	<meta property="og:type" content="website" />
@@ -22,5 +22,54 @@
 {% endfor %}
 
 {% blog_entries %}
+
+<div class="container">
+
+<div class="row">
+    <div class="col-lg-6">
+    {% if settings.core.AddressSettings %}
+
+    <div>{{ settings.core.AddressSettings.organisation_name }}</div>
+    <div>{{ settings.core.AddressSettings.organisation_street }}</div>
+    <div>{{ settings.core.AddressSettings.postalcode }}</div>
+
+    {% if settings.core.AddressSettings.telephone_number %}
+    <div>{{ settings.core.AddressSettings.telephone_number }}</div>
+    {% endif %}
+
+    {% if settings.core.AddressSettings.email_address %}
+    <div>{{ settings.core.AddressSettings.email_address }}</div>
+    {% endif %}
+
+
+    {% endif %}
+
+
+    {% if settings.core.SocialMediaSettings %}
+    {% if settings.core.SocialMediaSettings.facebook %}
+    <a href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a>
+    {% endif %}
+
+    {% if settings.core.SocialMediaSettings.twitter %}
+    <a href="https://twitter.com/{{settings.core.SocialMediaSettings.twitter}}">Twitter</a>
+    {% endif %}
+
+    {% if settings.core.SocialMediaSettings.github %}
+    <a href="{{settings.core.SocialMediaSettings.github}}">Github</a>
+    {% endif %}
+
+    {% if settings.core.SocialMediaSettings.vimeo %}
+    <a href="{{settings.core.SocialMediaSettings.vimeo}}">Vimeo</a>
+    {% endif %}
+
+    {% endif %}
+    <div class="col-lg-6">
+    {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
+    {% image settings.core.AddressSettings.image height-500 %}
+    {% endif %}
+
+    </div>
+</div>
+
 
 {% endblock %}
