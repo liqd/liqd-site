@@ -8,7 +8,8 @@ const dev = JSON.parse(process.env.BUILD_DEV || 'false');
 module.exports = {
   entry: {
     vendor: [
-      'bootstrap',
+      'bootstrap/js/dist/collapse',
+      'jquery/dist/jquery.min.js',
     ],
     all: [
       './apps/core/static/scss/all.scss',
@@ -43,7 +44,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' }),
       },
       {
-        test: /\.(woff2?|ttf|eot|svg|jpg|png|gif|swf)(\?.*)?$/,
+        test: /\.(woff2?|ttf|eot|svg|jpg|png|gif|swf|otf)(\?.*)?$/,
         loader: 'file-loader',
       },
       {
@@ -69,5 +70,9 @@ module.exports = {
     }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /cs/),
     new ExtractTextPlugin('[name].css'),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    })
   ],
 };

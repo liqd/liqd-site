@@ -1,0 +1,29 @@
+.header__link {
+    text-decoration: none;
+}
+
+.header__bar-icon {
+    display: block;
+    width: 0.9em;
+    height: 1px;
+    margin-bottom: 0.25em;
+
+    background-color: $black;
+
+    transform-origin: 50% 50%;
+    transition: transform $transition-duration, opacity $transition-duration;
+}
+
+.header__bar__toggle:hover {
+    .header__bar-icon--first {
+        transform: translateY(10px) rotateZ(-45deg);
+    }
+
+    .header__bar-icon--second {
+        opacity: 0;
+    }
+
+    .header__bar-icon--third {
+        transform: translateY(-4px) rotateZ(45deg);
+    }
+}
