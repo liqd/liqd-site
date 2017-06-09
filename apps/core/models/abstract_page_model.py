@@ -27,7 +27,7 @@ STREAMFIELD_DEFAULT_BLOCKS = [
                                       ' 4 images.')),
     ('columns', blocks.ColumnBlock()),
     ('linkbox', blocks.LinkboxBlock()),
-    ('project_teaser', blocks.ProjectTeaserBlock()),
+    ('projects', blocks.TeaseredProjectsBlock()),
     ('ThreeImageLinks', blocks.ThreeImageWithLinkBlock()),
     ('Raw_HTML', blocks.HTMLBlock()),
     ('Person', persons_models.PersonListBlock())

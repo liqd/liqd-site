@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static i18n core_tags projects_tags blog_tags %}
+{% load static i18n wagtailcore_tags wagtailimages_tags core_tags projects_tags blog_tags %}
 
 {% block fb_meta_tags %}
 	<meta property="og:type" content="website" />
@@ -12,16 +12,66 @@
 
 {% block content %}
 
-{% include "core/includes/homepage_header.html" %}
+<section class="container">
+    <div class="lead">
+        {{ page.translated_intro|richtext }}
+    </div>
+</section>
+
 
 {% for block in page.body %}
-    {% if block.block_type == 'project_teaser' %}
-    	{% project_teaser block.value request %}
-    {% else %}
-        {{ block }}
-    {% endif %}
+    {{ block }}
 {% endfor %}
 
 {% blog_entries %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-5">
+            {% if settings.core.AddressSettings %}
+                <p>
+                    {{ settings.core.AddressSettings.organisation_name }}<br>
+                    {{ settings.core.AddressSettings.organisation_street }}<br>
+                    {{ settings.core.AddressSettings.postalcode }}<br>
+
+                    {% if settings.core.AddressSettings.telephone_number %}
+                    {{ settings.core.AddressSettings.telephone_number }}<br>
+                    {% endif %}
+
+                    {% if settings.core.AddressSettings.email_address %}
+                    {{ settings.core.AddressSettings.email_address }}
+                    {% endif %}
+                </p>
+            {% endif %}
+
+            {% if settings.core.SocialMediaSettings %}
+                <p>
+                    {% if settings.core.SocialMediaSettings.facebook %}
+                    <a href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a><br>
+                    {% endif %}
+
+                    {% if settings.core.SocialMediaSettings.twitter %}
+                    <a href="https://twitter.com/{{settings.core.SocialMediaSettings.twitter}}">Twitter</a><br>
+                    {% endif %}
+
+                    {% if settings.core.SocialMediaSettings.github %}
+                    <a href="{{settings.core.SocialMediaSettings.github}}">Github</a><br>
+                    {% endif %}
+
+                    {% if settings.core.SocialMediaSettings.vimeo %}
+                    <a href="{{settings.core.SocialMediaSettings.vimeo}}">Vimeo</a>
+                    {% endif %}
+                </p>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-7">
+            {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
+                {% image settings.core.AddressSettings.image height-500 %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -1,30 +1,12 @@
-{% load wagtailimages_tags %}
-{% load wagtailcore_tags %}
-{% load static i18n %}
+{% load i18n wagtailcore_tags wagtailimages_tags %}
 
-{% get_current_language as LANGUAGE_CODE %}
-
-{% load wagtailsettings_tags %}
-{% get_settings use_default_site=True %}
-
-<section class="contentwrapper fullwidth collapse-mt">
-	{% image teaser.image fill-950x450-c100 as bg %}
-	<div class="teaser project-teaser" style="background-image: url({{ bg.url }})">
-		<div class="container inner">
-			{{ teaser.translated_shorttext|richtext }}
-			<h2>{{ teaser.translated_title }}</h2>
-			<div class="links">
-				{% if teaser.external_url %}
-					<a href="{{ teaser.external_url }}" class="button button-white" target="_blank">www</a>
-				{% endif %}
-					{% if teaser.internal_link %}
-						{# this is used when including a projectTeaser block in a streamfield: target page is set through PageChooser #}
-						<a href="{% pageurl teaser.internal_link %}" class="button button-white project-link">Details</a>
-					{% elif teaser.slug %}
-						{# used when project teaser is included in the project index page: target page is the slug of the project page object #}
-						<a href="{% pageurl teaser %}" class="button button-white project-link">Details</a>
-					{% endif %}
-			</div>
-		</div>
-	</div>
-</section>
+<div class="row">
+    <div class="{% if number %} pull-right {% else %} pull-left {% endif %}">
+        {% image project.image height-500 %}
+        {{ project.translated_title }}
+        <a href="{% pageurl project %}">{% trans 'Details' %}</a>
+        {% if project.external_url %}
+        <a href="{{ project.external_url }}">{% trans 'Website' %}</a>
+        {% endif %}
+    </div>
+</div>
