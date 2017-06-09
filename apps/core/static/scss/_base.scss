@@ -3,6 +3,11 @@ html {
     padding-top: 3.4em;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 input[type="submit"],
 input[type="button"],
 button {
