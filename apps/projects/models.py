@@ -17,7 +17,6 @@ from .blocks import FactListBlock
 from contrib.translations.translations import TranslatedField
 
 STREAMFIELD_PROJECT_BLOCKS = [
-    ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
     ('video', EmbedBlock(icon="media")),
