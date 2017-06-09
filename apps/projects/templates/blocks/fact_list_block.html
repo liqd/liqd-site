@@ -1,0 +1,8 @@
+<div class="container">
+    <dl class="fact-list">
+        {% for item in value.facts %}
+            <dt>{{ item.label }}:</dt>
+            <dd>{{ item.fact }}</dd>
+        {% endfor %}
+    </dl>
+</div>

@@ -13,6 +13,7 @@ from wagtail.wagtailsearch import index
 from apps.core import blocks as core_blocks
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from apps.persons import models as persons_models
+from .blocks import FactListBlock
 from contrib.translations.translations import TranslatedField
 
 STREAMFIELD_PROJECT_BLOCKS = [
@@ -49,9 +50,11 @@ class ProjectPage(Page):
         max_length=300, blank=True, default="", verbose_name="Teasertext")
 
     body_de = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True, verbose_name="Body")
+        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        null=True, blank=True, verbose_name="Body")
     body_en = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS, null=True, verbose_name="Body")
+        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        null=True, verbose_name="Body")
 
     body = TranslatedField(
         'body_de',
