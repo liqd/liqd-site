@@ -28,7 +28,7 @@
 <div class="container">
 
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-sm-5">
         {% if settings.core.AddressSettings %}
             <p>
                 {{ settings.core.AddressSettings.organisation_name }}<br>
@@ -64,12 +64,12 @@
                 {% endif %}
             </p>
         {% endif %}
+    </div>
 
-        <div class="col-lg-7">
-            {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
-                {% image settings.core.AddressSettings.image height-500 %}
-            {% endif %}
-        </div>
+    <div class="col-sm-7">
+        {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
+            {% image settings.core.AddressSettings.image height-500 %}
+        {% endif %}
     </div>
 </div>
 
