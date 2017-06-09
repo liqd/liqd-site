@@ -87,6 +87,8 @@ class ProjectPage(Page):
         null=True,
         related_name='+'
     )
+    color1 = models.CharField(max_length=7, default='#d9b058')
+    color2 = models.CharField(max_length=7, default='#a37146')
 
     external_url = models.URLField(max_length=200, blank=True)
 
@@ -126,7 +128,7 @@ class ProjectPage(Page):
     edit_handler = TabbedInterface([
         ObjectList(en_content_panels, heading='English'),
         ObjectList(de_content_panels, heading='German'),
-        ObjectList(common_panels, heading='Image and Url'),
+        ObjectList(common_panels, heading='Appearance'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
