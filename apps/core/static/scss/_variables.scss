@@ -18,7 +18,8 @@ $font-size-sm: 1rem;
 $font-size-xs: 0.8rem;
 $line-height-base: 1.4;
 
-$headings-margin-bottom: 4em;
+$spacer-v: 4em;
+$headings-margin-bottom: $spacer-v;
 
 $lead-font-size: 1.78rem;
 $lead-font-weight: 400;
