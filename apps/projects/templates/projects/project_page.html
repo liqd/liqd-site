@@ -14,18 +14,13 @@
     {% endif %}
 {% endblock %}
 
+{% block body_class %}project-page{% endblock %}
+
 {% block content %}
-<section class="contentwrapper fullwidth collapse-mt project-detail-page-header-top">
-    {% image page.image fill-950x450-c100 as bg %}
-    <div class="project-detail-page-header" style="background-image: url({{ bg.url }})">
-        <div class="container inner">
-            <div class="center-div">
-                <span>
-                    <h1>{{ page.translated_title }}</h1>
-                    <h2>{{ page.translated_subtitle }}</h2>
-                </span>
-            </div>
-        </div>
+<section style="background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});">
+    <div class="container">
+        <h1>{{ page.translated_title }}</h1>
+        <h2>{{ page.translated_subtitle }}</h2>
     </div>
 </section>
 
