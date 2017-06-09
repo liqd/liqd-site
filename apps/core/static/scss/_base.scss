@@ -1,6 +1,10 @@
-html {
+body {
     // push content down because of fixed header
-    padding-top: 3.4em;
+    padding-top: 2.7em;
+}
+// override padding-bottom because there should be no space above the content
+.project-page {
+    padding-top: 0;
 }
 
 img {
