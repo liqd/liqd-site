@@ -28,40 +28,44 @@
 <div class="container">
 
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-5">
         {% if settings.core.AddressSettings %}
-            <div>{{ settings.core.AddressSettings.organisation_name }}</div>
-            <div>{{ settings.core.AddressSettings.organisation_street }}</div>
-            <div>{{ settings.core.AddressSettings.postalcode }}</div>
+            <p>
+                {{ settings.core.AddressSettings.organisation_name }}<br>
+                {{ settings.core.AddressSettings.organisation_street }}<br>
+                {{ settings.core.AddressSettings.postalcode }}<br>
 
-            {% if settings.core.AddressSettings.telephone_number %}
-            <div>{{ settings.core.AddressSettings.telephone_number }}</div>
-            {% endif %}
+                {% if settings.core.AddressSettings.telephone_number %}
+                {{ settings.core.AddressSettings.telephone_number }}<br>
+                {% endif %}
 
-            {% if settings.core.AddressSettings.email_address %}
-            <div>{{ settings.core.AddressSettings.email_address }}</div>
-            {% endif %}
+                {% if settings.core.AddressSettings.email_address %}
+                {{ settings.core.AddressSettings.email_address }}
+                {% endif %}
+            </p>
         {% endif %}
 
         {% if settings.core.SocialMediaSettings %}
-            {% if settings.core.SocialMediaSettings.facebook %}
-            <a href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a>
-            {% endif %}
+            <p>
+                {% if settings.core.SocialMediaSettings.facebook %}
+                <a href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a><br>
+                {% endif %}
 
-            {% if settings.core.SocialMediaSettings.twitter %}
-            <a href="https://twitter.com/{{settings.core.SocialMediaSettings.twitter}}">Twitter</a>
-            {% endif %}
+                {% if settings.core.SocialMediaSettings.twitter %}
+                <a href="https://twitter.com/{{settings.core.SocialMediaSettings.twitter}}">Twitter</a><br>
+                {% endif %}
 
-            {% if settings.core.SocialMediaSettings.github %}
-            <a href="{{settings.core.SocialMediaSettings.github}}">Github</a>
-            {% endif %}
+                {% if settings.core.SocialMediaSettings.github %}
+                <a href="{{settings.core.SocialMediaSettings.github}}">Github</a><br>
+                {% endif %}
 
-            {% if settings.core.SocialMediaSettings.vimeo %}
-            <a href="{{settings.core.SocialMediaSettings.vimeo}}">Vimeo</a>
-            {% endif %}
+                {% if settings.core.SocialMediaSettings.vimeo %}
+                <a href="{{settings.core.SocialMediaSettings.vimeo}}">Vimeo</a>
+                {% endif %}
+            </p>
         {% endif %}
 
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
                 {% image settings.core.AddressSettings.image height-500 %}
             {% endif %}
