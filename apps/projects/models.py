@@ -111,7 +111,9 @@ class ProjectPage(Page):
 
     common_panels = [
         ImageChooserPanel('image'),
-        FieldPanel('external_url')
+        FieldPanel('external_url'),
+        FieldPanel('color1'),
+        FieldPanel('color2')
     ]
 
     promote_panels = [
