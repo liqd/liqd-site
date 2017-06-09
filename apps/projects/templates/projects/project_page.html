@@ -24,6 +24,12 @@
 </section>
 
 {% for block in page.body %}
-    {{ block }}
+    {% if block.type != 'image' %}
+        <div class="container">
+            {{ block }}
+        </div>
+    {% else %}
+        {{ block }}
+    {% endif %}
 {% endfor %}
 {% endblock %}
