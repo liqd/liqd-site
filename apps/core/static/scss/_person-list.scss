@@ -7,9 +7,12 @@ $line-bottom: 0.2em;
     width: 100%;
     margin-bottom: 3em;
 
+    overflow: hidden;
+
     position: relative;
 
-    &:after {
+    &:after,
+    &:before {
         content: "";
         display: block;
         border-bottom: 1px solid black;
@@ -18,6 +21,8 @@ $line-bottom: 0.2em;
         left: 0;
         right: 0;
         bottom: 0;
+
+        transition: bottom $transition-duration - 0.1s;
     }
 
     @include media-breakpoint-up(sm) {
@@ -33,6 +38,10 @@ $line-bottom: 0.2em;
     &:focus,
     &:active {
         text-decoration: none;
+
+        .person-list__person:after {
+            bottom: 99%;
+        }
     }
 }
 
