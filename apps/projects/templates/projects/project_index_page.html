@@ -28,7 +28,7 @@
 </ul>
 
 {% for project in projects %}
-    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0 %}
+    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
 {% empty %}
     {% trans 'No projects found' %}
 {% endfor %}
