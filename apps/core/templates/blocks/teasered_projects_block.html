@@ -1,6 +1,6 @@
 {{ value.headline }}
 <div class="clearfix">
     {% for entry in value.projects %}
-        {% include 'projects/project_teaser.html' with project=entry.project number=forloop.counter0 %}
+        {% include 'projects/project_teaser.html' with project=entry.project number=forloop.counter0|divisibleby:2 %}
     {% endfor %}
 </div>
