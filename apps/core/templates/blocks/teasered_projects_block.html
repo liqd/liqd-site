@@ -1,6 +1,6 @@
 {{ value.headline }}
-{% for entry in value.projects %}
-<div>
-    {% include 'projects/project_teaser.html' with project=entry.project number=forloop.counter0 %}
+<div class="clearfix">
+    {% for entry in value.projects %}
+        {% include 'projects/project_teaser.html' with project=entry.project number=forloop.counter0 %}
+    {% endfor %}
 </div>
-{% endfor %}
