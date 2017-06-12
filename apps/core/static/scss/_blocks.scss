@@ -13,10 +13,12 @@
 }
 
 .block--image {
-    max-width: 80vw;
+    @include media-breakpoint-up(sm) {
+        max-width: 80vw;
 
-    &:nth-child(odd) {
-        margin-left: auto;
+        &:nth-child(odd) {
+            margin-left: auto;
+        }
     }
 }
 
