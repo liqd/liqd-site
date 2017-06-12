@@ -94,6 +94,7 @@ class ProjectPage(Page):
 
     external_url = models.URLField(max_length=200, blank=True)
 
+    categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
