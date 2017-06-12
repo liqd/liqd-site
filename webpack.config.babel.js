@@ -8,7 +8,8 @@ const dev = JSON.parse(process.env.BUILD_DEV || 'false');
 module.exports = {
   entry: {
     vendor: [
-      'bootstrap/js/dist/collapse',
+      'bootstrap/js/src/util',
+      'bootstrap/js/src/collapse',
       'jquery/dist/jquery.min.js',
     ],
     all: [

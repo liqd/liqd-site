@@ -38,7 +38,8 @@
     transition: transform $transition-duration, opacity $transition-duration;
 }
 
-.header__bar__toggle:hover {
+.header__bar__toggle:hover,
+.header__bar__toggle[aria-expanded="true"] {
     .header__bar-icon--first {
         transform: translateY(10px) rotateZ(-45deg);
     }
