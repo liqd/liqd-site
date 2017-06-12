@@ -11,10 +11,8 @@
 
 {% block content %}
 
-{% include "core/includes/streamfieldpage_simpleheader.html" %}
-
 {% for project in self.projects %}
-    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0 %}
+    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
 {% empty %}
     No projects found
 {% endfor %}
