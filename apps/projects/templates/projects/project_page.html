@@ -24,12 +24,14 @@
 </section>
 
 {% for block in page.body %}
-    {% if block.type != 'image' %}
-        <div class="container">
+    <div class="block block--{{ block.block_type }}">
+        {% if block.block_type != 'image' %}
+            <div class="container">
+                {{ block }}
+            </div>
+        {% else %}
             {{ block }}
-        </div>
-    {% else %}
-        {{ block }}
-    {% endif %}
+        {% endif %}
+    </div>
 {% endfor %}
 {% endblock %}

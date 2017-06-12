@@ -3,7 +3,13 @@
 // --------------------------------------------------
 
 .block {
-    margin-top: 1em;
+    margin-bottom: $spacer-v;
+}
+
+.block--paragraph {
+    p:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .collapse-mt + .collapse-mt {
