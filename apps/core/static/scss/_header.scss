@@ -18,6 +18,14 @@
     justify-content: center;
 }
 
+.header__menu-list {
+    transition: transform $transition-duration;
+}
+
+.header__menu-list--invisible {
+    transform: translateY(-100%);
+}
+
 .header__bar-icon {
     display: block;
     width: 0.9em;

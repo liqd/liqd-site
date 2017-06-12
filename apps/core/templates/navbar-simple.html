@@ -6,7 +6,7 @@
 {% load_site_menu "mainmenu-dropdown-software" as software_menu_items %}
 {% get_available_languages as languages %}
 
-<nav id="mainmenu" class="header navbar navbar-toggleable-sm">
+<nav id="main-menu" class="header navbar navbar-toggleable-sm">
     <a class="header__brand navbar-brand" href="/{{LANGUAGE_CODE}}/">Liquid Democracy e.V.</a>
     <button type="button" class="header__bar__toggle navbar-toggler" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false">
         <span class="sr-only">Navigation an/aus</span>
@@ -15,7 +15,7 @@
         <span class="header__bar-icon header__bar-icon--third"></span>
     </button>
     <div class="header__menu navbar-collapse collapse" id="navbar-main">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav header__menu-list">
 
             {% for menuitem in main_menu_items %}
                 <li class="nav-item">
