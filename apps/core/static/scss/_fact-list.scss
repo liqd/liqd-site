@@ -1,0 +1,20 @@
+.fact-list {
+    overflow: hidden;
+    margin-bottom: $spacer-v;
+
+    dt {
+        width: 6em;
+        float: left;
+
+        font-weight: 400;
+    }
+
+    dd {
+        overflow: hidden;
+        margin-bottom: 0.2em;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}

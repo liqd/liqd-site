@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags projects_tags wagtailimages_tags bleach_tags %}
+{% load static wagtailcore_tags wagtailimages_tags bleach_tags %}
 
 {% block fb_meta_tags %}
     <meta property="og:type" content="article" />
@@ -14,92 +14,24 @@
     {% endif %}
 {% endblock %}
 
+{% block body_class %}project-page{% endblock %}
+
 {% block content %}
-<section class="contentwrapper fullwidth collapse-mt project-detail-page-header-top">
-    {% image page.image fill-950x450-c100 as bg %}
-    <div class="project-detail-page-header" style="background-image: url({{ bg.url }})">
-        <div class="container inner">
-            <div class="center-div">
-                <span>
-                    <h1>{{ page.translated_title }}</h1>
-                    <h2>{{ page.translated_subtitle }}</h2>
-                </span>
-            </div>
-        </div>
+<section class="intro-screen" style="background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});">
+    <div class="intro-screen__container container">
+        <h1>{{ page.translated_title }}</h1>
     </div>
 </section>
 
-<section class="contentwrapper fullwidth project-detail-page-shorttext-top">
-    <div class="container">
-        <div class="contentwrapper text">
-            <div class="project-detail-page-shorttext">
-                {{ page.translated_shorttext | richtext }}
+{% for block in page.body %}
+    <div class="block block--{{ block.block_type }}">
+        {% if block.block_type != 'image' %}
+            <div class="container">
+                {{ block }}
             </div>
-        </div>
+        {% else %}
+            {{ block }}
+        {% endif %}
     </div>
-</section>
-
-
-        {% for block in self.body %}
-            {% if block.block_type == 'heading' %}
-            <div class="container">
-                <div class="contentwrapper text project_page_body">
-                    <div class="project_page_block_heading">
-                        <h2>{{ block.value }}</h2>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            {% if block.block_type == 'image' %}
-            <div class="container">
-                <div class="contentwrapper text project_page_body">
-                    <div class="project_page_block_image">
-                        {% image block.value fill-800x600 as my_image %}
-                        <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            {% if block.block_type == 'video' %}
-            <div class="container">
-                <div class="contentwrapper text project_page_body">
-                    <div class="project_page_block_video">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            {{ block.value }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            {% if block.block_type == 'paragraph' %}
-            <div class="container">
-                <div class="contentwrapper text project_page_body">
-                    <div class="project_page_block_paragraph">
-                        {{ block.value }}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            {% if block.block_type == 'persons' %}
-            <div>
-            {{ block.value }}
-            </div>
-            {% endif %}
-
-        {% endfor %}
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
+{% endfor %}
 {% endblock %}

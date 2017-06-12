@@ -13,10 +13,10 @@ from wagtail.wagtailsearch import index
 from apps.core import blocks as core_blocks
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from apps.persons import models as persons_models
+from .blocks import FactListBlock
 from contrib.translations.translations import TranslatedField
 
 STREAMFIELD_PROJECT_BLOCKS = [
-    ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
     ('video', EmbedBlock(icon="media")),
@@ -49,9 +49,11 @@ class ProjectPage(Page):
         max_length=300, blank=True, default="", verbose_name="Teasertext")
 
     body_de = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS, null=True, blank=True, verbose_name="Body")
+        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        null=True, blank=True, verbose_name="Body")
     body_en = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS, null=True, verbose_name="Body")
+        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        null=True, verbose_name="Body")
 
     body = TranslatedField(
         'body_de',
@@ -87,6 +89,8 @@ class ProjectPage(Page):
         null=True,
         related_name='+'
     )
+    color1 = models.CharField(max_length=7, default='#d9b058')
+    color2 = models.CharField(max_length=7, default='#a37146')
 
     external_url = models.URLField(max_length=200, blank=True)
 
@@ -106,7 +110,9 @@ class ProjectPage(Page):
 
     common_panels = [
         ImageChooserPanel('image'),
-        FieldPanel('external_url')
+        FieldPanel('external_url'),
+        FieldPanel('color1'),
+        FieldPanel('color2')
     ]
 
     promote_panels = [
@@ -126,7 +132,7 @@ class ProjectPage(Page):
     edit_handler = TabbedInterface([
         ObjectList(en_content_panels, heading='English'),
         ObjectList(de_content_panels, heading='German'),
-        ObjectList(common_panels, heading='Image and Url'),
+        ObjectList(common_panels, heading='Appearance'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),

@@ -1,6 +1,24 @@
-html {
+body {
+    font-size: $font-size-xs;
+
+    @include media-breakpoint-up(sm) {
+        font-size: $font-size-sm;
+    }
+
+    @include media-breakpoint-up(md) {
+        font-size: $font-size-base;
+    }
+
+    @include media-breakpoint-up(lg) {
+        font-size: $font-size-lg;
+    }
+
     // push content down because of fixed header
-    padding-top: 3.4em;
+    padding-top: 2.7em;
+}
+// override padding-bottom because there should be no space above the content
+.project-page {
+    padding-top: 0;
 }
 
 img {

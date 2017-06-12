@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags projects_tags bleach_tags %}
+{% load static wagtailcore_tags bleach_tags %}
 
 {% block fb_meta_tags %}
 	<meta property="og:type" content="website" />
@@ -14,7 +14,7 @@
 {% include "core/includes/streamfieldpage_simpleheader.html" %}
 
 {% for project in self.projects %}
-    {% project_teaser project request %}
+    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0 %}
 {% empty %}
     No projects found
 {% endfor %}
