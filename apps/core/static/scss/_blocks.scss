@@ -12,6 +12,14 @@
     }
 }
 
+.block--image {
+    max-width: 80vw;
+
+    &:nth-child(odd) {
+        margin-left: auto;
+    }
+}
+
 .collapse-mt + .collapse-mt {
     .block {
         margin-top: 0;
