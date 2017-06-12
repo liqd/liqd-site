@@ -1,3 +1,5 @@
+/* global $ */
+
 $(function () {
   const $langSwitch = $('#lang-switch')
   const $langActive = $langSwitch.find('.lang-switch__active')
