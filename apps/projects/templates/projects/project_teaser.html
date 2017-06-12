@@ -4,7 +4,8 @@
     {% image project.image height-500 as img %}
     <img src="{{ img.url }}" alt="{{ img.alt }}" />
     <div class="project-teaser__container" style="background-image: linear-gradient(148deg, {{ project.color1 }}, {{ project.color2 }});">
-        {{ project.translated_title }}
+        <h3>{{ project.translated_title }}</h3>
+        <p>{{ project.translated_subtitle }}</p>
         <a href="{% pageurl project %}">{% trans 'Details' %}</a>
         {% if project.external_url %}
             <a href="{{ project.external_url }}">{% trans 'Website' %}</a>
