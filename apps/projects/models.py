@@ -156,6 +156,29 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
 
     @property
     def projects(self):
-        projects = ProjectPage.objects.all()
+        projects = ProjectPage.objects.all().live()
         projects = projects.order_by('title')
         return projects
+
+    def get_context(self, request):
+        projects = self.projects
+
+        category = request.GET.get('category')
+
+        if category:
+            projects = projects.filter(categories__pk=category)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(projects, 5)
+
+        try:
+            projects = paginator.page(page)
+        except InvalidPage:
+            raise Http404
+
+        context = super().get_context(request)
+        context['projects'] = projects
+        context['categories'] = ProjectCategory.objects.all()
+        if category:
+            context['category'] = int(category)
+        return context
