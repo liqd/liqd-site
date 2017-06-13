@@ -18,20 +18,10 @@
 
 {% block content %}
 <section class="intro-screen" style="background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});">
-    <div class="intro-screen__container container">
+    <div class="container">
         <h1>{{ page.translated_title }}</h1>
     </div>
 </section>
 
-{% for block in page.body %}
-    <div class="block block--{{ block.block_type }}">
-        {% if block.block_type != 'image' %}
-            <div class="container">
-                {{ block }}
-            </div>
-        {% else %}
-            {{ block }}
-        {% endif %}
-    </div>
-{% endfor %}
+{% include 'includes/blocks.html' with blocks=page.body %}
 {% endblock %}

@@ -12,16 +12,13 @@
 
 {% block content %}
 
-<section class="container">
-    <div class="lead">
-        {{ page.translated_intro|richtext }}
-    </div>
+<section class="container intro-screen">
+        <div class="lead">
+            {{ page.translated_intro|richtext }}
+        </div>
 </section>
 
-
-{% for block in page.body %}
-    {{ block }}
-{% endfor %}
+{% include 'includes/blocks.html' with blocks=page.body %}
 
 {% blog_entries %}
 
