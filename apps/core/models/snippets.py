@@ -74,7 +74,7 @@ class NavigationMenuItem(Orderable, MenuItem):
 class BlogCategory(models.Model):
     name_en = models.CharField(max_length=255)
     name_de = models.CharField(max_length=255, blank=True, null=True)
-    translated_name = TranslatedField('name_en', 'name_de')
+    translated_name = TranslatedField('name_de', 'name_en')
 
     panels = [
         FieldPanel('name_en'),
@@ -92,7 +92,7 @@ class BlogCategory(models.Model):
 class ProjectCategory(models.Model):
     name_en = models.CharField(max_length=255)
     name_de = models.CharField(max_length=255, blank=True, null=True)
-    translated_name = TranslatedField('name_en', 'name_de')
+    translated_name = TranslatedField('name_de', 'name_en')
 
     panels = [
         FieldPanel('name_en'),
