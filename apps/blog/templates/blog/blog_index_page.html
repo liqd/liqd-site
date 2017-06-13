@@ -5,24 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <section class="container">
-        <div class="contentwrapper text">
-            <div id="blog_list" class="blog-list">
-                {% for blog in blogs %}
-                {% include "blog/includes/blog_list_item.html" %}
-                {% empty %}
-                No blogs found
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-{% endblock %}
-
-{% block pages_js %}
-<script type="text/javascript">
-var number_pages = {{ blogs.paginator.num_pages }};
-</script>
-<script type="text/javascript" src="{% static 'js/endless_scroll.js' %}"></script>
+<section class="container blog-list">
+    {% for blog in blogs %}
+    {% include "blog/includes/blog_list_item.html" with  blog=blog %}
+    {% endfor %}
+</section>
 
 {% endblock %}

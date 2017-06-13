@@ -1,14 +1,11 @@
 {% load i18n %}
 <section class="container blog-list">
     <h2>{% trans "Our latest blogposts" %}</h2>
-    <div class="row">
-        <div class="col-md-12">
-        {% include "blog/includes/blog_list_item.html" with  blog=blog_entries.0 %}
-        </div>
-        <div class="col-md-12">
-        {% include "blog/includes/blog_list_item.html" with  blog=blog_entries.1 %}
-        </div>
-    </div>
+
+    {% for blog in blog_entries %}
+    {% include "blog/includes/blog_list_item.html" with  blog=blog %}
+    {% endfor %}
+
 </section>
 
 
