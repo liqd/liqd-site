@@ -4,6 +4,7 @@ from modelcluster.models import ClusterableModel
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel,
                                                 PageChooserPanel)
 from wagtail.wagtailcore.models import Orderable
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 from contrib.translations.translations import TranslatedField
@@ -67,3 +68,39 @@ class NavigationMenu(ClusterableModel):
 
 class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('core.NavigationMenu', related_name='menu_items')
+
+
+@register_snippet
+class BlogCategory(models.Model):
+    name_en = models.CharField(max_length=255)
+    name_de = models.CharField(max_length=255, blank=True, null=True)
+    translated_name = TranslatedField('name_en', 'name_de')
+
+    panels = [
+        FieldPanel('name_en'),
+        FieldPanel('name_de'),
+    ]
+
+    def __str__(self):
+        return self.name_en
+
+    class Meta:
+        verbose_name_plural = 'blog categories'
+
+
+@register_snippet
+class ProjectCategory(models.Model):
+    name_en = models.CharField(max_length=255)
+    name_de = models.CharField(max_length=255, blank=True, null=True)
+    translated_name = TranslatedField('name_en', 'name_de')
+
+    panels = [
+        FieldPanel('name_en'),
+        FieldPanel('name_de')
+    ]
+
+    def __str__(self):
+        return self.name_en
+
+    class Meta:
+        verbose_name_plural = 'project categories'

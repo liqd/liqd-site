@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags bleach_tags %}
+{% load static i18n wagtailcore_tags bleach_tags %}
 
 {% block fb_meta_tags %}
 	<meta property="og:type" content="website" />
@@ -11,10 +11,38 @@
 
 {% block content %}
 
-{% for project in self.projects %}
+<h1>{% trans 'Projects' %}</h1>
+
+<ul>
+{% for categ in categories %}
+{% if category == categ.pk %}
+<li>
+    currently selected: <a href="?category=">{{ categ.translated_name }}</a>
+</li>
+{% else %}
+<li>
+    <a href="?category={{ categ.pk }}"> {{ categ.translated_name }}</a>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+{% for project in projects %}
     {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
 {% empty %}
-    No projects found
+    {% trans 'No projects found' %}
 {% endfor %}
+
+
+<ul>
+    {% if projects.has_previous %}
+        <li><a href="?page={{ projects.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans 'previous'%}</a></li>
+    {% endif %}
+    {% if projects.has_next %}
+        <li><a href="?page={{ projects.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans 'next'%}</a></li>
+    {% endif %}
+</ul>
+
+
 
 {% endblock %}

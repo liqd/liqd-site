@@ -1,4 +1,8 @@
+from django import forms
+from django.core.paginator import InvalidPage, Paginator
 from django.db import models
+from django.http import Http404
+from modelcluster.fields import ParentalManyToManyField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
@@ -8,13 +12,14 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsearch import index
 
 from apps.core import blocks as core_blocks
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
+from apps.core.models.snippets import ProjectCategory
 from apps.persons import models as persons_models
-from .blocks import FactListBlock
 from contrib.translations.translations import TranslatedField
+
+from .blocks import FactListBlock
 
 STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -94,6 +99,8 @@ class ProjectPage(Page):
 
     external_url = models.URLField(max_length=200, blank=True)
 
+    categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
+
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
@@ -108,11 +115,15 @@ class ProjectPage(Page):
         StreamFieldPanel('body_en')
     ]
 
-    common_panels = [
+    appearance_panels = [
         ImageChooserPanel('image'),
         FieldPanel('external_url'),
         FieldPanel('color1'),
         FieldPanel('color2')
+    ]
+
+    categories_panels = [
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
     ]
 
     promote_panels = [
@@ -132,7 +143,8 @@ class ProjectPage(Page):
     edit_handler = TabbedInterface([
         ObjectList(en_content_panels, heading='English'),
         ObjectList(de_content_panels, heading='German'),
-        ObjectList(common_panels, heading='Appearance'),
+        ObjectList(appearance_panels, heading='Appearance'),
+        ObjectList(categories_panels, heading='Categories'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
@@ -145,16 +157,34 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
 
     subpage_types = ['projects.ProjectPage']
 
-    search_fields = Page.search_fields + [
-        index.SearchField('intro_de'),
-        index.SearchField('intro_en'),
-    ]
-
     class Meta:
-        verbose_name = 'ProjectIndexPage'
+        verbose_name = 'Project List'
 
     @property
     def projects(self):
-        projects = ProjectPage.objects.all()
+        projects = ProjectPage.objects.all().live()
         projects = projects.order_by('title')
         return projects
+
+    def get_context(self, request):
+        projects = self.projects
+
+        category = request.GET.get('category')
+
+        if category:
+            projects = projects.filter(categories__pk=category)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(projects, 5)
+
+        try:
+            projects = paginator.page(page)
+        except InvalidPage:
+            raise Http404
+
+        context = super().get_context(request)
+        context['projects'] = projects
+        context['categories'] = ProjectCategory.objects.all()
+        if category:
+            context['category'] = int(category)
+        return context
