@@ -14,6 +14,7 @@ from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(dirname(dirname(abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
@@ -133,35 +134,12 @@ LANGUAGES = (
 STATIC_ROOT = join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
+STATICFILES_DIRS = (os.path.join(PROJECT_DIR, 'static'),)
 
 MEDIA_ROOT = join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-COMPRESS_PRECOMPILERS = (
-    # ('text/x-scss', 'contrib.sass.sass.SassMapFilter'),
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
-LIBSASS_SOURCEMAPS = True
-
 # Template configuration
-
-
-
-
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'core', 'static', 'third-party')
-BOWER_INSTALLED_APPS = (
-    'jquery',
-    'fontawesome',
-    'slick-carousel',
-    'jquery-smartresize',
-    'bootstrap-sass',
-)
-BOWER_PATH = os.path.join(BASE_DIR, 'node_modules', '.bin', 'bower')
 
 BLEACH_ALLOWED_TAGS = []
 BLEACH_ALLOWED_ATTRIBUTES = []
