@@ -50,7 +50,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!bootstrap)/,
         loader: 'babel-loader',
         query: {
           cacheDirectory: true,
