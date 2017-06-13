@@ -2,16 +2,21 @@
 {% load wagtailcore_tags %}
 {% load static %}
 
-<section class="contentwrapper fullwidth collapse-mt">
-	<div class="block block-quote-paragraph {% if not value.image %} block-quote-noimage block-bg-{{value.color}} {% endif %}">
-		{% if value.image %}
-			{% image value.image height-400 %}
-		{% endif %}
-		<div class="inner">
-			{{value.text|richtext}}
-			{% if value.author %}
-			<div class="author">{{ value.author }}</div>
-			{% endif %}
-		</span>
-	</div>
-</section>
+{% if value.image %}
+<div class="row">
+        <div class="col-sm-4">
+            {% image value.image width-400 %}
+        </div>
+        <div class="col-sm-8">
+            {{ value.text|richtext }}
+            {% if value.author %}
+                <div class="author">{{ value.author }}</div>
+            {% endif %}
+        </div>
+</div>
+{% else %}
+    {{ value.text|richtext }}
+    {% if value.author %}
+        <div class="author">{{ value.author }}</div>
+    {% endif %}
+{% endif %}
