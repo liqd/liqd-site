@@ -2,18 +2,10 @@
 {% load wagtailcore_tags %}
 {% load static %}
 
-<section class="contentwrapper fullwidth collapse-mt">
-	<div class="block block-highlight block-highlight-paragraph">
-		<div class="container">
-			<div class="contentwrapper text">
-				<h3>{{ value.headline }}</h3>
-				{{value.text}}
-				{% if value.link %}
-				<div class="links">
-					<a href="{{ value.link.url }}" class="button">{{value.link.title}}</a>
-				</div>
-				{% endif %}
-			</div>
-		</div>
-	</div>
-</section>
+<h3>{{ value.headline }}</h3>
+{{ value.text|richtext }}
+{% if value.link %}
+    <div class="links">
+        <a href="{{ value.link.url }}" class="button">{{ value.link.title }}</a>
+    </div>
+{% endif %}
