@@ -72,7 +72,6 @@ INSTALLED_APPS = (
 
     'taggit',
     'modelcluster',
-    'djangobower',
 
     'wagtail.wagtailcore',
     'wagtail.wagtailadmin',
