@@ -18,18 +18,7 @@
         </div>
 </section>
 
-
-{% for block in page.body %}
-    <div class="block block--{{ block.block_type }}">
-        {% if block.block_type != 'image' and block.block_type != 'projects' %}
-            <div class="container">
-                {{ block }}
-            </div>
-        {% else %}
-            {{ block }}
-        {% endif %}
-    </div>
-{% endfor %}
+{% include 'includes/blocks.html' with blocks=page.body %}
 
 {% blog_entries %}
 
