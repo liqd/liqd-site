@@ -11,21 +11,17 @@
 
 {% block content %}
 
-<h1>{% trans 'Projects' %}</h1>
-
-<ul>
-{% for categ in categories %}
-{% if category == categ.pk %}
-<li>
-    currently selected: <a href="?category=">{{ categ.translated_name }}</a>
-</li>
-{% else %}
-<li>
-    <a href="?category={{ categ.pk }}"> {{ categ.translated_name }}</a>
-</li>
-{% endif %}
-{% endfor %}
-</ul>
+<div class="filter-line">
+    <h1 class="filter-line__prefix">{% trans 'Projects related to' %}</h1>
+    <div class="filter-line__current">{{ category }}</div>
+    <ul class="filter-line__list">
+    {% for categ in categories %}
+        <li class="filter-line__item">
+            <a class="filter-line__link" href="?category={{ categ.pk }}"> {{ categ.translated_name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 
 {% for project in projects %}
     {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
