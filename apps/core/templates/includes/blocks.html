@@ -1,0 +1,11 @@
+{% for block in blocks %}
+    <div class="block block--{{ block.block_type }}">
+        {% if block.block_type != 'image' and block.block_type != 'projects' %}
+            <div class="container">
+                {{ block }}
+            </div>
+        {% else %}
+            {{ block }}
+        {% endif %}
+    </div>
+{% endfor %}
