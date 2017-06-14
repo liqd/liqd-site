@@ -186,5 +186,5 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
         context['projects'] = projects
         context['categories'] = ProjectCategory.objects.all()
         if category:
-            context['category'] = int(category)
+            context['category'] = ProjectCategory.objects.get(pk=int(category))
         return context
