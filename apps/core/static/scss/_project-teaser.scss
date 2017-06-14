@@ -1,9 +1,8 @@
 .project-teaser {
     position: relative;
 
-    a,
-    & {
-        color: $inverse-color;
+    a {
+        color: inherit;
     }
 
     &:hover .project-teaser__container {
