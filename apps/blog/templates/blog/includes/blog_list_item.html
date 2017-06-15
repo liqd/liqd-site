@@ -1,8 +1,8 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="blog-list--item">
-  <div class="blog-list--item__date">{{ blog.date }}</div>
-  <a class="blog-list--item__title" href="{% pageurl blog %}">{{ blog.translated_title }}</a>
+<div class="blog-list__item">
+  <div class="blog-list__item-date">{{ blog.date }}</div>
+  <a class="blog-list__item-title" href="{% pageurl blog %}">{{ blog.translated_title }}</a>
     {% if blog.translated_intro %}
     {{ blog.translated_intro | richtext }}
     {% endif %}
