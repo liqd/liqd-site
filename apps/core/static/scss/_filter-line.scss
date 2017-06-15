@@ -39,6 +39,10 @@
     display: block;
 }
 
+.filter-line__item--active {
+    text-decoration: underline;
+}
+
 .filter-line__link,
 .filter-line__link:hover,
 .filter-line__link:focus {

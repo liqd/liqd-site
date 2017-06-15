@@ -16,8 +16,14 @@
         <button class="filter-line__current">{{ category }}</button>
         <ul class="filter-line__list">
         {% for categ in categories %}
-            <li class="filter-line__item">
-                <a class="filter-line__link" href="?category={{ categ.pk }}"> {{ categ.translated_name }}</a>
+            <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
+            {% if categ.pk == category.pk %}
+                {{ categ.translated_name }}
+            {% else %}
+                <a class="filter-line__link" href="?category={{ categ.pk }}">
+                    {{ categ.translated_name }}
+                </a>
+            {% endif %}
             </li>
         {% endfor %}
         </ul>
