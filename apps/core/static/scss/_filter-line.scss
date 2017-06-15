@@ -1,0 +1,18 @@
+.filter-line--centered {
+    text-align: center;
+}
+.filter-line__prefix {
+    display: inline;
+}
+
+.filter-line__current {
+    display: inline;
+    padding: 0;
+
+    font-size: $font-size-h1;
+    text-decoration: underline;
+}
+
+.filter-line__list {
+    display: inline;
+}

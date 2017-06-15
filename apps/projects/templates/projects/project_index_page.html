@@ -10,17 +10,18 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="filter-line">
-    <h1 class="filter-line__prefix">{% trans 'Projects related to' %}</h1>
-    <div class="filter-line__current">{{ category }}</div>
-    <ul class="filter-line__list">
-    {% for categ in categories %}
-        <li class="filter-line__item">
-            <a class="filter-line__link" href="?category={{ categ.pk }}"> {{ categ.translated_name }}</a>
-        </li>
-    {% endfor %}
-    </ul>
+<div class="container">
+    <div class="filter-line filter-line--centered">
+        <h1 class="filter-line__prefix">{% trans 'Projects related to' %}</h1>
+        <button class="filter-line__current">{{ category }}</button>
+        <ul class="filter-line__list">
+        {% for categ in categories %}
+            <li class="filter-line__item">
+                <a class="filter-line__link" href="?category={{ categ.pk }}"> {{ categ.translated_name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {% for project in projects %}
