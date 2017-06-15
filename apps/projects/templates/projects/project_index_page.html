@@ -10,10 +10,11 @@
 {% endblock %}
 
 {% block content %}
+{% trans 'all topics' as all %}
 <div class="container">
     <div class="filter-line filter-line--centered">
         <h1 class="filter-line__prefix">{% trans 'Projects related to' %}</h1>
-        <button class="filter-line__current">{{ category }}</button>
+        <button class="filter-line__current">{% firstof category all %}</button>
         <ul class="filter-line__list">
         {% for categ in categories %}
             <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
@@ -26,6 +27,15 @@
             {% endif %}
             </li>
         {% endfor %}
+            <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
+                {% if not category %}
+                    {{ all }}
+                {% else %}
+                    <a class="filter-line__link" href="?">
+                        {{ all }}
+                    </a>
+                {% endif %}
+            </li>
         </ul>
     </div>
 </div>
