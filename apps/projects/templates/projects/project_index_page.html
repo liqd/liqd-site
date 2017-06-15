@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags bleach_tags %}
+{% load static i18n wagtailcore_tags bleach_tags %}
 
 {% block fb_meta_tags %}
 	<meta property="og:type" content="website" />
@@ -10,13 +10,52 @@
 {% endblock %}
 
 {% block content %}
+{% trans 'all topics' as all %}
+<div class="container">
+    <div class="filter-line filter-line--centered">
+        <h1 class="filter-line__prefix">{% trans 'Projects related to' %}</h1>
+        <button class="filter-line__current">{% firstof category all %}</button>
+        <ul class="filter-line__list">
+        {% for categ in categories %}
+            <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
+            {% if categ.pk == category.pk %}
+                {{ categ.translated_name }}
+            {% else %}
+                <a class="filter-line__link" href="?category={{ categ.pk }}">
+                    {{ categ.translated_name }}
+                </a>
+            {% endif %}
+            </li>
+        {% endfor %}
+            <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
+                {% if not category %}
+                    {{ all }}
+                {% else %}
+                    <a class="filter-line__link" href="?">
+                        {{ all }}
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
 
-{% include "core/includes/streamfieldpage_simpleheader.html" %}
-
-{% for project in self.projects %}
-    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0 %}
+{% for project in projects %}
+    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
 {% empty %}
-    No projects found
+    {% trans 'No projects found' %}
 {% endfor %}
+
+
+<ul>
+    {% if projects.has_previous %}
+        <li><a href="?page={{ projects.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans 'previous'%}</a></li>
+    {% endif %}
+    {% if projects.has_next %}
+        <li><a href="?page={{ projects.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans 'next'%}</a></li>
+    {% endif %}
+</ul>
+
+
 
 {% endblock %}

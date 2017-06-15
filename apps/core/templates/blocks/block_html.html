@@ -2,11 +2,5 @@
 {% load wagtailcore_tags %}
 {% load static %}
 
-<section class="container">
-	<div class="contentwrapper text">
-		<div class="block block-html">
-			<h3>{{ value.headline }}</h3>
-			{{value.body}}
-		</div>
-	</div>
-</section>
+<h3>{{ value.headline }}</h3>
+{{ value.body }}

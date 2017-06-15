@@ -1,14 +1,15 @@
+/* global $ */
+
 import {throttle} from './helpers'
 
-$(function() {
+$(function () {
   const $menu = $('#main-menu')
   const $menuContainer = $menu.find('.header__menu-list')
   const $window = $(window)
-  const menuHeight = $menu.height()
   let prevScrollTop = $window.scrollTop()
   let menuIsVisible = true
 
-  function scrollHandler() {
+  function scrollHandler () {
     let scrollTop = $window.scrollTop()
 
     if (scrollTop > prevScrollTop && scrollTop >= 100 && menuIsVisible) {

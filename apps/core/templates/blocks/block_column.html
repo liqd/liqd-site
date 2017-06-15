@@ -1,19 +1,14 @@
-
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 {% load static %}
 
-<section class="container">
-	<div class="contentwrapper text">
-		<div class="block block-column">
-			<div class="col-md-6 col-sm-12">
-				<h4>{{ value.col1_headline }}</h4>
-				{{ value.col1_text }}
-			</div>
-			<div class="col-md-6 col-sm-12">
-				<h4>{{ value.col2_headline }}</h4>
-				{{ value.col2_text }}
-			</div>
-		</div>
-	</div>
-</section>
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <h4>{{ value.col1_headline }}</h4>
+        {{ value.col1_text }}
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <h4>{{ value.col2_headline }}</h4>
+        {{ value.col2_text }}
+    </div>
+</div>

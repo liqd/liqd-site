@@ -19,7 +19,7 @@ module.exports = {
   },
 
   output: {
-    path: `${__dirname}/static/`,
+    path: `${__dirname}/website_wagtail/static/`,
     publicPath: '/static/',
     filename: '[name].js',
   },

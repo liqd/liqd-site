@@ -1,4 +1,4 @@
-.intro-screen__container {
+.intro-screen {
     min-height: 80vh;
     display: flex;
     justify-content: center;
@@ -7,5 +7,10 @@
 
     h1 {
         margin-bottom: 0;
+        color: inherit;
     }
+}
+
+.project-page .intro-screen {
+    text-align: center;
 }

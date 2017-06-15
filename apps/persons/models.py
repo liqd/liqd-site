@@ -104,10 +104,6 @@ class PersonDisplayBlock(core_blocks.StructBlock):
 
 class PersonListBlock(core_blocks.StructBlock):
     title = core_blocks.CharBlock(classname="full title", required=False)
-    background = core_blocks.ChoiceBlock(choices=[
-        ('grey', 'grey'),
-        ('white', 'white'),
-    ])
     personlist = core_blocks.ListBlock(PersonDisplayBlock)
 
     class Meta:

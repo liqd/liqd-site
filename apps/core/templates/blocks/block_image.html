@@ -1,13 +1,5 @@
-
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 {% load static %}
 
-<section class="contentwrapper fullwidth">
-	<div class="row row-centered">
-		<div class="block block-image">
-			{% image value width-450 as single_image %}
-			<div><figure><img src="{{ single_image.url }}" alt="{{ single_image.alt }}"></figure></div>
-		</div>
-	</div>
-</section>
+{% image value width-960 %}
