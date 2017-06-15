@@ -10,22 +10,35 @@
 {% endblock %}
 
 {% block content %}
-
-<h1>{% trans 'Projects' %}</h1>
-
-<ul>
-{% for categ in categories %}
-{% if category == categ.pk %}
-<li>
-    currently selected: <a href="?category=">{{ categ.translated_name }}</a>
-</li>
-{% else %}
-<li>
-    <a href="?category={{ categ.pk }}"> {{ categ.translated_name }}</a>
-</li>
-{% endif %}
-{% endfor %}
-</ul>
+{% trans 'all topics' as all %}
+<div class="container">
+    <div class="filter-line filter-line--centered">
+        <h1 class="filter-line__prefix">{% trans 'Projects related to' %}</h1>
+        <button class="filter-line__current">{% firstof category all %}</button>
+        <ul class="filter-line__list">
+        {% for categ in categories %}
+            <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
+            {% if categ.pk == category.pk %}
+                {{ categ.translated_name }}
+            {% else %}
+                <a class="filter-line__link" href="?category={{ categ.pk }}">
+                    {{ categ.translated_name }}
+                </a>
+            {% endif %}
+            </li>
+        {% endfor %}
+            <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
+                {% if not category %}
+                    {{ all }}
+                {% else %}
+                    <a class="filter-line__link" href="?">
+                        {{ all }}
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
 
 {% for project in projects %}
     {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
