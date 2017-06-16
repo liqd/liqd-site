@@ -59,10 +59,12 @@ h4,
 .h4 {
     font-family: $font-family-monospace;
     font-weight: 300;
-    letter-spacing: 0.6px;
+    letter-spacing: -0.2px;
     text-transform: uppercase;
 }
 
-h4 {
+h4,
+.h4 {
+    margin-bottom: 0.5em;
     text-transform: none;
 }
