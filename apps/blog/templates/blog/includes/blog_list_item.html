@@ -2,7 +2,7 @@
 
 <div class="blog-list__item">
   <div class="blog-list__item-date h2">{{ blog.date }}</div>
-  <a class="blog-list__item-title" href="{% pageurl blog %}">{{ blog.translated_title }}</a>
+  <h3><a class="blog-list__item-title" href="{% pageurl blog %}">{{ blog.translated_title }}</a></h3>
     {% if blog.translated_intro %}
     {{ blog.translated_intro | richtext }}
     {% endif %}
