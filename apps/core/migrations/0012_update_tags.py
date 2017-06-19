@@ -22,7 +22,7 @@ def update_tags(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0013_rename_image_field'),
+        ('core', '0011_addresssettings_custom_image'),
     ]
 
     operations = [

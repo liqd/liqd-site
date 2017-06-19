@@ -29,5 +29,14 @@ class Migration(migrations.Migration):
             name='custom_image',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.CustomImage'),
         ),
-        migrations.RunPython(set_custom_image_id)
+        migrations.RunPython(set_custom_image_id),
+        migrations.RemoveField(
+            model_name='addresssettings',
+            name='image',
+        ),
+        migrations.RenameField(
+            model_name='addresssettings',
+            old_name='custom_image',
+            new_name='image',
+        )
     ]
