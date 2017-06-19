@@ -1,15 +1,6 @@
 .blog-list {
     h2 {
         text-align: center;
-        text-transform: uppercase;
-        font-family: $font-family-monospace;
-        font-size: 0.8rem;
-        color: $black;
-        margin-bottom: 2.7rem;
-        font-weight: 300;
-        letter-spacing: 0.6px;
-        margin-bottom: 4.2rem;
-        padding-top: 8.8rem;
     }
 }
 
@@ -18,11 +9,9 @@
 
     .rich-text {
         position: relative;
-        padding-top: 2rem;
-        font-size: 1.3rem;
     }
 
-    .rich-text::before {
+    .rich-text:before {
         content: '';
         width: 100%;
         height: 100%;
@@ -34,17 +23,8 @@
 
 .blog-list__item-date {
     text-align: center;
-    text-transform: uppercase;
-    font-family: $font-family-monospace;
-    font-size: 0.8rem;
-    color: $black;
-    margin-bottom: 2.7rem;
-    font-weight: 300;
-    letter-spacing: 0.6px;
-    margin-bottom: 2rem;
 }
 
 .blog-list__item-title {
     text-decoration: none;
-    font-size: 1.3rem;
 }
