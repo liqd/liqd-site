@@ -15,8 +15,6 @@
 
 {% include "core/includes/streamfieldpage_simpleheader.html" %}
 
-{% for block in page.body %}
-    {{ block }}
-{% endfor %}
+{% include 'includes/blocks.html' with blocks=page.body %}
 
 {% endblock %}
