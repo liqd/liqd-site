@@ -20,7 +20,6 @@ from apps.core.models.snippets import ProjectCategory
 from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
-
 STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
@@ -102,7 +101,8 @@ class ProjectPage(Page):
     categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
     timescale = models.CharField(max_length=256, blank=True)
     partner = models.CharField(max_length=256, blank=True)
-    user_count = models.CharField(max_length=256, blank=True, verbose_name='Number of users per month')
+    user_count = models.CharField(max_length=256, blank=True,
+                                  verbose_name='Number of users per month')
 
     de_content_panels = [
         FieldPanel('title_de'),

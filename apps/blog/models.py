@@ -12,10 +12,8 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
-from apps.core.blocks import HTMLBlock
-from apps.core.blocks import AlignedImageBlock
+from apps.core.blocks import AlignedImageBlock, HTMLBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
-from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
 STREAMFIELD_BLOG_BLOCKS = [
