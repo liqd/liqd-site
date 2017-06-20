@@ -1,15 +1,13 @@
 from django import forms
 from django.core.paginator import InvalidPage, Paginator
 from django.db import models
-from django.http import Http404
+from django.http import Http404, HttpResponse
+from django.shortcuts import render
+from django.template.loader import render_to_string
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
-
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template.loader import render_to_string
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Page
@@ -23,7 +21,6 @@ from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from apps.core.models.snippets import ProjectCategory
 from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
-
 
 STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -106,7 +103,9 @@ class ProjectPage(Page):
     categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
     timescale = models.CharField(max_length=256, blank=True)
     partner = models.CharField(max_length=256, blank=True)
-    user_count = models.CharField(max_length=256, blank=True, verbose_name='Number of users per month')
+    user_count = models.CharField(max_length=256,
+                                  blank=True,
+                                  verbose_name='Number of users per month')
 
     de_content_panels = [
         FieldPanel('title_de'),
@@ -230,4 +229,5 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
                 'projects/project_list.html',
                 {'request': request, 'projects': projects.object_list})
             return HttpResponse(html)
-        return render(request, self.template, {'projects': projects, 'self': self})
+        return render(request,
+                      self.template, {'projects': projects, 'self': self})
