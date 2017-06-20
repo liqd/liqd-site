@@ -1,0 +1,9 @@
+{% load i18n %}
+
+<div class="project-list">
+{% for project in projects %}
+    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
+{% empty %}
+    {% trans 'No projects found' %}
+{% endfor %}
+</div>
