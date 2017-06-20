@@ -89,12 +89,13 @@ class ProjectPage(Page):
     # common fields
 
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'images.CustomImage',
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
         related_name='+'
     )
+
     color1 = models.CharField(max_length=7, default='#d9b058')
     color2 = models.CharField(max_length=7, default='#a37146')
 

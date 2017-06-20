@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     'apps.blog.apps.BlogConfig',
     'apps.persons.apps.PersonsConfig',
     'apps.projects.apps.ProjectsConfig',
+    'apps.images.apps.ImagesConfig'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -152,6 +153,7 @@ LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = "liquidsite"
+WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
 
 # Use Elasticsearch as the search backend for extra performance and better search results:
 # http://wagtail.readthedocs.org/en/latest/howto/performance.html#search
