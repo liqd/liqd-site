@@ -42,9 +42,11 @@
 
 {% include 'projects/project_list.html' %}
 
+{% if projects.has_next %}
 <div class="load-more">
     <a href=""><h2>{% trans 'load more' %}</h2></a>
 </div>
+{% endif %}
 
 
 

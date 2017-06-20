@@ -223,11 +223,19 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
         return context
 
     def serve(self, request):
-        projects = self.get_context(request)['projects']
+        context = self.get_context(request)
+        categories = context['categories']
+        projects = context['projects']
+        category = None
+        if 'category' in context:
+            category = context['category']
+
         if request.is_ajax():
             html = render_to_string(
                 'projects/project_list.html',
                 {'request': request, 'projects': projects.object_list})
             return HttpResponse(html)
         return render(request,
-                      self.template, {'projects': projects, 'self': self})
+                      self.template, {'projects': projects,
+                                      'category': category,
+                                      'categories': categories, 'self': self})
