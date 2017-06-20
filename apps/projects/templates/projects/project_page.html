@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags bleach_tags %}
+{% load static i18n wagtailcore_tags wagtailimages_tags bleach_tags %}
 
 {% block fb_meta_tags %}
     <meta property="og:type" content="article" />
@@ -22,6 +22,27 @@
         <h1>{{ page.translated_title }}</h1>
     </div>
 </section>
+
+<div class="container">
+    <dl class="fact-list">
+        {% if page.external_url %}
+        <dt>{% trans ' website' %}:</dt>
+        <dd><a href="{{ page.external_url }}"></a>{{ page.external_url }}</dd>
+        {% endif %}
+        {% if page.timescale %}
+        <dt>{% trans 'timescale' %}:</dt>
+        <dd>{{ page.timescale }}</dd>
+        {% endif %}
+        {% if page.user_count %}
+        <dt>{% trans 'users' %}:</dt>
+        <dd>{{ page.user_count }}</dd>
+        {% endif %}
+        {% if page.partner %}
+        <dt>{% trans 'partners' %}:</dt>
+        <dd>{{ page.partner }}</dd>
+        {% endif %}
+    </dl>
+</div>
 
 {% include 'includes/blocks.html' with blocks=page.body %}
 {% endblock %}
