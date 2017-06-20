@@ -50,7 +50,7 @@ class PersonSnippet(models.Model):
     area_en = models.CharField(max_length=256)
 
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'images.CustomImage',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
