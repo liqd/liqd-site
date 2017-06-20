@@ -6,6 +6,10 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore.models import Page
@@ -205,7 +209,7 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
             projects = projects.filter(categories__pk=category)
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(projects, 5)
+        paginator = Paginator(projects, 6)
 
         try:
             projects = paginator.page(page)
@@ -218,3 +222,12 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
         if category:
             context['category'] = ProjectCategory.objects.get(pk=int(category))
         return context
+
+    def serve(self, request):
+        projects = self.get_context(request)['projects']
+        if request.is_ajax():
+            html = render_to_string(
+                'projects/project_list.html',
+                {'request': request, 'projects': projects.object_list})
+            return HttpResponse(html)
+        return render(request, self.template, {'projects': projects, 'self': self})
