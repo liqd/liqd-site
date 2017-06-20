@@ -20,7 +20,6 @@ from apps.core.models.snippets import ProjectCategory
 from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
-from .blocks import FactListBlock
 
 STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -55,10 +54,10 @@ class ProjectPage(Page):
         max_length=300, blank=True, default="", verbose_name="Teasertext")
 
     body_de = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        STREAMFIELD_PROJECT_BLOCKS,
         null=True, blank=True, verbose_name="Body")
     body_en = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        STREAMFIELD_PROJECT_BLOCKS,
         null=True, verbose_name="Body")
 
     body = TranslatedField(
