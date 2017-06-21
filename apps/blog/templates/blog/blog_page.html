@@ -15,68 +15,14 @@
 <h2>{{ self.date }}</h2>
 
 <div class="container">
-    <h3>{{ self.translated_title }}</h3>
+    <h1 class="h3">{{ self.translated_title }}</h1>
 </div>
 
-
-
-{% for block in self.body %}
-
-    {% if block.block_type == 'heading' %}
-    <div class="blog_entry__headingblock">
-        <div class="container">
-            <div>{{ block.value }}</div>
-        </div>
-    </div>
-    {% endif %}
-
-    {% if block.block_type == 'image' %}
-    <div class="blog_entry__imageblock">
-        {% image block.value fill-800x600 as my_image %}
-        <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
-    </div>
-    {% endif %}
-
-    {% if block.block_type == 'aligned_image'%}
-    <div class="{% if block.value.display == 'right' %} blog_entry__alignedimageblock--right {% else %} blog_entry__imageblock {% endif %}">
-        {% image block.value.image fill-800x600 as my_image %}
-        <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
-    </div>
-    {% endif %}
-
-    {% if block.block_type == 'video' %}
-    <div class="blog_page_block_image">
-        <div class="container">
-            <div class="contentwrapper text">
-                <div class="embed-responsive embed-responsive-16by9">
-                {{ block.value }}
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
-    {% if block.block_type == 'paragraph' %}
-    <div class="container">
-        <div>{{ block.value }}</div>
-    </div>
-    {% endif %}
-
-    {% if block.block_type == 'Raw_HTML' %}
-    <div class="container">
-    {{ block }}
-    </div>
-    {% endif %}
-
-    {% if block.block_type == 'persons' %}
-    {{ block }}
-    {% endif %}
-
-{% endfor %}
+{% include 'includes/blocks.html' with blocks=self.body %}
 
 {% if self.author %}
 <div class="blog-entry__author">
-    <h2>{% trans 'by' %} {{ self.author}}</h2>
+    <p class="h2">{% trans 'by' %} {{ self.author}}</p>
 </div>
 {% endif %}
 
