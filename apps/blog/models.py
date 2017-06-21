@@ -1,6 +1,6 @@
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator, InvalidPage
 from django.db import models
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
@@ -133,27 +133,31 @@ class BlogIndexPage(TranslatedStreamFieldPage):
 
     def get_context(self, request):
         blogs = self.blogs
-        page = request.GET.get('page')
-        paginator = Paginator(blogs, 5)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(blogs, 6)
+
         try:
             blogs = paginator.page(page)
-        except PageNotAnInteger:
-            blogs = paginator.page(1)
-        except EmptyPage:
-            blogs = paginator.page(paginator.num_pages)
+        except InvalidPage:
+            raise Http404
 
-        context = super(BlogIndexPage, self).get_context(request)
+        context = super().get_context(request)
         context['blogs'] = blogs
         return context
 
     def serve(self, request):
-        blogs = self.get_context(request)['blogs']
+        context = self.get_context(request)
+        blogs = context['blogs']
+
         if request.is_ajax():
             html = render_to_string(
                 'blog/ajax/blog_list.html',
                 {'request': request, 'blogs': blogs.object_list})
             return HttpResponse(html)
-        return render(request, self.template, {'blogs': blogs, 'self': self})
+        return render(request,
+                      self.template, {'blogs': blogs, 'self': self})
+
 
     class Meta:
         verbose_name = 'Blog Index Page'
