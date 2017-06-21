@@ -3,26 +3,10 @@
 
     h2 {
         text-align: center;
-        margin-bottom: 3.7rem;
-    }
-}
-
-.blog_entry__imageblock {
-    margin-top: 10rem;
-    margin-bottom: 10rem;
-}
-
-.blog_entry__alignedimageblock--right {
-    @extend .blog_entry__imageblock;
-    position: relative;
-    height: 600px;
-
-    img {
-        position: absolute;
-        right: 0;
     }
 }
 
 .blog-entry__author {
+    text-align: center;
     margin-top: 4.6rem;
 }
