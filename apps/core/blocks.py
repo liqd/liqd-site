@@ -151,3 +151,7 @@ class AlignedImageBlock(StructBlock):
         required=True,
         help_text='Decide on which side the image should be displayed'
     )
+
+    class Meta:
+        template = 'blocks/block_alignedimage.html'
+

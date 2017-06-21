@@ -1,0 +1,5 @@
+{% load wagtailimages_tags %}
+<div class="block--aligned_image__{{ value.display }}">
+    {% image value.image fill-800x600 as my_image %}
+    <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
+</div>
