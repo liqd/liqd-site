@@ -1,4 +1,5 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator, InvalidPage
+from django.db.models import Count
 from django.db import models
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
@@ -126,6 +127,12 @@ class BlogIndexPage(TranslatedStreamFieldPage):
     subpage_types = ['blog.BlogPage']
 
     @property
+    def years(self):
+        return BlogPage.objects.extra(
+            select={'year': "strftime('%%Y',date)"}).values(
+            'year').order_by().annotate(Count('id'))
+
+    @property
     def blogs(self):
         blogs = BlogPage.objects.live().descendant_of(self)
         blogs = blogs.order_by('-date')
@@ -133,6 +140,11 @@ class BlogIndexPage(TranslatedStreamFieldPage):
 
     def get_context(self, request):
         blogs = self.blogs
+
+        year = request.GET.get('year')
+
+        if year:
+            blogs = blogs.filter(date__year=year)
 
         page = request.GET.get('page', 1)
         paginator = Paginator(blogs, 6)
@@ -157,7 +169,6 @@ class BlogIndexPage(TranslatedStreamFieldPage):
             return HttpResponse(html)
         return render(request,
                       self.template, {'blogs': blogs, 'self': self})
-
 
     class Meta:
         verbose_name = 'Blog Index Page'

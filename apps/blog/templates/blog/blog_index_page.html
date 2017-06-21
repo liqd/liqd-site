@@ -5,7 +5,16 @@
 {% endblock %}
 
 {% block content %}
+
+
+
 <section class="container blog-list item-list">
+
+    {% for year in self.years %}
+    <a href="?year={{ year.year }}">{{ year.year }}</a>
+    {% endfor %}
+
+
     {% for blog in blogs %}
     {% include "blog/includes/blog_list_item.html" with  blog=blog %}
     {% endfor %}
