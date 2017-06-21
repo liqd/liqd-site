@@ -1,8 +1,5 @@
 .load-more {
     clear: both;
-    padding-top: 8rem;
-
-    h2 {
-        text-align: center;
-    }
+    padding-top: $spacer-v;
+    text-align: center;
 }
