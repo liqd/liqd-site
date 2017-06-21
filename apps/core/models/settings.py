@@ -28,8 +28,9 @@ class AddressSettings(BaseSetting):
         max_length=255, help_text='postalcode and city')
     telephone_number = models.CharField(max_length=255, blank=True)
     email_address = models.EmailField(max_length=70, blank=True)
+
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'images.CustomImage',
         on_delete=models.SET_NULL,
         blank=True,
         null=True,

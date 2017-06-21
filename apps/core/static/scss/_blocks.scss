@@ -22,17 +22,8 @@
     }
 }
 
-.block--projects {
-    h2 {
-        text-align: center;
-        text-transform: uppercase;
-        font-family: $font-family-monospace;
-        font-size: 0.8rem;
-        color: $black;
-        margin-bottom: 2.7rem;
-        font-weight: 300;
-        letter-spacing: 0.6px;
-    }
+.block--projects h2 {
+    text-align: center;
 }
 
 .collapse-mt + .collapse-mt {

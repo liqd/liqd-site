@@ -4,7 +4,6 @@ from modelcluster.models import ClusterableModel
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel,
                                                 PageChooserPanel)
 from wagtail.wagtailcore.models import Orderable
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 from contrib.translations.translations import TranslatedField

@@ -23,6 +23,7 @@
     @include media-breakpoint-up(sm) {
         position: absolute;
         left: 1.7em;
+        z-index: 1;
     }
 }
 
@@ -50,15 +51,33 @@
     height: 85vh;
     justify-content: center;
 
-    transition: transform $transition-duration;
+    transition: opacity $transition-duration;
 
     @include media-breakpoint-up(sm) {
         height: auto;
+
+        &:after {
+            content: "";
+            display: block;
+            height: 6em;
+
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: -1;
+
+            background: linear-gradient(rgba($body-bg, 1) 0%, rgba($body-bg, 0.5) 60%, rgba($body-bg, 0) 100%)
+        }
     }
 }
 
+.project-page .header__menu-list:after {
+    content: none;
+}
+
 .header__menu-list--invisible {
-    transform: translateY(-100%);
+    opacity: 0;
 }
 
 .header__bar-icon {

@@ -20,7 +20,6 @@ from apps.core.models.snippets import ProjectCategory
 from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
-from .blocks import FactListBlock
 
 STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
@@ -55,10 +54,10 @@ class ProjectPage(Page):
         max_length=300, blank=True, default="", verbose_name="Teasertext")
 
     body_de = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        STREAMFIELD_PROJECT_BLOCKS,
         null=True, blank=True, verbose_name="Body")
     body_en = StreamField(
-        STREAMFIELD_PROJECT_BLOCKS + [('facts', FactListBlock())],
+        STREAMFIELD_PROJECT_BLOCKS,
         null=True, verbose_name="Body")
 
     body = TranslatedField(
@@ -89,18 +88,21 @@ class ProjectPage(Page):
     # common fields
 
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'images.CustomImage',
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
         related_name='+'
     )
+
     color1 = models.CharField(max_length=7, default='#d9b058')
     color2 = models.CharField(max_length=7, default='#a37146')
 
     external_url = models.URLField(max_length=200, blank=True)
-
     categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
+    timescale = models.CharField(max_length=256, blank=True)
+    partner = models.CharField(max_length=256, blank=True)
+    user_count = models.CharField(max_length=256, blank=True, verbose_name='Number of users per month')
 
     de_content_panels = [
         FieldPanel('title_de'),
@@ -118,13 +120,16 @@ class ProjectPage(Page):
 
     appearance_panels = [
         ImageChooserPanel('image'),
-        FieldPanel('external_url'),
         FieldPanel('color1'),
         FieldPanel('color2')
     ]
 
-    categories_panels = [
-        FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
+    statistics_panels = [
+        FieldPanel('external_url'),
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+        FieldPanel('timescale'),
+        FieldPanel('partner'),
+        FieldPanel('user_count')
     ]
 
     promote_panels = [
@@ -145,7 +150,7 @@ class ProjectPage(Page):
         ObjectList(en_content_panels, heading='English'),
         ObjectList(de_content_panels, heading='German'),
         ObjectList(appearance_panels, heading='Appearance'),
-        ObjectList(categories_panels, heading='Categories'),
+        ObjectList(statistics_panels, heading='Statistics'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
