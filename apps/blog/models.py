@@ -12,18 +12,17 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailembeds.blocks import EmbedBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
-from apps.core.blocks import HTMLBlock
+from apps.core.blocks import AlignedImageBlock, HTMLBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
-from apps.persons import models as persons_models
 from contrib.translations.translations import TranslatedField
 
 STREAMFIELD_BLOG_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
+    ('aligned_image', AlignedImageBlock(icon="image")),
     ('video', EmbedBlock(icon="media")),
-    ('Raw_HTML', HTMLBlock()),
-    ('persons', persons_models.PersonListBlock())
+    ('Raw_HTML', HTMLBlock())
 ]
 
 

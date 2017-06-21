@@ -142,3 +142,15 @@ class TeaseredProjectsBlock(StructBlock):
 
     class Meta:
         template = 'blocks/teasered_projects_block.html'
+
+
+class AlignedImageBlock(StructBlock):
+    image = ImageChooserBlock(label='Image')
+    display = ChoiceBlock(
+        choices=[('left', 'left'), ('right', 'right')],
+        required=True,
+        help_text='Decide on which side the image should be displayed'
+    )
+
+    class Meta:
+        template = 'blocks/block_alignedimage.html'
