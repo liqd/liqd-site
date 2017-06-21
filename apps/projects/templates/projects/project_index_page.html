@@ -40,21 +40,14 @@
     </div>
 </div>
 
-{% for project in projects %}
-    {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
-{% empty %}
-    {% trans 'No projects found' %}
-{% endfor %}
+{% include 'projects/project_list.html' %}
 
+{% if projects.has_next %}
+<div class="load-more">
+    <button class="h2">{% trans 'load more' %}</button>
+</div>
+{% endif %}
 
-<ul>
-    {% if projects.has_previous %}
-        <li><a href="?page={{ projects.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans 'previous'%}</a></li>
-    {% endif %}
-    {% if projects.has_next %}
-        <li><a href="?page={{ projects.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans 'next'%}</a></li>
-    {% endif %}
-</ul>
 
 
 

@@ -1,7 +1,9 @@
 from django import forms
 from django.core.paginator import InvalidPage, Paginator
 from django.db import models
-from django.http import Http404
+from django.http import Http404, HttpResponse
+from django.shortcuts import render
+from django.template.loader import render_to_string
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
@@ -101,7 +103,8 @@ class ProjectPage(Page):
     categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
     timescale = models.CharField(max_length=256, blank=True)
     partner = models.CharField(max_length=256, blank=True)
-    user_count = models.CharField(max_length=256, blank=True,
+    user_count = models.CharField(max_length=256,
+                                  blank=True,
                                   verbose_name='Number of users per month')
 
     de_content_panels = [
@@ -205,7 +208,7 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
             projects = projects.filter(categories__pk=category)
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(projects, 5)
+        paginator = Paginator(projects, 6)
 
         try:
             projects = paginator.page(page)
@@ -218,3 +221,21 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
         if category:
             context['category'] = ProjectCategory.objects.get(pk=int(category))
         return context
+
+    def serve(self, request):
+        context = self.get_context(request)
+        categories = context['categories']
+        projects = context['projects']
+        category = None
+        if 'category' in context:
+            category = context['category']
+
+        if request.is_ajax():
+            html = render_to_string(
+                'projects/project_list.html',
+                {'request': request, 'projects': projects.object_list})
+            return HttpResponse(html)
+        return render(request,
+                      self.template, {'projects': projects,
+                                      'category': category,
+                                      'categories': categories, 'self': self})
