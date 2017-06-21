@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="project-list">
+<div class="project-list item-list">
 {% for project in projects %}
     {% include 'projects/project_teaser.html' with project=project number=forloop.counter0|divisibleby:2 %}
 {% empty %}
