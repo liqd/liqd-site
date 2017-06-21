@@ -154,4 +154,3 @@ class AlignedImageBlock(StructBlock):
 
     class Meta:
         template = 'blocks/block_alignedimage.html'
-

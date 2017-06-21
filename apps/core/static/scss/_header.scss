@@ -22,6 +22,7 @@
 
 .header__menu-list {
     transition: opacity $transition-duration;
+
     @include media-breakpoint-up(sm) {
         &:after {
             content: "";
