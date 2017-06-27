@@ -1,9 +1,11 @@
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator, InvalidPage
-from django.db.models import Count
+from django import forms
+from django.core.paginator import InvalidPage, Paginator
 from django.db import models
-from django.http import HttpResponse, Http404
+from django.db.models import Count
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from modelcluster.fields import ParentalManyToManyField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
@@ -15,6 +17,7 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from apps.core.blocks import AlignedImageBlock, HTMLBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
+from apps.core.models.snippets import BlogCategory
 from contrib.translations.translations import TranslatedField
 
 STREAMFIELD_BLOG_BLOCKS = [
@@ -77,6 +80,7 @@ class BlogPage(Page):
 
     author = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField("Post date")
+    categories = ParentalManyToManyField('core.BlogCategory', blank=True)
 
     en_content_panels = [
         FieldPanel('title_en'),
@@ -95,6 +99,7 @@ class BlogPage(Page):
     common_panels = [
         FieldPanel('author'),
         FieldPanel('date'),
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
     ]
 
     promote_panels = [
@@ -114,7 +119,7 @@ class BlogPage(Page):
     edit_handler = TabbedInterface([
         ObjectList(en_content_panels, heading='English'),
         ObjectList(de_content_panels, heading='German'),
-        ObjectList(common_panels, heading='Author and Date'),
+        ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
@@ -133,6 +138,10 @@ class BlogIndexPage(TranslatedStreamFieldPage):
             'year').order_by().annotate(Count('id'))
 
     @property
+    def categories(self):
+        return BlogCategory.objects.all()
+
+    @property
     def blogs(self):
         blogs = BlogPage.objects.live().descendant_of(self)
         blogs = blogs.order_by('-date')
@@ -142,9 +151,13 @@ class BlogIndexPage(TranslatedStreamFieldPage):
         blogs = self.blogs
 
         year = request.GET.get('year')
+        category = request.GET.get('category')
 
         if year:
             blogs = blogs.filter(date__year=year)
+
+        if category:
+            blogs = blogs.filter(categories__pk=category)
 
         page = request.GET.get('page', 1)
         paginator = Paginator(blogs, 6)

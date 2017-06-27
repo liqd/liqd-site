@@ -11,7 +11,11 @@
 <section class="container blog-list item-list">
 
     {% for year in self.years %}
-    <a href="?year={{ year.year }}">{{ year.year }}</a>
+    <a href="?year={{ year.year }}&category={{ request.GET.category }}">{{ year.year }}</a>
+    {% endfor %}
+
+    {% for item in self.categories %}
+    <a href="?category={{ item.pk }}&year={{ request.GET.year }}">{{ item.translated_name }}</a>
     {% endfor %}
 
 
