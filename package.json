@@ -21,17 +21,20 @@
     "css-loader": "^0.27.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
+    "glslify-loader": "^1.0.2",
     "jquery": "^3.2.1",
+    "liquid-logo": "git://github.com/liqd/liquid-logo.git",
     "node-libs-browser": "^1.0.0",
     "node-sass": "^4.0.0",
     "postcss-loader": "^2.0.5",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.0.0"
   },
   "scripts": {
-    "lint":"eslint apps/core -c package.json && stylelint 'apps/core/**/*.scss' --syntax scss",
+    "lint": "eslint apps/core -c package.json && stylelint 'apps/core/**/*.scss' --syntax scss",
     "build": "webpack -p --progress --profile",
     "watch": "webpack -p --progress --profile --watch",
     "precommit": "make lint"
