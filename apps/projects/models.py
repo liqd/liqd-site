@@ -4,6 +4,7 @@ from django.db import models
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.utils.functional import cached_property
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
@@ -25,6 +26,7 @@ from contrib.translations.translations import TranslatedField
 STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
+    ('aligned_image', core_blocks.AlignedImageBlock(icon="image")),
     ('video', EmbedBlock(icon="media")),
     ('Raw_HTML', core_blocks.HTMLBlock()),
     ('persons', persons_models.PersonListBlock()),
@@ -184,6 +186,11 @@ class ProjectPage(Page):
             self._color_to_rgb('#fbfbfb')
         )
         return '#fbfbfb' if contrast_bright > contrast_dark else '#060606'
+
+    @cached_property
+    def other_projects(self):
+        category_list = self.categories.all().values_list('pk', flat=True)
+        return ProjectPage.objects.filter(categories__in=category_list).exclude(pk=self.pk)
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):
