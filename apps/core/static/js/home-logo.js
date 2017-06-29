@@ -16,5 +16,5 @@ $(function () {
     scrollPos = $window.scrollTop()
     const opacity = lerp(1, 0, scrollPos / windowHeight)
     webGL.setAlpha(opacity)
-  }, 100))
+  }, 100, {trailing: true}))
 })
