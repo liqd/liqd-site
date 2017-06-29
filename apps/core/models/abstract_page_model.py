@@ -25,12 +25,16 @@ STREAMFIELD_DEFAULT_BLOCKS = [
                                       help_text='Responsive image slider'
                                       ' (swipe on mobile). Please choose'
                                       ' 4 images.')),
+    ('aligned_image', blocks.AlignedImageBlock()),
     ('columns', blocks.ColumnBlock()),
     ('linkbox', blocks.LinkboxBlock()),
     ('projects', blocks.TeaseredProjectsBlock()),
     ('ThreeImageLinks', blocks.ThreeImageWithLinkBlock()),
     ('Raw_HTML', blocks.HTMLBlock()),
-    ('Person', persons_models.PersonListBlock())
+    ('Person', persons_models.PersonListBlock()),
+    ('all_persons_list', persons_models.AllPersonsBlock()),
+    ('TeaserList', blocks.TeaserBlockList())
+
 ]
 
 
