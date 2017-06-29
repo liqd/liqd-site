@@ -45,12 +45,22 @@ module.exports = {
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' }),
       },
       {
+        test: /\.(vs|fs)$/,
+        include: /node_modules\/liquid-logo/,
+        loader: 'raw-loader'
+      },
+      {
+        test: /\.(vs|fs)$/,
+        include: /node_modules\/liquid-logo/,
+        loader: 'glslify-loader'
+      },
+      {
         test: /\.(woff2?|ttf|eot|svg|jpg|png|gif|swf|otf)(\?.*)?$/,
         loader: 'file-loader',
       },
       {
         test: /\.js$/,
-        exclude: /node_modules\/(?!bootstrap)/,
+        exclude: /node_modules\/(?!(bootstrap|liquid-logo))/,
         loader: 'babel-loader',
         query: {
           cacheDirectory: true,

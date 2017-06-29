@@ -1,0 +1,12 @@
+.home-logo {
+    height: 100vh;
+    width: 100vw;
+}
+
+.home-logo__canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    transition: opacity 0.1s;
+}
