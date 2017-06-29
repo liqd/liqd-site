@@ -12,7 +12,7 @@ $(function () {
       url: url + count,
       type: 'GET',
       success: function (html) {
-        $('.project-list').append(html)
+        $('.item-list').append(html)
         $.ajax({
           url: url + (count + 1),
           type: 'GET',

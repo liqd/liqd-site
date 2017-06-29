@@ -1,14 +1,33 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load i18n static wagtailcore_tags %}
 
 {% block fb_meta_tags %}
 {% endblock %}
 
 {% block content %}
-<section class="container blog-list">
+
+
+
+<section class="container blog-list item-list">
+
+    {% for year in self.years %}
+    <a href="?year={{ year.year }}&category={{ request.GET.category }}">{{ year.year }}</a>
+    {% endfor %}
+
+    {% for item in self.categories %}
+    <a href="?category={{ item.pk }}&year={{ request.GET.year }}">{{ item.translated_name }}</a>
+    {% endfor %}
+
+
     {% for blog in blogs %}
     {% include "blog/includes/blog_list_item.html" with  blog=blog %}
     {% endfor %}
 </section>
+
+{% if blogs.has_next %}
+<div class="load-more">
+    <button class="h2">{% trans 'load more' %}</button>
+</div>
+{% endif %}
 
 {% endblock %}
