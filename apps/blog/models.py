@@ -170,8 +170,9 @@ class BlogIndexPage(TranslatedStreamFieldPage):
         context = super().get_context(request)
         context['blogs'] = blogs
         if category:
-            print(BlogCategory.objects.get(pk=int(category)))
             context['category'] = BlogCategory.objects.get(pk=int(category))
+        if year:
+            context['year'] = year
         return context
 
     def serve(self, request):
