@@ -1,6 +1,6 @@
 /* global $ */
 
-import {throttle} from "./helpers";
+import {isHome, throttle} from "./helpers";
 import {initDistort} from "liquid-logo";
 
 $(function () {
@@ -27,8 +27,10 @@ $(function () {
       menuIsVisible = true
     }
     prevScrollTop = scrollTop
-    const opacity = lerp(0, 1, scrollTop / windowHeight)
-    webGL.setAlpha(opacity)
+    if (isHome()) {
+      const opacity = lerp(0, 1, scrollTop / windowHeight)
+      webGL.setAlpha(opacity)
+    }
   }
 
   $window.on('scroll', throttle(scrollHandler, 300, {trailing: true}))

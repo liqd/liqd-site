@@ -1,7 +1,11 @@
-import {throttle} from "./helpers";
+import {isHome, throttle} from "./helpers";
 import {initDistort} from "liquid-logo";
 
 $(function () {
+  if (!isHome()) {
+    return false
+  }
+
   const $window = $(window)
   const windowHeight = $window.height()
   const webGL = initDistort('canvas-home')

@@ -5,6 +5,11 @@ function _now () {
   }
 }
 
+const _isHome = $('body').hasClass('homepage');
+export function isHome() {
+  return _isHome
+}
+
 export function throttle (func, wait, options) {
   var context, args, result
   var timeout = null
