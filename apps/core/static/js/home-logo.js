@@ -1,3 +1,4 @@
+/* globals $ */
 import {isHome, throttle} from "./helpers";
 import {initDistort} from "liquid-logo";
 
@@ -12,8 +13,8 @@ $(function () {
 
   let scrollPos
 
-  function lerp (start, end, amt){
-    return (1-amt)*start+amt*end
+  function lerp (start, end, amt) {
+    return (1 - amt) * start + amt * end
   }
 
   $window.on('scroll', throttle(function () {

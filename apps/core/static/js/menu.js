@@ -12,8 +12,8 @@ $(function () {
   let windowHeight = $window.height()
   let menuIsVisible = true
 
-  function lerp (start, end, amt){
-    return (1-amt)*start+amt*end
+  function lerp (start, end, amt) {
+    return (1 - amt) * start + amt * end
   }
 
   function scrollHandler () {

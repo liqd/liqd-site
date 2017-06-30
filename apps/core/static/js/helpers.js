@@ -1,3 +1,4 @@
+/* globals $ */
 // taken from underscore, http://underscorejs.org/docs/underscore.html
 function _now () {
   return Date.now || function () {
@@ -5,8 +6,8 @@ function _now () {
   }
 }
 
-const _isHome = $('body').hasClass('homepage');
-export function isHome() {
+const _isHome = $('body').hasClass('homepage')
+export function isHome () {
   return _isHome
 }
 
