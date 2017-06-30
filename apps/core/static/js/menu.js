@@ -31,5 +31,5 @@ $(function () {
     webGL.setAlpha(opacity)
   }
 
-  $window.on('scroll', throttle(scrollHandler, 100, {trailing: true}))
+  $window.on('scroll', throttle(scrollHandler, 300, {trailing: true}))
 })
