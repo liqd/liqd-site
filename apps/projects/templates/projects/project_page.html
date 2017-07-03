@@ -9,7 +9,7 @@
     {% endwith %}
     {% if page.image %}
     {% image page.image width-400 as image %}
-    <meta property="og:image" content="{{ request.get_host }}{{ image.url }}" />
+    <meta property="og:image" content="{{ page.get_site.root_url }}{{ image.url }}" />
     {% else %}
     {% endif %}
 {% endblock %}
