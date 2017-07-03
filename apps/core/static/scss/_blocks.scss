@@ -73,12 +73,12 @@
         color: inherit;
     }
 
-    &:hover .block--all_persons_list__item__container {
+    &:hover .block--all_persons_list__container {
         opacity: 1;
     }
 }
 
-.block--all_persons_list__item__container {
+.block--all_persons_list__container {
     padding: 1em;
     position: absolute;
     top: 0;
