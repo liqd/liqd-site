@@ -1,0 +1,16 @@
+{% load persons_tags wagtailimages_tags %}
+
+<h2>{{ value.headline }}</h2>
+<div class="row no-gutters">
+{% get_all_persons as persons %}
+{% for person in persons %}
+<div class="col-md-2 block--all_persons_list__item">
+    {% image person.image fill-400x400-c100 %}
+    <div class="block--all_persons_list__container" style="background-image: linear-gradient(148deg, {{ person.color1 }}, {{ person.color2 }});">
+        <h2>{{ person.first_name }} {{ person.last_name }}</h2>
+    </div>
+</div>
+
+{% endfor %}
+
+</div>
