@@ -33,7 +33,7 @@ STREAMFIELD_DEFAULT_BLOCKS = [
     ('Raw_HTML', blocks.HTMLBlock()),
     ('Person', persons_models.PersonListBlock()),
     ('all_persons_list', persons_models.AllPersonsBlock()),
-    ('TeaserList', blocks.TeaserBlockList())
+    ('teaser_list', blocks.TeaserBlockList())
 
 ]
 
