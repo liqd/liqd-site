@@ -190,7 +190,8 @@ class ProjectPage(Page):
     @cached_property
     def other_projects(self):
         category_list = self.categories.all().values_list('pk', flat=True)
-        return ProjectPage.objects.filter(categories__in=category_list).exclude(pk=self.pk)
+        return ProjectPage.objects.filter(categories__in=category_list).\
+            exclude(pk=self.pk)
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):
