@@ -4,21 +4,41 @@
 {% load_site_menu "footer" as footer_menu_items %}
 
 
-<footer id="footer" class="footer hidden-xs">
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="pull-right social-sites">
-                <a href="https://www.facebook.com/LIQDeV" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="https://twitter.com/liqd_de" target="_blank"><i class="fa fa-twitter"></i></a>
-                <a href="https://vimeo.com/liqd/videos" target="_blank"><i class="fa fa-vimeo-square"></i></a>
-                <a href="https://github.com/liqd" target="_blank"><i class="fa fa-github"></i></a>
-                <a href="/latest/feed/" target="_blank"><i class="fa fa-rss-square"></i></a>
-            </div>
-            <ul class="nav navbar-nav">
+<footer id="footer" class="footer">
+    <nav class="navbar navbar-toggleable-sm">
+        <ul class="nav navbar-nav">
             {% for menuitem in footer_menu_items %}
-                <li><a href="{{ menuitem.url }}">{{ menuitem.translated_menu_title }}</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ menuitem.url }}">{{ menuitem.translated_menu_title }}</a>
+                </li>
             {% endfor %}
-            </ul>
-         </div>
+        </ul>
+        <ul class="navbar-nav ml-md-auto">
+            {% if settings.core.SocialMediaSettings %}
+                {% if settings.core.SocialMediaSettings.facebook %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a>
+                    </li>
+                {% endif %}
+
+                {% if settings.core.SocialMediaSettings.twitter %}
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/{{settings.core.SocialMediaSettings.twitter}}">Twitter</a>
+                </li>
+                {% endif %}
+
+                {% if settings.core.SocialMediaSettings.github %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{settings.core.SocialMediaSettings.github}}">Github</a>
+                </li>
+                {% endif %}
+
+                {% if settings.core.SocialMediaSettings.vimeo %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{settings.core.SocialMediaSettings.vimeo}}">Vimeo</a>
+                </li>
+                {% endif %}
+            {% endif %}
+        </ul>
     </nav>
 </footer>

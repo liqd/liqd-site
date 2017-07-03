@@ -1,0 +1,20 @@
+.footer {
+    margin-top: $spacer-v;
+
+    .navbar-nav {
+        margin-bottom: 1em;
+    }
+
+    .nav-link {
+        padding: 0;
+
+        font-family: $font-family-monospace;
+        font-size: 0.8rem;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
