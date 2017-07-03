@@ -28,8 +28,9 @@
     <body class="{% block body_class %}{% endblock %}">
 
         {% wagtailuserbar 'bottom-right' %}
-
-        {% include "navbar-simple.html" %}
+        <div {% block menu-color %}{% endblock %}>
+            {% include "navbar-simple.html" %}
+        </div>
 
         <div class="content">
             {% block content %}

@@ -6,6 +6,7 @@ import {initDistort} from "liquid-logo";
 $(function () {
   const $menu = $('#main-menu')
   const $menuContainer = $menu.find('.header__menu-list')
+  const $introScreen = $('.intro-screen')
   const $window = $(window)
   const webGL = initDistort('header-canvas', {interactive: false, width: 60, height: 50})
   let prevScrollTop = $window.scrollTop()
@@ -26,11 +27,19 @@ $(function () {
       $menuContainer.removeClass('header__menu-list--invisible')
       menuIsVisible = true
     }
-    prevScrollTop = scrollTop
+
     if (isHome()) {
       const opacity = lerp(0, 1, scrollTop / windowHeight)
       webGL.setAlpha(opacity)
     }
+
+    if ($introScreen.length && scrollTop >= windowHeight / 100 * 80) {
+      $menu.addClass('header--past-intro')
+    } else if ($introScreen.length && scrollTop < windowHeight / 100 * 80) {
+      $menu.removeClass('header--past-intro')
+    }
+
+    prevScrollTop = scrollTop
   }
 
   $window.on('scroll', throttle(scrollHandler, 300, {trailing: true}))
