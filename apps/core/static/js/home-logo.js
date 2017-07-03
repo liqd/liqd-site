@@ -1,26 +1,25 @@
-import {throttle} from './helpers'
+/* globals $ */
+import {isHome, throttle} from "./helpers";
+import {initDistort} from "liquid-logo";
 
 $(function () {
-  const $canvas = $('.home-logo__canvas')
+  if (!isHome()) {
+    return false
+  }
+
   const $window = $(window)
   const windowHeight = $window.height()
+  const webGL = initDistort('canvas-home')
 
   let scrollPos
 
-  function lerp (start, end, amt){
-    return (1-amt)*start+amt*end
+  function lerp (start, end, amt) {
+    return (1 - amt) * start + amt * end
   }
 
   $window.on('scroll', throttle(function () {
     scrollPos = $window.scrollTop()
-  }, 100))
-
-  function render () {
     const opacity = lerp(1, 0, scrollPos / windowHeight)
-    $canvas[0].style.opacity = opacity
-
-    requestAnimationFrame(render)
-  }
-
-  requestAnimationFrame(render)
+    webGL.setAlpha(opacity)
+  }, 100, {trailing: true}))
 })

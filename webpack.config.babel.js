@@ -1,5 +1,5 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import webpack from 'webpack';
+import ExtractTextPlugin from "extract-text-webpack-plugin";
+import webpack from "webpack";
 import autoprefixer from "autoprefixer";
 
 const dev = JSON.parse(process.env.BUILD_DEV || 'false');
@@ -46,12 +46,12 @@ module.exports = {
       },
       {
         test: /\.(vs|fs)$/,
-        include: /node_modules\/liquid-logo/,
+        include: /liquid-logo/,
         loader: 'raw-loader'
       },
       {
         test: /\.(vs|fs)$/,
-        include: /node_modules\/liquid-logo/,
+        include: /liquid-logo/,
         loader: 'glslify-loader'
       },
       {

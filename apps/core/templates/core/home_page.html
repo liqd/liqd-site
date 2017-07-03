@@ -8,11 +8,11 @@
 	<meta property="og:description" content="{% trans 'Our mission is to promote the advantages of online participation in all kinds of contexts, from international organisations to small local initiatives.' %}" />
 {% endblock %}
 
-{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+{% block body_class %}homepage{% endblock %}
 
 {% block content %}
 <div class="home-logo">
-    <canvas id="canvas-webgl" class="home-logo__canvas"></canvas>
+    <canvas id="canvas-home" class="home-logo__canvas"></canvas>
 </div>
 <section class="container intro-screen">
         <div class="lead">

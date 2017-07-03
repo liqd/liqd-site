@@ -6,7 +6,10 @@
 {% get_available_languages as languages %}
 
 <nav id="main-menu" class="header navbar navbar-toggleable-sm">
-    <a class="header__brand navbar-brand" href="/{{LANGUAGE_CODE}}/">Liquid Democracy</a>
+    <a class="header__brand navbar-brand" href="/{{LANGUAGE_CODE}}/">
+        <span class="header__brand-label">Liquid Democracy</span>
+        <canvas class="header__brand-canvas" id="header-canvas"></canvas>
+    </a>
     <button type="button" class="header__bar__toggle navbar-toggler" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false">
         <span class="sr-only">Navigation an/aus</span>
         <span class="header__bar-icon header__bar-icon--first"></span>
