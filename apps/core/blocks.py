@@ -64,12 +64,28 @@ class QuoteParagraph(StructBlock):
         ' with background color or background image and optional author field.'
 
 
+class TeaserBlock(StructBlock):
+    headline = CharBlock(required=False, length=256)
+    text = RichTextBlock(required=True)
+    url = URLBlock(required=False)
+
+
+class TeaserBlockList(StructBlock):
+    headline = CharBlock(required=False, length=256)
+    teasers = ListBlock(TeaserBlock())
+
+    class Meta:
+        template = 'blocks/teaser_block_list.html'
+
+
 class ColumnBlock(StructBlock):
 
     col1_headline = CharBlock(required=False, length=256)
     col1_text = RichTextBlock(required=True)
+    col1_url = URLBlock(required=False)
     col2_headline = CharBlock(required=False, length=256)
     col2_text = RichTextBlock(required=True)
+    col2_url = URLBlock(required=False)
 
     class Meta:
         template = 'blocks/block_column.html'

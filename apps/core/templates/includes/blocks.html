@@ -1,6 +1,6 @@
 {% for block in blocks %}
     <div class="block block--{{ block.block_type }}">
-        {% if block.block_type != 'aligned_image' and block.block_type != 'image' and block.block_type != 'projects' %}
+        {% if block.block_type != 'aligned_image' and block.block_type != 'image' and block.block_type != 'projects' and block.block_type != 'all_persons_list'  %}
             <div class="container">
                 {{ block }}
             </div>
