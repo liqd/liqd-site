@@ -1,12 +1,16 @@
 .filter-line {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 7em;
+    @include media-breakpoint-up(md) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 7em;
+    }
 }
 
 .filter-line--centered {
-    text-align: center;
+    @include media-breakpoint-up(md) {
+        text-align: center;
+    }
 }
 
 .filter-line__prefix {
@@ -15,15 +19,20 @@
 
 // prefix is a span, therefore not the first element and needs space to the left
 span.filter-line__prefix {
-    margin-left: 0.3em;
+    @include media-breakpoint-up(md) {
+        margin-left: 0.3em;
+    }
 }
 
 .filter-line__current {
-    margin-left: 0.3em;
     padding: 0;
 
     font-size: $font-size-h1;
     text-decoration: underline;
+
+    @include media-breakpoint-up(md) {
+        margin-left: 0.3em;
+    }
 }
 
 .filter-line__current--active {
@@ -33,11 +42,15 @@ span.filter-line__prefix {
 .filter-line__list {
     display: none;
     padding: 0;
-    margin: 0 0 0 1.5em;
+    margin: 0;
 
     text-align: left;
     list-style: none;
     vertical-align: middle;
+
+    @include media-breakpoint-up(md) {
+        margin: 0 0 0 1.5em;
+    }
 }
 
 .filter-line__list--active {
