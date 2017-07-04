@@ -2,14 +2,20 @@ from django.db import models
 from wagtail.wagtailimages.models import (AbstractImage, AbstractRendition,
                                           Image)
 
+from contrib.translations.translations import TranslatedField
+
+
 
 class CustomImage(AbstractImage):
 
-    caption = models.CharField(max_length=255, blank=True)
+    caption_en = models.CharField(max_length=255, blank=True)
+    caption_de = models.CharField(max_length=255, blank=True)
 
     admin_form_fields = Image.admin_form_fields + (
-        'caption',
+        'caption_en', 'caption_de'
     )
+
+    caption = TranslatedField('caption_de', 'caption_en')
 
 
 class CustomRendition(AbstractRendition):
