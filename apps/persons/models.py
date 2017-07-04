@@ -43,6 +43,9 @@ class PersonSnippet(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.EmailField(blank=True)
 
+    color1 = models.CharField(max_length=7, default='#d9b058')
+    color2 = models.CharField(max_length=7, default='#a37146')
+
     motto_de = RichTextField(blank=True)
     motto_en = RichTextField(blank=True)
 
@@ -75,6 +78,8 @@ class PersonSnippet(models.Model):
         FieldPanel('last_name'),
         FieldPanel('email'),
         ImageChooserPanel('image'),
+        FieldPanel('color1'),
+        FieldPanel('color2')
     ]
 
     en_content_panels = [
@@ -110,3 +115,10 @@ class PersonListBlock(core_blocks.StructBlock):
         template = 'persons/person_list.html'
         icon = 'snippet'
         label = 'Person Import'
+
+
+class AllPersonsBlock(core_blocks.StructBlock):
+    headline = core_blocks.CharBlock(required=False)
+
+    class Meta:
+        template = 'persons/all_persons_list.html'

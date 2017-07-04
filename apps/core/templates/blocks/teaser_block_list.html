@@ -1,0 +1,19 @@
+<h2>{{ value.headline }}</h2>
+
+{% for item in value.teasers %}
+{% if forloop.first %}<div class="row">{% endif %}
+    <div class="col-md-6">
+        <a href="{{ item.url }}">
+            <h3>{{ item.headline }}</h3>
+            <p>{{ item.text }}</p>
+        </a>
+    </div>
+
+{% if forloop.counter|divisibleby:2 %}
+</div>
+<div class="row">
+{% endif %}
+
+{% if forloop.last %}</div>{% endif %}
+
+{% endfor %}

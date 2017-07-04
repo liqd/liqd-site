@@ -1,8 +1,14 @@
+/* globals $ */
 // taken from underscore, http://underscorejs.org/docs/underscore.html
 function _now () {
   return Date.now || function () {
     return new Date().getTime()
   }
+}
+
+const _isHome = $('body').hasClass('homepage')
+export function isHome () {
+  return _isHome
 }
 
 export function throttle (func, wait, options) {

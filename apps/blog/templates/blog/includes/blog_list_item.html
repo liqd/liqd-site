@@ -1,9 +1,14 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="blog-list__item">
-  <div class="blog-list__item-date h2">{{ blog.date }}</div>
-  <h3><a class="blog-list__item-title" href="{% pageurl blog %}">{{ blog.translated_title }}</a></h3>
-    {% if blog.translated_intro %}
-    {{ blog.translated_intro | richtext }}
-    {% endif %}
+<div class="blog-list__item fade-teaser">
+    <a class="fade-teaser__link" href="{% pageurl blog %}">
+        <span class="sr-only">{{ blog.translated_title }}</span>
+    </a>
+    <div class="fade-teaser__body">
+        <div class="blog-list__item-date h2">{{ blog.date }}</div>
+        <h3 class="blog-list__item-title" id="blog-entry-{{ blog.pk }}">{{ blog.translated_title }}</h3>
+        {% if blog.translated_intro %}
+            {{ blog.translated_intro | richtext }}
+        {% endif %}
+    </div>
 </div>
