@@ -9,9 +9,11 @@ $(function () {
   const $introScreen = $('.intro-screen')
   const $window = $(window)
   const webGL = initDistort('header-canvas', {interactive: false, width: 60, height: 50})
+  const $brandLabel = $('.header__brand-label')
   let prevScrollTop = $window.scrollTop()
   let windowHeight = $window.height()
   let menuIsVisible = true
+  let labelIsVisible = true
 
   function lerp (start, end, amt) {
     return (1 - amt) * start + amt * end
@@ -29,8 +31,18 @@ $(function () {
     }
 
     if (isHome()) {
-      const opacity = lerp(0, 1, scrollTop / windowHeight)
-      webGL.setAlpha(opacity)
+      const opacityGL = lerp(0, 1, scrollTop / windowHeight)
+      const opacityLabel = lerp(1, 0, scrollTop / windowHeight)
+      webGL.setAlpha(opacityGL)
+      $brandLabel.css({'opacity': opacityLabel})
+      console.log(opacityLabel);
+      if (labelIsVisible && opacityLabel <= 0) {
+        labelIsVisible = false
+        $brandLabel.css({'display': 'none'})
+      } else if (!labelIsVisible && opacityLabel > 0) {
+        $brandLabel.css({'display': 'inline-block'})
+        labelIsVisible = true
+      }
     }
 
     if ($introScreen.length && scrollTop >= windowHeight / 100 * 80) {
