@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load wagtailcore_tags core_tags %}
+{% load wagtailcore_tags core_tags static %}
 {% get_current_language as LANGUAGE_CODE %}
 {% load_site_menu "mainmenu" as main_menu_items %}
 {% load_site_menu "mainmenu-dropdown-software" as software_menu_items %}
@@ -7,7 +7,7 @@
 
 <nav id="main-menu" class="header navbar navbar-toggleable-sm">
     <a class="header__brand navbar-brand" href="/{{LANGUAGE_CODE}}/">
-        <span class="header__brand-label">Liquid Democracy</span>
+        <img src="{% static 'images/logo.png' %}" class="header__brand-label" alt="Liquid Democracy">
         <canvas class="header__brand-canvas" id="header-canvas"></canvas>
     </a>
     <button type="button" class="header__bar__toggle navbar-toggler" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false">

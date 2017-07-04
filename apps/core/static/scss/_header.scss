@@ -20,11 +20,17 @@
 }
 
 .header__brand {
+    text-decoration: none;
+
     @include media-breakpoint-up(sm) {
         position: absolute;
         left: 1.7em;
         z-index: 1;
     }
+}
+
+.header__brand-label {
+    height: 1em;
 }
 
 .header__menu {
