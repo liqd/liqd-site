@@ -21,7 +21,7 @@
                 {% if categ.pk == category.pk %}
                     {{ categ.translated_name }}
                 {% else %}
-                    <a class="filter-line__link" href="?category={{ categ.pk }}">
+                    <a class="filter-line__link" href="?category={{ categ.pk }}&year={{ year }}">
                         {{ categ.translated_name }}
                     </a>
                 {% endif %}
@@ -31,7 +31,7 @@
                     {% if not category %}
                         {{ all }}
                     {% else %}
-                        <a class="filter-line__link" href="?">
+                        <a class="filter-line__link" href="?year={{ year }}">
                             {{ all }}
                         </a>
                     {% endif %}
@@ -39,12 +39,21 @@
             </ul>
             <span class="h1">{% trans 'from' %}</span>
             <button class="filter-line__current">{% firstof year self.years.first.year %}</button>
+            <ul class="filter-line__list">
+                {% for year_ in self.years %}
+                    <li class="filter-line__item{% if year_ == year %} filter-line__item--active{% endif %}">
+                    {% if year_ == year%}
+                        {{ year_.year }}
+                    {% else %}
+                        <a class="filter-line__link" href="?year={{ year_.year }}&category={{ category.pk }}">
+                            {{ year_.year }}
+                        </a>
+                    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
-
-    {% for year in self.years %}
-    <a href="?year={{ year.year }}&category={{ request.GET.category }}">{{ year.year }}</a>
-    {% endfor %}
 
     {% for blog in blogs %}
     {% include "blog/includes/blog_list_item.html" with  blog=blog %}
