@@ -4,6 +4,31 @@
     position: fixed;
     top: 0;
     z-index: 3;
+
+    a,
+    button {
+        color: inherit;
+
+        transition: color $transition-duration;
+
+        &:focus,
+        &:hover {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+}
+
+.header--past-intro {
+    a,
+    button {
+        color: $body-color;
+
+        &:focus,
+        &:hover {
+            color: $body-color;
+        }
+    }
 }
 
 .header__link {
