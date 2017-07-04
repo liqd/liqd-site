@@ -3,6 +3,8 @@
     {% image value.image fill-800x600 as my_image %}
     <div class="image-with-caption">
         <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
-        <p class="image-with-caption__caption h2">{{ value.image.caption }}</p>
+        {% if value.image.caption %}
+            <p class="image-with-caption__caption h2">{{ value.image.caption }}</p>
+        {% endif %}
     </div>
 </div>
