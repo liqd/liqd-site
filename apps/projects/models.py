@@ -63,6 +63,23 @@ class ProjectPage(Page):
         STREAMFIELD_PROJECT_BLOCKS,
         null=True, verbose_name="Body")
 
+    timescale_en = models.CharField(max_length=256, blank=True)
+    timescale_de = models.CharField(max_length=256, blank=True)
+
+    partner_en = models.CharField(max_length=256, blank=True)
+    partner_de = models.CharField(max_length=256, blank=True)
+
+    user_count_en = models.CharField(max_length=256,
+                                  blank=True,
+                                  verbose_name='Number of users per month')
+    user_count_de = models.CharField(max_length=256,
+                                  blank=True,
+                                  verbose_name='Number of users per month')
+
+    timescale = TranslatedField('timescale_de', 'timescale_en')
+    partner = TranslatedField('partner_de', 'partner_en')
+    user_count = TranslatedField('user_count_de', 'user_count_en')
+
     body = TranslatedField(
         'body_de',
         'body_en'
@@ -103,24 +120,26 @@ class ProjectPage(Page):
 
     external_url = models.URLField(max_length=200, blank=True)
     categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
-    timescale = models.CharField(max_length=256, blank=True)
-    partner = models.CharField(max_length=256, blank=True)
-    user_count = models.CharField(max_length=256,
-                                  blank=True,
-                                  verbose_name='Number of users per month')
+
 
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
         FieldPanel('shorttext_de'),
-        StreamFieldPanel('body_de')
+        FieldPanel('timescale_de'),
+        FieldPanel('partner_de'),
+        FieldPanel('user_count_de'),
+        StreamFieldPanel('body_de'),
     ]
 
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
         FieldPanel('shorttext_en'),
-        StreamFieldPanel('body_en')
+        FieldPanel('timescale_en'),
+        FieldPanel('partner_en'),
+        FieldPanel('user_count_en'),
+        StreamFieldPanel('body_en'),
     ]
 
     appearance_panels = [
@@ -129,12 +148,9 @@ class ProjectPage(Page):
         FieldPanel('color2')
     ]
 
-    statistics_panels = [
+    commons_panels = [
         FieldPanel('external_url'),
-        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
-        FieldPanel('timescale'),
-        FieldPanel('partner'),
-        FieldPanel('user_count')
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
     ]
 
     promote_panels = [
@@ -155,7 +171,7 @@ class ProjectPage(Page):
         ObjectList(en_content_panels, heading='English'),
         ObjectList(de_content_panels, heading='German'),
         ObjectList(appearance_panels, heading='Appearance'),
-        ObjectList(statistics_panels, heading='Statistics'),
+        ObjectList(commons_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
