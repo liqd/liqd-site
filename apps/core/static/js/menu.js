@@ -1,6 +1,6 @@
 /* global $ */
 
-import {isHome, throttle} from "./helpers";
+import {isHome} from "./helpers";
 import {initDistort} from "liquid-logo";
 
 $(function () {
@@ -33,5 +33,5 @@ $(function () {
     }
   }
 
-  $window.on('scroll', throttle(scrollHandler, 300, {trailing: true}))
+  $window.on('scroll', scrollHandler)
 })
