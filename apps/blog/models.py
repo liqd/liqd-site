@@ -169,6 +169,10 @@ class BlogIndexPage(TranslatedStreamFieldPage):
 
         context = super().get_context(request)
         context['blogs'] = blogs
+        if category:
+            context['category'] = BlogCategory.objects.get(pk=int(category))
+        if year:
+            context['year'] = year
         return context
 
     def serve(self, request):
@@ -181,7 +185,7 @@ class BlogIndexPage(TranslatedStreamFieldPage):
                 {'request': request, 'blogs': blogs.object_list})
             return HttpResponse(html)
         return render(request,
-                      self.template, {'blogs': blogs, 'self': self})
+                      self.template, context)
 
     class Meta:
         verbose_name = 'Blog Index Page'
