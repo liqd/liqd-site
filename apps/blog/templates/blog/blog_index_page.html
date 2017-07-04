@@ -37,12 +37,13 @@
                     {% endif %}
                 </li>
             </ul>
-            <span class="h1">{% trans 'from' %}</span>
-            <button class="filter-line__current">{% firstof year self.years.first.year %}</button>
+            {% trans 'all years' as all_years %}
+            <span class="filter-line__prefix h1">{% trans 'from' %}</span>
+            <button class="filter-line__current">{% firstof year all_years %}</button>
             <ul class="filter-line__list">
                 {% for year_ in self.years %}
-                    <li class="filter-line__item{% if year_ == year %} filter-line__item--active{% endif %}">
-                    {% if year_ == year%}
+                    <li class="filter-line__item{% if year_.year == year %} filter-line__item--active{% endif %}">
+                    {% if year_.year == year %}
                         {{ year_.year }}
                     {% else %}
                         <a class="filter-line__link" href="?year={{ year_.year }}&category={{ category.pk }}">
@@ -51,6 +52,15 @@
                     {% endif %}
                     </li>
                 {% endfor %}
+                <li class="filter-line__item{% if not year %} filter-line__item--active{% endif %}">
+                    {% if not year %}
+                        {{ all_years }}
+                    {% else %}
+                        <a class="filter-line__link" href="?category={{ category.pk }}">
+                            {{ all_years }}
+                        </a>
+                    {% endif %}
+                </li>
             </ul>
         </div>
     </div>
