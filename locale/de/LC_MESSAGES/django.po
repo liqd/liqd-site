@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-18 18:28+0100\n"
+"POT-Creation-Date: 2017-07-04 15:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,35 +18,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: blog/templates/blog/blog_page.html:32
+#: apps/blog/templates/blog/blog_index_page.html:13
+#: apps/projects/templates/projects/project_index_page.html:13
+msgid "all topics"
+msgstr "allen Themen"
+
+#: apps/blog/templates/blog/blog_index_page.html:16
+msgid "Posts related to"
+msgstr "Beiträge zu"
+
+#: apps/blog/templates/blog/blog_index_page.html:40
+msgid "all years"
+msgstr "allen Jahren"
+
+#: apps/blog/templates/blog/blog_index_page.html:41
+msgid "from"
+msgstr "aus"
+
+#: apps/blog/templates/blog/blog_index_page.html:75
+#: apps/projects/templates/projects/project_index_page.html:47
+msgid "load more"
+msgstr "Mehr laden"
+
+#: apps/blog/templates/blog/blog_page.html:25
 msgid "by"
 msgstr "von"
 
-#: blog/templates/blog/tags/blogentries.html:7
-msgid "Read our latest blogposts"
+#: apps/blog/templates/blog/tags/blogentries.html:3
+#, fuzzy
+#| msgid "Read our latest blogposts"
+msgid "Our latest blogposts"
 msgstr "Unsere letzten Blogartikel"
 
-#: core/templates/404.html:4
+#: apps/core/templates/404.html:4
 msgid "Error"
 msgstr "Fehler"
 
-#: core/templates/404.html:23 core/templates/500.html:38
+#: apps/core/templates/404.html:23 apps/core/templates/500.html:38
 msgid "Oh no, something went wrong!"
 msgstr "Oh nein, da hat was nicht geklappt!"
 
-#: core/templates/404.html:24
+#: apps/core/templates/404.html:24
 msgid "This page could not be found"
 msgstr "Die Seite konnte nicht gefunden werden"
 
-#: core/templates/500.html:39
+#: apps/core/templates/500.html:39
 msgid "Internal Server Error. Please try again soon."
 msgstr "Internal Server Error. Bitte später erneut versuchen."
 
-#: core/templates/core/home_page.html:7
+#: apps/core/templates/core/home_page.html:7
 msgid "Homepage of Liquid Democracy"
-msgstr "Homepage des Liquid Democracy e.V."
+msgstr "Homepage des Liquid Democracy"
 
-#: core/templates/core/home_page.html:8
+#: apps/core/templates/core/home_page.html:8
 msgid ""
 "Our mission is to promote the advantages of online participation in all "
 "kinds of contexts, from international organisations to small local "
@@ -56,11 +80,47 @@ msgstr ""
 "Bereichen - von lokalen Initiativen bis zu internationalen Organisationen - "
 "zu fördern"
 
-#: website_wagtail/settings/base.py:110
+#: apps/projects/templates/projects/includes/fact_list.html:5
+msgid " website"
+msgstr "Webseite"
+
+#: apps/projects/templates/projects/includes/fact_list.html:9
+msgid "timescale"
+msgstr "Zeitraum"
+
+#: apps/projects/templates/projects/includes/fact_list.html:13
+msgid "users"
+msgstr "Nutzer"
+
+#: apps/projects/templates/projects/includes/fact_list.html:17
+msgid "partners"
+msgstr "Partner"
+
+#: apps/projects/templates/projects/project_index_page.html:16
+msgid "Projects related to"
+msgstr "Projekte zu"
+
+#: apps/projects/templates/projects/project_list.html:7
+msgid "No projects found"
+msgstr "Es wurden keine Projekte gefunden."
+
+#: apps/projects/templates/projects/project_page.html:32
+msgid "other projects"
+msgstr "Andere Projekte"
+
+#: apps/projects/templates/projects/project_teaser.html:9
+msgid "Details"
+msgstr "Details"
+
+#: apps/projects/templates/projects/project_teaser.html:11
+msgid "Website"
+msgstr "Webseite"
+
+#: website_wagtail/settings/base.py:127
 msgid "German"
 msgstr "Deutsch"
 
-#: website_wagtail/settings/base.py:111
+#: website_wagtail/settings/base.py:128
 msgid "English"
 msgstr "Englisch"
 
