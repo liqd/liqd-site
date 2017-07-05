@@ -3,7 +3,7 @@
     <dl class="fact-list">
         {% if page.external_url %}
         <dt>{% trans ' website' %}:</dt>
-        <dd><a href="{{ page.external_url }}"></a>{{ page.external_url }}</dd>
+        <dd><a href="{{ page.external_url }}">{{ page.external_url }}</a></dd>
         {% endif %}
         {% if page.timescale %}
         <dt>{% trans 'timescale' %}:</dt>
