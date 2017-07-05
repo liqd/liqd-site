@@ -1,5 +1,5 @@
 /* globals $ */
-import {isHome, throttle} from "./helpers";
+import {isHome} from "./helpers";
 import {initDistort} from "liquid-logo";
 
 $(function () {
@@ -17,9 +17,9 @@ $(function () {
     return (1 - amt) * start + amt * end
   }
 
-  $window.on('scroll', throttle(function () {
+  $window.on('scroll', function () {
     scrollPos = $window.scrollTop()
     const opacity = lerp(1, 0, scrollPos / windowHeight)
     webGL.setAlpha(opacity)
-  }, 100, {trailing: true}))
+  })
 })
