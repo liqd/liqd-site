@@ -110,7 +110,7 @@ msgstr "Andere Projekte"
 
 #: apps/projects/templates/projects/project_teaser.html:9
 msgid "Details"
-msgstr "Detail"
+msgstr "Details"
 
 #: apps/projects/templates/projects/project_teaser.html:11
 msgid "Website"
