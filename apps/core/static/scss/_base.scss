@@ -68,3 +68,18 @@ h4,
     margin-bottom: 0.5em;
     text-transform: none;
 }
+
+.rich-text {
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin-bottom: 1.3em;
+
+        font-size: 1em;
+        font-family: $font-family-base;
+        text-transform: none;
+        text-align: left;
+        letter-spacing: normal;
+    }
+}
