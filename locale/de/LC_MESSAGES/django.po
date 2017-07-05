@@ -25,7 +25,7 @@ msgstr "allen Themen"
 
 #: apps/blog/templates/blog/blog_index_page.html:16
 msgid "Posts related to"
-msgstr "Beiträge zu:"
+msgstr "Beiträge zu"
 
 #: apps/blog/templates/blog/blog_index_page.html:40
 msgid "all years"
@@ -98,7 +98,7 @@ msgstr "Partner"
 
 #: apps/projects/templates/projects/project_index_page.html:16
 msgid "Projects related to"
-msgstr "Projekte zu:"
+msgstr "Projekte zu"
 
 #: apps/projects/templates/projects/project_list.html:7
 msgid "No projects found"
