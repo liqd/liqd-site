@@ -11,58 +11,56 @@
 <section class="container blog-list item-list">
 
     {% trans 'all topics' as all %}
-    <div class="container">
-        <div class="filter-line filter-line--centered">
-            <h1 class="filter-line__prefix">{% trans 'Posts related to' %}</h1>
-            <button class="filter-line__current">{% firstof category all %}</button>
-            <ul class="filter-line__list">
-            {% for categ in self.categories %}
-                <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
-                {% if categ.pk == category.pk %}
+    <div class="filter-line filter-line--centered">
+        <h1 class="filter-line__prefix">{% trans 'Posts related to' %}</h1>
+        <button class="filter-line__current">{% firstof category all %}</button>
+        <ul class="filter-line__list">
+        {% for categ in self.categories %}
+            <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
+            {% if categ.pk == category.pk %}
+                {{ categ.translated_name }}
+            {% else %}
+                <a class="filter-line__link" href="?category={{ categ.pk }}&year={{ year }}">
                     {{ categ.translated_name }}
+                </a>
+            {% endif %}
+            </li>
+        {% endfor %}
+            <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
+                {% if not category %}
+                    {{ all }}
                 {% else %}
-                    <a class="filter-line__link" href="?category={{ categ.pk }}&year={{ year }}">
-                        {{ categ.translated_name }}
+                    <a class="filter-line__link" href="?year={{ year }}">
+                        {{ all }}
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+        {% trans 'all years' as all_years %}
+        <span class="filter-line__prefix h1">{% trans 'from' %}</span>
+        <button class="filter-line__current">{% firstof year all_years %}</button>
+        <ul class="filter-line__list">
+            {% for year_ in self.years %}
+                <li class="filter-line__item{% if year_.year == year %} filter-line__item--active{% endif %}">
+                {% if year_.year == year %}
+                    {{ year_.year }}
+                {% else %}
+                    <a class="filter-line__link" href="?year={{ year_.year }}&category={{ category.pk }}">
+                        {{ year_.year }}
                     </a>
                 {% endif %}
                 </li>
             {% endfor %}
-                <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
-                    {% if not category %}
-                        {{ all }}
-                    {% else %}
-                        <a class="filter-line__link" href="?year={{ year }}">
-                            {{ all }}
-                        </a>
-                    {% endif %}
-                </li>
-            </ul>
-            {% trans 'all years' as all_years %}
-            <span class="filter-line__prefix h1">{% trans 'from' %}</span>
-            <button class="filter-line__current">{% firstof year all_years %}</button>
-            <ul class="filter-line__list">
-                {% for year_ in self.years %}
-                    <li class="filter-line__item{% if year_.year == year %} filter-line__item--active{% endif %}">
-                    {% if year_.year == year %}
-                        {{ year_.year }}
-                    {% else %}
-                        <a class="filter-line__link" href="?year={{ year_.year }}&category={{ category.pk }}">
-                            {{ year_.year }}
-                        </a>
-                    {% endif %}
-                    </li>
-                {% endfor %}
-                <li class="filter-line__item{% if not year %} filter-line__item--active{% endif %}">
-                    {% if not year %}
+            <li class="filter-line__item{% if not year %} filter-line__item--active{% endif %}">
+                {% if not year %}
+                    {{ all_years }}
+                {% else %}
+                    <a class="filter-line__link" href="?category={{ category.pk }}">
                         {{ all_years }}
-                    {% else %}
-                        <a class="filter-line__link" href="?category={{ category.pk }}">
-                            {{ all_years }}
-                        </a>
-                    {% endif %}
-                </li>
-            </ul>
-        </div>
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
     </div>
 
     {% for blog in blogs %}
