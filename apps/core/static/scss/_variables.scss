@@ -12,8 +12,8 @@ $link-hover-color: lighten($link-color, 15%);
 $font-family-base: 'Plantin', 'Times New Roman', serif;
 $font-family-monospace:  'Favorit', monospace;
 
-$font-size-base: 1.4375rem;
-$font-size-lg: 1.4375rem;
+$font-size-xl: 1.4375rem;
+$font-size-base: 1.2rem;
 $font-size-sm: 1.2rem;
 $font-size-xs: 1rem;
 $line-height-base: 1.4;
@@ -36,6 +36,14 @@ $grid-gutter-widths: (
     md: $grid-gutter-width-base,
     lg: $grid-gutter-width-base,
     xl: $grid-gutter-width-base
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1440px
 );
 
 $container-max-widths: (
