@@ -51,6 +51,10 @@
     .row {
         margin-bottom: $spacer-v/2;
     }
+
+    .fade-teaser:before {
+        height: 12em;
+    }
 }
 
 .block--projects h2 {
