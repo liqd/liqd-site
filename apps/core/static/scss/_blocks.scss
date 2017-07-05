@@ -47,6 +47,10 @@
     a {
         text-decoration: none;
     }
+
+    .row {
+        margin-bottom: $spacer-v/2;
+    }
 }
 
 .block--projects h2 {
@@ -92,6 +96,5 @@
         text-decoration: underline;
         margin-bottom: 1.5em;
     }
-
 }
 
