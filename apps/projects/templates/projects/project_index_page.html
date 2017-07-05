@@ -13,7 +13,7 @@
 {% trans 'all topics' as all %}
     <div class="filter-line filter-line--centered">
         <h1 class="filter-line__prefix">{% trans 'Projects related to' %}</h1>
-        <button class="filter-line__current">{% firstof category all %}</button>
+        <button class="filter-line__current">{% firstof category.translated_name all %}</button>
         <ul class="filter-line__list">
         {% for categ in categories %}
             <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
