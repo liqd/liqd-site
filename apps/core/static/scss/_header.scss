@@ -56,6 +56,12 @@
 
 .header__brand-label {
     height: 1em;
+    display: none;
+}
+
+.homepage .header__brand-label {
+    // only show on homepage
+    display: inline-block;
 }
 
 .header__brand-canvas {
