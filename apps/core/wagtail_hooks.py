@@ -8,7 +8,6 @@ def editor_js():
     return format_html(
         """
         <script>
-            delete halloPlugins.halloheadings;
             delete halloPlugins.halloformat;
         </script>
         """
