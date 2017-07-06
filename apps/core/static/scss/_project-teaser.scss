@@ -8,6 +8,7 @@
     &:hover .project-teaser__container {
         opacity: 1;
     }
+
 }
 
 .project-teaser__container {
@@ -21,6 +22,11 @@
 
     opacity: 0;
     transition: opacity $transition-duration - 0.1s;
+}
+
+.project-teaser__container__header,
+.project-teaser__container__header:hover {
+    text-decoration: none;
 }
 
 .project-teaser--left {
