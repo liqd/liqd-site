@@ -27,6 +27,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('images', '0001_initial'),
+        ('wagtailimages', '0019_delete_filter')
     ]
 
     operations = [
