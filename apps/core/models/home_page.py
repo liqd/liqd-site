@@ -40,5 +40,5 @@ class HomePage(TranslatedStreamFieldPage):
                    classname="settings"),
     ])
 
-    subpage_types = ['JoinUsPage', 'TextPage',
+    subpage_types = ['TextPageWithBlocks', 'TextPage',
                      'projects.ProjectIndexPage', 'blog.BlogIndexPage']
