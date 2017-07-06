@@ -1,6 +1,6 @@
 {% load wagtailimages_tags %}
 <div class="block--aligned_image--{{ value.display }}">
-    {% image value.image fill-800x600 as my_image %}
+    {% image value.image fill-800x600 jpegquality-100 as my_image %}
     <div class="image-with-caption">
         <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
         {% if value.image.caption %}
