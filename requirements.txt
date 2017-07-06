@@ -1,6 +1,6 @@
 # Minimal requirements
 Django==1.11
-wagtail==1.10.1
+wagtail==1.11
 django-bleach==0.3.0
 bleach==1.4.3
 html5lib==0.9999999
