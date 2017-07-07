@@ -12,6 +12,7 @@ $(function () {
   const $brandLabel = $('.header__brand-label')
   let prevScrollTop = $window.scrollTop()
   let windowHeight = $window.height()
+  let windowWidth = $window.width()
   let menuIsVisible = true
   let labelIsVisible = true
 
@@ -22,12 +23,14 @@ $(function () {
   function scrollHandler () {
     let scrollTop = $window.scrollTop()
 
-    if (scrollTop > prevScrollTop && scrollTop >= 100 && menuIsVisible) {
-      $menuContainer.addClass('header__menu-list--invisible')
-      menuIsVisible = false
-    } else if (prevScrollTop > scrollTop && !menuIsVisible) {
-      $menuContainer.removeClass('header__menu-list--invisible')
-      menuIsVisible = true
+    if (windowWidth > 576) {
+      if (scrollTop > prevScrollTop && scrollTop >= 100 && menuIsVisible) {
+        $menuContainer.addClass('header__menu-list--invisible')
+        menuIsVisible = false
+      } else if (prevScrollTop > scrollTop && !menuIsVisible) {
+        $menuContainer.removeClass('header__menu-list--invisible')
+        menuIsVisible = true
+      }
     }
 
     if (isHome()) {

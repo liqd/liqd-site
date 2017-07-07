@@ -55,6 +55,7 @@
 }
 
 .header__brand-label {
+    vertical-align: top;
     height: 1em;
     display: none;
 }
@@ -67,8 +68,9 @@
 .header__brand-canvas {
     height: 50px;
     width: 60px;
+    margin-top: -$spacer;
 
-    vertical-align: bottom;
+    vertical-align: top;
 }
 
 .header__menu {
@@ -137,8 +139,7 @@
 
 .header__bar__toggle {
     position: absolute;
-    right: $spacer;
-    top: $spacer / 2;
+    right: $spacer - $navbar-toggler-padding-x;
 
     @include media-breakpoint-up(sm) {
         position: static;

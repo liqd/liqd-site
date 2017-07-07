@@ -3,10 +3,20 @@
 {% for item in value.teasers %}
 {% if forloop.first %}<div class="row">{% endif %}
     <div class="col-md-6">
-        <a href="{{ item.url }}">
-            <h3>{{ item.headline }}</h3>
-            <p>{{ item.text }}</p>
-        </a>
+    {% if item.url %}
+        <div class="fade-teaser">
+            <a class="fade-teaser__link" href="{{ item.url }}">
+                <span class="sr-only">{{ item.headline }}</span>
+            </a>
+            <div class="fade-teaser__body">
+                <h3>{{ item.headline }}</h3>
+                <p>{{ item.text }}</p>
+            </div>
+        </div>
+    {% else %}
+        <h3>{{ item.headline }}</h3>
+        <p>{{ item.text }}</p>
+    {% endif %}
     </div>
 
 {% if forloop.counter|divisibleby:2 %}
