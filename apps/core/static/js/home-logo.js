@@ -9,7 +9,9 @@ $(function () {
 
   const $window = $(window)
   const windowHeight = $window.height()
-  const webGL = initDistort('canvas-home')
+  const webGL = initDistort('canvas-home', {
+    height: windowHeight / 100 * 80
+  })
 
   let scrollPos
 
