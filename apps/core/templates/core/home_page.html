@@ -14,10 +14,10 @@
 <div class="home-logo">
     <canvas id="canvas-home" class="home-logo__canvas"></canvas>
 </div>
-<section class="container intro-screen">
-        <div class="lead">
-            {{ page.translated_intro|richtext }}
-        </div>
+<section class="container home-logo__lead">
+    <div class="lead">
+        {{ page.translated_intro|richtext }}
+    </div>
 </section>
 
 {% include 'includes/blocks.html' with blocks=page.body %}
