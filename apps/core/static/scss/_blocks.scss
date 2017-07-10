@@ -52,6 +52,10 @@
         margin-bottom: $spacer-v/2;
     }
 
+    .row:last-child {
+        margin-bottom: 0;
+    }
+
     .fade-teaser:before {
         height: 12em;
     }

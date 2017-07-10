@@ -8,7 +8,7 @@
 
 
 
-<section class="container blog-list item-list">
+<section class="blog-list">
 
     {% trans 'all topics' as all %}
     <div class="filter-line filter-line--centered">
@@ -63,9 +63,11 @@
         </ul>
     </div>
 
-    {% for blog in blogs %}
-    {% include "blog/includes/blog_list_item.html" with  blog=blog %}
-    {% endfor %}
+    <div class="container item-list">
+        {% for blog in blogs %}
+        {% include "blog/includes/blog_list_item.html" with blog=blog %}
+        {% endfor %}
+    </div>
 </section>
 
 {% if blogs.has_next %}

@@ -1,5 +1,5 @@
 .home-logo {
-    height: 100vh;
+    height: 70vh;
     width: 100vw;
 }
 
@@ -9,4 +9,8 @@
     left: 0;
 
     transition: opacity 0.1s;
+}
+
+.home-logo__lead {
+    margin-bottom: $spacer-v * 2;
 }

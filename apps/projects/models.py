@@ -1,3 +1,5 @@
+import random
+
 from django import forms
 from django.core.paginator import InvalidPage, Paginator
 from django.db import models
@@ -204,10 +206,13 @@ class ProjectPage(Page):
         return '#fbfbfb' if contrast_bright > contrast_dark else '#060606'
 
     @cached_property
-    def other_projects(self):
+    def other_project(self):
         category_list = self.categories.all().values_list('pk', flat=True)
-        return ProjectPage.objects.filter(categories__in=category_list).\
-            exclude(pk=self.pk)
+        if category_list:
+            return random.choice(
+                ProjectPage.objects.filter(categories__in=category_list)
+                .exclude(pk=self.pk)
+            )
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-04 15:21+0200\n"
+"POT-Creation-Date: 2017-07-10 07:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,20 +23,20 @@ msgstr ""
 msgid "all topics"
 msgstr "allen Themen"
 
-#: apps/blog/templates/blog/blog_index_page.html:16
+#: apps/blog/templates/blog/blog_index_page.html:15
 msgid "Posts related to"
 msgstr "Beiträge zu"
 
-#: apps/blog/templates/blog/blog_index_page.html:40
+#: apps/blog/templates/blog/blog_index_page.html:39
 msgid "all years"
 msgstr "allen Jahren"
 
-#: apps/blog/templates/blog/blog_index_page.html:41
+#: apps/blog/templates/blog/blog_index_page.html:40
 msgid "from"
 msgstr "aus"
 
-#: apps/blog/templates/blog/blog_index_page.html:75
-#: apps/projects/templates/projects/project_index_page.html:47
+#: apps/blog/templates/blog/blog_index_page.html:73
+#: apps/projects/templates/projects/project_index_page.html:45
 msgid "load more"
 msgstr "Mehr laden"
 
@@ -45,8 +45,6 @@ msgid "by"
 msgstr "von"
 
 #: apps/blog/templates/blog/tags/blogentries.html:3
-#, fuzzy
-#| msgid "Read our latest blogposts"
 msgid "Our latest blogposts"
 msgstr "Unsere letzten Blogartikel"
 
@@ -96,7 +94,7 @@ msgstr "Nutzer"
 msgid "partners"
 msgstr "Partner"
 
-#: apps/projects/templates/projects/project_index_page.html:16
+#: apps/projects/templates/projects/project_index_page.html:15
 msgid "Projects related to"
 msgstr "Projekte zu"
 
@@ -105,14 +103,14 @@ msgid "No projects found"
 msgstr "Es wurden keine Projekte gefunden."
 
 #: apps/projects/templates/projects/project_page.html:32
-msgid "other projects"
-msgstr "Andere Projekte"
+msgid "other project"
+msgstr "Weiteres Projekt"
 
-#: apps/projects/templates/projects/project_teaser.html:9
+#: apps/projects/templates/projects/project_teaser.html:11
 msgid "Details"
 msgstr "Details"
 
-#: apps/projects/templates/projects/project_teaser.html:11
+#: apps/projects/templates/projects/project_teaser.html:13
 msgid "Website"
 msgstr "Webseite"
 

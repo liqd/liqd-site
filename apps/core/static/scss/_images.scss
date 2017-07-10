@@ -1,3 +1,8 @@
 .image-with-caption__caption {
+    padding: 0 $spacer/2;
     margin-top: 0.6rem;
+
+    @include media-breakpoint-up(sm) {
+        padding: 0;
+    }
 }

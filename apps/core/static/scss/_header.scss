@@ -37,26 +37,34 @@
     text-align: center;
     padding: 0.25em 0.5em;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         text-align: left;
         font-size: inherit;
         padding: 0.5em 1em;
     }
 }
 
-.header__brand {
+a.header__brand {
     text-decoration: none;
+    font-size: inherit;
+    padding: 0;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         position: absolute;
+        top: 1em;
         left: 1.7em;
         z-index: 1;
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
     }
 }
 
 .header__brand-label {
     vertical-align: top;
-    height: 1em;
+    height: 0.95em;
     display: none;
 }
 
@@ -76,7 +84,7 @@
 .header__menu {
     justify-content: center;
 
-    @include media-breakpoint-only(xs) {
+    @include media-breakpoint-down(sm) {
         &:after {
             content: "";
             display: block;
@@ -99,7 +107,7 @@
 
     transition: opacity $transition-duration;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         height: auto;
 
         &:after {
@@ -142,12 +150,14 @@ button.header__bar__toggle {
 
     position: absolute;
     right: $spacer - $navbar-toggler-padding-x;
+    top: $spacer - $navbar-toggler-padding-y;
+
 
     font-family: $font-family-monospace;
     font-size: 0.8rem;
     text-decoration: none;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         position: static;
     }
 
