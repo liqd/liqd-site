@@ -138,8 +138,13 @@
 }
 
 .header__bar__toggle {
+    margin-top: 0.2em;
+
     position: absolute;
     right: $spacer - $navbar-toggler-padding-x;
+
+    font-family: $font-family-monospace;
+    font-size: 0.8rem;
 
     @include media-breakpoint-up(sm) {
         position: static;
