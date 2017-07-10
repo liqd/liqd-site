@@ -42,7 +42,7 @@ TEMPLATES = [
     },
 },]
 
-ALLOWED_HOSTS = ['localhost', '192.168.2.209']
+ALLOWED_HOSTS = []
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
