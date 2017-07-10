@@ -37,7 +37,7 @@
     text-align: center;
     padding: 0.25em 0.5em;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         text-align: left;
         font-size: inherit;
         padding: 0.5em 1em;
@@ -49,7 +49,7 @@ a.header__brand {
     font-size: inherit;
     padding: 0;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         position: absolute;
         top: 1em;
         left: 1.7em;
@@ -84,7 +84,7 @@ a.header__brand {
 .header__menu {
     justify-content: center;
 
-    @include media-breakpoint-only(xs) {
+    @include media-breakpoint-down(sm) {
         &:after {
             content: "";
             display: block;
@@ -107,7 +107,7 @@ a.header__brand {
 
     transition: opacity $transition-duration;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         height: auto;
 
         &:after {
@@ -148,16 +148,16 @@ a.header__brand {
 .header__bar__toggle {
     position: absolute;
     right: $spacer - $navbar-toggler-padding-x;
+    top: $spacer - $navbar-toggler-padding-y;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         position: static;
     }
 }
 
-.header__bar__toggle:hover,
 .header__bar__toggle[aria-expanded="true"] {
     .header__bar-icon--first {
-        transform: translateY(10px) rotateZ(-45deg);
+        transform: translateY(8px) rotateZ(-45deg);
     }
 
     .header__bar-icon--second {
