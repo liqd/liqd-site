@@ -46,9 +46,12 @@
 
 a.header__brand {
     text-decoration: none;
+    font-size: inherit;
+    padding: 0;
 
     @include media-breakpoint-up(sm) {
         position: absolute;
+        top: 1em;
         left: 1.7em;
         z-index: 1;
     }
@@ -61,7 +64,7 @@ a.header__brand {
 
 .header__brand-label {
     vertical-align: top;
-    height: 1em;
+    height: 0.95em;
     display: none;
 }
 
