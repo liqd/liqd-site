@@ -1,8 +1,10 @@
 .filter-line {
     margin-bottom: $spacer-v;
+    padding: 0 $spacer;
 
     @include media-breakpoint-up(md) {
         display: flex;
+        padding: 0;
         justify-content: center;
         align-items: center;
     }
