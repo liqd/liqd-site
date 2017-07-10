@@ -83,4 +83,16 @@ h4,
         text-align: left;
         letter-spacing: normal;
     }
+
+    b, strong {
+        font-weight: 400;
+    }
+
+    i, em {
+        font-style: normal;
+    }
+
+    li {
+        margin-bottom: 0.8em;
+    }
 }
