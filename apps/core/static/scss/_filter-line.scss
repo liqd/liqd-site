@@ -1,8 +1,10 @@
 .filter-line {
     margin-bottom: $spacer-v;
+    padding: 0 $spacer;
 
     @include media-breakpoint-up(md) {
         display: flex;
+        padding: 0;
         justify-content: center;
         align-items: center;
     }
@@ -52,6 +54,39 @@ span.filter-line__prefix {
     @include media-breakpoint-up(md) {
         margin: 0 0 0 1.5em;
     }
+}
+
+.filter-line__modal {
+    display: flex;
+    padding: 2em;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+
+    background: rgba($body-bg, 0.9);
+
+    .filter-line__list {
+        display: block;
+
+        font-size: $font-size-xl;
+    }
+
+    li {
+        margin-bottom: 0.6em;
+    }
+}
+
+.filter-line__modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    font-size: 2rem;
 }
 
 .filter-line__list--active {
