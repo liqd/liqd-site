@@ -28,9 +28,9 @@
 
 {% include 'includes/blocks.html' with blocks=page.body %}
 
-{% if page.other_projects %}
-<h2>{% trans 'other projects' %}</h2>
-{% include 'projects/project_list.html' with projects=page.other_projects %}
+{% if page.other_project %}
+<h2>{% trans 'other project' %}</h2>
+    {% include 'projects/project_teaser.html' with project=page.other_project number=page.other_project.pk|divisibleby:2 %}
 </div>
 {% endif %}
 
