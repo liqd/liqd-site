@@ -11,10 +11,8 @@
         <img src="{% static 'images/logo.png' %}" class="header__brand-label" alt="Liquid Democracy">
     </a>
     <button type="button" class="header__bar__toggle navbar-toggler" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false">
-        <span class="sr-only">Navigation an/aus</span>
-        <span class="header__bar-icon header__bar-icon--first"></span>
-        <span class="header__bar-icon header__bar-icon--second"></span>
-        <span class="header__bar-icon header__bar-icon--third"></span>
+        <span class="header__toggle-open">{% trans 'Menu' %}</span>
+        <span class="header__toggle-close">{% trans 'Close' %}</span>
     </button>
     <div class="header__menu navbar-collapse collapse" id="navbar-main">
         <ul class="navbar-nav header__menu-list">
