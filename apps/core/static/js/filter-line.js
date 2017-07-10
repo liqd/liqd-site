@@ -30,14 +30,14 @@ $(function () {
     }
   })
 
-  function buildModal($list) {
+  function buildModal ($list) {
     let $modal = $('<div class="filter-line__modal"></div>')
     let $close = $('<button class="filter-line__modal-close">&times;</button>')
 
     $modal.append($close)
     $modal.append($list.clone())
 
-    $close.one('click', function() {
+    $close.one('click', function () {
       $modal.remove()
     })
 
