@@ -137,31 +137,35 @@
     transition: transform $transition-duration, opacity $transition-duration;
 }
 
-.header__bar__toggle {
-    margin-top: 0.2em;
+button.header__bar__toggle {
+    margin-top: 0.3em;
 
     position: absolute;
     right: $spacer - $navbar-toggler-padding-x;
 
     font-family: $font-family-monospace;
     font-size: 0.8rem;
+    text-decoration: none;
 
     @include media-breakpoint-up(sm) {
         position: static;
     }
+
+    &:focus {
+        text-decoration: none;
+    }
 }
 
-.header__bar__toggle:hover,
+.header__toggle-close {
+    display: none;
+}
+
 .header__bar__toggle[aria-expanded="true"] {
-    .header__bar-icon--first {
-        transform: translateY(10px) rotateZ(-45deg);
+    .header__toggle-open {
+        display: none;
     }
 
-    .header__bar-icon--second {
-        opacity: 0;
-    }
-
-    .header__bar-icon--third {
-        transform: translateY(-4px) rotateZ(45deg);
+    .header__toggle-close {
+        display: block;
     }
 }
