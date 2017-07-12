@@ -2,11 +2,11 @@
 <div class="container">
     <dl class="fact-list">
         {% if page.external_url %}
-        <dt>{% trans ' website' %}:</dt>
+        <dt>{% trans 'URL' %}:</dt>
         <dd><a href="{{ page.external_url }}">{{ page.external_url }}</a></dd>
         {% endif %}
         {% if page.timescale %}
-        <dt>{% trans 'timescale' %}:</dt>
+        <dt>{% trans 'year' %}:</dt>
         <dd>{{ page.timescale }}</dd>
         {% endif %}
         {% if page.user_count %}
