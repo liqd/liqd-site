@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-10 07:51+0200\n"
+"POT-Creation-Date: 2017-07-12 14:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr "allen Jahren"
 msgid "from"
 msgstr "aus"
 
-#: apps/blog/templates/blog/blog_index_page.html:73
+#: apps/blog/templates/blog/blog_index_page.html:75
 #: apps/projects/templates/projects/project_index_page.html:45
 msgid "load more"
 msgstr "Mehr laden"
@@ -78,17 +78,25 @@ msgstr ""
 "Bereichen - von lokalen Initiativen bis zu internationalen Organisationen - "
 "zu fördern"
 
+#: apps/core/templates/navbar-simple.html:14
+msgid "Menu"
+msgstr ""
+
+#: apps/core/templates/navbar-simple.html:15
+msgid "Close"
+msgstr ""
+
 #: apps/projects/templates/projects/includes/fact_list.html:5
-msgid " website"
-msgstr "Webseite"
+msgid "URL"
+msgstr "URL"
 
 #: apps/projects/templates/projects/includes/fact_list.html:9
-msgid "timescale"
+msgid "year"
 msgstr "Zeitraum"
 
 #: apps/projects/templates/projects/includes/fact_list.html:13
 msgid "users"
-msgstr "Nutzer"
+msgstr "Nutzer*innen"
 
 #: apps/projects/templates/projects/includes/fact_list.html:17
 msgid "partners"
@@ -106,21 +114,27 @@ msgstr "Es wurden keine Projekte gefunden."
 msgid "other project"
 msgstr "Weiteres Projekt"
 
-#: apps/projects/templates/projects/project_teaser.html:11
+#: apps/projects/templates/projects/project_teaser.html:13
 msgid "Details"
 msgstr "Details"
 
-#: apps/projects/templates/projects/project_teaser.html:13
+#: apps/projects/templates/projects/project_teaser.html:15
 msgid "Website"
 msgstr "Webseite"
 
-#: website_wagtail/settings/base.py:127
+#: website_wagtail/settings/base.py:126
 msgid "German"
 msgstr "Deutsch"
 
-#: website_wagtail/settings/base.py:128
+#: website_wagtail/settings/base.py:127
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid " website"
+#~ msgstr "Webseite"
+
+#~ msgid "timescale"
+#~ msgstr "Zeitraum"
 
 #~ msgid "Back to top"
 #~ msgstr "Zurück"
