@@ -96,3 +96,11 @@ h4,
         margin-bottom: 0.8em;
     }
 }
+
+.lead {
+    font-size: 1.35rem;
+
+    @include media-breakpoint-up(md) {
+        font-size: $lead-font-size;
+    }
+}
