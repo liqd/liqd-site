@@ -66,6 +66,10 @@ a.header__brand {
     vertical-align: top;
     height: 0.95em;
     display: none;
+
+    @include media-breakpoint-down(sm) {
+        margin-top: 0.6em;
+    }
 }
 
 .homepage .header__brand-label {
