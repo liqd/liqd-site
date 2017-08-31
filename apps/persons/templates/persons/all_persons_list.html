@@ -9,8 +9,8 @@
         <div class="col-6 col-md-2 block--all_persons_list__item">
             {% image person.image fill-400x400-c100 %}
             <div class="block--all_persons_list__container" style="background-image: linear-gradient(148deg, {{ person.color1 }}, {{ person.color2 }});">
-                <h2><a href="mailto:{{ person.email }}">{{ person.first_name }} {{ person.last_name }}</a></h2>
-                <p class="h2">{{ person.area }}</p>
+                <h3 class="h4"><a href="mailto:{{ person.email }}">{{ person.first_name }} {{ person.last_name }}</a></h3>
+                <p class="h4">{{ person.area }}</p>
             </div>
         </div>
         {% endfor %}
