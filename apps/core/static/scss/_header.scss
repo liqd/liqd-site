@@ -78,11 +78,16 @@ a.header__brand {
 }
 
 .header__brand-canvas {
+    display: none;
     height: 50px;
     width: 60px;
     margin-top: -$spacer;
 
     vertical-align: top;
+
+    @include media-breakpoint-up(sm) {
+        display: block;
+    }
 }
 
 .header__menu {
