@@ -1,5 +1,6 @@
 .header {
     width: 100%;
+    padding-top: 1em;
 
     position: fixed;
     top: 0;
@@ -51,7 +52,7 @@ a.header__brand {
 
     @include media-breakpoint-up(md) {
         position: absolute;
-        top: 1em;
+        top: 1.65em;
         left: 1.7em;
         z-index: 1;
     }
