@@ -1,4 +1,4 @@
-/* global $ */
+/* global $ django */
 
 $(function () {
   let $triggers = $('.filter-line__current')
@@ -32,7 +32,7 @@ $(function () {
 
   function buildModal ($list) {
     let $modal = $('<div class="filter-line__modal"></div>')
-    let $close = $('<button class="filter-line__modal-close">&times;</button>')
+    let $close = $('<button class="filter-line__modal-close h4">Schließen</button>')
 
     $modal.append($close)
     $modal.append($list.clone())
