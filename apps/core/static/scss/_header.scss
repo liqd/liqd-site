@@ -86,7 +86,7 @@ a.header__brand {
     vertical-align: top;
 
     @include media-breakpoint-up(sm) {
-        display: block;
+        display: inline-block;
     }
 }
 
