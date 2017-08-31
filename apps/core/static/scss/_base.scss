@@ -41,6 +41,15 @@ button {
     appearance: none;
 }
 
+a {
+    border-bottom: 1px solid currentColor;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
 h1,
 .h1 {
     letter-spacing: 0.2px;

@@ -5,8 +5,10 @@
         margin-bottom: 1em;
     }
 
-    .nav-link {
+    .navbar-nav .nav-link {
         padding: 0;
+        border-bottom: 1px solid transparent;
+        margin-right: 0.75em;
 
         font-family: $font-family-monospace;
         font-size: 0.8rem;
@@ -14,7 +16,7 @@
 
         &:hover,
         &:focus {
-            text-decoration: underline;
+            border-bottom-color: $body-color;
         }
     }
 }
