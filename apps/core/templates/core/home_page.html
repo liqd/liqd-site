@@ -66,6 +66,9 @@
         <div class="col-sm-7">
             {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
                 {% image settings.core.AddressSettings.image height-500 %}
+                <p class="h4 mt-2">
+                    <a href="https://goo.gl/maps/MNziS2rjmNQ2">{% trans 'See on google maps' %}</a>
+                </p>
             {% endif %}
         </div>
     </div>
