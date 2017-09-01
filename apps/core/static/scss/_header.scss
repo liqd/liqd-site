@@ -77,6 +77,11 @@ a.header__brand {
     display: inline-block;
 }
 
+.homepage .header__menu {
+    transition: opacity 1s;
+    opacity: 0;
+}
+
 .header__brand-canvas {
     height: 50px;
     width: 60px;
