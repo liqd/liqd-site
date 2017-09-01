@@ -63,7 +63,6 @@ a.header__brand {
 }
 
 .header__brand-label {
-    vertical-align: top;
     height: 0.95em;
     display: none;
 
@@ -83,6 +82,8 @@ a.header__brand {
 }
 
 .header__brand-canvas {
+    position: absolute;
+    left: 0;
     height: 50px;
     width: 60px;
     margin-top: -$spacer;
