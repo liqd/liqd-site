@@ -38,7 +38,6 @@ $(function () {
       const opacityLabel = lerp(1, 0, scrollTop / windowHeight)
       webGL.setAlpha(opacityGL)
       $brandLabel.css({'opacity': opacityLabel})
-      console.log(opacityLabel);
       if (labelIsVisible && opacityLabel <= 0) {
         labelIsVisible = false
         $brandLabel.css({'display': 'none'})
