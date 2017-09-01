@@ -11,7 +11,7 @@ $(function () {
   const windowHeight = $window.height()
   const $header = $('#navbar-main')
   const webGL = initDistort('canvas-home', {
-    height: windowHeight * 0.8
+    height: windowHeight
   })
 
   let scrollPos = $window.scrollTop()
@@ -19,7 +19,10 @@ $(function () {
   if (scrollPos <= 30) {
     setTimeout(function () {
       $header.css('opacity', 1)
-    }, 1000)
+    }, 1500)
+    setTimeout(function () {
+      $('html, body').animate({scrollTop: 100})
+    }, 2500)
   } else {
     $header.css('opacity', 1)
   }
@@ -30,7 +33,7 @@ $(function () {
 
   $window.on('scroll', function () {
     scrollPos = $window.scrollTop()
-    const opacity = lerp(1, 0, scrollPos / (windowHeight * 0.8))
+    const opacity = lerp(1, 0, scrollPos / windowHeight)
     webGL.setAlpha(opacity)
   })
 })
