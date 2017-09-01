@@ -87,6 +87,7 @@ a.header__brand {
 
     @include media-breakpoint-up(sm) {
         display: inline-block;
+        margin-top: -$spacer;
     }
 }
 
