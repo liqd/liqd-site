@@ -1,15 +1,17 @@
 .blog-list {
+    margin-bottom: $spacer-v;
     h2 {
         text-align: center;
     }
 }
 
 .blog-list__item {
-    margin-bottom: $spacer-v;
+    margin-bottom: $spacer-v / 2;
 }
 
 .blog-list__item-date {
     text-align: center;
+    margin-bottom: $spacer-v / 2;
 }
 
 .blog-list__item-title {
