@@ -24,8 +24,8 @@
 
 {% blog_entries %}
 
-    <div class="row-right">
-        <div class="col-sm-5">
+    <div class="row-right align-items-center">
+        <div class="col-sm-4">
             {% if settings.core.AddressSettings %}
                 <p>
                     {{ settings.core.AddressSettings.organisation_name }}<br>
@@ -63,12 +63,14 @@
             {% endif %}
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-8">
             {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
-                {% image settings.core.AddressSettings.image height-500 %}
-                <p class="h4 mt-2">
-                    <a href="https://goo.gl/maps/MNziS2rjmNQ2">{% trans 'See on google maps' %}</a>
-                </p>
+                <div class="ml-auto">
+                    {% image settings.core.AddressSettings.image width-950 %}
+                    <p class="h4 mt-2">
+                        <a href="https://goo.gl/maps/MNziS2rjmNQ2">{% trans 'See on google maps' %}</a>
+                    </p>
+                </div>
             {% endif %}
         </div>
     </div>
