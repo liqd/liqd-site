@@ -28,13 +28,30 @@ span.filter-line__prefix {
 }
 
 .filter-line__current {
-    padding: 0;
+    padding: 0 0.5em 0 0;
+
+    position: relative;
 
     font-size: $font-size-h1;
     text-decoration: underline;
 
     @include media-breakpoint-up(md) {
         margin-left: 0.3em;
+    }
+
+    &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 7px 0;
+        border-color: #000 transparent transparent;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
     }
 }
 
@@ -68,7 +85,7 @@ span.filter-line__prefix {
     left: 0;
     z-index: 4;
 
-    background: rgba($body-bg, 0.9);
+    background: rgba($body-bg, 0.95);
 
     .filter-line__list {
         display: block;
@@ -85,8 +102,6 @@ span.filter-line__prefix {
     position: absolute;
     right: 0;
     top: 0;
-
-    font-size: 2rem;
 }
 
 .filter-line__list--active {
