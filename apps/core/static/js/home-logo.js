@@ -9,11 +9,23 @@ $(function () {
 
   const $window = $(window)
   const windowHeight = $window.height()
+  const $header = $('#navbar-main')
   const webGL = initDistort('canvas-home', {
-    height: windowHeight * 0.8
+    height: windowHeight
   })
 
-  let scrollPos
+  let scrollPos = $window.scrollTop()
+
+  if (scrollPos <= 30) {
+    setTimeout(function () {
+      $header.css('opacity', 1)
+    }, 1500)
+    setTimeout(function () {
+      $('html, body').animate({scrollTop: 100})
+    }, 2500)
+  } else {
+    $header.css('opacity', 1)
+  }
 
   function lerp (start, end, amt) {
     return (1 - amt) * start + amt * end
@@ -21,7 +33,7 @@ $(function () {
 
   $window.on('scroll', function () {
     scrollPos = $window.scrollTop()
-    const opacity = lerp(1, 0, scrollPos / (windowHeight * 0.8))
+    const opacity = lerp(1, 0, scrollPos / windowHeight)
     webGL.setAlpha(opacity)
   })
 })

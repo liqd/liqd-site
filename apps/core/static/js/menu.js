@@ -35,14 +35,11 @@ $(function () {
 
     if (isHome()) {
       const opacityGL = lerp(0, 1, scrollTop / windowHeight)
-      const opacityLabel = lerp(1, 0, scrollTop / windowHeight)
       webGL.setAlpha(opacityGL)
-      $brandLabel.css({'opacity': opacityLabel})
-      console.log(opacityLabel);
-      if (labelIsVisible && opacityLabel <= 0) {
+      if (labelIsVisible && scrollTop > 20) {
         labelIsVisible = false
         $brandLabel.css({'display': 'none'})
-      } else if (!labelIsVisible && opacityLabel > 0) {
+      } else if (!labelIsVisible && scrollTop <= 20) {
         $brandLabel.css({'display': 'inline-block'})
         labelIsVisible = true
       }
