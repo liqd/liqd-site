@@ -68,7 +68,7 @@
                 <div class="ml-auto">
                     {% image settings.core.AddressSettings.image width-950 %}
                     <p class="h4 mt-2">
-                        <a href="https://goo.gl/maps/MNziS2rjmNQ2">{% trans 'See on google maps' %}</a>
+                        <a href="https://maps.google.com/?q={{ settings.core.AddressSettings.organisation_name }} {{ settings.core.AddressSettings.organisation_street }}" target="_blank">{% trans 'See on google maps' %}</a>
                     </p>
                 </div>
             {% endif %}
