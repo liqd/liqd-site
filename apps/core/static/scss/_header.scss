@@ -1,7 +1,8 @@
 .header {
     width: 100%;
 
-padding-top: 1em;    position: absolute;
+    padding-top: 1em;
+    position: absolute;
     top: 0;
     z-index: 3;
 
@@ -178,7 +179,7 @@ button.header__bar__toggle {
     right: $spacer - $navbar-toggler-padding-x;
     top: $spacer - $navbar-toggler-padding-y;
 
-z-index: 3;
+    z-index: 3;
     font-family: $font-family-monospace;
     font-size: 0.8rem;
     border-bottom: none;
