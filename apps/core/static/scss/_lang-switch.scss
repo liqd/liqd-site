@@ -5,6 +5,7 @@
 }
 
 .lang-switch__active {
+    padding-bottom: 0;
     text-transform: uppercase;
 }
 
@@ -12,6 +13,11 @@
 .lang-switch__link {
     font-family: $font-family-monospace;
     font-size: 0.8rem;
+}
+
+.lang-switch__link {
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .lang-switch__list {

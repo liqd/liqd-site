@@ -1,10 +1,13 @@
 .header {
     width: 100%;
-    padding-top: 1em;
 
-    position: fixed;
+padding-top: 1em;    position: absolute;
     top: 0;
     z-index: 3;
+
+    @include media-breakpoint-up(sm) {
+        position: fixed;
+    }
 
     a,
     button {
@@ -15,7 +18,7 @@
         &:focus,
         &:hover {
             color: inherit;
-            text-decoration: underline;
+            border-bottom: 1px solid $body-color;
         }
     }
 }
@@ -33,7 +36,7 @@
 }
 
 .header__link {
-    text-decoration: none;
+    border-bottom: none;
     font-size: $font-size-h1;
     text-align: center;
     padding: 0.25em 0.5em;
@@ -41,12 +44,12 @@
     @include media-breakpoint-up(md) {
         text-align: left;
         font-size: inherit;
-        padding: 0.5em 1em;
+        padding: 0.5em 1em 0;
     }
 }
 
 a.header__brand {
-    text-decoration: none;
+    border-bottom: none;
     font-size: inherit;
     padding: 0;
 
@@ -59,12 +62,11 @@ a.header__brand {
 
     &:hover,
     &:focus {
-        text-decoration: none;
+        border-bottom: none;
     }
 }
 
 .header__brand-label {
-    vertical-align: top;
     height: 0.95em;
     display: none;
 
@@ -78,8 +80,15 @@ a.header__brand {
     display: inline-block;
 }
 
+.homepage .header__menu {
+    transition: opacity 1s;
+    opacity: 0;
+}
+
 .header__brand-canvas {
     display: none;
+    position: absolute;
+    left: 0;
     height: 50px;
     width: 60px;
 
@@ -95,6 +104,13 @@ a.header__brand {
     justify-content: center;
 
     @include media-breakpoint-down(sm) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+
         &:after {
             content: "";
             display: block;
@@ -158,20 +174,21 @@ a.header__brand {
 button.header__bar__toggle {
     margin-top: 0.3em;
 
-    position: absolute;
+    position: fixed;
     right: $spacer - $navbar-toggler-padding-x;
     top: $spacer - $navbar-toggler-padding-y;
 
+z-index: 3;
     font-family: $font-family-monospace;
     font-size: 0.8rem;
-    text-decoration: none;
+    border-bottom: none;
 
     @include media-breakpoint-up(md) {
         position: static;
     }
 
     &:focus {
-        text-decoration: none;
+        border-bottom: none;
     }
 }
 

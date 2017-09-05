@@ -5,7 +5,7 @@
         <span class="sr-only">{{ blog.translated_title }}</span>
     </a>
     <div class="fade-teaser__body">
-        <div class="blog-list__item-date h2">{{ blog.date }}</div>
+        <div class="blog-list__item-date h4">{{ blog.date }}</div>
         <h3 class="blog-list__item-title" id="blog-entry-{{ blog.pk }}">{{ blog.translated_title }}</h3>
         {% if blog.translated_intro %}
             {{ blog.translated_intro | richtext }}

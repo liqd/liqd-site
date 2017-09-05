@@ -6,7 +6,7 @@ $inverse-bg: $body-color;
 $inverse-color: $body-bg;
 
 $link-color: $body-color;
-$link-decoration: underline;
+$link-decoration: none;
 $link-hover-color: lighten($link-color, 15%);
 
 $font-family-base: 'Plantin', 'Times New Roman', serif;
@@ -26,7 +26,7 @@ $font-size-h4: 0.8rem;
 $spacer-v: 4em;
 $headings-margin-bottom: $spacer-v;
 
-$lead-font-size: 1.78rem;
+$lead-font-size: 2rem;
 $lead-font-weight: 400;
 
 $grid-gutter-width-base: 2.6em;
