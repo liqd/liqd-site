@@ -27,6 +27,7 @@ class AddressSettings(BaseSetting):
     postalcode = models.CharField(
         max_length=255, help_text='postalcode and city')
     telephone_number = models.CharField(max_length=255, blank=True)
+    map_link = models.CharField(max_length=255, blank=True)
     email_address = models.EmailField(max_length=70, blank=True)
 
     image = models.ForeignKey(
@@ -43,5 +44,6 @@ class AddressSettings(BaseSetting):
         FieldPanel('postalcode'),
         FieldPanel('telephone_number'),
         FieldPanel('email_address'),
+        FieldPanel('map_link'),
         ImageChooserPanel('image')
     ]

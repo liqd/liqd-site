@@ -24,8 +24,8 @@
 
 {% blog_entries %}
 
-    <div class="row-right">
-        <div class="col-sm-5">
+    <div class="row-right align-items-center">
+        <div class="col-sm-4">
             {% if settings.core.AddressSettings %}
                 <p>
                     {{ settings.core.AddressSettings.organisation_name }}<br>
@@ -43,7 +43,7 @@
             {% endif %}
 
             {% if settings.core.SocialMediaSettings %}
-                <p>
+                <p class="mt-5">
                     {% if settings.core.SocialMediaSettings.facebook %}
                     <a href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a><br>
                     {% endif %}
@@ -63,9 +63,16 @@
             {% endif %}
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-8">
             {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
-                {% image settings.core.AddressSettings.image height-500 %}
+                <div class="ml-auto">
+                    {% image settings.core.AddressSettings.image width-950 %}
+                    {% if settings.core.AddressSettings.map_link %}
+                        <p class="h4 mt-2">
+                            <a href="{{ settings.core.AddressSettings.map_link }}" target="_blank">{% trans 'See on map' %}</a>
+                        </p>
+                    {% endif %}
+                </div>
             {% endif %}
         </div>
     </div>
