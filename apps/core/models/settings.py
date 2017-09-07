@@ -44,5 +44,6 @@ class AddressSettings(BaseSetting):
         FieldPanel('postalcode'),
         FieldPanel('telephone_number'),
         FieldPanel('email_address'),
+        FieldPanel('map_link'),
         ImageChooserPanel('image')
     ]

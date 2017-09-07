@@ -67,9 +67,11 @@
             {% if settings.core.AddressSettings and settings.core.AddressSettings.image %}
                 <div class="ml-auto">
                     {% image settings.core.AddressSettings.image width-950 %}
-                    <p class="h4 mt-2">
-                        <a href="https://maps.google.com/?q={{ settings.core.AddressSettings.organisation_name }} {{ settings.core.AddressSettings.organisation_street }}" target="_blank">{% trans 'See on google maps' %}</a>
-                    </p>
+                    {% if settings.core.AddressSettings.map_link %}
+                        <p class="h4 mt-2">
+                            <a href="{{ settings.core.AddressSettings.map_link }}" target="_blank">{% trans 'See on google maps' %}</a>
+                        </p>
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
