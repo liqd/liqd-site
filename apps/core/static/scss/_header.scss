@@ -88,7 +88,7 @@ a.header__brand {
 }
 
 .header__brand-canvas {
-    display: none;
+    display: inline-block;
     position: absolute;
     left: 0;
     height: 50px;
@@ -97,7 +97,6 @@ a.header__brand {
     vertical-align: top;
 
     @include media-breakpoint-up(sm) {
-        display: inline-block;
         margin-top: -$spacer;
     }
 }
