@@ -2,7 +2,7 @@
 
 
 <div onclick="" class="project-teaser {% if number %}project-teaser--right{% else %}project-teaser--left{% endif %}" style="color: {{ project.textcolor }}">
-    {% image project.image height-500 jpegquality-100 as img %}
+    {% image project.image height-600 jpegquality-100 as img %}
 
     <img src="{{ img.url }}" alt="{{ img.alt }}" />
     <div class="project-teaser__container" style="background-image: linear-gradient(148deg, {{ project.color1 }}, {{ project.color2 }});">
