@@ -39,6 +39,12 @@
     }
 }
 
+.block--image img,
+.block--aligned_image--left img,
+.block--aligned_image--right img {
+    max-height: 80vh;
+}
+
 .block--teaser_list {
     h2 {
         text-align: center;
