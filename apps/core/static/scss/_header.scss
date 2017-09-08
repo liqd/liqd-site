@@ -43,6 +43,7 @@
     padding: 0.25em 0.5em;
 
     @include media-breakpoint-up(md) {
+        display: inline-block;
         text-align: left;
         font-size: inherit;
         padding: 0.5em 1em 0;
