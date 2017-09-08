@@ -1,5 +1,5 @@
 .filter-line {
-    margin-bottom: $spacer-v;
+    margin-bottom: $spacer-v + 2em;
     padding: 0 $spacer;
 
     @include media-breakpoint-up(md) {
@@ -28,7 +28,7 @@ span.filter-line__prefix {
 }
 
 .filter-line__current {
-    padding: 0 0.5em 0 0;
+    padding: 0 1.5rem 0 0;
 
     position: relative;
 
@@ -100,8 +100,8 @@ span.filter-line__prefix {
 
 .filter-line__modal-close {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: $spacer - $navbar-toggler-padding-x;
+    top: 1em + 0.7em;
 }
 
 .filter-line__list--active {
