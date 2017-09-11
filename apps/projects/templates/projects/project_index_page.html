@@ -18,7 +18,7 @@
         {% for categ in categories %}
             <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
             {% if categ.pk == category.pk %}
-                {{ categ.translated_name }}
+                <span>{{ categ.translated_name }}</span>
             {% else %}
                 <a class="filter-line__link" href="?category={{ categ.pk }}">
                     {{ categ.translated_name }}
@@ -28,7 +28,7 @@
         {% endfor %}
             <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
                 {% if not category %}
-                    {{ all }}
+                    <span>{{ all }}</span>
                 {% else %}
                     <a class="filter-line__link" href="?">
                         {{ all }}
