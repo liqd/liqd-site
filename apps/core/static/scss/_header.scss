@@ -17,10 +17,12 @@
 
         transition: color $transition-duration;
 
-        &:focus,
-        &:hover {
-            color: inherit;
-            border-bottom: 1px solid $body-color;
+        @include media-breakpoint-up(sm) {
+            &:focus,
+            &:hover {
+                color: inherit;
+                border-bottom: 1px solid $body-color;
+            }
         }
     }
 }
@@ -174,8 +176,6 @@ a.header__brand {
 }
 
 button.header__bar__toggle {
-    margin-top: 0.3em;
-
     position: fixed;
     right: $spacer - $navbar-toggler-padding-x;
     top: $spacer - $navbar-toggler-padding-y + 1rem;
@@ -189,7 +189,8 @@ button.header__bar__toggle {
         position: static;
     }
 
-    &:focus {
+    &:focus,
+    &:hover {
         border-bottom: none;
     }
 }
