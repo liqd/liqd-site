@@ -21,10 +21,11 @@ $(function () {
       $header.css('opacity', 1)
     }, 1500)
     setTimeout(function () {
-      $('html, body').animate({scrollTop: 100})
+      $('.home-logo__lead').css('opacity', 1)
     }, 2500)
   } else {
     $header.css('opacity', 1)
+    $('.home-logo__lead').css('opacity', 1)
   }
 
   function lerp (start, end, amt) {
