@@ -8,7 +8,7 @@ $(function () {
   const $menuContainer = $menu.find('.header__menu-list')
   const $introScreen = $('.intro-screen')
   const $window = $(window)
-  const webGL = initDistort('header-canvas', {interactive: false, width: 60, height: 50})
+  const webGL = initDistort('header-canvas', {interactive: false, width: 120, height: 100})
   const $brandLabel = $('.header__brand-label')
   let prevScrollTop = $window.scrollTop()
   let windowHeight = $window.height()
