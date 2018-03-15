@@ -8,8 +8,6 @@ db.sqlite3
 .sass-cache/*
 *.mo
 /core/static/third-party/bower_components/
-/bin/*
-/lib/*
 /node_modules/*
-/share/*
 /pyvenv.cfg
+/venv/
