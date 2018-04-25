@@ -15,3 +15,5 @@ wcag-contrast-ratio==0.9
 # Recommended components to improve performance in production:
 # django-redis-cache==0.13.0
 # django-celery==3.1.10
+whitenoise==3.3.1
+brotli==1.0.4
