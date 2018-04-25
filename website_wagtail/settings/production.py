@@ -5,11 +5,12 @@ from .base import *
 DEBUG = False
 TEMPLATE_DEBUG = False
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
 
-COMPRESS_OFFLINE = True
+#COMPRESS_OFFLINE = True
 
 
 # Send notification emails as a background task using Celery,
