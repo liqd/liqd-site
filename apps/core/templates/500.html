@@ -1,4 +1,4 @@
-{% load compress static i18n %}
+{% load static i18n %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -13,9 +13,7 @@
         <link rel="stylesheet" href="{% static 'third-party/bower_components/font-awesome/css/font-awesome.min.css' %}">
         <link rel="stylesheet" href="{% static 'third-party/bower_components/slick-carousel/slick/slick.css' %}">
 
-        {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/all.scss' %}">
-        {% endcompress %}
+        <link rel="stylesheet" href="{% static 'all.css' %}">
 
     </head>
     <body>
