@@ -173,11 +173,11 @@ WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
 # requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
 
-CSP_STYLE_SRC = ("'self'")
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "https://stats.liqd.net")
 CSP_IMG_SRC = ("'self'")
 CSP_CONNECT_SRC = ("'self'")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
-CSP_REPORT_ONLY = True
 SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_HTTPONLY = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
