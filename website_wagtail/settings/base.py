@@ -93,13 +93,16 @@ INSTALLED_APPS = (
     'apps.images.apps.ImagesConfig'
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
+    'django_cloudflare_push.middleware.push_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'csp.middleware.CSPMiddleware',
 
     'django.middleware.locale.LocaleMiddleware',
 
@@ -169,3 +172,12 @@ WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
 # Whether to use face/feature detection to improve image cropping -
 # requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
+
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "https://stats.liqd.net")
+CSP_IMG_SRC = ("'self'")
+CSP_CONNECT_SRC = ("'self'")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_HTTPONLY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
