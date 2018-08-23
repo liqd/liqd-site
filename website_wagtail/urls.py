@@ -5,6 +5,7 @@ from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
+from wagtail.contrib.wagtailsitemaps.views import sitemap as wagtail_sitemap
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
@@ -21,6 +22,8 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
   url(r'^search/', include(wagtailsearch_urls)),
   url(r'^latest/feed/$', LatestEntriesFeed()),
+  url(r'^sitemap\.xml$', wagtail_sitemap),
+
   url(r'', include(wagtail_urls)),
 )
 
