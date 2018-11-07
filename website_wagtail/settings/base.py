@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(dirname(dirname(abspath(__file__))))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -26,21 +26,24 @@ SECRET_KEY = '49q9cm=n7lbzn7$rr(oekk=s7ymk49t+40-791ywdaxb8u#dzj'
 DEBUG = True
 
 TEMPLATES = [
-{
-    'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': [os.path.join(BASE_DIR,'templates')],
-    'APP_DIRS': True,
-    'OPTIONS': {
-        'debug' : DEBUG,
-        'context_processors': [
-            'django.template.context_processors.debug',
-            'django.template.context_processors.request',
-            'django.contrib.auth.context_processors.auth',
-            'django.contrib.messages.context_processors.messages',
-            'wagtail.contrib.settings.context_processors.settings',
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates')
         ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': DEBUG,
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'wagtail.contrib.settings.context_processors.settings',
+            ],
+        },
     },
-},]
+]
 
 ALLOWED_HOSTS = []
 
