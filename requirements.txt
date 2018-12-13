@@ -1,9 +1,9 @@
 # Minimal requirements
-Django==1.11.16
+Django==1.11.17
 wagtail==1.11
 
 bleach==1.4.3
-brotli==1.0.4
+brotli==1.0.7
 django-bleach==0.3.0
 django-cloudflare-push==0.2.0
 django_csp==3.4
@@ -11,7 +11,7 @@ django-sites==0.10
 flake8==3.3.0
 html5lib==0.9999999
 isort==4.2.15
-psycopg2-binary==2.7.4
+psycopg2-binary==2.7.6.1
 wcag-contrast-ratio==0.9
-whitenoise==3.3.1
+whitenoise==4.1.2
 raven==6.9.0
