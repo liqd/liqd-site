@@ -14,7 +14,7 @@ $(function () {
       success: function (html) {
         $('.item-list').append(html)
         $.ajax({
-          url: url + (count + 1),
+          url: url + count,
           type: 'GET',
           error: function (xhr, status, errorThrown) {
             if (xhr.status === 404) {
