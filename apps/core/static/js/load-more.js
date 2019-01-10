@@ -2,10 +2,11 @@
 $(function () {
   var count = 2
   var url = buildUrl()
+  var numPages = $('.load-more').first().attr('data-page-total')
+  console.log(numPages)
   $('.load-more').on('click', function (event) {
     event.preventDefault()
     loadProjects(count, url)
-    count++
   })
   function loadProjects (pageNumber, url) {
     $.ajax({
@@ -13,19 +14,12 @@ $(function () {
       type: 'GET',
       success: function (html) {
         $('.item-list').append(html)
-        $.ajax({
-          url: url + count,
-          type: 'GET',
-          error: function (xhr, status, errorThrown) {
-            if (xhr.status === 404) {
-              $('.load-more').hide()
-            }
-          }
-        })
-        return false
+        count++
+        if(count > numPages) {
+          $('.load-more').hide()
+        }
       }
     })
-    return false
   }
   function buildUrl () {
     if (window.location.search === '') {

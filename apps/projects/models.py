@@ -72,11 +72,11 @@ class ProjectPage(Page):
     partner_de = models.CharField(max_length=256, blank=True)
 
     user_count_en = models.CharField(max_length=256,
-                                  blank=True,
-                                  verbose_name='Number of users per month')
+                                     blank=True,
+                                     verbose_name='Number of users per month')
     user_count_de = models.CharField(max_length=256,
-                                  blank=True,
-                                  verbose_name='Number of users per month')
+                                     blank=True,
+                                     verbose_name='Number of users per month')
 
     timescale = TranslatedField('timescale_de', 'timescale_en')
     partner = TranslatedField('partner_de', 'partner_en')
@@ -122,7 +122,6 @@ class ProjectPage(Page):
 
     external_url = models.URLField(max_length=200, blank=True)
     categories = ParentalManyToManyField('core.ProjectCategory', blank=True)
-
 
     de_content_panels = [
         FieldPanel('title_de'),
@@ -245,6 +244,7 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
             raise Http404
 
         context = super().get_context(request)
+        context['page_number'] = paginator.num_pages
         context['projects'] = projects
         context['categories'] = ProjectCategory.objects.all()
         if category:
@@ -255,6 +255,7 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
         context = self.get_context(request)
         categories = context['categories']
         projects = context['projects']
+        page_number = context['page_number']
         category = None
         if 'category' in context:
             category = context['category']
@@ -267,4 +268,5 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
         return render(request,
                       self.template, {'projects': projects,
                                       'category': category,
+                                      'page_number': page_number,
                                       'categories': categories, 'self': self})
