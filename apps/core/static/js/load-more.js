@@ -3,7 +3,6 @@ $(function () {
   var count = 2
   var url = buildUrl()
   var numPages = $('.load-more').first().attr('data-page-total')
-  console.log(numPages)
   $('.load-more').on('click', function (event) {
     event.preventDefault()
     loadProjects(count, url)
