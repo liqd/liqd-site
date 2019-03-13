@@ -1,6 +1,6 @@
-import ExtractTextPlugin from "extract-text-webpack-plugin";
-import webpack from "webpack";
-import autoprefixer from "autoprefixer";
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const webpack = require("webpack")
+const autoprefixer = require("autoprefixer")
 
 const dev = JSON.parse(process.env.BUILD_DEV || 'false');
 
