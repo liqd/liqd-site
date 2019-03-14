@@ -1,5 +1,5 @@
 from django.db import models
-from wagtail.wagtailimages.models import (AbstractImage, AbstractRendition,
+from wagtail.images.models import (AbstractImage, AbstractRendition,
                                           Image)
 
 from contrib.translations.translations import TranslatedField

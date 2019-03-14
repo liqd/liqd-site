@@ -6,29 +6,25 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
-from wagtail.contrib.wagtailsitemaps.views import sitemap as wagtail_sitemap
-from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtailcore import urls as wagtail_urls
-from wagtail.wagtaildocs import urls as wagtaildocs_urls
-from wagtail.wagtailsearch import urls as wagtailsearch_urls
+from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 
 from apps.core.feed import LatestEntriesFeed
 
 urlpatterns = [
-    url(r'^django-admin/', include(admin.site.urls)),
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
+    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', include('wagtail.admin.urls')),
+    url(r'^documents/', include('wagtail.documents.urls')),
     url(r'^robots\.txt$', TemplateView.as_view(
         template_name='robots.txt',
         content_type="text/plain"), name="robots_file"),
               ]
 
 urlpatterns += i18n_patterns(
-    url(r'^search/', include(wagtailsearch_urls)),
+    #url(r'^search/', include('wagtail.search.urls')),
     url(r'^latest/feed/$', LatestEntriesFeed()),
     url(r'^sitemap\.xml$', wagtail_sitemap),
 
-    url(r'', include(wagtail_urls)),
+    url(r'', include('wagtail.core.urls')),
 )
 
 

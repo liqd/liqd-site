@@ -6,14 +6,14 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
+from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailembeds.blocks import EmbedBlock
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.core import blocks
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Page
+from wagtail.embeds.blocks import EmbedBlock
+from wagtail.images.blocks import ImageChooserBlock
 
 from apps.core.blocks import AlignedImageBlock, HTMLBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
