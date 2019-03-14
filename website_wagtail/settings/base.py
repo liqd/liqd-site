@@ -77,18 +77,18 @@ INSTALLED_APPS = (
     'taggit',
     'modelcluster',
 
-    'wagtail.wagtailcore',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailsearch',
-    'wagtail.wagtailredirects',
-    'wagtail.wagtailforms',
-    'wagtail.contrib.wagtailstyleguide',
+    'wagtail.core',
+    'wagtail.admin',
+    'wagtail.documents',
+    'wagtail.snippets',
+    'wagtail.users',
+    'wagtail.sites',
+    'wagtail.images',
+    'wagtail.embeds',
+    'wagtail.search',
+    'wagtail.contrib.redirects',
+    'wagtail.contrib.forms',
+    'wagtail.contrib.styleguide',
 
     'apps.core.apps.CoreConfig',
     'apps.blog.apps.BlogConfig',
@@ -111,8 +111,8 @@ MIDDLEWARE = (
 
     'django.middleware.locale.LocaleMiddleware',
 
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
-    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 ROOT_URLCONF = 'website_wagtail.urls'
@@ -168,7 +168,7 @@ WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
 #
 # WAGTAILSEARCH_BACKENDS = {
 #     'default': {
-#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+#         'BACKEND': 'wagtail.search.backends.elasticsearch.ElasticSearch',
 #         'INDEX': 'liquidsite',
 #     },
 # }

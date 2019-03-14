@@ -8,15 +8,15 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.functional import cached_property
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
+from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailembeds.blocks import EmbedBlock
-from wagtail.wagtailimages.blocks import ImageChooserBlock
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.core import blocks
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Page
+from wagtail.embeds.blocks import EmbedBlock
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wcag_contrast_ratio import contrast
 
 from apps.core import blocks as core_blocks

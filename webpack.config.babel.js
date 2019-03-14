@@ -1,6 +1,7 @@
-import ExtractTextPlugin from "extract-text-webpack-plugin";
-import webpack from "webpack";
-import autoprefixer from "autoprefixer";
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require("webpack")
+const path = require('path')
+const autoprefixer = require("autoprefixer")
 
 const dev = JSON.parse(process.env.BUILD_DEV || 'false');
 
@@ -25,24 +26,38 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [
-          'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  autoprefixer(),
-                ]
-              }
-            }
-        ]}),
+        test: /\.jsx?$/,
+        exclude: /node_modules\/(?!(bootstrap)\/).*/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
+          plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
+        }
       },
       {
-        test: /\.scss/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' }),
+        test: /\.s?css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => [
+                autoprefixer()
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
       },
       {
         test: /\.(vs|fs)$/,
@@ -57,30 +72,27 @@ module.exports = {
       {
         test: /\.(woff2?|ttf|eot|svg|jpg|png|gif|swf|otf)(\?.*)?$/,
         loader: 'file-loader',
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules\/(?!(bootstrap|liquid-logo))/,
-        loader: 'babel-loader',
-        query: {
-          cacheDirectory: true,
-          presets: ['es2015'],
-          plugins: [
-            'syntax-object-rest-spread',
-            'transform-object-rest-spread',
-          ],
-        },
-      },
+      }
     ],
   },
-
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.scss', '.css'],
+    // when using `npm link`, dependencies are resolved against the linked
+    // folder by default. This may result in dependencies being included twice.
+    // Setting `resolve.root` forces webpack to resolve all dependencies
+    // against the local directory.
+    modules: [path.resolve('./node_modules')]
+  },
   plugins: [
     new webpack.DefinePlugin({
       dev: JSON.stringify(dev),
       'process.env.NODE_ENV': dev ? '"development"' : '"production"',
     }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /cs/),
-    new ExtractTextPlugin('[name].css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"

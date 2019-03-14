@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 import django.db.models.deletion
 
 
@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(max_length=255)),
                 ('last_name', models.CharField(max_length=255)),
                 ('email', models.EmailField(max_length=254, blank=True)),
-                ('motto_de', wagtail.wagtailcore.fields.RichTextField(blank=True)),
-                ('motto_en', wagtail.wagtailcore.fields.RichTextField(blank=True)),
+                ('motto_de', wagtail.core.fields.RichTextField(blank=True)),
+                ('motto_en', wagtail.core.fields.RichTextField(blank=True)),
                 ('area_de', models.CharField(max_length=256)),
                 ('area_en', models.CharField(max_length=256)),
                 ('image', models.ForeignKey(related_name='+', to='wagtailimages.Image', null=True, blank=True, on_delete=django.db.models.deletion.SET_NULL)),

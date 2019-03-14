@@ -1,10 +1,10 @@
 from django.db import models
-from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
+from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
-from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Page
+from wagtail.images.blocks import ImageChooserBlock
 
 from apps.core import blocks
 from apps.persons import models as persons_models

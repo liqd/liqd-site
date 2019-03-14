@@ -1,7 +1,7 @@
-from wagtail.wagtailcore.blocks import (CharBlock, ChoiceBlock, ListBlock,
+from wagtail.core.blocks import (CharBlock, ChoiceBlock, ListBlock,
                                         PageChooserBlock, RawHTMLBlock,
                                         RichTextBlock, StructBlock, URLBlock)
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class StandardParagraphBlock(StructBlock):

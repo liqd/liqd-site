@@ -1,8 +1,8 @@
 from django.db import models
-from wagtail.wagtailadmin.edit_handlers import (FieldPanel, MultiFieldPanel,
+from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, TabbedInterface)
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailcore.models import Page
+from wagtail.core.fields import RichTextField
+from wagtail.core.models import Page
 
 from contrib.translations.translations import TranslatedField
 
