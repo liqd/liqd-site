@@ -1,10 +1,6 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require("webpack")
 const path = require('path')
 const autoprefixer = require("autoprefixer")
-
-const dev = JSON.parse(process.env.BUILD_DEV || 'false');
-
 
 module.exports = {
   entry: {
@@ -20,9 +16,11 @@ module.exports = {
   },
 
   output: {
-    path: `${__dirname}/website_wagtail/static/`,
+    libraryTarget: 'this',
+    library: '[name]',
+    path: path.resolve('./website_wagtail/static/'),
     publicPath: '/static/',
-    filename: '[name].js',
+    filename: '[name].js'
   },
 
   module: {
@@ -35,29 +33,6 @@ module.exports = {
           presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
           plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
         }
-      },
-      {
-        test: /\.s?css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: (loader) => [
-                autoprefixer()
-              ]
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
       },
       {
         test: /\.(vs|fs)$/,
@@ -84,15 +59,7 @@ module.exports = {
     modules: [path.resolve('./node_modules')]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      dev: JSON.stringify(dev),
-      'process.env.NODE_ENV': dev ? '"development"' : '"production"',
-    }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /cs/),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
-    }),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
