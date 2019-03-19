@@ -1,6 +1,5 @@
 const webpack = require("webpack")
 const path = require('path')
-const autoprefixer = require("autoprefixer")
 
 module.exports = {
   entry: {
@@ -61,8 +60,8 @@ module.exports = {
   plugins: [
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /cs/),
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
+      $: 'jquery',
+      jQuery: 'jquery'
     })
   ],
 };
