@@ -12,7 +12,8 @@ from contrib.translations.translations import TranslatedField
 class LinkFields(models.Model):
     link_page = models.ForeignKey(
         'wagtailcore.Page',
-        related_name='+'
+        related_name='+',
+        on_delete=models.CASCADE
     )
 
     @property

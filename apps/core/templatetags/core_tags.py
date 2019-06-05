@@ -1,6 +1,6 @@
 from django import template
-from django.core.urlresolvers import resolve
 from django.http import Http404
+from django.urls import resolve
 
 from apps.core.models import NavigationMenu
 
@@ -8,7 +8,7 @@ register = template.Library()
 
 
 # include menu tag
-@register.assignment_tag(takes_context=False)
+@register.simple_tag(takes_context=False)
 def load_site_menu(menu_name):
     menu = NavigationMenu.objects.filter(menu_name=menu_name)
 

@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='JoinUsPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('title_en', models.CharField(max_length=255, verbose_name=b'Title')),
                 ('title_de', models.CharField(max_length=255, verbose_name=b'Title', blank=True)),
                 ('intro_en', wagtail.core.fields.RichTextField(verbose_name=b'Teasertext', blank=True)),
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('liqd_preliminary_site', models.BooleanField(default=False, help_text=b'Phase One of the new site, this setting can be deleted when the full site is ready to go live')),
-                ('site', models.OneToOneField(editable=False, to='wagtailcore.Site')),
+                ('site', models.OneToOneField(editable=False, to='wagtailcore.Site', on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PressPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TextPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('title_en', models.CharField(max_length=255, verbose_name=b'Header Title', blank=True)),
                 ('title_de', models.CharField(max_length=255, verbose_name=b'Header Title', blank=True)),
                 ('body_en', wagtail.core.fields.RichTextField(blank=True)),
@@ -157,7 +157,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='NavigationMenuItem',
             fields=[
-                ('menuitem_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='core.MenuItem')),
+                ('menuitem_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='core.MenuItem', on_delete=models.CASCADE)),
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('parent', modelcluster.fields.ParentalKey(related_name='menu_items', to='core.NavigationMenu')),
             ],
@@ -170,6 +170,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='menuitem',
             name='link_page',
-            field=models.ForeignKey(related_name='+', to='wagtailcore.Page'),
+            field=models.ForeignKey(related_name='+', to='wagtailcore.Page', on_delete=models.CASCADE),
         ),
     ]
