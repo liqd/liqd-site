@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProjectIndexPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProjectPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('subtitle', models.CharField(max_length=255)),
                 ('shorttext', wagtail.core.fields.RichTextField(max_length=300, blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, to='wagtailimages.Image', null=True)),

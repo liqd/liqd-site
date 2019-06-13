@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PersonIndexPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PersonPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('telephone', models.CharField(max_length=20, blank=True)),
                 ('email', models.EmailField(max_length=75, blank=True)),
                 ('first_name', models.CharField(max_length=255)),

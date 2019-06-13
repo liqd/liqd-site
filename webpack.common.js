@@ -1,5 +1,7 @@
 const webpack = require("webpack")
 const path = require('path')
+const autoprefixer = require('autoprefixer')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
@@ -34,6 +36,29 @@ module.exports = {
         }
       },
       {
+        test: /\.s?css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('autoprefixer')
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      },
+      {
         test: /\.(vs|fs)$/,
         include: /liquid-logo/,
         loader: 'raw-loader'
@@ -62,6 +87,10 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
-    })
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
   ],
 };
