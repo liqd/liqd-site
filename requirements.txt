@@ -1,6 +1,6 @@
 # Minimal requirements
 Django==2.2.9 # pyup: <2.3
-wagtail==2.6.2
+wagtail==2.7.1 # pyup: <2.8
 
 bleach==3.1.0
 brotli==1.0.7
