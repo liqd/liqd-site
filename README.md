@@ -9,17 +9,10 @@ The website uses the [django-based CMS Wagtail](https://wagtail.io/), and Python
 
 ## How to start
 
-required: gettext
-
-0. install bower `npm install bower`
-1. create virtual env
-2. clone repository
-3. run `pip install -r /path/to/liquidsite/requirements.txt`
-4. Set up database connection in local.py (if nothing is changed an sqlite db will be created)
-5. run `python manage.py migrate`
-6. run `python manage.py load_initial_data`
-7. run `django-admin.py compilemessages`
-8. run `python manage.py bower install`
-9. run `python manage.py runserver`
-10. Website should be up and running at http://localhost:8000/
-11. Browse to  http://localhost:8000/admin to login with username: admin and password: admin
+1. clone repository
+2. `cd liquidsite`
+3. `make install`
+4. inside venv run `python manage.py createsuperuser` and create your admin account
+9. `make watch`
+10. website should be up and running at http://localhost:8006/
+11. browse to  http://localhost:8006/admin to login with your admin account
