@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n static wagtailcore_tags %}
+
+{% block fb_meta_tags %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<section class="blog-list">
+
+    {% trans 'all topics' as all %}
+    <div class="filter-line filter-line--centered">
+        <h1 class="filter-line__prefix">{% trans 'Posts related to' %}</h1>
+        <button class="filter-line__current">{% firstof category.translated_name all %}</button>
+        <ul class="filter-line__list">
+        {% for categ in self.categories %}
+            <li class="filter-line__item{% if categ.pk == category.pk %} filter-line__item--active{% endif %}">
+            {% if categ.pk == category.pk %}
+                <span>{{ categ.translated_name }}</span>
+            {% else %}
+                <a class="filter-line__link" href="?category={{ categ.pk }}&year={{ year }}">
+                    {{ categ.translated_name }}
+                </a>
+            {% endif %}
+            </li>
+        {% endfor %}
+            <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
+                {% if not category %}
+                    <span>{{ all }}</span>
+                {% else %}
+                    <a class="filter-line__link" href="?year={{ year }}">
+                        {{ all }}
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+        {% trans 'all years' as all_years %}
+        <span class="filter-line__prefix h1">{% trans 'from' %}</span>
+        <button class="filter-line__current">{% firstof year all_years %}</button>
+        <ul class="filter-line__list">
+            {% for year_ in self.years %}
+                <li class="filter-line__item{% if year_.year == year %} filter-line__item--active{% endif %}">
+                {% if year_.year == year %}
+                    <span>{{ year_.year }}</span>
+                {% else %}
+                    <a class="filter-line__link" href="?year={{ year_.year }}&category={{ category.pk }}">
+                        {{ year_.year }}
+                    </a>
+                {% endif %}
+                </li>
+            {% endfor %}
+            <li class="filter-line__item{% if not year %} filter-line__item--active{% endif %}">
+                {% if not year %}
+                    <span>{{ all_years }}</span>
+                {% else %}
+                    <a class="filter-line__link" href="?category={{ category.pk }}">
+                        {{ all_years }}
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+    <div class="container item-list">
+        {% for blog in blogs %}
+        {% include "blog/includes/blog_list_item.html" with blog=blog %}
+        {% endfor %}
+    </div>
+</section>
+
+{% if blogs.has_next %}
+<div class="load-more">
+    <button class="h2">{% trans 'load more' %}</button>
+</div>
+{% endif %}
+
+{% endblock %}
