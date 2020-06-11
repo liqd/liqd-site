@@ -20,17 +20,32 @@ from wagtail.images.blocks import ImageChooserBlock
 from apps.core.blocks import AlignedImageBlock, HTMLBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from contrib.translations.translations import TranslatedField
-from apps.blog.models import BlogPage as BlogPage
+from apps.blog.models import AbstractBlogPage
 
 LIQDTHEORY = 'LT'
 DIGITALCIVICSOCIETY = 'DS'
 PARTICIPATIONACTION = 'PA'
 
+VIDEO = 'VD'
+WORKSHOP = 'WS'
+TALK = 'TK'
+LINKLIST = 'LL'
+BLOGPOST = 'BP'
+WEBINAR = 'WB'
 
 TOPIC_CHOICES = [
     (LIQDTHEORY, _('Liquid Democracy & Theory')),
     (DIGITALCIVICSOCIETY, _('Digital Civic Society')),
     (PARTICIPATIONACTION, _('Digital Participation In Action')),
+]
+
+CONTENT_TYPE_CHOICES = [
+    (VIDEO, _('video')),
+    (WORKSHOP, _('workshop')),
+    (TALK, _('talk')),
+    (LINKLIST, _('link list')),
+    (BLOGPOST, _('blogpost')),
+    (WEBINAR, _('webinar')),
 ]
 
 STREAMFIELD_ACADEMY_BLOCKS = [
@@ -42,98 +57,65 @@ STREAMFIELD_ACADEMY_BLOCKS = [
     ('Raw_HTML', HTMLBlock())
 ]
 
-# Academy index page
 
-class AcademyIndexPage(Page):
-    subpage_types = ['academy.AcademyPage']
+class AcademyPage(AbstractBlogPage):
 
-    class Meta:
-        verbose_name = 'Academy Index Page'
-
-    subtitle_de = models.CharField(
-        max_length=250, blank=True, verbose_name="Title")
-    subtitle_en = models.CharField(
-        max_length=250, blank=True, verbose_name="Title")
-
-    subtitle = TranslatedField(
-        'subtitle_de',
-        'subtitle_en'
-    )
-
-    @property
-    def academy_pages(self):
-        academy_pages = AcademyPage.objects.live()
-        return academy_pages
-
-    def get_context(self, request):
-        academy_pages = self.academy_pages
-
-        category = request.GET.get('category')
-
-        if category:
-            try:
-                academy_pages = academy_pages.filter(category=category)
-            except ValueError:
-                academy_pages = []
-
-        context = super().get_context(request)
-        context['academy_pages'] = academy_pages
-        context['topic'] = TOPIC_CHOICES
-        if topic:
-            context['current_topic'] = category
-            for category_topic in TOPIC_CHOICES:
-                if category_topic[0] == category:
-                    context['get_current_topic_display'] = (
-                        topic_choice[1]
-                    )
-        return context
-
-    de_content_panels = [
-        FieldPanel('subtitle_de'),
-    ]
-
-    en_content_panels = [
-        FieldPanel('subtitle_en'),
-    ]
-
-    common_panels = [
-        FieldPanel('title'),
-        FieldPanel('slug'),
-        # PageChooserPanel('form_page'),
-    ]
-
-    edit_handler = TabbedInterface([
-        ObjectList(common_panels, heading='Common'),
-        ObjectList(en_content_panels, heading='English'),
-        ObjectList(de_content_panels, heading='German')
-    ])
-
-    class Meta:
-        verbose_name = 'Academy Index Page'
-
-# Academy detail page
-
-class AcademyPage(BlogPage):
-
-    category = models.CharField(
+    topics = models.CharField(
         max_length=2,
         choices=TOPIC_CHOICES
+    )
+
+    page_content_type = models.CharField(
+        max_length=2,
+        choices=CONTENT_TYPE_CHOICES,
+        blank=True
     )
 
     class Meta:
         verbose_name = 'Academy Page'
 
-    def get_context(self, request):
-        topic = self.topic
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('subtitle_en'),
+        FieldPanel('intro_en'),
+        StreamFieldPanel('body_en'),
+    ]
 
-        if topic:
-            try:
-                academy = AcademyPage.objects\
-                    .filter(topic=topic)\
-                    .exclude(id=self.id)
-            except ValueError:
-                academy = []
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('subtitle_de'),
+        FieldPanel('intro_de'),
+        StreamFieldPanel('body_de'),
+    ]
 
-        context = super().get_context(request)
-        context['academy'] = academy
-        return context
+    common_panels = [
+        FieldPanel('author'),
+        FieldPanel('date'),
+        FieldPanel('topics'),
+        FieldPanel('page_content_type'),
+    ]
+
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('title'),
+            FieldPanel('slug'),
+        ],
+            heading="Slug and CMS Page Name"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+            heading="SEO settings de",
+            classname="collapsible")
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(common_panels, heading='Common'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(
+            Page.settings_panels, heading='Settings', classname="settings"),
+    ])
+
+
