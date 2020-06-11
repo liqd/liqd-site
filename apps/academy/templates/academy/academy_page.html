@@ -13,14 +13,15 @@
 <div class="blog-entry">
 
 <div class="container">
-    <h1 class="h3">{{ self.translated_title }}</h1>
+    <h1 class="h3">{{ page.translated_title }}</h1>
 </div>
+    {{ page.body }}
+    <p>{{ page.get_topics_display }}</p>
+    <p>{{ page.get_page_content_type_display }}</p>
 
-{{ self.body }}
-
-{% if self.author %}
+    {% if page.author %}
 <div class="blog-entry__author">
-    <p class="h2">{% trans 'by' %} {{ self.author}}</p>
+    <p class="h2">{% trans 'by' %} {{ page.author}}</p>
 </div>
 {% endif %}
 
