@@ -61,9 +61,14 @@ STREAMFIELD_ACADEMY_BLOCKS = [
 
 class AcademyPage(AbstractBlogPage):
 
+<<<<<<< HEAD
     topics = MultiSelectField(
         max_length=8,
         max_choices=3,
+=======
+    topics = models.CharField(
+        max_length=2,
+>>>>>>> academy/models: remove index page for now and let AcademyPage inherit from AbstractBlogPage
         choices=TOPIC_CHOICES
     )
 
@@ -93,7 +98,11 @@ class AcademyPage(AbstractBlogPage):
     common_panels = [
         FieldPanel('author'),
         FieldPanel('date'),
+<<<<<<< HEAD
         FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
+=======
+        FieldPanel('topics'),
+>>>>>>> academy/models: remove index page for now and let AcademyPage inherit from AbstractBlogPage
         FieldPanel('page_content_type'),
     ]
 
@@ -116,4 +125,12 @@ class AcademyPage(AbstractBlogPage):
         ObjectList(de_content_panels, heading='German'),
         ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
+<<<<<<< HEAD
     ])
+=======
+        ObjectList(
+            Page.settings_panels, heading='Settings', classname="settings"),
+    ])
+
+
+>>>>>>> academy/models: remove index page for now and let AcademyPage inherit from AbstractBlogPage
