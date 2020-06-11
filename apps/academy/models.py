@@ -7,6 +7,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from modelcluster.fields import ParentalManyToManyField
+from multiselectfield import MultiSelectField
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface,
@@ -60,8 +61,9 @@ STREAMFIELD_ACADEMY_BLOCKS = [
 
 class AcademyPage(AbstractBlogPage):
 
-    topics = models.CharField(
-        max_length=2,
+    topics = MultiSelectField(
+        max_length=8,
+        max_choices=3,
         choices=TOPIC_CHOICES
     )
 
@@ -91,7 +93,7 @@ class AcademyPage(AbstractBlogPage):
     common_panels = [
         FieldPanel('author'),
         FieldPanel('date'),
-        FieldPanel('topics'),
+        FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
         FieldPanel('page_content_type'),
     ]
 
@@ -114,8 +116,6 @@ class AcademyPage(AbstractBlogPage):
         ObjectList(de_content_panels, heading='German'),
         ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
-        ObjectList(
-            Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
 
