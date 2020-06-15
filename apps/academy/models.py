@@ -49,32 +49,11 @@ CONTENT_TYPE_CHOICES = [
     (WEBINAR, _('webinar')),
 ]
 
-STREAMFIELD_ACADEMY_BLOCKS = [
-    ('heading', blocks.CharBlock(classname="full title", icon="title")),
-    ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-    ('image', ImageChooserBlock(icon="image")),
-    ('aligned_image', AlignedImageBlock(icon="image")),
-    ('video', EmbedBlock(icon="media")),
-    ('Raw_HTML', HTMLBlock())
-]
-
 
 class AcademyPage(AbstractBlogPage):
-
-<<<<<<< HEAD
-<<<<<<< HEAD
     topics = MultiSelectField(
         max_length=8,
         max_choices=3,
-=======
-    topics = models.CharField(
-        max_length=2,
->>>>>>> academy/models: remove index page for now and let AcademyPage inherit from AbstractBlogPage
-=======
-    topics = MultiSelectField(
-        max_length=8,
-        max_choices=3,
->>>>>>> academy: use MultiSelectField for topics
         choices=TOPIC_CHOICES
     )
 
@@ -104,15 +83,7 @@ class AcademyPage(AbstractBlogPage):
     common_panels = [
         FieldPanel('author'),
         FieldPanel('date'),
-<<<<<<< HEAD
-<<<<<<< HEAD
         FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
-=======
-        FieldPanel('topics'),
->>>>>>> academy/models: remove index page for now and let AcademyPage inherit from AbstractBlogPage
-=======
-        FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
->>>>>>> academy: use MultiSelectField for topics
         FieldPanel('page_content_type'),
     ]
 
@@ -135,15 +106,6 @@ class AcademyPage(AbstractBlogPage):
         ObjectList(de_content_panels, heading='German'),
         ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ])
-=======
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
-=======
->>>>>>> academy: use MultiSelectField for topics
     ])
-
-
->>>>>>> academy/models: remove index page for now and let AcademyPage inherit from AbstractBlogPage
