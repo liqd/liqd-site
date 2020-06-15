@@ -1,5 +1,4 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import InvalidPage, Paginator
 from django.db import models
 from django.db.models import Count
@@ -9,8 +8,7 @@ from django.template.loader import render_to_string
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
-                                                TabbedInterface,
-                                                PageChooserPanel)
+                                                TabbedInterface)
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
@@ -20,18 +18,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from apps.core.blocks import AlignedImageBlock, HTMLBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from contrib.translations.translations import TranslatedField
-from apps.blog.models import BlogPage as BlogPage
-
-LIQDTHEORY = 'LT'
-DIGITALCIVICSOCIETY = 'DS'
-PARTICIPATIONACTION = 'PA'
-
-
-TOPIC_CHOICES = [
-    (LIQDTHEORY, _('Liquid Democracy & Theory')),
-    (DIGITALCIVICSOCIETY, _('Digital Civic Society')),
-    (PARTICIPATIONACTION, _('Digital Participation In Action')),
-]
 
 STREAMFIELD_ACADEMY_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),
@@ -42,98 +28,163 @@ STREAMFIELD_ACADEMY_BLOCKS = [
     ('Raw_HTML', HTMLBlock())
 ]
 
-# Academy index page
 
-class AcademyIndexPage(Page):
-    subpage_types = ['academy.AcademyPage']
+class AcademyPage(Page):
 
     class Meta:
-        verbose_name = 'Academy Index Page'
+        verbose_name = 'Academy Entry'
 
-    subtitle_de = models.CharField(
-        max_length=250, blank=True, verbose_name="Title")
+    subpage_types = []
+
+    # Translatable Fields
+    title_en = models.CharField(
+        max_length=255, verbose_name="Title")
+    title_de = models.CharField(
+        max_length=255, blank=True, verbose_name="Title")
+
     subtitle_en = models.CharField(
-        max_length=250, blank=True, verbose_name="Title")
+        max_length=255, default="", verbose_name="Subtitle")
+    subtitle_de = models.CharField(
+        max_length=255, default="", blank=True, verbose_name="Subtitle")
 
-    subtitle = TranslatedField(
-        'subtitle_de',
-        'subtitle_en'
+    intro_en = RichTextField(verbose_name="Teasertext")
+    intro_de = RichTextField(blank=True, verbose_name="Teasertext")
+
+    body_en = StreamField(STREAMFIELD_ACADEMY_BLOCKS,
+                          null=True, verbose_name="Body")
+    body_de = StreamField(STREAMFIELD_Academy_BLOCKS,
+                          null=True, blank=True, verbose_name="Body")
+
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
     )
 
-    @property
-    def academy_pages(self):
-        academy_pages = AcademyPage.objects.live()
-        return academy_pages
+    translated_subtitle = TranslatedField(
+        'subtitle_de',
+        'subtitle_en',
+    )
 
-    def get_context(self, request):
-        academy_pages = self.academy_pages
+    translated_intro = TranslatedField(
+        'intro_de',
+        'intro_en',
+    )
 
-        category = request.GET.get('category')
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
 
-        if category:
-            try:
-                academy_pages = academy_pages.filter(category=category)
-            except ValueError:
-                academy_pages = []
+    # Common Fields
 
-        context = super().get_context(request)
-        context['academy_pages'] = academy_pages
-        context['topic'] = TOPIC_CHOICES
-        if topic:
-            context['current_topic'] = category
-            for category_topic in TOPIC_CHOICES:
-                if category_topic[0] == category:
-                    context['get_current_topic_display'] = (
-                        topic_choice[1]
-                    )
-        return context
-
-    de_content_panels = [
-        FieldPanel('subtitle_de'),
-    ]
+    author = models.CharField(max_length=255, blank=True, null=True)
+    date = models.DateField("Post date")
+    categories = ParentalManyToManyField('core.AcademyCategory', blank=True)
 
     en_content_panels = [
+        FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
+        FieldPanel('intro_en'),
+        StreamFieldPanel('body_en'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('subtitle_de'),
+        FieldPanel('intro_de'),
+        StreamFieldPanel('body_de'),
     ]
 
     common_panels = [
-        FieldPanel('title'),
-        FieldPanel('slug'),
-        # PageChooserPanel('form_page'),
+        FieldPanel('author'),
+        FieldPanel('date'),
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+    ]
+
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('title'),
+            FieldPanel('slug'),
+        ],
+            heading="Slug and CMS Page Name"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+            heading="SEO settings de",
+            classname="collapsible")
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(common_panels, heading='Common'),
         ObjectList(en_content_panels, heading='English'),
-        ObjectList(de_content_panels, heading='German')
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(common_panels, heading='Common'),
+        ObjectList(promote_panels, heading='Promote'),
+        ObjectList(
+            Page.settings_panels, heading='Settings', classname="settings"),
     ])
+
+# Academy index page
+
+
+class AcademyIndexPage(TranslatedStreamFieldPage):
+    subpage_types = ['academy.AcademyPage']
+
+    @property
+    def years(self):
+        return AcademyPage.objects.extra(
+            select={'year': "strftime('%%Y',date)"}).values(
+            'year').order_by().annotate(Count('id'))
+
+    @property
+    def categories(self):
+        return AcademyCategory.objects.all()
+
+    @property
+    def blogs(self):
+        blogs = AcademyPage.objects.live().descendant_of(self)
+        blogs = blogs.order_by('-date')
+        return blogs
+
+    def get_context(self, request):
+        blogs = self.blogs
+
+        year = request.GET.get('year')
+        category = request.GET.get('category')
+
+        if year:
+            blogs = blogs.filter(date__year=year)
+
+        if category:
+            blogs = blogs.filter(categories__pk=category)
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(blogs, 6)
+
+        try:
+            blogs = paginator.page(page)
+        except InvalidPage:
+            raise Http404
+
+        context = super().get_context(request)
+        context['blogs'] = blogs
+        if category:
+            context['category'] = AcademyCategory.objects.get(pk=int(category))
+        if year:
+            context['year'] = year
+        return context
+
+    def serve(self, request):
+        context = self.get_context(request)
+        blogs = context['blogs']
+
+        if request.is_ajax():
+            html = render_to_string(
+                'blog/ajax/blog_list.html',
+                {'request': request, 'blogs': blogs.object_list})
+            return HttpResponse(html)
+        return render(request,
+                      self.template, context)
 
     class Meta:
         verbose_name = 'Academy Index Page'
-
-# Academy detail page
-
-class AcademyPage(BlogPage):
-
-    category = models.CharField(
-        max_length=2,
-        choices=TOPIC_CHOICES
-    )
-
-    class Meta:
-        verbose_name = 'Academy Page'
-
-    def get_context(self, request):
-        topic = self.topic
-
-        if topic:
-            try:
-                academy = AcademyPage.objects\
-                    .filter(topic=topic)\
-                    .exclude(id=self.id)
-            except ValueError:
-                academy = []
-
-        context = super().get_context(request)
-        context['academy'] = academy
-        return context
