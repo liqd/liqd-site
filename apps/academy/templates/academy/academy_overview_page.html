@@ -6,17 +6,42 @@
 
 {% block content %}
 
-<section class="blog-list">
+<section class="academy-list">
 
+    <div class="container">
+      <h1>{{ page.translated_title }}</h1>
+    </div>
+    {% include 'includes/blocks.html' with blocks=self.body %}
 
-    <div class="container item-list">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="d-md-block col-lg-10 mb-5">
+                <div class="academy-list__topic-parent">
+
+                        <div class="academy-list__topic-square academy-list__topic-selected-square">
+                            <div class="academy-list__topic">
+                                Category
+                            </div>
+                            <div class="academy-list__topic-selected-arrow"></div>
+                        </div>
+
+                        <div class="academy-list__topic-square">
+                            <div class="text-center pb-1 academy-list__topic">
+                                Category
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
         {% for academy in academy_pages %}
-        <div class="blog-list__item fade-teaser">
-            <a class="fade-teaser__link" href="{% pageurl academy %}">
+        <div class="academy-list__item">
+            <a class="" href="{% pageurl academy %}">
                 <span class="sr-only">{{ academy.translated_title }}</span>
-            </a>
-            <div class="fade-teaser__body">
-                <h3 class="blog-list__item-title" id="academy-page-{{ academy.pk }}">{{ academy.translated_title }}</h3>
+            <div class="">
+                <h3 class="academy-list__item-title" id="academy-page-{{ academy.pk }}">{{ academy.translated_title }}</h3>
                 {% if academy.translated_intro %}
                     {{ academy.translated_intro | richtext }}
                 {% endif %}

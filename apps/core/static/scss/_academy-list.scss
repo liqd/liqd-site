@@ -1,0 +1,51 @@
+.academy-list__topic-parent {
+    display: flex;
+    justify-content: space-between;
+}
+
+// tablet size
+.academy-list__topic {
+    font-size: $font-size-base;
+    font-family: $font-family-base;
+}
+
+.academy-list__topic-square {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.academy-list__topic-selected-square {
+    width: 180px;
+    height: 170px;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+.academy-list__topic-selected-arrow {
+    position: absolute;
+    left: 75px;
+    bottom: -15px;
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+    transform: rotate(45deg);
+}
+
+//desktop size
+@include media-breakpoint-up(lg) {
+
+    .academy-list__topic-selected-square {
+        width: 220px;
+        height: 210px;
+    }
+
+    .academy-list__topic-selected-arrow {
+        left: 95px;
+        bottom: -15px;
+    }
+}
