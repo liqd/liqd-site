@@ -1,11 +1,5 @@
-{% load static wagtailimages_tags wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load static %}
 
-<div class="block--image">
-    {% image value.image width-960 jpegquality-100 as my_image %}
-    <div class="image-with-caption">
-        <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
-        {% if value.image.caption %}
-            <p class="image-with-caption__caption">{{ value.image.caption }}</p>
-        {% endif %}
-    </div>
-</div>
+{% image value width-960 %}

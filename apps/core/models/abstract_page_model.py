@@ -15,14 +15,14 @@ STREAMFIELD_DEFAULT_BLOCKS = [
     ('highlight_paragraph', blocks.HighlightParagraphBlock()),
     ('quote_paragraph', blocks.QuoteParagraph()),
     ('single_image', ImageChooserBlock(
-                     template ='blocks/block_image.html',
-                     label ='Single image',
-                     icon ='image')),
+        template='blocks/block_image.html',
+        label='Single image',
+        icon='image')),
     ('image_slider', blocks.ListBlock(ImageChooserBlock(),
-                                      template ='blocks/block_carousel.html',
-                                      label ='Image Slider',
-                                      icon ='image',
-                                      help_text ='Responsive image slider'
+                                      template='blocks/block_carousel.html',
+                                      label='Image Slider',
+                                      icon='image',
+                                      help_text='Responsive image slider'
                                       ' (swipe on mobile). Please choose'
                                       ' 4 images.')),
     ('aligned_image', blocks.AlignedImageBlock()),

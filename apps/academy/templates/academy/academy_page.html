@@ -10,22 +10,23 @@
 {% endblock %}
 
 {% block content %}
+<div class="blog-entry">
+
 <div class="container">
-    <a>
-      <div class="arrow__container">
-        <div class="arrow__head arrow--left"></div>
-        <div class="arrow__tail"></div>
-      </div>
-    </a>
-    <div class="h4">{{ page.get_topics_display }} | {{ page.get_page_content_type_display }}</div>
-        <h1>{{ page.translated_title }}</h1>
+    <h1 class="h3">{{ page.translated_title }}</h1>
+</div>
+    {{ page.body }}
+    <p>{{ page.get_topics_display }}</p>
+    <p>{{ page.get_page_content_type_display }}</p>
 
-        {% include 'includes/blocks.html' with blocks=self.body %}
+    {% if page.author %}
+<div class="blog-entry__author">
+    <p class="h2">{% trans 'by' %} {{ page.author}}</p>
+</div>
+{% endif %}
 
-        {% if page.author %}
-            <p class="h4">{% trans 'by' %} {{ page.author}}</p>
-        {% endif %}
 
 </div>
+
 
 {% endblock %}
