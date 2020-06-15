@@ -30,10 +30,10 @@ STREAMFIELD_BLOG_BLOCKS = [
 ]
 
 
-class AbstractBlogPage(Page):
+class BlogPage(Page):
 
     class Meta:
-        abstract = True
+        verbose_name = 'Blog Entry'
 
     subpage_types = []
 
@@ -80,13 +80,6 @@ class AbstractBlogPage(Page):
 
     author = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField("Post date")
-
-
-class BlogPage(AbstractBlogPage):
-
-    class Meta:
-        verbose_name = 'Blog Entry'
-
     categories = ParentalManyToManyField('core.BlogCategory', blank=True)
 
     en_content_panels = [
@@ -131,6 +124,8 @@ class BlogPage(AbstractBlogPage):
         ObjectList(
             Page.settings_panels, heading='Settings', classname="settings"),
     ])
+
+# Blog index page
 
 
 class BlogIndexPage(TranslatedStreamFieldPage):
