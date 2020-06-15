@@ -117,3 +117,5 @@ class AcademyPage(AbstractBlogPage):
         ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
     ])
+
+
