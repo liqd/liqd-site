@@ -16,7 +16,7 @@
     <h1 class="h3">{{ self.translated_title }}</h1>
 </div>
 
-{{ self.body }}
+{% include 'includes/blocks.html' with blocks=self.body %}
 
 {% if self.author %}
 <div class="blog-entry__author">
