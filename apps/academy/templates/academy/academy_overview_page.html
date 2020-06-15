@@ -6,19 +6,17 @@
 
 {% block content %}
 
-
-
 <section class="blog-list">
 
 
     <div class="container item-list">
         {% for academy in academy_pages %}
         <div class="blog-list__item fade-teaser">
-            <a class="fade-teaser__link" href="{% pageurl blog %}">
+            <a class="fade-teaser__link" href="{% pageurl academy %}">
                 <span class="sr-only">{{ academy.translated_title }}</span>
             </a>
             <div class="fade-teaser__body">
-                <h3 class="blog-list__item-title" id="blog-entry-{{ blog.pk }}">{{ academy.translated_title }}</h3>
+                <h3 class="blog-list__item-title" id="academy-page-{{ academy.pk }}">{{ academy.translated_title }}</h3>
                 {% if academy.translated_intro %}
                     {{ academy.translated_intro | richtext }}
                 {% endif %}
