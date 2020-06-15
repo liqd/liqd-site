@@ -84,6 +84,7 @@ h5,
 .h4,
 .h5 {
     font-family: $font-family-monospace;
+    margin-bottom: 1.5rem;
     font-weight: 300;
     line-height: 1.4;
 }
@@ -111,7 +112,7 @@ h5,
     }
 
     li {
-        margin-bottom: 0.8em;
+        margin-bottom: 0.8rem;
     }
 }
 

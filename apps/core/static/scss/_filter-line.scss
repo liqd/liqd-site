@@ -1,5 +1,5 @@
 .filter-line {
-    margin-bottom: $spacer-v + 2em;
+    margin-bottom: $spacer-v + 2rem;
     padding: 0 $spacer;
 
     @include media-breakpoint-up(md) {
@@ -75,7 +75,7 @@ span.filter-line__prefix {
 
 .filter-line__modal {
     display: flex;
-    padding: 2em;
+    padding: 2rem;
     align-items: center;
 
     position: fixed;
@@ -94,7 +94,7 @@ span.filter-line__prefix {
     }
 
     li {
-        margin-bottom: 0.6em;
+        margin-bottom: 0.6rem;
     }
 }
 

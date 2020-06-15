@@ -3,7 +3,11 @@
 // --------------------------------------------------
 
 .block {
-    margin-bottom: $spacer-v;
+    margin-bottom: $spacer-v / 2;
+
+    @include media-breakpoint-up(sm) {
+        margin-bottom: $spacer-v;
+    }
 }
 
 .block--paragraph {
@@ -63,7 +67,7 @@
     }
 
     .fade-teaser:before {
-        height: 12em;
+        height: 12rem;
     }
 }
 
@@ -107,7 +111,6 @@
 
     h3 {
         text-align: left;
-        margin-bottom: 1.5em;
+        margin-bottom: 1.5rem;
     }
 }
-
