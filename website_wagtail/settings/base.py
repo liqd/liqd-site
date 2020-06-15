@@ -94,8 +94,7 @@ INSTALLED_APPS = (
     'apps.blog.apps.BlogConfig',
     'apps.persons.apps.PersonsConfig',
     'apps.projects.apps.ProjectsConfig',
-    'apps.images.apps.ImagesConfig',
-    'apps.academy.apps.AcademyConfig'
+    'apps.images.apps.ImagesConfig'
 )
 
 MIDDLEWARE = (
