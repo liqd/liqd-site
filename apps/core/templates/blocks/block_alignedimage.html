@@ -1,5 +1,5 @@
 {% load wagtailimages_tags %}
-<div class="block--aligned_image--{{ value.display }} {% if value.display == 'center' %}container{% endif %}">
+<div class="block--aligned_image--{{ value.display }}">
     {% image value.image width-1000 jpegquality-100 as my_image %}
     <div class="image-with-caption">
         <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">

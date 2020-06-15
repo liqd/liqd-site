@@ -163,7 +163,7 @@ class TeaseredProjectsBlock(StructBlock):
 class AlignedImageBlock(StructBlock):
     image = ImageChooserBlock(label='Image')
     display = ChoiceBlock(
-        choices=[('center', 'center'), ('left', 'left'), ('right', 'right')],
+        choices=[('left', 'left'), ('right', 'right')],
         required=True,
         help_text='Decide on which side the image should be displayed'
     )

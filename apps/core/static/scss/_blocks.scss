@@ -22,11 +22,6 @@
     }
 }
 
-.block--aligned_image--center {
-    display: flex;
-    justify-content: center;
-}
-
 .block--aligned_image--right {
     @include clearfix;
 
@@ -45,7 +40,6 @@
 }
 
 .block--image img,
-.block--aligned_image--center img,
 .block--aligned_image--left img,
 .block--aligned_image--right img {
     max-height: 80vh;
@@ -116,3 +110,4 @@
         margin-bottom: 1.5em;
     }
 }
+
