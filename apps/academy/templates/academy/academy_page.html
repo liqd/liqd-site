@@ -11,21 +11,21 @@
 
 {% block content %}
 <div class="container">
-    <a>
-      <div class="arrow__container">
+    <a href="{{ page.get_parent.url }}" aria-label="{% trans 'To overview' %}">
+      <div class="arrow__container ml-1 mb-4">
         <div class="arrow__head arrow--left"></div>
         <div class="arrow__tail"></div>
       </div>
     </a>
-    <div class="h4">{{ page.get_topics_display }} | {{ page.get_page_content_type_display }}</div>
-        <h1>{{ page.translated_title }}</h1>
-
-        {% include 'includes/blocks.html' with blocks=self.body %}
-
-        {% if page.author %}
-            <p class="h4">{% trans 'by' %} {{ page.author}}</p>
-        {% endif %}
-
+    <div class="academy__topic mb-4">{{ page.get_topics_display }} | {{ page.get_page_content_type_display }}</div>
+    <h1>{{ page.translated_title }}</h1>
 </div>
+
+{% include 'includes/blocks.html' with blocks=self.body %}
+
+{% if page.author %}
+    <p class="h4">{% trans 'by' %} {{ page.author}}</p>
+{% endif %}
+
 
 {% endblock %}
