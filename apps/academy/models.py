@@ -1,26 +1,11 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.core.paginator import InvalidPage, Paginator
 from django.db import models
-from django.db.models import Count
-from django.http import Http404, HttpResponse
-from django.shortcuts import render
-from django.template.loader import render_to_string
-from modelcluster.fields import ParentalManyToManyField
 from multiselectfield import MultiSelectField
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
-                                                TabbedInterface,
-                                                PageChooserPanel)
-from wagtail.core import blocks
-from wagtail.core.fields import RichTextField, StreamField
+                                                TabbedInterface)
 from wagtail.core.models import Page
-from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.blocks import ImageChooserBlock
-
-from apps.core.blocks import AlignedImageBlock, HTMLBlock
-from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
-from contrib.translations.translations import TranslatedField
 from apps.blog.models import AbstractBlogPage
 
 LIQDTHEORY = 'LT'
