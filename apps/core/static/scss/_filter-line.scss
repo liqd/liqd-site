@@ -114,6 +114,10 @@ span.filter-line__prefix {
     display: block;
 }
 
+.filter-line__item {
+    line-height: 2;
+}
+
 .filter-line__item--active span {
     border-bottom: 1px solid $body-color;
 }
