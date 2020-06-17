@@ -10,20 +10,36 @@
     &:hover .project-teaser__container {
         opacity: 1;
     }
+}
 
+// replace image on md screens us as on small screen content overflowed image
+.project-teaser__image--sm {
+    @include media-breakpoint-up(sm) {
+        background-image: none;
+    }
+}
+
+.project-teaser__image--md {
+    display: none;
+
+    @include media-breakpoint-up(sm) {
+        display: block;
+    }
 }
 
 .project-teaser__container {
-    padding: 2rem;
-
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
+    padding: 1rem;
     opacity: 0;
     transition: opacity $transition-duration - 0.1s;
+
+    @include media-breakpoint-up(sm) {
+        padding: 2rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
 }
 
 .project-teaser__container__header,
