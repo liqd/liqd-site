@@ -1,18 +1,21 @@
+from itertools import chain
+from multiselectfield import MultiSelectField
+from operator import attrgetter
+
 from django import forms
 from django.core.paginator import Paginator, InvalidPage
-from django.db.models import Count
-from django.http import Http404, HttpResponse
-from django.shortcuts import render
-from django.template.loader import render_to_string
-from django.utils.translation import ugettext_lazy as _
 from django.db import models
-from multiselectfield import MultiSelectField
+from django.http import Http404
+from django.utils.translation import ugettext_lazy as _
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                                 ObjectList, StreamFieldPanel,
                                                 TabbedInterface)
+from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+
 from apps.blog.models import AbstractBlogPage
-from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
+from contrib.translations.translations import TranslatedField
 
 LIQDTHEORY = 'LT'
 DIGITALCIVICSOCIETY = 'DS'
@@ -48,10 +51,19 @@ class AcademyPage(AbstractBlogPage):
         choices=TOPIC_CHOICES
     )
 
-    page_content_type = models.CharField(
+    academy_content_type = models.CharField(
         max_length=2,
         choices=CONTENT_TYPE_CHOICES,
         blank=True
+    )
+
+    tile_image = models.ForeignKey(
+        'images.CustomImage',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='+',
+        help_text='The image used for the tile teaser'
     )
 
     class Meta:
@@ -75,7 +87,8 @@ class AcademyPage(AbstractBlogPage):
         FieldPanel('author'),
         FieldPanel('date'),
         FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
-        FieldPanel('page_content_type'),
+        FieldPanel('academy_content_type'),
+        ImageChooserPanel('tile_image'),
     ]
 
     promote_panels = [
@@ -97,69 +110,198 @@ class AcademyPage(AbstractBlogPage):
         ObjectList(de_content_panels, heading='German'),
         ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
-        ObjectList(
-            Page.settings_panels, heading='Settings', classname="settings"),
     ])
 
 
-class AcademyOverviewPage(TranslatedStreamFieldPage):
-    subpage_types = ['academy.AcademyPage']
+class AcademyExternalLink(Page):
+
+    # Translatable Fields
+    title_en = models.CharField(
+        max_length=255, verbose_name="Title en")
+    title_de = models.CharField(
+        max_length=255, blank=True, verbose_name="Title dt")
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
+    intro_en = RichTextField(verbose_name="Teasertext")
+    intro_de = RichTextField(blank=True, verbose_name="Teasertext")
+    translated_intro = TranslatedField(
+        'intro_de',
+        'intro_en',
+    )
+
+    # common fields
+    date = models.DateField("Post date")
+
+    external_link = models.URLField(
+        help_text='URL to an external website')
+
+    topics = MultiSelectField(
+        max_length=8,
+        max_choices=3,
+        choices=TOPIC_CHOICES
+    )
+
+    academy_content_type = models.CharField(
+        max_length=2,
+        choices=CONTENT_TYPE_CHOICES,
+        blank=True
+    )
+
+    tile_image = models.ForeignKey(
+        'images.CustomImage',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='+',
+        help_text='The image used for the tile teaser'
+    )
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('intro_en'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('intro_de'),
+    ]
+
+    common_panels = [
+        FieldPanel('date'),
+        FieldPanel('external_link'),
+        FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
+        FieldPanel('academy_content_type'),
+        ImageChooserPanel('tile_image'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(common_panels, heading='Common'),
+    ])
+
+    def save(self, *args, **kwargs):
+        self.slug = self.id
+        self.title = self.title_en
+        super().save(*args, **kwargs)
+
+
+class AcademyIndexPage(Page):
+    subpage_types = ['academy.AcademyPage', 'academy.AcademyExternalLink']
+
+    title_en = models.CharField(max_length=255, verbose_name="Title")
+    title_de = models.CharField(
+        max_length=255, blank=True, verbose_name="Title")
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
+    intro_en = RichTextField(verbose_name="intro text")
+    intro_de = RichTextField(blank=True, verbose_name="intro text")
+    translated_intro = TranslatedField(
+        'intro_de',
+        'intro_en',
+    )
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('intro_en'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('intro_de'),
+    ]
+
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('title'),
+            FieldPanel('slug'),
+        ],
+            heading="Slug and CMS Page Name"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+            heading="SEO settings",
+            classname="collapsible"),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(promote_panels, heading='Promote'),
+    ])
 
     @property
     def years(self):
-        return AcademyPage.objects.extra(
+        return self.all_content.extra(
             select={'year': "strftime('%%Y',date)"}).values(
-            'year').order_by().annotate(Count('id'))
+            'year').order_by().annotate(models.Count('id'))
 
     @property
     def topics(self):
-        return TOPIC_CHOICES
+        return dict(TOPIC_CHOICES)
+
+    @property
+    def academy_content_types(self):
+        return dict(CONTENT_TYPE_CHOICES)
 
     @property
     def academy_pages(self):
         academy_pages = AcademyPage.objects.live().descendant_of(self)
-        academy_pages = academy_pages.order_by('-date')
+
         return academy_pages
 
+    @property
+    def external_links(self):
+        external_links = AcademyExternalLink.objects.live().descendant_of(self)
+
+        return external_links
+
+    @property
+    def all_content(self):
+        return sorted(
+            chain(self.academy_pages, self.external_links),
+            key=attrgetter('date'), reverse=True)
+
     def get_context(self, request):
-        academy_pages = self.academy_pages
+        all_content = self.all_content
 
         year = request.GET.get('year')
         topic = request.GET.get('topic')
+        content_type = request.GET.get('content_type')
 
         if year:
-            academy_pages = academy_pages.filter(date__year=year)
+            all_content = all_content.filter(date__year=year)
 
         if topic:
-            academy_pages = academy_pages.filter(topics__contains=topic)
+            all_content = all_content.filter(topics__contains=topic)
 
+        if content_type:
+            all_content = all_content.filter(
+                academy_content_type=content_type)
         page = request.GET.get('page', 1)
-        paginator = Paginator(academy_pages, 6)
+        paginator = Paginator(all_content, 6)
 
         try:
-            academy_pages = paginator.page(page)
+            all_content = paginator.page(page)
         except InvalidPage:
             raise Http404
 
         context = super().get_context(request)
-        context['academy_pages'] = academy_pages
-        if topic:
-            context['topic'] = topic
+        context['all_content'] = all_content
         if year:
             context['year'] = year
+        if topic:
+            context['topic'] = topic
+        if content_type:
+            context['academy_content_type'] = content_type
         return context
 
-    def serve(self, request):
-        context = self.get_context(request)
-        academy_pages = context['academy_pages']
-
-        if request.is_ajax():
-            html = render_to_string(
-                'academy/ajax/academy_list.html',
-                {'request': request, 'academy_pages': academy_pages.object_list})
-            return HttpResponse(html)
-        return render(request,
-                      self.template, context)
-
     class Meta:
-        verbose_name = 'Academy Overview Page'
+        verbose_name = 'Academy Index Page'
