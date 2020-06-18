@@ -1,6 +1,9 @@
+import operator
+from functools import reduce
 from itertools import chain
+
+from django.db.models import Q
 from multiselectfield import MultiSelectField
-from operator import attrgetter
 
 from django import forms
 from django.core.paginator import Paginator, InvalidPage
@@ -8,8 +11,8 @@ from django.db import models
 from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
-                                                ObjectList, StreamFieldPanel,
-                                                TabbedInterface)
+                                         ObjectList, StreamFieldPanel,
+                                         TabbedInterface)
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -111,6 +114,27 @@ class AcademyPage(AbstractBlogPage):
         ObjectList(common_panels, heading='Common'),
         ObjectList(promote_panels, heading='Promote'),
     ])
+
+    def get_topic_related_content(self):
+        topics = self.topics
+
+        # construct query to find all content whose topic set
+        # intersects with current topic set
+        clauses = (Q(topics__contains=topic) for topic in topics)
+        query = reduce(operator.or_, clauses)
+
+        other_pages = AcademyPage.objects.filter(query).exclude(id=self.id)
+        other_links = AcademyExternalLink.objects.filter(query) \
+            .exclude(id=self.id)
+        other_content = sorted(chain(other_pages, other_links),
+                               key=operator.attrgetter('date'), reverse=True)
+        return other_content
+
+    def get_context(self, request):
+
+        context = super().get_context(request)
+        context['other_content'] = self.get_topic_related_content()[0:3]
+        return context
 
 
 class AcademyExternalLink(Page):
@@ -267,7 +291,7 @@ class AcademyIndexPage(Page):
     def all_content(self):
         return sorted(
             chain(self.academy_pages, self.external_links),
-            key=attrgetter('date'), reverse=True)
+            key=operator.attrgetter('date'), reverse=True)
 
     def get_context(self, request):
         all_content = self.all_content

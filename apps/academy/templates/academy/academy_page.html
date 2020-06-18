@@ -23,6 +23,39 @@
 
 {% include 'includes/blocks.html' with blocks=self.body %}
 
+
+<div class="cms__wrapper mt-5 mb-3">
+    <div class="container pt-5 pb-5">
+        {% if other_content %}
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10">
+                <h2 class="cms__title--serif cms__title--underlined text-center">
+                {% blocktrans with topics=page.get_topics_display %}More about {{ topics }}{% endblocktrans %}
+                </h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center justify-content-sm-start">
+        {% for content in other_content %}
+            <div class="col-12 col-md-4 cms-use-case__tile">
+                <a class="cms__tile-link" href="{% pageurl content %}">
+                    {% if content.tile_image %}
+                    {% image content.tile_image fill-500x350 as image %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}" />
+                    {% endif %}
+                    <div class="cms__text pt-4 text-muted cms__text--serif">
+                    {% blocktrans with topics=content.get_topics_display %} {{ topics }}{% endblocktrans %}
+                    </div>
+                    <h3 class="cms__title--bold">{{ content.translated_intro|richtext }}</h3>
+                    <h3 class="cms__title--bold">{{ content.date}}</h3>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+
+
 {% if page.author %}
     <p class="h4">{% trans 'by' %} {{ page.author}}</p>
 {% endif %}
