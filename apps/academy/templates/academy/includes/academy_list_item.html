@@ -1,0 +1,22 @@
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags i18n bleach_tags %}
+
+<div class="col-12 col-sm-6 col-md-4 academy-list__item">
+  <a class="" href="{% if content.external_link %}
+{{ content.external_link }} {% else %} {% pageurl content %}{% endif %}">
+        <div>
+            <span class="academy__sans-serif mb-4">
+                {{ content.get_academy_content_type_display }}
+                {% if content.external_link %}
+                · {% trans 'External link' %}
+                {% endif %}
+            </span>
+            {% if content.tile_image %}
+            {% image content.tile_image fill-500x350 as image %}
+            <img class="mb-4" src="{{ image.url }}" alt="{{ image.alt }}" />
+            {% endif %}
+            <h3>{{ content.translated_title }}</h3>
+            <div class="academy__sans-serif">{{ content.topics }}</div>
+            <div class="academy__sans-serif mb-4">{{ content.date }}</div>
+        </div>
+    </a>
+</div>
