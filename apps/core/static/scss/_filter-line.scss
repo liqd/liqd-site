@@ -59,6 +59,12 @@ span.filter-line__prefix {
     display: none;
 }
 
+.filter-line__current--small {
+    font-size: $font-size-base;
+    width: 100%;
+    text-align: left;
+}
+
 .filter-line__list {
     display: none;
     padding: 0;

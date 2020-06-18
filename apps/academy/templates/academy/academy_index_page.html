@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static wagtailcore_tags %}
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
 
 {% block fb_meta_tags %}
 {% endblock %}
@@ -9,46 +9,126 @@
 <section class="academy-list">
 
     <div class="container">
-      <h1>{{ page.translated_title }}</h1>
-    </div>
-    {% include 'includes/blocks.html' with blocks=self.body %}
-
-    <div class="container">
         <div class="row justify-content-center">
-            <div class="d-md-block col-lg-10 mb-5">
+            <div class="col-lg-10">
+                <h1>{{ page.translated_title }}</h1>
+                <div class="academy-list__intro">
+                    {{ page.translated_intro | richtext }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <!-- Tablet and desktop -->
+            <div class="academy-list__filter--lg col-lg-10 mb-5">
                 <div class="academy-list__topic-parent">
 
-                        <div class="academy-list__topic-square academy-list__topic-selected-square">
-                            <div class="academy-list__topic">
-                                {{ page.topics.LT }}
+                    {% for topic in page.topics %}
+                    <a class="academy-list__topic--link" href="">
+                        <div class="academy-list__topic-square {% if topic == topic %}academy-list__topic-selected-square{% endif %}">
+                            {% with 'images/'|add:topic|add:'-topic.svg' as topic_svg %}
+                            <img class="m-auto" src="{% static topic_svg %}" alt="{{ topic }}" width="70" />
+                            {% endwith %}
+                            <div class="academy-list__topic mb-3">
+                                {{ topic }}
                             </div>
-                            <div class="academy-list__topic-selected-arrow"></div>
+                            <div class="{% if topic == topic %}academy-list__topic-selected-arrow{% endif %}"></div>
                         </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
 
-                        <div class="academy-list__topic-square">
-                            <div class="text-center pb-1 academy-list__topic">
-                                {{ page.topics.DS }}
-                            </div>
-                        </div>
+            <!-- Mobile filter -->
+            <div class="academy-list__filter--xs col-12 mb-5">
+                <div class="academy-list__topic-parent">
+                    <button class="filter-line__current filter-line__current--small">Select Topic</button>
+                    <ul class="filter-line__list">
+                      {% for topic in page.topics %}
+                        <li class="filter-line__item {% if topic.pk == topic.pk %} filter-line__item--active{% endif %}">
+                          {% if topic.pk == topic.pk %}
+                            <span>{{ topic }}</span>
+                          {% else %}
+                            <a class="filter-line__link" href="">
+                                {{ topic }}
+                            </a>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+
+                        <li class="filter-line__item{% if not topic %} filter-line__item--active{% endif %}">
+                        {% if not topic %}
+                            <span>{{ all }}</span>
+                        {% else %}
+                            <a class="filter-line__link" href="">
+                                {{ all }}
+                            </a>
+                        {% endif %}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        {% for academy in all_content %}
-        <div class="academy-list__item">
-            <a class="" href="{% pageurl academy %}">
-                <span class="sr-only">{{ academy.translated_title }}</span>
-            <div class="">
-                <h3 class="academy-list__item-title" id="academy-page-{{ academy.pk }}">{{ academy.translated_title }}</h3>
-                {% if academy.translated_intro %}
-                    {{ academy.translated_intro | richtext }}
-                {% endif %}
+        <div class="row academy-list__sorting">
+            <div class="col-lg-2 mb-4">
+                <div class="filter-line__prefix academy__sans-serif">{% trans 'Type of content:' %}</div>
+                <button class="filter-line__current filter-line__current--small">current</button>
+                <ul class="filter-line__list">
+                  {% for type in page.academy_content_type %}
+                    <li class="filter-line__item {% if type == type %}filter-line__item--active {% endif %}">
+                        {% if type == type %}
+                          <span>{{ type }}</span>
+                        {% else %}
+                          <a class="filter-line__link" href="">
+                              {{ type }}
+                          </a>
+                        {% endif %}
+                      </li>
+                  {% endfor %}
+                    <li class="filter-line__item{% if not type %} filter-line__item--active{% endif %}">
+                        {% if not type %}
+                        <span>{{ all }}</span>
+                        {% else %}
+                        <a class="filter-line__link" href="?year={{ year }}">
+                            {{ all }}
+                        </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="filter-line__prefix academy__sans-serif">{% trans 'Sort by:' %}</div>
+                <button class="filter-line__current filter-line__current--small">current</button>
+
+                <ul class="filter-line__list">
+                    <li class="filter-line__item filter-line__item--active">
+                        <span>sotable</span>
+                        <a class="filter-line__link" href="">
+                            sortable
+                        </a>
+                    </li>
+                    <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
+                        <span>{{ all }}</span>
+                        <a class="filter-line__link" href="?year={{ year }}">
+                            {{ all }}
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
 
-        {% endfor %}
+    <div class="container">
+        <div class="row justify-content-center justify-content-sm-start">
+            {% for content in all_content %}
+                {% include "academy/includes/academy_list_item.html" with content=content %}
+            {% endfor %}
+        </div>
     </div>
 </section>
 
@@ -57,5 +137,6 @@
     <button class="h2">{% trans 'load more' %}</button>
 </div>
 {% endif %}
+</div>
 
 {% endblock %}
