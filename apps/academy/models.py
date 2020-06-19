@@ -262,12 +262,6 @@ class AcademyIndexPage(Page):
     ])
 
     @property
-    def years(self):
-        return self.all_content.extra(
-            select={'year': "strftime('%%Y',date)"}).values(
-            'year').order_by().annotate(models.Count('id'))
-
-    @property
     def topics(self):
         return dict(TOPIC_CHOICES)
 
@@ -287,28 +281,37 @@ class AcademyIndexPage(Page):
 
         return external_links
 
-    @property
-    def all_content(self):
-        return sorted(
-            chain(self.academy_pages, self.external_links),
-            key=operator.attrgetter('date'), reverse=True)
-
     def get_context(self, request):
-        all_content = self.all_content
+        academy_pages = self.academy_pages
+        external_links = self.external_links
 
         year = request.GET.get('year')
+        alphabetical = request.GET.get('alphabetical')
         topic = request.GET.get('topic')
-        content_type = request.GET.get('content_type')
-
+        content_type = request.GET.get('academy_content_type')
         if year:
-            all_content = all_content.filter(date__year=year)
+            academy_pages = academy_pages.filter(date__year=year)
+            external_links = external_links.filter(date__year=year)
 
         if topic:
-            all_content = all_content.filter(topics__contains=topic)
+            academy_pages = academy_pages.filter(topics__contains=topic)
+            external_links = external_links.filter(topics__contains=topic)
 
         if content_type:
-            all_content = all_content.filter(
+            academy_pages = academy_pages.filter(
                 academy_content_type=content_type)
+            external_links = external_links.filter(
+                academy_content_type=content_type)
+        if alphabetical:
+            all_content = sorted(
+                chain(academy_pages, external_links),
+                key=operator.attrgetter('translated_title'))
+
+        else:
+            all_content = sorted(
+                chain(academy_pages, external_links),
+                key=operator.attrgetter('date'), reverse=True)
+
         page = request.GET.get('page', 1)
         paginator = Paginator(all_content, 6)
 
@@ -318,13 +321,17 @@ class AcademyIndexPage(Page):
             raise Http404
 
         context = super().get_context(request)
+
         context['all_content'] = all_content
-        if year:
-            context['year'] = year
+        if alphabetical:
+            context['alphabetical'] = alphabetical
         if topic:
             context['topic'] = topic
+            context['get_topic_display'] = self.topics[topic]
         if content_type:
             context['academy_content_type'] = content_type
+            context['get_academy_content_type_display'] = \
+                self.academy_content_types[content_type]
         return context
 
     class Meta:

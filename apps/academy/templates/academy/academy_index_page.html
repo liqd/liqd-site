@@ -24,16 +24,16 @@
             <div class="academy-list__filter--lg col-lg-10 mb-5">
                 <div class="academy-list__topic-parent">
 
-                    {% for topic in page.topics %}
-                    <a class="academy-list__topic--link" href="">
-                        <div class="academy-list__topic-square {% if topic == topic %}academy-list__topic-selected-square{% endif %}">
-                            {% with 'images/'|add:topic|add:'-topic.svg' as topic_svg %}
+                    {% for topic_key,topic_string in page.topics.items %}
+                    <a class="academy-list__topic--link" href="?topic={{ topic_key }}&academy_content_type={{ academy_content_type }}&alphabetical={{ alphabetical }}">
+                        <div class="academy-list__topic-square {% if topic == topic_key %}academy-list__topic-selected-square{% endif %}">
+                            {% with 'images/'|add:topic_key|add:'-topic.svg' as topic_svg %}
                             <img class="m-auto" src="{% static topic_svg %}" alt="{{ topic }}" width="70" />
                             {% endwith %}
                             <div class="academy-list__topic mb-3">
-                                {{ topic }}
+                                {{ topic_string }}
                             </div>
-                            <div class="{% if topic == topic %}academy-list__topic-selected-arrow{% endif %}"></div>
+                            <div class="{% if topic == topic_key %}academy-list__topic-selected-arrow{% endif %}"></div>
                         </div>
                     </a>
                     {% endfor %}
@@ -41,17 +41,17 @@
             </div>
 
             <!-- Mobile filter -->
-            <div class="academy-list__filter--xs col-12 mb-5">
+            <div class="filter-line academy-list__filter--xs col-12 mb-5">
                 <div class="academy-list__topic-parent">
-                    <button class="filter-line__current filter-line__current--small">Select Topic</button>
+                    <button class="filter-line__current filter-line__current--small">{% firstof get_topic_display 'Select Topic' %}</button>
                     <ul class="filter-line__list">
-                      {% for topic in page.topics %}
-                        <li class="filter-line__item {% if topic.pk == topic.pk %} filter-line__item--active{% endif %}">
-                          {% if topic.pk == topic.pk %}
-                            <span>{{ topic }}</span>
+                      {% for topic_key,topic_string in page.topics.items %}
+                        <li class="filter-line__item {% if topic == topic_key %} filter-line__item--active{% endif %}">
+                          {% if topic == topic_key %}
+                            <span>{{ topic_string }}</span>
                           {% else %}
-                            <a class="filter-line__link" href="">
-                                {{ topic }}
+                            <a class="filter-line__link" href="?topic={{ topic_key }}&academy_content_type={{ academy_content_type }}&alphabetical={{ alphabetical }}">
+                                {{ topic_string }}
                             </a>
                           {% endif %}
                         </li>
@@ -61,7 +61,7 @@
                         {% if not topic %}
                             <span>{{ all }}</span>
                         {% else %}
-                            <a class="filter-line__link" href="">
+                            <a class="filter-line__link" href="?academy_content_type={{ academy_content_type }}&alphabetical={{ alphabetical }}">
                                 {{ all }}
                             </a>
                         {% endif %}
@@ -73,28 +73,28 @@
     </div>
 
     <div class="container">
-        <div class="row academy-list__sorting">
+        <div class="filter-line row academy-list__sorting">
             <div class="col-lg-2 mb-4">
                 <div class="filter-line__prefix academy__sans-serif">{% trans 'Type of content:' %}</div>
-                <button class="filter-line__current filter-line__current--small">current</button>
+                <button class="filter-line__current filter-line__current--small">{% firstof get_academy_content_type_display 'all' %}</button>
                 <ul class="filter-line__list">
-                  {% for type in page.academy_content_type %}
-                    <li class="filter-line__item {% if type == type %}filter-line__item--active {% endif %}">
-                        {% if type == type %}
-                          <span>{{ type }}</span>
+                  {% for type, type_string in page.academy_content_types.items %}
+                    <li class="filter-line__item {% if type == academy_content_type %}filter-line__item--active {% endif %}">
+                        {% if type == academy_content_type %}
+                          <span>{{ type_string }}</span>
                         {% else %}
-                          <a class="filter-line__link" href="">
-                              {{ type }}
+                          <a class="filter-line__link" href="?topic={{ topic }}&academy_content_type={{ type }}&alphabetical={{ alphabetical }}">
+                              {{ type_string }}
                           </a>
                         {% endif %}
                       </li>
                   {% endfor %}
-                    <li class="filter-line__item{% if not type %} filter-line__item--active{% endif %}">
-                        {% if not type %}
-                        <span>{{ all }}</span>
+                    <li class="filter-line__item{% if not academy_content_type %} filter-line__item--active{% endif %}">
+                        {% if not academy_content_type %}
+                        <span>{{ 'all' }}</span>
                         {% else %}
-                        <a class="filter-line__link" href="?year={{ year }}">
-                            {{ all }}
+                        <a class="filter-line__link" href="?topic={{ topic }}&alphabetical={{ alphabetical }}">
+                            {{ 'all' }}
                         </a>
                         {% endif %}
                     </li>
@@ -103,20 +103,28 @@
 
             <div class="col-lg-2">
                 <div class="filter-line__prefix academy__sans-serif">{% trans 'Sort by:' %}</div>
-                <button class="filter-line__current filter-line__current--small">current</button>
+                <button class="filter-line__current filter-line__current--small">
+                    {% if not alphabetical %}{% trans 'newest' %}{% else %}{% trans 'alphabetical' %}{% endif %}
+                </button>
 
                 <ul class="filter-line__list">
-                    <li class="filter-line__item filter-line__item--active">
-                        <span>sotable</span>
-                        <a class="filter-line__link" href="">
-                            sortable
-                        </a>
+                    <li class="filter-line__item{% if not alphabetical %} filter-line__item--active{% endif %}">
+                        {% if not alphabetical %}
+                          <span>{% trans 'newest' %}</span>
+                        {% else %}
+                          <a class="filter-line__link" href="?topic={{ topic }}&academy_content_type={{ academy_content_type }}">
+                          {% trans 'newest' %}
+                          </a>
+                        {% endif %}
                     </li>
-                    <li class="filter-line__item{% if not category %} filter-line__item--active{% endif %}">
-                        <span>{{ all }}</span>
-                        <a class="filter-line__link" href="?year={{ year }}">
-                            {{ all }}
-                        </a>
+                    <li class="filter-line__item{% if alphabetical %} filter-line__item--active{% endif %}">
+                        {% if alphabetical %}
+                          <span>{% trans 'alphabetical' %}</span>
+                        {% else %}
+                          <a class="filter-line__link" href="?topic={{ topic }}&academy_content_type={{ academy_content_type }}&alphabetical=True">
+                              {% trans 'alphabetical' %}
+                          </a>
+                        {% endif %}
                     </li>
                 </ul>
             </div>
