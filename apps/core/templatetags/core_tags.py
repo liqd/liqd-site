@@ -26,6 +26,8 @@ def do_translate_url(context, language):
             url = '/' + language + '/' + view.args[0]
         else:
             url = '/' + language + '/'
+        if context['request'].GET:
+            url += '?' + context['request'].GET.urlencode()
     except Http404:
         url = '/' + language + '/'
     return url
