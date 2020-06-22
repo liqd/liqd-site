@@ -26,13 +26,14 @@ PARTICIPATIONACTION = 'PA'
 
 VIDEO = 'VD'
 WORKSHOP = 'WS'
+HOWTO = 'HT'
 TALK = 'TK'
 LINKLIST = 'LL'
 BLOGPOST = 'BP'
 WEBINAR = 'WB'
 
 TOPIC_CHOICES = [
-    (LIQDTHEORY, _('Liquid Democracy & Theory')),
+    (LIQDTHEORY, _('Liquid Democracy: Theory & Vision')),
     (DIGITALCIVICSOCIETY, _('Digital Civic Society')),
     (PARTICIPATIONACTION, _('Digital Participation In Action')),
 ]
@@ -40,8 +41,9 @@ TOPIC_CHOICES = [
 CONTENT_TYPE_CHOICES = [
     (VIDEO, _('video')),
     (WORKSHOP, _('workshop')),
+    (HOWTO, _('how-to')),
     (TALK, _('talk')),
-    (LINKLIST, _('link list')),
+    (LINKLIST, _('link collection')),
     (BLOGPOST, _('blogpost')),
     (WEBINAR, _('webinar')),
 ]
