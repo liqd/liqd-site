@@ -21,7 +21,7 @@
         <div class="row justify-content-center">
 
             <!-- Tablet and desktop -->
-            <div class="academy-list__filter--lg col-lg-10 mb-5">
+            <div class="academy-list__filter--md col-lg-10 mb-5">
                 <div class="academy-list__topic-parent">
 
                     {% for topic_key,topic_string in page.topics.items %}
@@ -41,7 +41,7 @@
             </div>
 
             <!-- Mobile filter -->
-            <div class="filter-line academy-list__filter--xs col-12 mb-5">
+            <div class="filter-line academy-list__filter--sm col-12 mb-5">
                 <div class="academy-list__topic-parent">
                     <button class="filter-line__current filter-line__current--small">{% firstof get_topic_display 'Select Topic' %}</button>
                     <ul class="filter-line__list">
@@ -73,9 +73,9 @@
     </div>
 
     <div class="container">
-        <div class="filter-line row academy-list__sorting">
-            <div class="col-lg-2 mb-4">
-                <div class="filter-line__prefix academy__sans-serif">{% trans 'Type of content:' %}</div>
+        <div class="row filter-line academy-list__sorting">
+            <div class="col-sm-6 col-lg-2 mb-4 px-0 px-sm-3">
+                <div class="filter-line__prefix academy__sans-serif ml-1">{% trans 'Type of content:' %}</div>
                 <button class="filter-line__current filter-line__current--small">{% firstof get_academy_content_type_display 'all' %}</button>
                 <ul class="filter-line__list">
                   {% for type, type_string in page.academy_content_types.items %}
@@ -101,8 +101,8 @@
                 </ul>
             </div>
 
-            <div class="col-lg-2">
-                <div class="filter-line__prefix academy__sans-serif">{% trans 'Sort by:' %}</div>
+            <div class="col-sm-6 col-lg-2 mb-4 px-0 px-sm-3">
+                <div class="filter-line__prefix academy__sans-serif ml-1">{% trans 'Sort by:' %}</div>
                 <button class="filter-line__current filter-line__current--small">
                     {% if not alphabetical %}{% trans 'newest' %}{% else %}{% trans 'alphabetical' %}{% endif %}
                 </button>

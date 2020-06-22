@@ -13,26 +13,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <button class="btn-none" type=button href="{{ page.get_parent.url }}" aria-label="{% trans 'To overview' %}">
-              <img src="{% static 'images/arrow_back.svg' %}" alt="{% trans 'To overview' %}"/>
-            </button>
-            <div class="academy__sans-serif mb-4">{{ page.get_topics_display }}
+            <a class="btn btn-none pl-0 mb-3" type=button href="{{ page.get_parent.url }}" aria-label="{% trans 'To overview' %}">
+              <img class="academy__btn--back" src="{% static 'images/arrow_back.svg' %}" alt="{% trans 'To overview' %}"/>
+            </a>
+            <div class="academy__sans-serif mb-4 text--upper">{{ page.get_topics_display }}
                 {% if page.academy_content_type %} | {% endif %}
                 {{ page.get_academy_content_type_display }}
             </div>
             <h1>{{ page.translated_title }}</h1>
+            <div>
+                {% if page.translated_intro %}
+                    {{ page.translated_intro | richtext }}
+                {% endif %}
+            </div>
             <div class="row justify-content-md-center">
             {% include 'includes/blocks.html' with blocks=self.body %}
             </div>
-            {% if page.author %}
-                <p class="h4">{% trans 'by' %} {{ page.author}}</p>
-            {% endif %}
         </div>
     </div>
 
     <div class="row justify-content-md-center">
         {% if other_content %}
-        <div class="col-12 academy__teaser-header">
+        <div class="col-12 academy__teaser-header mb-4">
             <h2 class="academy__sans-serif">
             {% blocktrans with topics=page.get_topics_display %}More about {{ topics }}{% endblocktrans %}
             </h2>

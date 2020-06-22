@@ -4,7 +4,7 @@
   <a class="" href="{% if content.external_link %}
 {{ content.external_link }} {% else %} {% pageurl content %}{% endif %}">
         <div>
-            <span class="academy__sans-serif mb-4">
+            <span class="academy__sans-serif text--upper mb-4">
                 {{ content.get_academy_content_type_display }}
                 {% if content.external_link %}
                     {% if content.academy_content_type %} · {% endif %}

@@ -1,6 +1,3 @@
-
-
-
 .academy-list__topic-parent {
     display: flex;
     justify-content: space-between;
@@ -11,6 +8,7 @@
 .academy-list__topic {
     font-size: $font-size-base;
     font-family: $font-family-base;
+    text-align: center;
 }
 
 .academy-list__topic--link {
@@ -18,8 +16,8 @@
 }
 
 .academy-list__topic-square {
-    width: 130px;
-    height: 130px;
+    width: 180px;
+    height: 170px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -28,8 +26,6 @@
 }
 
 .academy-list__topic-selected-square {
-    width: 180px;
-    height: 170px;
     background-color: #f0f0f0;
     position: relative;
 }
@@ -50,7 +46,7 @@
     margin-bottom: $spacer-v / 2;
 }
 
-.academy-list__filter--lg {
+.academy-list__filter--md {
     display: none;
 }
 
@@ -59,17 +55,17 @@
 }
 
 //desktop size
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
 
-    .academy-list__filter--xs {
+    .academy-list__filter--sm {
         display: none;
     }
 
-    .academy-list__filter--lg {
+    .academy-list__filter--md {
         display: block;
     }
 
-    .academy-list__topic-selected-square {
+    .academy-list__topic-square {
         width: 220px;
         height: 210px;
     }
