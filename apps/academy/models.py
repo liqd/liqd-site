@@ -126,8 +126,16 @@ class AcademyPage(AbstractBlogPage):
         other_pages = AcademyPage.objects.filter(query).exclude(id=self.id)
         other_links = AcademyExternalLink.objects.filter(query) \
             .exclude(id=self.id)
+
+        # first order by number of topic intersections, then by date
         other_content = sorted(chain(other_pages, other_links),
                                key=operator.attrgetter('date'), reverse=True)
+
+        def get_sort_key(other_page):
+            return len(set(topics) & set(other_page.topics))
+
+        other_content = sorted(other_content,
+                               key=get_sort_key, reverse=True)
         return other_content
 
     def get_context(self, request):
