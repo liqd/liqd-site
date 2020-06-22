@@ -2,6 +2,7 @@
 {% load i18n static wagtailcore_tags wagtailimages_tags %}
 
 {% block fb_meta_tags %}
+
 {% endblock %}
 
 {% block content %}
@@ -131,7 +132,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container item-list">
         <div class="row justify-content-center justify-content-sm-start">
             {% for content in all_content %}
                 {% include "academy/includes/academy_list_item.html" with content=content %}
@@ -140,11 +141,8 @@
     </div>
 </section>
 
-{% if academy_pages.has_next %}
-<div class="load-more">
-    <button class="h2">{% trans 'load more' %}</button>
-</div>
+{% if all_content.has_previous or all_content.has_next %}
+    {% include "core/includes/pagination.html" %}
 {% endif %}
-</div>
 
 {% endblock %}
