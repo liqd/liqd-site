@@ -323,7 +323,7 @@ class AcademyIndexPage(Page):
                 key=operator.attrgetter('date'), reverse=True)
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(all_content, 6)
+        paginator = Paginator(all_content, 9)
 
         try:
             all_content = paginator.page(page)
