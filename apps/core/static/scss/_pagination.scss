@@ -3,3 +3,16 @@
     list-style: none;
     justify-content: center;
 }
+
+.pagination__link {
+    border: none
+}
+
+.pagination__icon--next,
+.pagination__icon--prev {
+    height: 1rem;
+}
+
+.pagination__icon--prev {
+    transform: rotate(180deg);
+}
