@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-12 14:26+0200\n"
+"POT-Creation-Date: 2020-06-23 15:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,96 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/academy/models.py:36
+msgid "Liquid Democracy: Theory & Vision"
+msgstr "Liquid Democracy: Theorie & Vision"
+
+#: apps/academy/models.py:37
+msgid "Digital Civic Society"
+msgstr "Digitale Zivilgesellschaft"
+
+#: apps/academy/models.py:38
+msgid "Digital Participation In Action"
+msgstr "Online-Beteiligung in der Praxis"
+
+#: apps/academy/models.py:42
+msgid "video"
+msgstr "Video"
+
+#: apps/academy/models.py:43
+msgid "workshop"
+msgstr "Workshop"
+
+#: apps/academy/models.py:44
+msgid "how-to"
+msgstr "How-To"
+
+#: apps/academy/models.py:45
+msgid "talk"
+msgstr "Vortrag"
+
+#: apps/academy/models.py:46
+msgid "link collection"
+msgstr "Linksammlung"
+
+#: apps/academy/models.py:47
+msgid "blogpost"
+msgstr "Blogpost"
+
+#: apps/academy/models.py:48
+msgid "webinar"
+msgstr "Webinar"
+
+#: apps/academy/templates/academy/academy_index_page.html:47
+msgid "Select topic"
+msgstr "Thema auswählen"
+
+#: apps/academy/templates/academy/academy_index_page.html:62
+#: apps/academy/templates/academy/academy_index_page.html:65
+msgctxt "nominativ"
+msgid "all topics"
+msgstr "alle Themen"
+
+#: apps/academy/templates/academy/academy_index_page.html:78
+msgid "Type of content:"
+msgstr "Art des Inhalts:"
+
+#: apps/academy/templates/academy/academy_index_page.html:79
+#: apps/academy/templates/academy/academy_index_page.html:94
+#: apps/academy/templates/academy/academy_index_page.html:97
+msgid "all"
+msgstr "alle"
+
+#: apps/academy/templates/academy/academy_index_page.html:105
+msgid "Sort by:"
+msgstr "Sortieren nach:"
+
+#: apps/academy/templates/academy/academy_index_page.html:107
+#: apps/academy/templates/academy/academy_index_page.html:113
+#: apps/academy/templates/academy/academy_index_page.html:116
+msgid "newest"
+msgstr "neueste"
+
+#: apps/academy/templates/academy/academy_index_page.html:107
+#: apps/academy/templates/academy/academy_index_page.html:122
+#: apps/academy/templates/academy/academy_index_page.html:125
+msgid "alphabetical"
+msgstr "alphabetisch"
+
+#: apps/academy/templates/academy/academy_page.html:16
+#: apps/academy/templates/academy/academy_page.html:17
+msgid "To overview"
+msgstr "Zur Übersicht"
+
+#: apps/academy/templates/academy/academy_page.html:39
+#, python-format
+msgid "More about %(topics)s"
+msgstr "Mehr über %(topics)s"
+
+#: apps/academy/templates/academy/includes/academy_list_item.html:11
+msgid "external link"
+msgstr "externer Link"
 
 #: apps/blog/templates/blog/blog_index_page.html:13
 #: apps/projects/templates/projects/project_index_page.html:13
@@ -36,7 +126,7 @@ msgid "from"
 msgstr "aus"
 
 #: apps/blog/templates/blog/blog_index_page.html:75
-#: apps/projects/templates/projects/project_index_page.html:45
+#: apps/projects/templates/projects/project_index_page.html:47
 msgid "load more"
 msgstr "Mehr laden"
 
@@ -52,7 +142,7 @@ msgstr "Unsere letzten Blogartikel"
 msgid "Error"
 msgstr "Fehler"
 
-#: apps/core/templates/404.html:23 apps/core/templates/500.html:38
+#: apps/core/templates/404.html:23 apps/core/templates/500.html:35
 msgid "Oh no, something went wrong!"
 msgstr "Oh nein, da hat was nicht geklappt!"
 
@@ -60,7 +150,7 @@ msgstr "Oh nein, da hat was nicht geklappt!"
 msgid "This page could not be found"
 msgstr "Die Seite konnte nicht gefunden werden"
 
-#: apps/core/templates/500.html:39
+#: apps/core/templates/500.html:36
 msgid "Internal Server Error. Please try again soon."
 msgstr "Internal Server Error. Bitte später erneut versuchen."
 
@@ -78,15 +168,36 @@ msgstr ""
 "Bereichen - von lokalen Initiativen bis zu internationalen Organisationen - "
 "zu fördern"
 
+#: apps/core/templates/core/home_page.html:72
+msgid "See on map"
+msgstr "Auf Karte ansehen"
+
+#: apps/core/templates/core/includes/pagination.html:3
+msgid "Page navigation"
+msgstr "Seitennavigation"
+
+#: apps/core/templates/core/includes/pagination.html:8
+msgid "Previous page"
+msgstr "Vorherige Seite"
+
+#: apps/core/templates/core/includes/pagination.html:12
+msgid " of "
+msgstr " von "
+
+#: apps/core/templates/core/includes/pagination.html:17
+msgid "Next page"
+msgstr "Nächste Seite"
+
 #: apps/core/templates/navbar-simple.html:14
 msgid "Menu"
 msgstr ""
 
 #: apps/core/templates/navbar-simple.html:15
 msgid "Close"
-msgstr ""
+msgstr "Schliessen"
 
 #: apps/projects/templates/projects/includes/fact_list.html:5
+#: venv/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2240
 msgid "URL"
 msgstr "URL"
 
@@ -122,19 +233,10 @@ msgstr "Details"
 msgid "Website"
 msgstr "Webseite"
 
-#: website_wagtail/settings/base.py:126
+#: website_wagtail/settings/base.py:135
 msgid "German"
 msgstr "Deutsch"
 
-#: website_wagtail/settings/base.py:127
+#: website_wagtail/settings/base.py:136
 msgid "English"
 msgstr "Englisch"
-
-#~ msgid " website"
-#~ msgstr "Webseite"
-
-#~ msgid "timescale"
-#~ msgstr "Zeitraum"
-
-#~ msgid "Back to top"
-#~ msgstr "Zurück"
