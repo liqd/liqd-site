@@ -139,6 +139,7 @@ a.header__brand {
 
     @include media-breakpoint-up(md) {
         height: auto;
+        color: $body-color;
 
         &:after {
             content: "";
