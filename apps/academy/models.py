@@ -312,10 +312,11 @@ class AcademyIndexPage(Page):
                 academy_content_type=content_type)
             external_links = external_links.filter(
                 academy_content_type=content_type)
+
         if alphabetical:
             all_content = sorted(
                 chain(academy_pages, external_links),
-                key=operator.attrgetter('translated_title'))
+                key=lambda title: operator.attrgetter('translated_title')(title).lower())
 
         else:
             all_content = sorted(
