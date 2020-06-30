@@ -14,8 +14,10 @@ help:
 	@echo   make install  -- install dev setup
 	@echo   make server	  -- development server
 	@echo   make test     -- tests on exiting database
-	@echo   make lint	    -- lint javascript and python
+	@echo   make lint	  -- lint javascript and python
 	@echo   make release  -- build everything required for a release
+	@echo   make po       -- create new po files from the source
+	@echo   make mo       -- create new mo files from the translated po files
 	@echo
 
 
@@ -40,6 +42,16 @@ lint:
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	npm run lint --silent ||  EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
+
+.PHONY: po
+po:
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
+	msgen locale/de/LC_MESSAGES/django.po -o locale/de/LC_MESSAGES/django.po
+
+.PHONY: mo
+mo:
+	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= website_wagtail.settings.build
