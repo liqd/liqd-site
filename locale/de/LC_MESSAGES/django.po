@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 15:53+0200\n"
+"POT-Creation-Date: 2020-06-30 13:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,27 +177,28 @@ msgid "Page navigation"
 msgstr "Seitennavigation"
 
 #: apps/core/templates/core/includes/pagination.html:8
+#: apps/core/templates/core/includes/pagination.html:9
 msgid "Previous page"
 msgstr "Vorherige Seite"
 
-#: apps/core/templates/core/includes/pagination.html:12
+#: apps/core/templates/core/includes/pagination.html:14
 msgid " of "
 msgstr " von "
 
-#: apps/core/templates/core/includes/pagination.html:17
+#: apps/core/templates/core/includes/pagination.html:19
+#: apps/core/templates/core/includes/pagination.html:20
 msgid "Next page"
 msgstr "Nächste Seite"
 
 #: apps/core/templates/navbar-simple.html:14
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 #: apps/core/templates/navbar-simple.html:15
 msgid "Close"
 msgstr "Schliessen"
 
 #: apps/projects/templates/projects/includes/fact_list.html:5
-#: venv/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2240
 msgid "URL"
 msgstr "URL"
 
