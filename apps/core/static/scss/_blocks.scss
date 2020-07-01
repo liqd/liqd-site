@@ -8,6 +8,10 @@
     @include media-breakpoint-up(sm) {
         margin-bottom: $spacer-v;
     }
+
+    p {
+        font-size: $font-size-base;
+    }
 }
 
 .block--paragraph {

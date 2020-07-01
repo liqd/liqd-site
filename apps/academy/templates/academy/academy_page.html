@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a class="btn btn-none pl-0 mb-3" type=button href="{{ page.get_parent.url }}" aria-label="{% trans 'To overview' %}">
+            <a class="btn btn-none pl-0 mb-3" href="{{ page.get_parent.url }}" aria-label="{% trans 'To overview' %}">
               <img class="academy__btn--back" src="{% static 'images/arrow_back.svg' %}" alt="{% trans 'To overview' %}"/>
             </a>
             <div class="academy__sans-serif mb-4 text--upper">{{ page.get_topics_display }}
@@ -21,9 +21,9 @@
                 {{ page.get_academy_content_type_display }}
             </div>
             <h1>{{ page.translated_title }}</h1>
-            <div>
-                {% if page.translated_intro %}
-                    {{ page.translated_intro | richtext }}
+            <div class="mb-sm-5 mb-4">
+                {% if page.translated_subtitle %}
+                    {{ page.translated_subtitle }}
                 {% endif %}
             </div>
             <div class="row justify-content-md-center">
