@@ -21,7 +21,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 
     &:hover {
@@ -59,7 +59,8 @@
 }
 
 .academy-list__topic-img {
-
+    height: 110px;
+    width: auto;
 }
 
 //desktop size

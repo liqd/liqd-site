@@ -1,19 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="64px" height="79px" viewBox="0 0 64 79" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
-    <title>liqd-academy-icon_digital-trends</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Liquid-Academy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Alle-Inhalte---6-Items-Level-2" transform="translate(-688.000000, -441.000000)" stroke="#060606" stroke-width="1.5">
-            <g id="liqd-academy-icon_digital-trends" transform="translate(689.000000, 442.000000)">
-                <path d="M51,45.275 L51,70.68 C50.9890208,74.1658817 48.1658817,76.9890208 44.68,77 L17.32,77 C13.8341183,76.9890208 11.0109792,74.1658817 11,70.68 L11,55.13" id="Path"></path>
-                <path d="M11,40.785 L11,6.32 C11.0109792,2.83411826 13.8341183,0.0109792367 17.32,0 L44.68,0 C48.1658817,0.0109792367 50.9890208,2.83411826 51,6.32 L51,20.54" id="Path"></path>
-                <line x1="51" y1="67" x2="11" y2="67" id="Path"></line>
-                <line x1="51" y1="10.005" x2="11" y2="10.005" id="Path"></line>
-                <line x1="37" y1="4.96" x2="25" y2="4.96" id="Path"></line>
-                <line x1="34" y1="72" x2="28" y2="72" id="Path"></line>
-                <path d="M20,46.155 L26.335,52.5 L27.75,53.915 C28.500273,54.6661082 29.518363,55.0881466 30.58,55.0881466 C31.641637,55.0881466 32.659727,54.6661082 33.41,53.915 L34.825,52.5 L40.5,46.865 L46.555,40.81 L51.32,45.575 C52.955,47.05 54.695,46.575 55.265,44.46 L61.46,21.33 C62.03,19.205 60.76,17.93 58.635,18.5 L35.5,24.7 C33.375,25.265 32.91,27.005 34.465,28.56 L36.64,30.925 L39.47,33.75 L30.58,42.62 L28.81,40.855 L24.215,36.255 L22.8,34.84 C21.2381152,33.2791386 18.7068848,33.2791386 17.145,34.84 L15.73,36.255 L10.075,41.915 L1.575,50.415 C0.0141385943,51.9768848 0.0141385943,54.5081152 1.575,56.07 L3,57.47 C4.56188484,59.0308614 7.09311516,59.0308614 8.655,57.47 L17.155,48.97 L20,46.155 Z" id="Path"></path>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 88 88" style="enable-background:new 0 0 88 88;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#060606;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+	.st1{fill:none;}
+</style>
+<desc>Created with Sketch.</desc>
+<g id="Liquid-Academy">
+	<g id="Alle-Inhalte---6-Items-Level-2" transform="translate(-688.000000, -441.000000)">
+		<g id="liqd-academy-icon_digital-trends" transform="translate(689.000000, 442.000000)">
+			<path id="Path" class="st0" d="M63,49.3v23.4c0,3.5-2.8,6.3-6.3,6.3H29.3c-3.5,0-6.3-2.8-6.3-6.3V59.1"/>
+			<path id="Path_1_" class="st0" d="M23,44.8V13.3C23,9.8,25.8,7,29.3,7h27.4c3.5,0,6.3,2.8,6.3,6.3v11.2"/>
+			<line id="Path_2_" class="st0" x1="63" y1="69" x2="23" y2="69"/>
+			<line id="Path_3_" class="st0" x1="63" y1="17" x2="23" y2="17"/>
+			<line id="Path_4_" class="st0" x1="49" y1="12" x2="37" y2="12"/>
+			<line id="Path_5_" class="st0" x1="46" y1="74" x2="40" y2="74"/>
+			<path id="Path_6_" class="st0" d="M32,50.2l6.3,6.3l1.4,1.4c0.8,0.8,1.8,1.2,2.8,1.2s2.1-0.4,2.8-1.2l1.4-1.4l5.7-5.6l6.1-6.1
+				l4.8,4.8c1.6,1.5,3.4,1,3.9-1.1l6.2-23.1c0.6-2.1-0.7-3.4-2.8-2.8l-23.1,6.2c-2.1,0.6-2.6,2.3-1,3.9l2.2,2.4l2.8,2.8l-8.9,8.9
+				l-1.8-1.8l-4.6-4.6l-1.4-1.4c-1.6-1.6-4.1-1.6-5.7,0l-1.4,1.4l-5.7,5.7l-8.5,8.5c-1.6,1.6-1.6,4.1,0,5.7l1.4,1.4
+				c1.6,1.6,4.1,1.6,5.7,0l8.5-8.5L32,50.2z"/>
+		</g>
+	</g>
+</g>
+<rect class="st1" width="88" height="88"/>
 </svg>

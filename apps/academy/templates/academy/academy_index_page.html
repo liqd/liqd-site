@@ -27,11 +27,11 @@
 
                     {% for topic_key,topic_string in page.topics.items %}
                     <a class="academy-list__topic--link" href="?topic={{ topic_key }}&academy_content_type={{ academy_content_type }}&alphabetical={{ alphabetical }}">
-                        <div class="academy-list__topic-square {% if topic == topic_key %}academy-list__topic-selected-square{% endif %}">
+                        <div class="academy-list__topic-square px-3 py-4 {% if topic == topic_key %}academy-list__topic-selected-square{% endif %}">
                             {% with 'images/'|add:topic_key|add:'-topic.svg' as topic_svg %}
-                            <img class="academy-list__topic-img" src="{% static topic_svg %}" alt="{{ topic }}" width="70" />
+                            <img class="academy-list__topic-img pb-4" src="{% static topic_svg %}" alt="{{ topic }}" width="70" />
                             {% endwith %}
-                            <div class="academy-list__topic mb-3">
+                            <div class="academy-list__topic">
                                 {{ topic_string }}
                             </div>
                             <div class="{% if topic == topic_key %}academy-list__topic-selected-arrow{% endif %}"></div>

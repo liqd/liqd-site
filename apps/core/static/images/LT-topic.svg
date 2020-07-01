@@ -1,26 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="83px" height="65px" viewBox="0 0 83 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
-    <title>liqd-academy-icon_theory</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Liquid-Academy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Alle-Inhalte---6-Items-Level-2" transform="translate(-299.000000, -447.000000)" stroke="#060606" stroke-width="1.5">
-            <g id="liqd-academy-icon_theory" transform="translate(300.000000, 448.000000)">
-                <path d="M8.5,8.915 C6.22539847,8.92817556 4.04980554,9.84717894 2.45458316,11.4686756 C0.859360792,13.0901722 -0.0239817349,15.2804867 -0.00047585291,17.555 L-0.00047585291,54.275 C0.0137311169,59.041041 3.87395896,62.9012689 8.64,62.915 L72.36,62.915 C77.126041,62.9012689 80.9862689,59.041041 81.0004759,54.275 L81.0004759,17.555 C81.0239817,15.2804867 80.1406392,13.0901722 78.5454168,11.4686756 C76.9501945,9.84717894 74.7746015,8.92817556 72.5,8.915" id="Path"></path>
-                <path d="M40.5,61.75 C21.42,51.18 8.5,59.54 8.5,59.54 L8.5,3.22 C8.5,3.22 21.42,-5.135 40.5,5.43" id="Path"></path>
-                <path d="M40.5,61.75 C59.58,51.18 72.5,59.54 72.5,59.54 L72.5,3.22 C72.5,3.22 59.58,-5.135 40.5,5.43" id="Path"></path>
-                <path d="M45.87,47.93 C58.545,40.905 67.13,46.46 67.13,46.46" id="Path"></path>
-                <path d="M45.87,40.22 C58.545,33.22 67.13,38.755 67.13,38.755" id="Path"></path>
-                <path d="M45.87,32.5 C58.545,25.5 67.13,31.035 67.13,31.035" id="Path"></path>
-                <path d="M45.87,24.805 C58.545,17.805 67.13,23.335 67.13,23.335" id="Path"></path>
-                <path d="M45.87,17.095 C58.545,10.095 67.13,15.625 67.13,15.625" id="Path"></path>
-                <path d="M35.13,47.93 C22.455,40.905 13.87,46.46 13.87,46.46" id="Path"></path>
-                <path d="M35.13,40.22 C22.455,33.22 13.87,38.755 13.87,38.755" id="Path"></path>
-                <path d="M35.13,32.5 C22.455,25.5 13.87,31.035 13.87,31.035" id="Path"></path>
-                <path d="M35.13,24.805 C22.455,17.805 13.87,23.335 13.87,23.335" id="Path"></path>
-                <path d="M35.13,17.095 C22.455,10.095 13.87,15.625 13.87,15.625" id="Path"></path>
-                <line x1="40.5" y1="60.915" x2="40.5" y2="5.75" id="Path"></line>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 88 88" style="enable-background:new 0 0 88 88;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#060606;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+	.st1{fill:none;}
+</style>
+<desc>Created with Sketch.</desc>
+<g>
+	<path id="Path" class="st0" d="M11.9,19.9c-2.3,0-4.5,0.9-6.1,2.6s-2.5,3.8-2.5,6.1v40.8c0,4.8,3.9,8.6,8.7,8.7h63.9
+		c4.8,0,8.6-3.9,8.7-8.7V28.5c0-2.3-0.9-4.5-2.5-6.1s-3.8-2.5-6.1-2.6"/>
+	<path id="Path_1_" class="st0" d="M44,74.8c-19.1-10.6-32.1-2.2-32.1-2.2V13.1c0,0,13-8.4,32.1,2.2"/>
+	<path id="Path_2_" class="st0" d="M44,74.8c19.1-10.6,32.1-2.2,32.1-2.2V13.1c0,0-13-8.4-32.1,2.2"/>
+	<g>
+		<path id="Path_3_" class="st0" d="M49.4,62c12.7-7,21.3-1.5,21.3-1.5"/>
+		<path id="Path_4_" class="st0" d="M49.4,54.3c12.7-7,21.3-1.5,21.3-1.5"/>
+		<path id="Path_5_" class="st0" d="M49.4,46.6c12.7-7,21.3-1.5,21.3-1.5"/>
+		<path id="Path_6_" class="st0" d="M49.4,38.9c12.7-7,21.3-1.5,21.3-1.5"/>
+		<path id="Path_7_" class="st0" d="M49.4,31.1c12.7-7,21.3-1.5,21.3-1.5"/>
+		<path id="Path_8_" class="st0" d="M38.6,62c-12.7-7-21.3-1.5-21.3-1.5"/>
+		<path id="Path_9_" class="st0" d="M38.6,54.3c-12.7-7-21.3-1.5-21.3-1.5"/>
+		<path id="Path_10_" class="st0" d="M38.6,46.6c-12.7-7-21.3-1.5-21.3-1.5"/>
+		<path id="Path_11_" class="st0" d="M38.6,38.9c-12.7-7-21.3-1.5-21.3-1.5"/>
+		<path id="Path_12_" class="st0" d="M38.6,31.1c-12.7-7-21.3-1.5-21.3-1.5"/>
+		<path id="Path_16_" class="st0" d="M49.4,23.4c12.7-7,21.3-1.5,21.3-1.5"/>
+		<path id="Path_14_" class="st0" d="M38.6,23.4c-12.7-7-21.3-1.5-21.3-1.5"/>
+	</g>
+	<line id="Path_13_" class="st0" x1="44" y1="74" x2="44" y2="15.7"/>
+</g>
+<rect class="st1" width="88" height="88"/>
 </svg>
