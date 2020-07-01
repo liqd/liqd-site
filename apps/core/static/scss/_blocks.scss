@@ -26,6 +26,10 @@
     }
 }
 
+.block--aligned_image {
+    width: 100%;
+}
+
 .block--aligned_image--right {
     @include clearfix;
 
