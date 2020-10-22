@@ -1,0 +1,17 @@
+{% load static wagtailcore_tags wagtailimages_tags i18n %}
+
+<div class="row block">
+    <div class="col-lg-9">
+        <h2>{{ value.challenge_step_title }}</h2>
+
+        {% if value.challenge_step_text %}
+            <div>{{ value.challenge_step_text }}</div>
+        {% endif %}
+    <div class="row">
+    {% for link in value.links %}
+            {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_academy_links %}
+            {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_external_links %}
+    {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags i18n bleach_tags %}
+
+{% block fb_meta_tags %}
+    <meta property="og:type" content="content" />
+    <meta property="og:title" content="{{ page.translated_title }}" />
+    {% with description=page.translated_intro|richtext %}
+    <meta property="og:description" content="{{ description|bleach }}" />
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row block">
+        <div class="col-lg-9">
+            <h1>
+              {{ page.translated_title }}
+            </h1>
+            {% if page.translated_subtitle %}
+            <p>
+                {{ page.translated_subtitle }}
+            </p>
+            {% endif %}
+
+            <div class="academy__sans-serif mb-4 text--upper">
+              {{ page.translated_completion_time }}
+            </div>
+        </div>
+    </div>
+
+    <div>{{ page.body }}</div>
+
+</div>
+
+{% endblock %}

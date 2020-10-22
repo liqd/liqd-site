@@ -42,4 +42,4 @@ class HomePage(TranslatedStreamFieldPage):
 
     subpage_types = ['TextPageWithBlocks', 'TextPage',
                      'projects.ProjectIndexPage', 'blog.BlogIndexPage',
-                     'academy.AcademyIndexPage']
+                     'academy.AcademyIndexPage', 'academy.AcademyChallengePage']

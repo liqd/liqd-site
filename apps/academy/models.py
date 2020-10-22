@@ -13,11 +13,12 @@ from django.utils.translation import ugettext_lazy as _
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                          ObjectList, StreamFieldPanel,
                                          TabbedInterface)
-from wagtail.core.fields import RichTextField
+from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.blog.models import AbstractBlogPage
+from apps.academy.blocks import ChallengeStepBlock
 from contrib.translations.translations import TranslatedField
 
 LIQDTHEORY = 'LT'
@@ -48,6 +49,9 @@ CONTENT_TYPE_CHOICES = [
     (WEBINAR, _('webinar')),
 ]
 
+STREAMFIELD_CHALLENGE_BLOCKS = [
+    ('challenge_tasks', ChallengeStepBlock())
+]
 
 class AcademyPage(AbstractBlogPage):
     topics = MultiSelectField(
@@ -221,6 +225,103 @@ class AcademyExternalLink(Page):
         self.slug = self.id
         self.title = self.title_en
         super().save(*args, **kwargs)
+
+
+class AcademyChallengePage(Page):
+    tile_image = models.ForeignKey(
+        'images.CustomImage',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='+',
+        help_text='The image used for the tile teaser'
+    )
+
+    title_en = models.CharField(max_length=255, verbose_name="Title")
+    title_de = models.CharField(
+        max_length=255, blank=True, verbose_name="Title")
+    translated_title = TranslatedField(
+        'title_de',
+        'title_en',
+    )
+
+    subtitle_en = models.CharField(blank=True, max_length=255,
+        verbose_name="Subtitle")
+    subtitle_de = models.CharField(
+        max_length=500, blank=True, verbose_name="Subtitle")
+    translated_subtitle = TranslatedField(
+        'subtitle_de',
+        'subtitle_en',
+    )
+
+    completion_time_en = models.CharField(blank=True, max_length=255,
+        verbose_name="Time to complete")
+    completion_time_de = models.CharField(
+        max_length=500, blank=True, verbose_name="Time to complete")
+    translated_completion_time = TranslatedField(
+        'completion_time_de',
+        'completion_time_en',
+    )
+
+    intro_en = RichTextField(verbose_name="Teaser text")
+    intro_de = RichTextField(blank=True, verbose_name="Teaser text")
+    translated_intro = TranslatedField(
+        'intro_de',
+        'intro_en',
+    )
+
+    body_en = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
+                          null=True, verbose_name="Challenge step")
+    body_de = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
+                          null=True, blank=True, verbose_name="Challenge step")
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
+
+    en_content_panels = [
+        FieldPanel('title_en'),
+        FieldPanel('subtitle_en'),
+        FieldPanel('completion_time_en'),
+        FieldPanel('intro_en'),
+        StreamFieldPanel('body_en'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('title_de'),
+        FieldPanel('subtitle_de'),
+        FieldPanel('completion_time_de'),
+        FieldPanel('intro_de'),
+        StreamFieldPanel('body_de'),
+    ]
+
+    common_panels = [
+        ImageChooserPanel('tile_image'),
+    ]
+
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('title'),
+            FieldPanel('slug'),
+        ],
+            heading="Slug and CMS Page Name"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+            heading="SEO settings",
+            classname="collapsible"),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(common_panels, heading='Common'),
+        ObjectList(promote_panels, heading='Promote'),
+    ])
+
+    class Meta:
+        verbose_name = 'Academy Challenge'
 
 
 class AcademyIndexPage(Page):

@@ -1,0 +1,23 @@
+{% load static wagtailcore_tags wagtailimages_tags i18n %}
+
+{% if link.url %}
+    <div class="col-12 col-sm-6 col-md-4 academy-list__item">
+        <a href="{{ link.url }}">
+          <div class="academy__sans-serif text--upper mb-4">
+            {% with content_type=link.academy_content_type %}
+              {% if content_type == 'BP' or content_type == 'HT' %}
+                {% trans 'Read ' %}
+              {% elif content_type == 'VD' or content_type == 'TK' or content_type == 'WB' %}
+                {% trans 'Watch ' %}
+              {% endif %}
+            {% endwith %}
+            {{ link.get_academy_content_type_display }}
+          </div>
+            {% if link.tile_image %}
+            {% image link.tile_image fill-500x350 as image %}
+            <img class="mb-4" src="{{ image.url }}" alt="{{ image.alt }}" />
+            {% endif %}
+            <h3>{{ link.translated_title }}</h3>
+        </a>
+    </div>
+{% endif %}
