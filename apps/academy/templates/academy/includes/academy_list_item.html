@@ -4,16 +4,22 @@
   <a class="" href="{% if content.external_link %}
 {{ content.external_link }} {% else %} {% pageurl content %}{% endif %}">
         <div>
-            <span class="academy__sans-serif text--upper">
+            {% if content.get_academy_content_type_display %}
+            <div class="academy__sans-serif text--upper mb-3">
                 {{ content.get_academy_content_type_display }}
                 {% if content.external_link %}
                     {% if content.academy_content_type %} · {% endif %}
                     {% trans 'external link' %}
                 {% endif %}
-            </span>
+            </div>
+            {% else %}
+            <div class="academy__spacer"></div>
+            {% endif %}
             {% if content.tile_image %}
             {% image content.tile_image fill-500x350 as image %}
             <img class="mb-3" src="{{ image.url }}" alt="{{ image.alt }}" />
+            {% else %}
+            <img class="mb-4" src="{% static 'images/tile-backup.png' %}" />
             {% endif %}
             <h3 class="mb-2">{{ content.translated_title }}</h3>
             <div class="academy__sans-serif">{{ content.topics }}</div>
