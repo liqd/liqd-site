@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 13:46+0200\n"
+"POT-Creation-Date: 2020-11-02 11:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,79 +18,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/academy/models.py:36
+#: apps/academy/models.py:37
 msgid "Liquid Democracy: Theory & Vision"
 msgstr "Liquid Democracy: Theorie & Vision"
 
-#: apps/academy/models.py:37
+#: apps/academy/models.py:38
 msgid "Digital Civic Society"
 msgstr "Digitale Zivilgesellschaft"
 
-#: apps/academy/models.py:38
+#: apps/academy/models.py:39
 msgid "Digital Participation In Action"
 msgstr "Online-Beteiligung in der Praxis"
 
-#: apps/academy/models.py:42
+#: apps/academy/models.py:43
 msgid "video"
 msgstr "Video"
 
-#: apps/academy/models.py:43
+#: apps/academy/models.py:44
 msgid "workshop"
 msgstr "Workshop"
 
-#: apps/academy/models.py:44
+#: apps/academy/models.py:45
 msgid "how-to"
 msgstr "How-To"
 
-#: apps/academy/models.py:45
+#: apps/academy/models.py:46
 msgid "talk"
 msgstr "Vortrag"
 
-#: apps/academy/models.py:46
+#: apps/academy/models.py:47
 msgid "link collection"
 msgstr "Linksammlung"
 
-#: apps/academy/models.py:47
+#: apps/academy/models.py:48
 msgid "blogpost"
 msgstr "Blogpost"
 
-#: apps/academy/models.py:48
+#: apps/academy/models.py:49
 msgid "webinar"
 msgstr "Webinar"
 
-#: apps/academy/templates/academy/academy_index_page.html:47
+#: apps/academy/templates/academy/academy_index_page.html:57
 msgid "Select topic"
 msgstr "Thema auswählen"
 
-#: apps/academy/templates/academy/academy_index_page.html:62
-#: apps/academy/templates/academy/academy_index_page.html:65
+#: apps/academy/templates/academy/academy_index_page.html:73
+#: apps/academy/templates/academy/academy_index_page.html:76
 msgctxt "nominativ"
 msgid "all topics"
 msgstr "alle Themen"
 
-#: apps/academy/templates/academy/academy_index_page.html:78
+#: apps/academy/templates/academy/academy_index_page.html:89
 msgid "Type of content:"
 msgstr "Art des Inhalts:"
 
-#: apps/academy/templates/academy/academy_index_page.html:79
-#: apps/academy/templates/academy/academy_index_page.html:94
-#: apps/academy/templates/academy/academy_index_page.html:97
+#: apps/academy/templates/academy/academy_index_page.html:90
+#: apps/academy/templates/academy/academy_index_page.html:105
+#: apps/academy/templates/academy/academy_index_page.html:108
 msgid "all"
 msgstr "alle"
 
-#: apps/academy/templates/academy/academy_index_page.html:105
+#: apps/academy/templates/academy/academy_index_page.html:116
 msgid "Sort by:"
 msgstr "Sortieren nach:"
 
-#: apps/academy/templates/academy/academy_index_page.html:107
-#: apps/academy/templates/academy/academy_index_page.html:113
-#: apps/academy/templates/academy/academy_index_page.html:116
+#: apps/academy/templates/academy/academy_index_page.html:118
+#: apps/academy/templates/academy/academy_index_page.html:124
+#: apps/academy/templates/academy/academy_index_page.html:127
 msgid "newest"
 msgstr "neueste"
 
-#: apps/academy/templates/academy/academy_index_page.html:107
-#: apps/academy/templates/academy/academy_index_page.html:122
-#: apps/academy/templates/academy/academy_index_page.html:125
+#: apps/academy/templates/academy/academy_index_page.html:118
+#: apps/academy/templates/academy/academy_index_page.html:133
+#: apps/academy/templates/academy/academy_index_page.html:136
 msgid "alphabetical"
 msgstr "alphabetisch"
 
@@ -104,7 +104,31 @@ msgstr "Zur Übersicht"
 msgid "More about %(topics)s"
 msgstr "Mehr über %(topics)s"
 
-#: apps/academy/templates/academy/includes/academy_list_item.html:11
+#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:10
+msgid "Read this blogpost"
+msgstr "Read this blogpost"
+
+#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:12
+msgid "Read this how-to"
+msgstr "Read this how-to"
+
+#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:14
+msgid "Watch this video"
+msgstr "Watch this video"
+
+#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:16
+msgid "Watch this talk"
+msgstr "Watch this talk"
+
+#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:18
+msgid "Watch this webinar"
+msgstr "Watch this webinar"
+
+#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:20
+msgid "Watch this link collection"
+msgstr "Watch this link collection"
+
+#: apps/academy/templates/academy/includes/academy_list_item.html:12
 msgid "external link"
 msgstr "externer Link"
 
@@ -241,3 +265,9 @@ msgstr "Deutsch"
 #: website_wagtail/settings/base.py:136
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "Read this "
+#~ msgstr "Read this "
+
+#~ msgid "Watch this "
+#~ msgstr "Watch this "
