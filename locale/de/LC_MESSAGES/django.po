@@ -106,27 +106,27 @@ msgstr "Mehr über %(topics)s"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:10
 msgid "Read this blogpost"
-msgstr "Read this blogpost"
+msgstr "Lies diesen Blogpost"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:12
 msgid "Read this how-to"
-msgstr "Read this how-to"
+msgstr "Lies dieses How-to"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:14
 msgid "Watch this video"
-msgstr "Watch this video"
+msgstr "Schaue dir dieses Video an"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:16
 msgid "Watch this talk"
-msgstr "Watch this talk"
+msgstr "Schaue dir diesen Vortrag an"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:18
 msgid "Watch this webinar"
-msgstr "Watch this webinar"
+msgstr "Schaue dir dieses Webinar an"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:20
 msgid "Watch this link collection"
-msgstr "Watch this link collection"
+msgstr "Schaue dir diese Linksammlung an"
 
 #: apps/academy/templates/academy/includes/academy_list_item.html:12
 msgid "external link"
