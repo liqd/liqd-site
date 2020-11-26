@@ -4,7 +4,7 @@
     <div class="col-12 col-sm-6 col-md-4 academy-list__item">
         <a href="{% if link.external_link %}{{ link.external_link }} {% else %} {{ link.url }}{% endif %}">
           {% if link.get_academy_content_type_display %}
-          <div class="academy__sans-serif text--upper mb-2">
+          <div class="academy__sans-serif text--upper mb-3">
             {% with content_type=link.academy_content_type %}
               {% if content_type == 'BP' %}
                   {% trans 'Read this blogpost' %}
