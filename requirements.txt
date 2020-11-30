@@ -1,18 +1,18 @@
 # Minimal requirements
-Django==2.2.9 # pyup: <2.3
-wagtail==2.7.1 # pyup: <2.8
+Django==2.2.17 # pyup: <2.3
+wagtail==2.7.4 # pyup: <2.8
 
-bleach==3.1.0
-brotli==1.0.7
-django-bleach==0.5.1
+bleach==3.2.1
+brotli==1.0.9
+django-bleach==0.6.1
 django-cloudflare-push==0.2.0
-django_csp==3.5
+django_csp==3.7
 django-multiselectfield==0.1.12
 django-sites==0.10
-flake8==3.7.7
-html5lib==1.0.1
-isort==4.3.20
-psycopg2-binary==2.8.2
+flake8==3.8.4
+html5lib==1.1
+isort==5.6.4
+psycopg2-binary==2.8.6
 wcag-contrast-ratio==0.9
-whitenoise==4.1.4
+whitenoise==5.2.0
 raven==6.10.0
