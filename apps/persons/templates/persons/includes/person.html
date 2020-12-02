@@ -4,7 +4,7 @@
 <a class="person-list__person-link" href="mailto:{{ value.person.email }}">
 {% endif %}
     <div class="person-list__person">
-        <h4 class="person-list__person-name h3">{{ value.person.first_name }} {{ value.person.last_name }}</h4>
+        <h3 class="person-list__person-name">{{ value.person.first_name }} {{ value.person.last_name }}</h3>
 
         {% if value.person.image %}
             {% image value.person.image fill-55x75 as photo %}
