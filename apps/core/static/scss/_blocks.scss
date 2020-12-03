@@ -82,6 +82,7 @@
 
 .block--projects h2 {
     text-align: center;
+    @extend .h4;
 }
 
 .collapse-mt + .collapse-mt {
@@ -93,6 +94,7 @@
 .block--all_persons_list {
     h2 {
         text-align: center;
+        @extend .h4;
     }
 }
 

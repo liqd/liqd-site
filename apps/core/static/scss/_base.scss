@@ -1,5 +1,5 @@
 body {
-    font-size: $font-size-base;
+    font-size: $font-size-md;
 
     @include media-breakpoint-up(sm) {
         font-size: $font-size-base;
@@ -102,7 +102,7 @@ h4,
 
 h5,
 .h5 {
-    font-size: $font-size-h5;
+    font-size: $font-size-h5 !important;
     letter-spacing: 0.5px;
 }
 

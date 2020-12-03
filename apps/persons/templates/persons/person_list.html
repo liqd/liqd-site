@@ -1,7 +1,7 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 <div class="person-list">
     {% if self.title %}
-        <h3 class="h4">{{ self.title }}</h3>
+        <h3 class="h5">{{ self.title }}</h3>
     {% endif %}
     <div id="person-list__persons">
         {% for person in self.personlist %}
