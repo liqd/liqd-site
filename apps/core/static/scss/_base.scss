@@ -18,9 +18,10 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    max-width: 960px;
-}
+// This should be width but needs to be looked at with challeng tiles
+// .container {
+//     max-width: 960px;
+// }
 
 // override padding-bottom because there should be no space above the content
 .project-page {
