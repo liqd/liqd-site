@@ -18,6 +18,10 @@ body {
     overflow-x: hidden;
 }
 
+.container {
+    max-width: 960px;
+}
+
 // override padding-bottom because there should be no space above the content
 .project-page {
     padding-top: 0;
