@@ -1,4 +1,4 @@
-const webpack = require("webpack")
+const webpack = require('webpack')
 const path = require('path')
 const autoprefixer = require('autoprefixer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -8,12 +8,12 @@ module.exports = {
     vendor: [
       'bootstrap/js/src/util',
       'bootstrap/js/src/collapse',
-      'jquery/dist/jquery.min.js',
+      'jquery/dist/jquery.min.js'
     ],
     all: [
       './apps/core/static/scss/all.scss',
-      './apps/core/static/js/app.js',
-    ],
+      './apps/core/static/js/app.js'
+    ]
   },
 
   output: {
@@ -71,9 +71,9 @@ module.exports = {
       },
       {
         test: /\.(woff2?|ttf|eot|svg|jpg|png|gif|swf|otf)(\?.*)?$/,
-        loader: 'file-loader',
+        loader: 'file-loader'
       }
-    ],
+    ]
   },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
@@ -92,6 +92,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
-    }),
-  ],
-};
+    })
+  ]
+}
