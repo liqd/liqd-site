@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-02 11:41+0100\n"
+"POT-Creation-Date: 2021-02-08 14:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,8 +51,8 @@ msgid "link collection"
 msgstr "Linksammlung"
 
 #: apps/academy/models.py:48
-msgid "blogpost"
-msgstr "Blogpost"
+msgid "article"
+msgstr "Artikel"
 
 #: apps/academy/models.py:49
 msgid "webinar"
@@ -105,8 +105,8 @@ msgid "More about %(topics)s"
 msgstr "Mehr über %(topics)s"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:10
-msgid "Read this blogpost"
-msgstr "Lies diesen Blogpost"
+msgid "Read this article"
+msgstr "Lies diesen Artikel"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:12
 msgid "Read this how-to"
@@ -123,10 +123,6 @@ msgstr "Schaue dir diesen Vortrag an"
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:18
 msgid "Watch this webinar"
 msgstr "Schaue dir dieses Webinar an"
-
-#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:20
-msgid "Watch this link collection"
-msgstr "Schaue dir diese Linksammlung an"
 
 #: apps/academy/templates/academy/includes/academy_list_item.html:12
 msgid "external link"
@@ -265,6 +261,15 @@ msgstr "Deutsch"
 #: website_wagtail/settings/base.py:136
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "blogpost"
+#~ msgstr "Blogpost"
+
+#~ msgid "Read this blogpost"
+#~ msgstr "Lies diesen Blogpost"
+
+#~ msgid "Watch this link collection"
+#~ msgstr "Schaue dir diese Linksammlung an"
 
 #~ msgid "Read this "
 #~ msgstr "Read this "
