@@ -30,7 +30,7 @@ WORKSHOP = 'WS'
 HOWTO = 'HT'
 TALK = 'TK'
 LINKLIST = 'LL'
-BLOGPOST = 'BP'
+ARTICLE = 'AR'
 WEBINAR = 'WB'
 
 TOPIC_CHOICES = [
@@ -45,7 +45,7 @@ CONTENT_TYPE_CHOICES = [
     (HOWTO, _('how-to')),
     (TALK, _('talk')),
     (LINKLIST, _('link collection')),
-    (BLOGPOST, _('blogpost')),
+    (ARTICLE, _('article')),
     (WEBINAR, _('webinar')),
 ]
 

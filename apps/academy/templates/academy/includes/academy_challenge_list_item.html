@@ -6,8 +6,8 @@
           {% if link.get_academy_content_type_display %}
           <div class="academy__sans-serif text--upper mb-3">
             {% with content_type=link.academy_content_type %}
-              {% if content_type == 'BP' %}
-                  {% trans 'Read this blogpost' %}
+              {% if content_type == 'AR' %}
+                  {% trans 'Read this article' %}
               {% elif content_type == 'HT' %}
                 {% trans 'Read this how-to' %}
               {% elif content_type == 'VD' %}
