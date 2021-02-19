@@ -20,7 +20,7 @@ urlpatterns = [
               ]
 
 urlpatterns += i18n_patterns(
-    #url(r'^search/', include('wagtail.search.urls')),
+    # url(r'^search/', include('wagtail.search.urls')),
     url(r'^latest/feed/$', LatestEntriesFeed()),
     url(r'^sitemap\.xml$', wagtail_sitemap),
 

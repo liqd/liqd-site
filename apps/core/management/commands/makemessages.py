@@ -25,5 +25,3 @@ class Command(makemessages.Command):
             path.relpath(get_module_dir('website_wagtail')))
 
         return apps_path + website_wagtail_paths
-
-

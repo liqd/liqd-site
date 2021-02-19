@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 for header in headers:
                     link = header.findChildren('a')[0]['href']
                     links.append(link)
-            except Exception as e:
+            except Exception:
                 pass
 
         blog_index = BlogIndexPage.objects.first()

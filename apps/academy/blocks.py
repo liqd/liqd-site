@@ -8,6 +8,7 @@ class ChallengeLinkBlock(StructBlock):
         required=False,
         help_text='Add an academy page')
 
+
 class ChallengeExternalLinkBlock(StructBlock):
     challenge_step_external_links = PageChooserBlock(
         target_model='academy.AcademyExternalLink',

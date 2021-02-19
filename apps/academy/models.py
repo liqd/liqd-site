@@ -52,6 +52,7 @@ STREAMFIELD_CHALLENGE_BLOCKS = [
     ('challenge_tasks', ChallengeStepBlock())
 ]
 
+
 class AcademyPage(AbstractBlogPage):
     topics = MultiSelectField(
         max_length=8,
@@ -244,8 +245,8 @@ class AcademyChallengePage(Page):
         'title_en',
     )
 
-    subtitle_en = models.CharField(blank=True, max_length=255,
-        verbose_name="Subtitle")
+    subtitle_en = models.CharField(
+        blank=True, max_length=255, verbose_name="Subtitle")
     subtitle_de = models.CharField(
         max_length=500, blank=True, verbose_name="Subtitle")
     translated_subtitle = TranslatedField(
@@ -253,8 +254,8 @@ class AcademyChallengePage(Page):
         'subtitle_en',
     )
 
-    completion_time_en = models.CharField(blank=True, max_length=255,
-        verbose_name="Time to complete")
+    completion_time_en = models.CharField(
+        blank=True, max_length=255, verbose_name="Time to complete")
     completion_time_de = models.CharField(
         max_length=500, blank=True, verbose_name="Time to complete")
     translated_completion_time = TranslatedField(
@@ -416,7 +417,8 @@ class AcademyIndexPage(Page):
         if alphabetical:
             all_content = sorted(
                 chain(academy_pages, external_links),
-                key=lambda title: operator.attrgetter('translated_title')(title).lower())
+                key=lambda title: operator.attrgetter(
+                    'translated_title')(title).lower())
 
         else:
             all_content = sorted(
