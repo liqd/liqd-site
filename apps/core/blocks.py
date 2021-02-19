@@ -1,6 +1,6 @@
 from wagtail.core.blocks import (CharBlock, ChoiceBlock, ListBlock,
-                                        PageChooserBlock, RawHTMLBlock,
-                                        RichTextBlock, StructBlock, URLBlock)
+                                 PageChooserBlock, RawHTMLBlock, RichTextBlock,
+                                 StructBlock, URLBlock)
 from wagtail.images.blocks import ImageChooserBlock
 
 

@@ -1,5 +1,6 @@
-from wagtail.core.blocks import (CharBlock, ListBlock, StructBlock,
-                                RichTextBlock, PageChooserBlock)
+from wagtail.core.blocks import (CharBlock, ListBlock, PageChooserBlock,
+                                 RichTextBlock, StructBlock)
+
 
 class ChallengeLinkBlock(StructBlock):
     challenge_step_academy_links = PageChooserBlock(

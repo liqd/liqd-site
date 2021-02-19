@@ -2,14 +2,13 @@ import operator
 from functools import reduce
 from itertools import chain
 
-from django.db.models import Q
-from multiselectfield import MultiSelectField
-
 from django import forms
-from django.core.paginator import Paginator, InvalidPage
+from django.core.paginator import InvalidPage, Paginator
 from django.db import models
+from django.db.models import Q
 from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
+from multiselectfield import MultiSelectField
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                          ObjectList, StreamFieldPanel,
                                          TabbedInterface)
@@ -17,8 +16,8 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from apps.blog.models import AbstractBlogPage
 from apps.academy.blocks import ChallengeStepBlock
+from apps.blog.models import AbstractBlogPage
 from contrib.translations.translations import TranslatedField
 
 LIQDTHEORY = 'LT'

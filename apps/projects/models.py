@@ -9,8 +9,8 @@ from django.template.loader import render_to_string
 from django.utils.functional import cached_property
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
-                                                ObjectList, StreamFieldPanel,
-                                                TabbedInterface)
+                                         ObjectList, StreamFieldPanel,
+                                         TabbedInterface)
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page

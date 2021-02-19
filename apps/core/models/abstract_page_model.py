@@ -1,7 +1,7 @@
 from django.db import models
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
-                                                ObjectList, StreamFieldPanel,
-                                                TabbedInterface)
+                                         ObjectList, StreamFieldPanel,
+                                         TabbedInterface)
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.blocks import ImageChooserBlock
