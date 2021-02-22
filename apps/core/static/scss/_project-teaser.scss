@@ -1,3 +1,18 @@
+.project-teaser__container {
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity $transition-duration - 0.1s;
+
+    @include media-breakpoint-up(sm) {
+        padding: 2rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
 .project-teaser {
     position: relative;
 
@@ -24,21 +39,6 @@
 
     @include media-breakpoint-up(sm) {
         display: block;
-    }
-}
-
-.project-teaser__container {
-    padding: 1rem;
-    opacity: 0;
-    transition: opacity $transition-duration - 0.1s;
-
-    @include media-breakpoint-up(sm) {
-        padding: 2rem;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
     }
 }
 

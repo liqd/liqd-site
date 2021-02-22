@@ -1,7 +1,9 @@
 .blog-list {
     margin-bottom: $spacer-v;
+
     h2 {
         text-align: center;
+
         @extend .h4;
     }
 }

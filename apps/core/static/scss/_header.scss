@@ -16,13 +16,15 @@
         color: inherit;
 
         transition: color $transition-duration;
+    }
 
-        @include media-breakpoint-up(sm) {
-            &:focus,
-            &:hover {
-                color: inherit;
-                border-bottom: 1px solid $body-color;
-            }
+    @include media-breakpoint-up(sm) {
+        a:focus,
+        a:hover,
+        button:focus,
+        button:hover {
+            color: inherit;
+            border-bottom: 1px solid $body-color;
         }
     }
 }
@@ -85,25 +87,6 @@ a.header__brand {
     display: inline-block;
 }
 
-.homepage .header__menu {
-    transition: opacity 1s;
-    opacity: 0;
-}
-
-.header__brand-canvas {
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    max-height: 50px;
-    max-width: 60px;
-
-    vertical-align: top;
-
-    @include media-breakpoint-up(sm) {
-        margin-top: -$spacer;
-    }
-}
-
 .header__menu {
     justify-content: center;
 
@@ -128,6 +111,25 @@ a.header__brand {
 
             background: rgba($body-bg, 0.9);
         }
+    }
+}
+
+.homepage .header__menu {
+    transition: opacity 1s;
+    opacity: 0;
+}
+
+.header__brand-canvas {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    max-height: 50px;
+    max-width: 60px;
+
+    vertical-align: top;
+
+    @include media-breakpoint-up(sm) {
+        margin-top: -$spacer;
     }
 }
 

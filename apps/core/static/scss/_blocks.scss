@@ -61,6 +61,7 @@
 .block--teaser_list {
     h2 {
         text-align: center;
+
         @extend .h4;
     }
 
@@ -83,6 +84,7 @@
 
 .block--projects h2 {
     text-align: center;
+
     @extend .h4;
 }
 
@@ -95,19 +97,8 @@
 .block--all_persons_list {
     h2 {
         text-align: center;
+
         @extend .h4;
-    }
-}
-
-.block--all_persons_list__item {
-    position: relative;
-
-    a {
-        color: inherit;
-    }
-
-    &:hover .block--all_persons_list__container {
-        opacity: 1;
     }
 }
 
@@ -124,5 +115,17 @@
     h3 {
         text-align: left;
         margin-bottom: 1.5rem;
+    }
+}
+
+.block--all_persons_list__item {
+    position: relative;
+
+    a {
+        color: inherit;
+    }
+
+    &:hover .block--all_persons_list__container {
+        opacity: 1;
     }
 }
