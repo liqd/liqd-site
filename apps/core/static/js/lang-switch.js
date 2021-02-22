@@ -8,7 +8,7 @@ $(function () {
 
   $langActive.on('click', (e) => {
     if (!isOpen) {
-      $langList.css({'display': 'block'})
+      $langList.css({ display: 'block' })
       // trigger layout so transition works initially
       $langList.css('opacity')
       $langList.addClass('lang-switch__list--active')

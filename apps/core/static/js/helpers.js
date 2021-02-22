@@ -12,20 +12,20 @@ export function isHome () {
 }
 
 export function throttle (func, wait, options) {
-  var context, args, result
-  var timeout = null
-  var previous = 0
+  let context, args, result
+  let timeout = null
+  let previous = 0
   if (!options) options = {}
-  var later = function () {
+  const later = function () {
     previous = options.leading === false ? 0 : _now()
     timeout = null
     result = func.apply(context, args)
     if (!timeout) context = args = null
   }
   return function () {
-    var now = _now()
+    const now = _now()
     if (!previous && options.leading === false) previous = now
-    var remaining = wait - (now - previous)
+    const remaining = wait - (now - previous)
     context = this
     args = arguments
     if (remaining <= 0 || remaining > wait) {
@@ -44,10 +44,10 @@ export function throttle (func, wait, options) {
 }
 
 export function debounce (func, wait, immediate) {
-  var timeout, args, context, timestamp, result
+  let timeout, args, context, timestamp, result
 
-  var later = function () {
-    var last = _now() - timestamp
+  const later = function () {
+    const last = _now() - timestamp
 
     if (last < wait && last >= 0) {
       timeout = setTimeout(later, wait - last)
@@ -64,7 +64,7 @@ export function debounce (func, wait, immediate) {
     context = this
     args = arguments
     timestamp = _now()
-    var callNow = immediate && !timeout
+    const callNow = immediate && !timeout
     if (!timeout) timeout = setTimeout(later, wait)
     if (callNow) {
       result = func.apply(context, args)

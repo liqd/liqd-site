@@ -1,8 +1,8 @@
 /* global $ */
 $(function () {
-  var count = 2
-  var url = buildUrl()
-  var numPages = $('.load-more').first().attr('data-page-total')
+  let count = 2
+  const url = buildUrl()
+  const numPages = $('.load-more').first().attr('data-page-total')
   $('.load-more').on('click', function (event) {
     event.preventDefault()
     loadProjects(count, url)
@@ -14,7 +14,7 @@ $(function () {
       success: function (html) {
         $('.item-list').append(html)
         count++
-        if(count > numPages) {
+        if (count > numPages) {
           $('.load-more').hide()
         }
       }

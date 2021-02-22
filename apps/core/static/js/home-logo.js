@@ -1,6 +1,6 @@
 /* globals $ */
-import {isHome} from "./helpers";
-import {initDistort} from "liquid-logo";
+import { isHome } from './helpers'
+import { initDistort } from 'liquid-logo'
 
 $(function () {
   if (!isHome()) {

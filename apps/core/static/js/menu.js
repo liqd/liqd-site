@@ -1,18 +1,18 @@
 /* global $ */
 
-import {isHome} from "./helpers";
-import {initDistort} from "liquid-logo";
+import { isHome } from './helpers'
+import { initDistort } from 'liquid-logo'
 
 $(function () {
   const $menu = $('#main-menu')
   const $menuContainer = $menu.find('.header__menu-list')
   const $introScreen = $('.intro-screen')
   const $window = $(window)
-  const webGL = initDistort('header-canvas', {interactive: false, width: 120, height: 100})
+  const webGL = initDistort('header-canvas', { interactive: false, width: 120, height: 100 })
   const $brandLabel = $('.header__brand-label')
   let prevScrollTop = $window.scrollTop()
-  let windowHeight = $window.height()
-  let windowWidth = $window.width()
+  const windowHeight = $window.height()
+  const windowWidth = $window.width()
   let menuIsVisible = true
   let labelIsVisible = true
 
@@ -21,7 +21,7 @@ $(function () {
   }
 
   function scrollHandler () {
-    let scrollTop = $window.scrollTop()
+    const scrollTop = $window.scrollTop()
 
     if (windowWidth > 576) {
       if (scrollTop > prevScrollTop && scrollTop >= 100 && menuIsVisible) {
@@ -38,9 +38,9 @@ $(function () {
       webGL.setAlpha(opacityGL)
       if (labelIsVisible && scrollTop > 20) {
         labelIsVisible = false
-        $brandLabel.css({'display': 'none'})
+        $brandLabel.css({ display: 'none' })
       } else if (!labelIsVisible && scrollTop <= 20) {
-        $brandLabel.css({'display': 'inline-block'})
+        $brandLabel.css({ display: 'inline-block' })
         labelIsVisible = true
       }
     }
