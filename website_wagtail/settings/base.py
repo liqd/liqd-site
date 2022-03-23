@@ -59,7 +59,8 @@ DATABASES = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 
-
+# default primary key field
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Application definition
 
