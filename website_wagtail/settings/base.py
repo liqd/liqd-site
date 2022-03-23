@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 from os.path import abspath, dirname, join
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -7,7 +7,7 @@ from django.core.paginator import InvalidPage, Paginator
 from django.db import models
 from django.db.models import Q
 from django.http import Http404
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from multiselectfield import MultiSelectField
 from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
                                          ObjectList, StreamFieldPanel,
