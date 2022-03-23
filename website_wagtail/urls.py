@@ -1,30 +1,32 @@
 import os
 
 from django.conf import settings
-from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.urls import include
+from django.urls import path
+from django.urls import re_path
 from django.views.generic import TemplateView
 from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 
 from apps.core.feed import LatestEntriesFeed
 
 urlpatterns = [
-    url(r'^django-admin/', admin.site.urls),
-    url(r'^admin/', include('wagtail.admin.urls')),
-    url(r'^documents/', include('wagtail.documents.urls')),
-    url(r'^robots\.txt$', TemplateView.as_view(
+    path('django-admin/', admin.site.urls),
+    path('admin/', include('wagtail.admin.urls')),
+    path('documents/', include('wagtail.documents.urls')),
+    re_path(r'^robots\.txt$', TemplateView.as_view(
         template_name='robots.txt',
         content_type="text/plain"), name="robots_file"),
               ]
 
 urlpatterns += i18n_patterns(
     # url(r'^search/', include('wagtail.search.urls')),
-    url(r'^latest/feed/$', LatestEntriesFeed()),
-    url(r'^sitemap\.xml$', wagtail_sitemap),
+    path('latest/feed/', LatestEntriesFeed()),
+    re_path(r'^sitemap\.xml$', wagtail_sitemap),
 
-    url(r'', include('wagtail.core.urls')),
+    path('', include('wagtail.core.urls')),
 )
 
 
