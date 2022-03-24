@@ -61,8 +61,8 @@ module.exports = {
       },
       {
         test: /\.(vs|fs)$/,
+        type: 'asset/source',
         include: /liquid-logo/,
-        loader: 'raw-loader'
       },
       {
         test: /\.(vs|fs)$/,
@@ -71,7 +71,7 @@ module.exports = {
       },
       {
         test: /\.(woff2?|ttf|eot|svg|jpg|png|gif|swf|otf)(\?.*)?$/,
-        loader: 'file-loader'
+        type: 'asset/resource'
       }
     ]
   },
