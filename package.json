@@ -36,7 +36,8 @@
     "sass-loader": "12.6.0",
     "terser-webpack-plugin": "5.1.1",
     "webpack": "5.9.0",
-    "webpack-merge": "5.7.3"
+    "webpack-merge": "5.7.3",
+    "@liqd/liqd-fonts": "git+https://github.com/liqd/liqd-fonts.git"
   },
   "scripts": {
     "lint": "eslint apps/core -c package.json && stylelint 'apps/core/**/*.scss' --syntax scss",
