@@ -48,7 +48,7 @@ button {
 }
 
 a {
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid currentColor; /* stylelint-disable-line */
 
     &:hover,
     &:focus {

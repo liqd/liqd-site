@@ -40,12 +40,12 @@ span.filter-line__prefix {
     }
 
     &:after {
-        content: '';
+        content: "";
         width: 0;
         height: 0;
         border-style: solid;
         border-width: 7px 7px 0;
-        border-color: #000 transparent transparent;
+        border-color: #000 transparent transparent; /* stylelint-disable-line */
 
         position: absolute;
         top: 0;
@@ -124,7 +124,7 @@ span.filter-line__prefix {
     }
 
     li {
-        margin-bottom: 1.5*$spacer;
+        margin-bottom: 1.5 * $spacer;
         line-height: 1.4;
     }
 }

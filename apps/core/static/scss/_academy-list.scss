@@ -25,12 +25,12 @@
     align-items: center;
 
     &:hover {
-        background-color: #f0f0f0;
+        background-color: $body-bright-bg;
     }
 }
 
 .academy-list__topic-selected-square {
-    background-color: #f0f0f0;
+    background-color: $body-bright-bg;
     position: relative;
 }
 
@@ -40,7 +40,7 @@
     bottom: -15px;
     width: 30px;
     height: 30px;
-    background-color: #f0f0f0;
+    background-color: $body-bright-bg;
     transform: rotate(45deg);
     z-index: -1;
 }
@@ -63,7 +63,7 @@
     width: auto;
 }
 
-//desktop size
+// desktop size
 @include media-breakpoint-up(md) {
     .academy-list__filter--sm {
         display: none;

@@ -29,10 +29,10 @@
     "node-sass": "7.0.1",
     "postcss": "8.4.16",
     "postcss-loader": "7.0.1",
-    "raw-loader": "^4.0.2",
+    "raw-loader": "4.0.2",
     "sass-loader": "13.0.2",
-    "stylelint-config-standard-scss": "^5.0.0",
-    "stylelint-declaration-strict-value": "^1.9.0",
+    "stylelint-config-standard-scss": "5.0.0",
+    "stylelint-declaration-strict-value": "1.9.0",
     "terser-webpack-plugin": "5.3.5",
     "webpack": "5.74.0",
     "webpack-merge": "5.8.0"
