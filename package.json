@@ -35,7 +35,7 @@
     "postcss-loader": "6.2.1",
     "sass-loader": "12.6.0",
     "terser-webpack-plugin": "5.1.1",
-    "webpack": "5.9.0",
+    "webpack": "5.74.0",
     "webpack-merge": "5.7.3",
     "@liqd/liqd-fonts": "git+ssh://github.com/liqd/liqd-fonts.git"
   },
