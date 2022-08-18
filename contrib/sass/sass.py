@@ -1,5 +1,6 @@
-import os
 import logging
+import os
+
 from compressor.filters import CompilerFilter
 from django.conf import settings
 
@@ -29,10 +30,13 @@ class SassMapFilter(CompilerFilter):
         COMPRESS_ENABLED = False
 
     If COMPRESS_ENABLED is True, then the maps will still be output correctly,
-    but browsers can't handle multiple `sourceMappingURL`s in the resulting file.
+    but browsers can't handle multiple `sourceMappingURL`s in the resulting
+    file.
 
-    There is a concept of `sections` which is an alternative representation to support
-    multiple maps, but again, SASS doesn't know this is happening so a different
+    There is a concept of `sections` which is an alternative representation to
+    support
+    multiple maps, but again, SASS doesn't know this is happening so a
+    different
     pre-compiler/minifier processor would be required that can track the state
     of multiple file compilations and concatenation.
 
@@ -51,7 +55,8 @@ class SassMapFilter(CompilerFilter):
     # cd to the static root so that sass can find included libraries
     # --scss for the type of sass files we're processing
     # --sourcemap generates the .map file in the same directory as outfile
-    command = "cd {static_root}; sass --style compressed --sourcemap {infile} {outfile}"
+    command = "cd {static_root}; sass --style compressed --sourcemap" \
+              " {infile} {outfile} "
 
     options = (
         ("static_root", settings.STATIC_ROOT),
@@ -61,7 +66,8 @@ class SassMapFilter(CompilerFilter):
     def __init__(self, content, command=None, *args, **kwargs):
         # Command comming into handlebars filter is actually the
         # Django-compressor sends the attribudes dict as the command in this
-        # case, which is fine, as we need it, but it's kind of wonky. So, ensure
+        # case, which is fine, as we need it, but it's kind of wonky.
+        # So, ensure
         # things are setup appropriately.
         attribs, command = command, None
         for item in attribs.iteritems():
@@ -79,7 +85,8 @@ class SassMapFilter(CompilerFilter):
         outfilename = os.path.splitext(
             filename)[0] + '.' + options['filter_type']
         outdir = os.path.join(
-            options['static_root'], options['output_dir'], options['filter_type'])
+            options['static_root'], options['output_dir'],
+            options['filter_type'])
         outfile = os.path.join(outdir, outfilename)
         self.options += (('outfile', outfile),)
         return super(SassMapFilter, self).input(**kwargs)
