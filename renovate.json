@@ -29,5 +29,5 @@
         "matchPackageNames": ["Django"],
         "allowedVersions": "<=3.2"
       }
-  ],
+  ]
 }
