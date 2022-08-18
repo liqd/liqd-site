@@ -1,0 +1,85 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Setup Postgres
+        env:
+          PGPASSWORD: postgres
+          PGHOSTADDR: 127.0.0.1
+        run: |
+          psql -c 'create database django;' -U postgres
+          psql -c 'create database django_test;' -U postgres
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Cache pip packages
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-pip-packages
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install Dependencies
+        run: |
+          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf ssh://git@github.com/
+          npm install
+          npm run build
+          pip install -r requirements.txt
+      - name: Run Tests
+        env:
+          PGPASSWORD: postgres
+          PGHOSTADDR: 127.0.0.1
+        run: |
+          python manage.py collectstatic > /dev/null
+          isort --diff -c website_wagtail apps contrib
+          python manage.py makemigrations --dry-run --check --noinput
+          flake8 website_wagtail apps contrib --exclude migrations,settings
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}
+        run: |
+          ./scripts/deploy.sh
