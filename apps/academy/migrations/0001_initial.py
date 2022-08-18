@@ -3,8 +3,8 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import multiselectfield.db.fields
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.embeds.blocks
 import wagtail.images.blocks
 
@@ -26,10 +26,10 @@ class Migration(migrations.Migration):
                 ('title_de', models.CharField(blank=True, max_length=255, verbose_name='Title')),
                 ('subtitle_en', models.CharField(default='', max_length=255, verbose_name='Subtitle')),
                 ('subtitle_de', models.CharField(blank=True, default='', max_length=255, verbose_name='Subtitle')),
-                ('intro_en', wagtail.core.fields.RichTextField(verbose_name='Teasertext')),
-                ('intro_de', wagtail.core.fields.RichTextField(blank=True, verbose_name='Teasertext')),
-                ('body_en', wagtail.core.fields.StreamField([('heading', wagtail.core.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.core.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('aligned_image', wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(label='Image')), ('display', wagtail.core.blocks.ChoiceBlock(choices=[('left', 'left'), ('right', 'right')], help_text='Decide on which side the image should be displayed'))], icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.core.blocks.StructBlock([('headline', wagtail.core.blocks.CharBlock(length=256, required=False)), ('body', wagtail.core.blocks.RawHTMLBlock())]))], null=True, verbose_name='Body')),
-                ('body_de', wagtail.core.fields.StreamField([('heading', wagtail.core.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.core.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('aligned_image', wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(label='Image')), ('display', wagtail.core.blocks.ChoiceBlock(choices=[('left', 'left'), ('right', 'right')], help_text='Decide on which side the image should be displayed'))], icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.core.blocks.StructBlock([('headline', wagtail.core.blocks.CharBlock(length=256, required=False)), ('body', wagtail.core.blocks.RawHTMLBlock())]))], blank=True, null=True, verbose_name='Body')),
+                ('intro_en', wagtail.fields.RichTextField(verbose_name='Teasertext')),
+                ('intro_de', wagtail.fields.RichTextField(blank=True, verbose_name='Teasertext')),
+                ('body_en', wagtail.fields.StreamField([('heading', wagtail.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('aligned_image', wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(label='Image')), ('display', wagtail.blocks.ChoiceBlock(choices=[('left', 'left'), ('right', 'right')], help_text='Decide on which side the image should be displayed'))], icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.blocks.StructBlock([('headline', wagtail.blocks.CharBlock(length=256, required=False)), ('body', wagtail.blocks.RawHTMLBlock())]))], null=True, verbose_name='Body')),
+                ('body_de', wagtail.fields.StreamField([('heading', wagtail.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('aligned_image', wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(label='Image')), ('display', wagtail.blocks.ChoiceBlock(choices=[('left', 'left'), ('right', 'right')], help_text='Decide on which side the image should be displayed'))], icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.blocks.StructBlock([('headline', wagtail.blocks.CharBlock(length=256, required=False)), ('body', wagtail.blocks.RawHTMLBlock())]))], blank=True, null=True, verbose_name='Body')),
                 ('author', models.CharField(blank=True, max_length=255, null=True)),
                 ('date', models.DateField(verbose_name='Post date')),
                 ('topics', multiselectfield.db.fields.MultiSelectField(choices=[('LT', 'Liquid Democracy & Theory'), ('DS', 'Digital Civic Society'), ('PA', 'Digital Participation In Action')], max_length=8)),

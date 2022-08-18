@@ -3,7 +3,7 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import multiselectfield.db.fields
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('title_en', models.CharField(max_length=255, verbose_name='Title')),
                 ('title_de', models.CharField(blank=True, max_length=255, verbose_name='Title')),
-                ('intro_en', wagtail.core.fields.RichTextField(verbose_name='intro text')),
-                ('intro_de', wagtail.core.fields.RichTextField(blank=True, verbose_name='intro text')),
+                ('intro_en', wagtail.fields.RichTextField(verbose_name='intro text')),
+                ('intro_de', wagtail.fields.RichTextField(blank=True, verbose_name='intro text')),
             ],
             options={
                 'verbose_name': 'Academy Index Page',
@@ -45,8 +45,8 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('title_en', models.CharField(max_length=255, verbose_name='Title en')),
                 ('title_de', models.CharField(blank=True, max_length=255, verbose_name='Title dt')),
-                ('intro_en', wagtail.core.fields.RichTextField(verbose_name='Teasertext')),
-                ('intro_de', wagtail.core.fields.RichTextField(blank=True, verbose_name='Teasertext')),
+                ('intro_en', wagtail.fields.RichTextField(verbose_name='Teasertext')),
+                ('intro_de', wagtail.fields.RichTextField(blank=True, verbose_name='Teasertext')),
                 ('date', models.DateField(verbose_name='Post date')),
                 ('external_link', models.URLField(help_text='URL to an external website')),
                 ('topics', multiselectfield.db.fields.MultiSelectField(choices=[('LT', 'Liquid Democracy & Theory'), ('DS', 'Digital Civic Society'), ('PA', 'Digital Participation In Action')], max_length=8)),

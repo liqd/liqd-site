@@ -9,11 +9,11 @@ from django.db.models import Q
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 from multiselectfield import MultiSelectField
-from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
                                          ObjectList, StreamFieldPanel,
                                          TabbedInterface)
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.academy.blocks import ChallengeStepBlock

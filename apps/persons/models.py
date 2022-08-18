@@ -1,7 +1,7 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface
-from wagtail.core import blocks as core_blocks
-from wagtail.core.fields import RichTextField
+from wagtail.admin.panels import FieldPanel, ObjectList, TabbedInterface
+from wagtail import blocks as core_blocks
+from wagtail.fields import RichTextField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets import blocks as snippet_blocks
 from wagtail.snippets.models import register_snippet

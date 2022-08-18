@@ -1,7 +1,7 @@
-from wagtail.admin.edit_handlers import (FieldPanel, MultiFieldPanel,
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
                                          ObjectList, StreamFieldPanel,
                                          TabbedInterface)
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from .abstract_page_model import TranslatedStreamFieldPage
 
