@@ -30,7 +30,7 @@
     "liquid-logo": "git+https://git.liqd.net/liqd/liquid-logo.git",
     "mini-css-extract-plugin": "1.3.7",
     "node-libs-browser": "2.2.1",
-    "node-sass": "7.0.0",
+    "node-sass": "7.0.1",
     "postcss": "8.4.12",
     "postcss-loader": "6.2.1",
     "sass-loader": "12.6.0",
