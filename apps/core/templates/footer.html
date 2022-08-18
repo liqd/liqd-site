@@ -6,39 +6,41 @@
 
 <footer id="footer" class="footer">
     <nav class="navbar navbar-expand-md">
-        <ul class="nav navbar-nav">
-            {% for menuitem in footer_menu_items %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ menuitem.url }}">{{ menuitem.translated_menu_title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-        <ul class="navbar-nav ml-md-auto">
-            {% if settings.core.SocialMediaSettings %}
-                {% if settings.core.SocialMediaSettings.facebook %}
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                {% for menuitem in footer_menu_items %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a>
+                        <a class="nav-link" href="{{ menuitem.url }}">{{ menuitem.translated_menu_title }}</a>
                     </li>
-                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul class="navbar-nav ml-md-auto">
+                {% if settings.core.SocialMediaSettings %}
+                    {% if settings.core.SocialMediaSettings.facebook %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{settings.core.SocialMediaSettings.facebook}}">Facebook</a>
+                        </li>
+                    {% endif %}
 
-                {% if settings.core.SocialMediaSettings.twitter %}
-                <li class="nav-item">
-                    <a class="nav-link" href="https://twitter.com/{{settings.core.SocialMediaSettings.twitter}}">Twitter</a>
-                </li>
-                {% endif %}
+                    {% if settings.core.SocialMediaSettings.twitter %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://twitter.com/{{settings.core.SocialMediaSettings.twitter}}">Twitter</a>
+                    </li>
+                    {% endif %}
 
-                {% if settings.core.SocialMediaSettings.github %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{settings.core.SocialMediaSettings.github}}">Github</a>
-                </li>
-                {% endif %}
+                    {% if settings.core.SocialMediaSettings.github %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{settings.core.SocialMediaSettings.github}}">Github</a>
+                    </li>
+                    {% endif %}
 
-                {% if settings.core.SocialMediaSettings.vimeo %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{settings.core.SocialMediaSettings.vimeo}}">Vimeo</a>
-                </li>
+                    {% if settings.core.SocialMediaSettings.vimeo %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{settings.core.SocialMediaSettings.vimeo}}">Vimeo</a>
+                    </li>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        </ul>
+            </ul>
+        </div>
     </nav>
 </footer>
