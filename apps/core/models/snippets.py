@@ -1,8 +1,7 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.admin.panels import (FieldPanel, InlinePanel,
-                                         PageChooserPanel)
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
 
@@ -21,7 +20,7 @@ class LinkFields(models.Model):
         return self.link_page.url
 
     panels = [
-        PageChooserPanel('link_page')
+        FieldPanel('link_page')
     ]
 
     class Meta:

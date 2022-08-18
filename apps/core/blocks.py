@@ -1,11 +1,10 @@
 from wagtail.blocks import (CharBlock, ChoiceBlock, ListBlock,
-                                 PageChooserBlock, RawHTMLBlock, RichTextBlock,
-                                 StructBlock, URLBlock)
+                            PageChooserBlock, RawHTMLBlock, RichTextBlock,
+                            StructBlock, URLBlock)
 from wagtail.images.blocks import ImageChooserBlock
 
 
 class StandardParagraphBlock(StructBlock):
-
     headline = CharBlock(required=False, length=256)
     text = RichTextBlock(required=True)
 
@@ -29,7 +28,6 @@ class HTMLBlock(StructBlock):
 
 
 class HighlightParagraphBlock(StructBlock):
-
     headline = CharBlock(required=False, length=256)
     text = RichTextBlock(required=True)
     link = PageChooserBlock(required=False)
@@ -42,7 +40,6 @@ class HighlightParagraphBlock(StructBlock):
 
 
 class QuoteParagraph(StructBlock):
-
     text = RichTextBlock(required=True)
     color = ChoiceBlock(
         choices=[('green', 'Gruen'), ('orange', 'Orange'), ('red', 'Rot')],
@@ -52,7 +49,7 @@ class QuoteParagraph(StructBlock):
     image = ImageChooserBlock(
         required=False,
         help_text='Please use an image with'
-        ' at least 800x400px or a similar aspect ratio.'
+                  ' at least 800x400px or a similar aspect ratio.'
     )
     author = CharBlock(required=False, length=256)
 
@@ -79,7 +76,6 @@ class TeaserBlockList(StructBlock):
 
 
 class ColumnBlock(StructBlock):
-
     col1_headline = CharBlock(required=False, length=256)
     col1_text = RichTextBlock(required=True)
     col1_url = URLBlock(required=False)
@@ -95,7 +91,6 @@ class ColumnBlock(StructBlock):
 
 
 class ImageSliderBlock(ListBlock):
-
     ImageChooserBlock(
         label='Image',
         help_text='Images will be used with a 950x450px size.'

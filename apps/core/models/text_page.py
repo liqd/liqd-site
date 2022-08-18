@@ -1,6 +1,6 @@
 from django.db import models
-from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
-                                         ObjectList, TabbedInterface)
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
+                                  TabbedInterface)
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 
@@ -8,7 +8,6 @@ from contrib.translations.translations import TranslatedField
 
 
 class TextPage(Page):
-
     title_en = models.CharField(
         max_length=255, blank=True, verbose_name="Header Title")
     title_de = models.CharField(

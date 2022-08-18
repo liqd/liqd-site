@@ -1,5 +1,5 @@
 from wagtail.blocks import (CharBlock, ListBlock, PageChooserBlock,
-                                 RichTextBlock, StructBlock)
+                            RichTextBlock, StructBlock)
 
 
 class ChallengeLinkBlock(StructBlock):
@@ -23,10 +23,10 @@ class ChallengeStepBlock(StructBlock):
         [
             ("challenge_step_academy_links", PageChooserBlock(
                 target_model='academy.AcademyPage',
-                required=False,)),
+                required=False, )),
             ("challenge_step_external_links", PageChooserBlock(
                 target_model='academy.AcademyExternalLink',
-                required=False,))
+                required=False, ))
         ]
     )
     )

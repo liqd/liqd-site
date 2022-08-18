@@ -9,12 +9,10 @@ from django.db.models import Q
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 from multiselectfield import MultiSelectField
-from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
-                                         ObjectList, StreamFieldPanel,
-                                         TabbedInterface)
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
+                                  TabbedInterface)
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.academy.blocks import ChallengeStepBlock
 from apps.blog.models import AbstractBlogPage
@@ -82,14 +80,14 @@ class AcademyPage(AbstractBlogPage):
         FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
         FieldPanel('intro_en'),
-        StreamFieldPanel('body_en'),
+        FieldPanel('body_en'),
     ]
 
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
         FieldPanel('intro_de'),
-        StreamFieldPanel('body_de'),
+        FieldPanel('body_de'),
     ]
 
     common_panels = [
@@ -97,7 +95,7 @@ class AcademyPage(AbstractBlogPage):
         FieldPanel('date'),
         FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
         FieldPanel('academy_content_type'),
-        ImageChooserPanel('tile_image'),
+        FieldPanel('tile_image'),
     ]
 
     promote_panels = [
@@ -145,14 +143,12 @@ class AcademyPage(AbstractBlogPage):
         return other_content
 
     def get_context(self, request):
-
         context = super().get_context(request)
         context['other_content'] = self.get_topic_related_content()[0:3]
         return context
 
 
 class AcademyExternalLink(Page):
-
     # Translatable Fields
     title_en = models.CharField(
         max_length=255, verbose_name="Title en")
@@ -212,7 +208,7 @@ class AcademyExternalLink(Page):
         FieldPanel('external_link'),
         FieldPanel('topics', widget=forms.CheckboxSelectMultiple),
         FieldPanel('academy_content_type'),
-        ImageChooserPanel('tile_image'),
+        FieldPanel('tile_image'),
     ]
 
     edit_handler = TabbedInterface([
@@ -284,7 +280,7 @@ class AcademyChallengePage(Page):
         FieldPanel('subtitle_en'),
         FieldPanel('completion_time_en'),
         FieldPanel('intro_en'),
-        StreamFieldPanel('body_en'),
+        FieldPanel('body_en'),
     ]
 
     de_content_panels = [
@@ -292,11 +288,11 @@ class AcademyChallengePage(Page):
         FieldPanel('subtitle_de'),
         FieldPanel('completion_time_de'),
         FieldPanel('intro_de'),
-        StreamFieldPanel('body_de'),
+        FieldPanel('body_de'),
     ]
 
     common_panels = [
-        ImageChooserPanel('tile_image'),
+        FieldPanel('tile_image'),
     ]
 
     promote_panels = [

@@ -1,21 +1,19 @@
-from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
-                                         ObjectList, StreamFieldPanel,
-                                         TabbedInterface)
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
+                                  TabbedInterface)
 from wagtail.models import Page
 
 from .abstract_page_model import TranslatedStreamFieldPage
 
 
 class HomePage(TranslatedStreamFieldPage):
-
     en_content_panels = [
         FieldPanel('intro_en'),
-        StreamFieldPanel('body_en'),
+        FieldPanel('body_en'),
     ]
 
     de_content_panels = [
         FieldPanel('intro_de'),
-        StreamFieldPanel('body_de'),
+        FieldPanel('body_de'),
     ]
 
     promote_panels = [

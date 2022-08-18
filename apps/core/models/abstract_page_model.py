@@ -1,10 +1,9 @@
 from django.db import models
-from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
-                                         ObjectList, StreamFieldPanel,
-                                         TabbedInterface)
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
+                                  TabbedInterface)
 from wagtail.fields import RichTextField, StreamField
-from wagtail.models import Page
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Page
 
 from apps.core import blocks
 from apps.persons import models as persons_models
@@ -15,16 +14,17 @@ STREAMFIELD_DEFAULT_BLOCKS = [
     ('highlight_paragraph', blocks.HighlightParagraphBlock()),
     ('quote_paragraph', blocks.QuoteParagraph()),
     ('single_image', ImageChooserBlock(
-                     template='blocks/block_image.html',
-                     label='Single image',
-                     icon='image')),
+        template='blocks/block_image.html',
+        label='Single image',
+        icon='image')),
     ('image_slider', blocks.ListBlock(ImageChooserBlock(),
                                       template='blocks/block_carousel.html',
                                       label='Image Slider',
                                       icon='image',
                                       help_text='Responsive image slider'
-                                      ' (swipe on mobile). Please choose'
-                                      ' 4 images.')),
+                                                '(swipe on mobile). Please '
+                                                'choose '
+                                                ' 4 images.')),
     ('aligned_image', blocks.AlignedImageBlock()),
     ('columns', blocks.ColumnBlock()),
     ('linkbox', blocks.LinkboxBlock()),
@@ -39,7 +39,6 @@ STREAMFIELD_DEFAULT_BLOCKS = [
 
 
 class TranslatedStreamFieldPage(Page):
-
     title_en = models.CharField(max_length=255, verbose_name="Title")
     title_de = models.CharField(
         max_length=255, blank=True, verbose_name="Title")
@@ -70,13 +69,13 @@ class TranslatedStreamFieldPage(Page):
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('intro_de'),
-        StreamFieldPanel('body_de'),
+        FieldPanel('body_de'),
     ]
 
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('intro_en'),
-        StreamFieldPanel('body_en'),
+        FieldPanel('body_en'),
     ]
 
     promote_panels = [
