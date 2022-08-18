@@ -6,45 +6,47 @@
 {% get_available_languages as languages %}
 
 <nav id="main-menu" class="header navbar navbar-expand-md">
-    <a class="header__brand navbar-brand" href="/{{LANGUAGE_CODE}}/">
-        <canvas class="header__brand-canvas" id="header-canvas"></canvas>
-        <img src="{% static 'images/logo.png' %}" class="header__brand-label" alt="Liquid Democracy">
-    </a>
-    <button type="button" class="header__bar__toggle navbar-toggler" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false">
-        <span class="header__toggle-open">{% trans 'Menu' %}</span>
-        <span class="header__toggle-close">{% trans 'Close' %}</span>
-    </button>
-    <div class="header__menu navbar-collapse collapse" id="navbar-main">
-        <ul class="navbar-nav header__menu-list">
+    <div class="container-fluid">
+        <a class="header__brand navbar-brand" href="/{{LANGUAGE_CODE}}/">
+            <canvas class="header__brand-canvas" id="header-canvas"></canvas>
+            <img src="{% static 'images/logo.png' %}" class="header__brand-label" alt="Liquid Democracy">
+        </a>
+        <button type="button" class="header__bar__toggle navbar-toggler" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main" aria-expanded="false">
+            <span class="header__toggle-open">{% trans 'Menu' %}</span>
+            <span class="header__toggle-close">{% trans 'Close' %}</span>
+        </button>
+        <div class="header__menu navbar-collapse collapse" id="navbar-main">
+            <ul class="navbar-nav header__menu-list">
 
-            {% for menuitem in main_menu_items %}
-                <li class="nav-item">
-                    <a class="nav-link header__link{% if request.path == menuitem.url %} active{% endif %}" href="{{ menuitem.url }}">
-                        {{ menuitem.translated_menu_title }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-        <div class="lang-switch hidden-xs-down" id="lang-switch">
-            <button class="lang-switch__active">
-                {{ LANGUAGE_CODE }}
-            </button>
-            <ul class="lang-switch__list">
-                <li>
-                    <a class="lang-switch__link header__link"
-                       href="{% translate_url 'de' %}"
-                       {% if LANGUAGE_CODE == 'de' %}aria-selected="true"{% endif %}>
-                        Deutsch
-                    </a>
-                </li>
-                <li>
-                    <a class="lang-switch__link header__link"
-                       href="{% translate_url 'en' %}"
-                       {% if LANGUAGE_CODE == 'en' %}aria-selected="true"{% endif %}>
-                        English
-                    </a>
-                </li>
+                {% for menuitem in main_menu_items %}
+                    <li class="nav-item">
+                        <a class="nav-link header__link{% if request.path == menuitem.url %} active{% endif %}" href="{{ menuitem.url }}">
+                            {{ menuitem.translated_menu_title }}
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
+            <div class="lang-switch hidden-xs-down" id="lang-switch">
+                <button class="lang-switch__active">
+                    {{ LANGUAGE_CODE }}
+                </button>
+                <ul class="lang-switch__list">
+                    <li>
+                        <a class="lang-switch__link header__link"
+                           href="{% translate_url 'de' %}"
+                           {% if LANGUAGE_CODE == 'de' %}aria-selected="true"{% endif %}>
+                            Deutsch
+                        </a>
+                    </li>
+                    <li>
+                        <a class="lang-switch__link header__link"
+                           href="{% translate_url 'en' %}"
+                           {% if LANGUAGE_CODE == 'en' %}aria-selected="true"{% endif %}>
+                            English
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
