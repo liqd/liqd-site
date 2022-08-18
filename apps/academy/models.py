@@ -267,9 +267,11 @@ class AcademyChallengePage(Page):
     )
 
     body_en = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
-                          null=True, verbose_name="Challenge step")
+                          null=True, verbose_name="Challenge step",
+                          use_json_field=True)
     body_de = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
-                          null=True, blank=True, verbose_name="Challenge step")
+                          null=True, blank=True, verbose_name="Challenge step",
+                          use_json_field=True)
     body = TranslatedField(
         'body_de',
         'body_en'

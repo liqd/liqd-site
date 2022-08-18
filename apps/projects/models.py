@@ -57,10 +57,10 @@ class ProjectPage(Page):
 
     body_de = StreamField(
         STREAMFIELD_PROJECT_BLOCKS,
-        null=True, blank=True, verbose_name="Body")
+        null=True, blank=True, verbose_name="Body", use_json_field=True)
     body_en = StreamField(
         STREAMFIELD_PROJECT_BLOCKS,
-        null=True, verbose_name="Body")
+        null=True, verbose_name="Body", use_json_field=True)
 
     timescale_en = models.CharField(max_length=256, blank=True)
     timescale_de = models.CharField(max_length=256, blank=True)
