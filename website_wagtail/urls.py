@@ -24,7 +24,7 @@ urlpatterns += i18n_patterns(
     path('latest/feed/', LatestEntriesFeed()),
     re_path(r'^sitemap\.xml$', wagtail_sitemap),
 
-    path('', include('wagtail.core.urls')),
+    path('', include('wagtail.urls')),
 )
 
 

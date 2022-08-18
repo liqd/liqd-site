@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -25,10 +25,10 @@ class Migration(migrations.Migration):
                 ('subtitle_de', models.CharField(blank=True, max_length=500, verbose_name='Subtitle')),
                 ('completion_time_en', models.CharField(blank=True, max_length=255, verbose_name='Time to complete')),
                 ('completion_time_de', models.CharField(blank=True, max_length=500, verbose_name='Time to complete')),
-                ('intro_en', wagtail.core.fields.RichTextField(verbose_name='Teaser text')),
-                ('intro_de', wagtail.core.fields.RichTextField(blank=True, verbose_name='Teaser text')),
-                ('body_en', wagtail.core.fields.StreamField([('challenge_tasks', wagtail.core.blocks.StructBlock([('challenge_step_title', wagtail.core.blocks.CharBlock()), ('challenge_step_text', wagtail.core.blocks.RichTextBlock(required=False)), ('links', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('challenge_step_academy_links', wagtail.core.blocks.PageChooserBlock(page_type=['academy.AcademyPage'], required=False)), ('challenge_step_external_links', wagtail.core.blocks.PageChooserBlock(page_type=['academy.AcademyExternalLink'], required=False))])))]))], null=True, verbose_name='Challenge step')),
-                ('body_de', wagtail.core.fields.StreamField([('challenge_tasks', wagtail.core.blocks.StructBlock([('challenge_step_title', wagtail.core.blocks.CharBlock()), ('challenge_step_text', wagtail.core.blocks.RichTextBlock(required=False)), ('links', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('challenge_step_academy_links', wagtail.core.blocks.PageChooserBlock(page_type=['academy.AcademyPage'], required=False)), ('challenge_step_external_links', wagtail.core.blocks.PageChooserBlock(page_type=['academy.AcademyExternalLink'], required=False))])))]))], blank=True, null=True, verbose_name='Challenge step')),
+                ('intro_en', wagtail.fields.RichTextField(verbose_name='Teaser text')),
+                ('intro_de', wagtail.fields.RichTextField(blank=True, verbose_name='Teaser text')),
+                ('body_en', wagtail.fields.StreamField([('challenge_tasks', wagtail.blocks.StructBlock([('challenge_step_title', wagtail.blocks.CharBlock()), ('challenge_step_text', wagtail.blocks.RichTextBlock(required=False)), ('links', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('challenge_step_academy_links', wagtail.blocks.PageChooserBlock(page_type=['academy.AcademyPage'], required=False)), ('challenge_step_external_links', wagtail.blocks.PageChooserBlock(page_type=['academy.AcademyExternalLink'], required=False))])))]))], null=True, verbose_name='Challenge step')),
+                ('body_de', wagtail.fields.StreamField([('challenge_tasks', wagtail.blocks.StructBlock([('challenge_step_title', wagtail.blocks.CharBlock()), ('challenge_step_text', wagtail.blocks.RichTextBlock(required=False)), ('links', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('challenge_step_academy_links', wagtail.blocks.PageChooserBlock(page_type=['academy.AcademyPage'], required=False)), ('challenge_step_external_links', wagtail.blocks.PageChooserBlock(page_type=['academy.AcademyExternalLink'], required=False))])))]))], blank=True, null=True, verbose_name='Challenge step')),
                 ('tile_image', models.ForeignKey(blank=True, help_text='The image used for the tile teaser', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.CustomImage')),
             ],
             options={
