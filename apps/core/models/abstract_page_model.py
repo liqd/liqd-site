@@ -47,9 +47,10 @@ class TranslatedStreamFieldPage(Page):
     intro_de = RichTextField(blank=True, verbose_name="Teasertext")
 
     body_en = StreamField(STREAMFIELD_DEFAULT_BLOCKS,
-                          null=True, verbose_name="Body")
+                          null=True, verbose_name="Body", use_json_field=True)
     body_de = StreamField(STREAMFIELD_DEFAULT_BLOCKS,
-                          null=True, blank=True, verbose_name="Body")
+                          null=True, blank=True, verbose_name="Body",
+                          use_json_field=True)
 
     body = TranslatedField(
         'body_de',
