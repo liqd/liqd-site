@@ -60,14 +60,9 @@ module.exports = {
         ]
       },
       {
-        test: /\.(vs|fs)$/,
-        type: 'asset/source',
+        test: /\.(glsl|vs|fs|vert|frag)$/,
         include: /liquid-logo/,
-      },
-      {
-        test: /\.(vs|fs)$/,
-        include: /liquid-logo/,
-        loader: 'glslify-loader'
+        use: ['raw-loader', 'glslify-loader']
       },
       {
         test: /\.(woff2?|ttf|eot|svg|jpg|png|gif|swf|otf)(\?.*)?$/,
