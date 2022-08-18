@@ -2,11 +2,11 @@
 
 
 {% if carousel_items %}
-  <div id="carousel" class="carousel slide" data-ride="carousel">
+  <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     {% if carousel_items|length > 1 %}
       <ol class="carousel-indicators">
         {% for carousel_item in carousel_items %}
-          <li data-target="#carousel" data-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active"{% endif %}></li>
+          <li data-bs-target="#carousel" data-bs-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active"{% endif %}></li>
         {% endfor %}
       </ol>
     {% endif %}
@@ -37,11 +37,11 @@
     </div>
 
     {% if carousel_items|length > 1 %}
-      <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+      <a class="left carousel-control" href="#carousel" role="button" data-bs-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
-      <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+      <a class="right carousel-control" href="#carousel" role="button" data-bs-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </a>
