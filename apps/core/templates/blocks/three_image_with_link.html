@@ -17,9 +17,26 @@
                     <img src="{{ image.url }}" alt="{{ image.alt }}"/>
                 </a>
             {% endif %}
-            <figcaption class="mt-3">
-                {{ value.image_left.link_text }}
+
+            {% if value.image_left.image.caption or value.image_left.image.copyright %}
+            <figcaption class="image-with-caption__figcaption">
+              {% if value.image_left.image.caption %}
+                <div>
+                  {{ value.image_left.image.caption }}
+                </div>
+              {% endif %}
+
+              {% if value.image_left.image.copyright %}
+                <div class="image-with-caption__copyright">
+                  {{ value.image_left.image.copyright }}
+                </div>
+              {% endif %}
             </figcaption>
+            {% endif %}
+
+            <div class="mt-3">
+            {{ value.image_left.link_text }}
+            </div>
         </figure>
     </div>
     <div class="col-md-4">
@@ -36,9 +53,25 @@
                     <img src="{{ image.url }}" alt="{{ image.alt }}"/>
                 </a>
             {% endif %}
-            <figcaption class="mt-3">
-                {{ value.image_middle.link_text }}
+            {% if value.image_middle.image.caption or value.image_middle.image.copyright %}
+            <figcaption class="image-with-caption__figcaption">
+              {% if value.image_middle.image.caption %}
+                <div>
+                  {{ value.image_middle.image.caption }}
+                </div>
+              {% endif %}
+
+              {% if value.image_middle.image.copyright %}
+                <div class="image-with-caption__copyright">
+                  {{ value.image_middle.image.copyright }}
+                </div>
+              {% endif %}
             </figcaption>
+            {% endif %}
+
+            <div class="mt-3">
+            {{ value.image_middle.link_text }}
+            </div>
         </figure>
     </div>
     <div class="col-md-4">
@@ -55,9 +88,26 @@
                     <img src="{{ image.url }}" alt="{{ image.alt }}"/>
                 </a>
             {% endif %}
-            <figcaption class="mt-3">
-                {{ value.image_right.link_text }}
+
+            {% if value.image_right.image.caption or value.image_right.image.copyright %}
+            <figcaption class="image-with-caption__figcaption">
+              {% if value.image_right.image.caption %}
+                <div>
+                  {{ value.image_right.image.caption }}
+                </div>
+              {% endif %}
+
+              {% if value.image_right.image.copyright %}
+                <div class="image-with-caption__copyright">
+                  {{ value.image_right.image.copyright }}
+                </div>
+              {% endif %}
             </figcaption>
+            {% endif %}
+
+            <div class="mt-3">
+            {{ value.image_right.link_text }}
+            </div>
         </figure>
     </div>
 </div>

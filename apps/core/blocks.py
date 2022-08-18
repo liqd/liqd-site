@@ -106,7 +106,7 @@ class ImageSliderBlock(ListBlock):
         icon = 'image'
         label = 'Image Slider'
         help_text = 'Responsive image slider '
-        '(weipe on mobile). Please choose 4 images.'
+        '(swipe on mobile). Please choose 4 images.'
 
 
 class LinkwithTitleBlock(StructBlock):

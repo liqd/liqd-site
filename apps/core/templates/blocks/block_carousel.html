@@ -1,4 +1,3 @@
-
 {% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 {% load static %}
@@ -7,8 +6,12 @@
 	<div class="row row-centered">
 		<div class="block block-carousel">
 			{% for img in value %}
-				{% image img width-450 as slider_image %}
-				<div><figure><img src="{{ slider_image.url }}" alt="{{ slider_image.alt }}"></figure></div>
+			{% image img width-450 as slider_image %}
+			<div>
+				<figure>
+					<img src="{{ slider_image.url }}" alt="{{ slider_image.alt }}">
+				</figure>
+			</div>
 			{% endfor %}
 		</div>
 	</div>
