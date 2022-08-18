@@ -19,7 +19,7 @@
             {% image content.tile_image fill-500x350 as image %}
             <img class="mb-3" src="{{ image.url }}" alt="{{ image.alt }}" />
             {% else %}
-            <img class="mb-3" src="{% static 'images/tile-backup.png' %}" />
+            <img class="mb-3" src="{% static 'images/tile-backup.png' %}" alt="default background image" />
             {% endif %}
             <h3 class="mb-2">{{ content.translated_title }}</h3>
             <div class="academy__sans-serif">{{ content.topics }}</div>

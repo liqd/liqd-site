@@ -1,10 +1,23 @@
 {% load wagtailimages_tags %}
 <div class="block--aligned_image--{{ value.display }} {% if value.display == 'center' %}container{% endif %}">
     {% image value.image width-1000 jpegquality-100 as my_image %}
-    <div class="image-with-caption">
+    <figure class="image-with-caption">
         <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
-        {% if value.image.caption %}
-            <p class="image-with-caption__caption">{{ value.image.caption }}</p>
+        {% if value.image.caption or value.image.copyright %}
+            <figcaption class="image-with-caption__figcaption">
+              {% if value.image.caption %}
+              <div>
+                {{ value.image.caption }}
+              </div>
+              {% endif %}
+
+              {% if value.image.copyright %}
+                <div class="image-with-caption__copyright">
+                  {{ value.image.copyright }}
+                </div>
+              {% endif %}
+
+            </figcaption>
         {% endif %}
-    </div>
+    </figure>
 </div>

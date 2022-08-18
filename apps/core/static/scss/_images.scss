@@ -1,8 +1,7 @@
-.image-with-caption__caption {
+.image-with-caption__figcaption {
     font-family: $font-family-monospace;
     font-size: $font-size-xs !important;
 
-    margin-top: 1rem;
     padding: 0.5rem 0;
     margin-bottom: 0;
     text-transform: none;
@@ -11,4 +10,8 @@
         font-size: 0.7rem;
         line-height: 1.5;
     }
+}
+
+.image-with-caption__copyright {
+    color: $text-light;
 }
