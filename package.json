@@ -22,7 +22,7 @@
     "ajv": "7.1.1",
     "autoprefixer": "10.2.4",
     "babel-loader": "8.2.2",
-    "bootstrap": "4.6.0",
+    "bootstrap": "4.6.2",
     "css-loader": "5.0.2",
     "glslify-loader": "2.0.0",
     "jquery": "3.5.1",
