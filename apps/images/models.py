@@ -9,11 +9,36 @@ class CustomImage(AbstractImage):
     caption_en = models.CharField(max_length=255, blank=True)
     caption_de = models.CharField(max_length=255, blank=True)
 
+    alt_de = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Add an alternative text for image accessibility'
+    )
+    alt_en = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Add an alternative text for image accessibility'
+    )
+
+    copyright = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Add copyright information for image'
+    )
+
     admin_form_fields = Image.admin_form_fields + (
-        'caption_en', 'caption_de'
+        'caption_en', 'caption_de', 'alt_de',
+        'alt_en', 'copyright'
     )
 
     caption = TranslatedField('caption_de', 'caption_en')
+
+    alt = TranslatedField('alt_de', 'alt_en')
+
+    @property
+    def default_alt_text(self):
+        # if this isn't done, the filename is automatically used.
+        return self.alt
 
 
 class CustomRendition(AbstractRendition):
