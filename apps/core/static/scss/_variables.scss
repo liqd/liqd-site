@@ -8,7 +8,7 @@ $inverse-color: $body-bg;
 
 $link-color: $body-color;
 $link-decoration: none;
-$link-hover-color: lighten($link-color, 15%);
+$link-hover-color: scale-color($link-color, $lightness: 15%);
 
 $font-family-base: 'Plantin', 'Times New Roman', serif;
 $font-family-monospace:  'Favorit', monospace;
