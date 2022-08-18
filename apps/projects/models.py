@@ -8,15 +8,13 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.functional import cached_property
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
-                                         ObjectList, StreamFieldPanel,
-                                         TabbedInterface)
 from wagtail import blocks
-from wagtail.fields import RichTextField, StreamField
-from wagtail.models import Page
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
+                                  TabbedInterface)
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.models import Page
 from wcag_contrast_ratio import contrast
 
 from apps.core import blocks as core_blocks
@@ -36,7 +34,6 @@ STREAMFIELD_PROJECT_BLOCKS = [
 
 
 class ProjectPage(Page):
-
     class Meta:
         verbose_name = 'Project'
 
@@ -130,7 +127,7 @@ class ProjectPage(Page):
         FieldPanel('timescale_de'),
         FieldPanel('partner_de'),
         FieldPanel('user_count_de'),
-        StreamFieldPanel('body_de'),
+        FieldPanel('body_de'),
     ]
 
     en_content_panels = [
@@ -140,11 +137,11 @@ class ProjectPage(Page):
         FieldPanel('timescale_en'),
         FieldPanel('partner_en'),
         FieldPanel('user_count_en'),
-        StreamFieldPanel('body_en'),
+        FieldPanel('body_en'),
     ]
 
     appearance_panels = [
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('color1'),
         FieldPanel('color2')
     ]
@@ -185,7 +182,7 @@ class ProjectPage(Page):
         value = value.lstrip('#')
         lv = len(value)
         return tuple(
-            int(value[i:i + lv // 3], 16)/255 for i in range(0, lv, lv // 3))
+            int(value[i:i + lv // 3], 16) / 255 for i in range(0, lv, lv // 3))
 
     @property
     def textcolor(self):
@@ -210,12 +207,11 @@ class ProjectPage(Page):
         if category_list:
             return random.choice(
                 ProjectPage.objects.filter(categories__in=category_list).live()
-                .exclude(pk=self.pk)
+                    .exclude(pk=self.pk)
             )
 
 
 class ProjectIndexPage(TranslatedStreamFieldPage):
-
     subpage_types = ['projects.ProjectPage']
 
     class Meta:

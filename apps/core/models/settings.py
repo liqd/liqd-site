@@ -1,7 +1,6 @@
 from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 @register_setting
@@ -10,7 +9,7 @@ class SocialMediaSettings(BaseSetting):
         help_text='Your Facebook page URL', blank=True)
     twitter = models.CharField(
         max_length=255, help_text='Your twitter username,'
-        ' without the @', blank=True)
+                                  ' without the @', blank=True)
     github = models.URLField(
         help_text='Your Github organisation page URL', blank=True)
     vimeo = models.URLField(
@@ -23,7 +22,7 @@ class AddressSettings(BaseSetting):
         max_length=255, help_text='The name of your organisation')
     organisation_street = models.CharField(
         max_length=255, help_text='Streetname and housenumber '
-        'of your organisations office ')
+                                  'of your organisations office ')
     postalcode = models.CharField(
         max_length=255, help_text='postalcode and city')
     telephone_number = models.CharField(max_length=255, blank=True)
@@ -45,5 +44,5 @@ class AddressSettings(BaseSetting):
         FieldPanel('telephone_number'),
         FieldPanel('email_address'),
         FieldPanel('map_link'),
-        ImageChooserPanel('image')
+        FieldPanel('image')
     ]

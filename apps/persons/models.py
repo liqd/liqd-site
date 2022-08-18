@@ -1,8 +1,7 @@
 from django.db import models
-from wagtail.admin.panels import FieldPanel, ObjectList, TabbedInterface
 from wagtail import blocks as core_blocks
+from wagtail.admin.panels import FieldPanel, ObjectList, TabbedInterface
 from wagtail.fields import RichTextField
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets import blocks as snippet_blocks
 from wagtail.snippets.models import register_snippet
 
@@ -76,7 +75,7 @@ class PersonSnippet(models.Model):
         FieldPanel('first_name'),
         FieldPanel('last_name'),
         FieldPanel('email'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('color1'),
         FieldPanel('color2')
     ]

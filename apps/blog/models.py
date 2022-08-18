@@ -6,14 +6,13 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.admin.panels import (FieldPanel, MultiFieldPanel,
-                                         ObjectList, StreamFieldPanel,
-                                         TabbedInterface)
 from wagtail import blocks
-from wagtail.fields import RichTextField, StreamField
-from wagtail.models import Page
+from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
+                                  TabbedInterface)
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Page
 
 from apps.core.blocks import AlignedImageBlock, HTMLBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
@@ -31,7 +30,6 @@ STREAMFIELD_BLOG_BLOCKS = [
 
 
 class AbstractBlogPage(Page):
-
     class Meta:
         abstract = True
 
@@ -83,7 +81,6 @@ class AbstractBlogPage(Page):
 
 
 class BlogPage(AbstractBlogPage):
-
     class Meta:
         verbose_name = 'Blog Entry'
 
@@ -93,14 +90,14 @@ class BlogPage(AbstractBlogPage):
         FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
         FieldPanel('intro_en'),
-        StreamFieldPanel('body_en'),
+        FieldPanel('body_en'),
     ]
 
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
         FieldPanel('intro_de'),
-        StreamFieldPanel('body_de'),
+        FieldPanel('body_de'),
     ]
 
     common_panels = [
