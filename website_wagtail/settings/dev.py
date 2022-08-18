@@ -1,6 +1,7 @@
 from .base import *
 
 DEBUG = True
+WAGTAILADMIN_BASE_URL = 'http://localhost:8006'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
