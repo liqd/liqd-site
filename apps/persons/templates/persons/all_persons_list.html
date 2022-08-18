@@ -1,9 +1,9 @@
 {% load persons_tags wagtailimages_tags %}
 
 <h2>{{ value.headline }}</h2>
-<div class="row no-gutters">
+<div class="row g-0">
     <div class="col-md-10">
-        <div class="row no-gutters">
+        <div class="row g-0">
         {% get_all_persons as persons %}
         {% for person in persons %}
         <div class="col-6 col-md-2 block--all_persons_list__item">
