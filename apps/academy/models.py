@@ -24,11 +24,9 @@ PARTICIPATIONACTION = 'PA'
 
 VIDEO = 'VD'
 WORKSHOP = 'WS'
-HOWTO = 'HT'
-TALK = 'TK'
 LINKLIST = 'LL'
 ARTICLE = 'AR'
-WEBINAR = 'WB'
+EVENT = 'EV'
 
 TOPIC_CHOICES = [
     (LIQDTHEORY, _('Liquid Democracy: Theory & Vision')),
@@ -39,11 +37,9 @@ TOPIC_CHOICES = [
 CONTENT_TYPE_CHOICES = [
     (VIDEO, _('video')),
     (WORKSHOP, _('workshop')),
-    (HOWTO, _('how-to')),
-    (TALK, _('talk')),
     (LINKLIST, _('link collection')),
     (ARTICLE, _('article')),
-    (WEBINAR, _('webinar')),
+    (EVENT, _('event')),
 ]
 
 STREAMFIELD_CHALLENGE_BLOCKS = [
