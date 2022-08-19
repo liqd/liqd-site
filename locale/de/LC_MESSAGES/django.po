@@ -48,7 +48,7 @@ msgstr "Artikel"
 
 #: apps/academy/models.py:44
 msgid "event"
-msgstr "event"
+msgstr "Event"
 
 #: apps/academy/templates/academy/academy_index_page.html:57
 msgid "Select topic"
@@ -62,7 +62,7 @@ msgstr "alle Themen"
 
 #: apps/academy/templates/academy/academy_index_page.html:89
 msgid "Type of content:"
-msgstr "Art des Inhalts:"
+msgstr "Inhaltstyp:"
 
 #: apps/academy/templates/academy/academy_index_page.html:90
 #: apps/academy/templates/academy/academy_index_page.html:105
