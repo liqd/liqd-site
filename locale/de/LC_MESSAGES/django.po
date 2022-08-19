@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-08 14:54+0100\n"
+"POT-Creation-Date: 2022-08-19 17:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/academy/models.py:37
+#: apps/academy/models.py:34
 msgid "Liquid Democracy: Theory & Vision"
 msgstr "Liquid Democracy: Theorie & Vision"
 
-#: apps/academy/models.py:38
+#: apps/academy/models.py:35
 msgid "Digital Civic Society"
 msgstr "Digitale Zivilgesellschaft"
 
-#: apps/academy/models.py:39
+#: apps/academy/models.py:36
 msgid "Digital Participation In Action"
 msgstr "Online-Beteiligung in der Praxis"
 
-#: apps/academy/models.py:43
+#: apps/academy/models.py:40
 msgid "video"
 msgstr "Video"
 
-#: apps/academy/models.py:44
+#: apps/academy/models.py:41
 msgid "workshop"
 msgstr "Workshop"
 
-#: apps/academy/models.py:45
-msgid "how-to"
-msgstr "How-To"
-
-#: apps/academy/models.py:46
-msgid "talk"
-msgstr "Vortrag"
-
-#: apps/academy/models.py:47
+#: apps/academy/models.py:42
 msgid "link collection"
 msgstr "Linksammlung"
 
-#: apps/academy/models.py:48
+#: apps/academy/models.py:43
 msgid "article"
 msgstr "Artikel"
 
-#: apps/academy/models.py:49
-msgid "webinar"
-msgstr "Webinar"
+#: apps/academy/models.py:44
+msgid "event"
+msgstr "event"
 
 #: apps/academy/templates/academy/academy_index_page.html:57
 msgid "Select topic"
@@ -109,20 +101,8 @@ msgid "Read this article"
 msgstr "Lies diesen Artikel"
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:12
-msgid "Read this how-to"
-msgstr "Lies dieses How-to"
-
-#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:14
 msgid "Watch this video"
 msgstr "Schaue dir dieses Video an"
-
-#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:16
-msgid "Watch this talk"
-msgstr "Schaue dir diesen Vortrag an"
-
-#: apps/academy/templates/academy/includes/academy_challenge_list_item.html:18
-msgid "Watch this webinar"
-msgstr "Schaue dir dieses Webinar an"
 
 #: apps/academy/templates/academy/includes/academy_list_item.html:12
 msgid "external link"
@@ -261,6 +241,24 @@ msgstr "Deutsch"
 #: website_wagtail/settings/base.py:136
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "how-to"
+#~ msgstr "How-To"
+
+#~ msgid "talk"
+#~ msgstr "Vortrag"
+
+#~ msgid "webinar"
+#~ msgstr "Webinar"
+
+#~ msgid "Read this how-to"
+#~ msgstr "Lies dieses How-to"
+
+#~ msgid "Watch this talk"
+#~ msgstr "Schaue dir diesen Vortrag an"
+
+#~ msgid "Watch this webinar"
+#~ msgstr "Schaue dir dieses Webinar an"
 
 #~ msgid "blogpost"
 #~ msgstr "Blogpost"
