@@ -1,11 +1,18 @@
 .footer {
     margin-top: $spacer-v;
 
+    .navbar {
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+    }
+
     .navbar-nav {
-        margin-bottom: 1em;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
     }
 
     .navbar-nav .nav-link {
+        color: $link-color;
         padding: 0;
         border-bottom: 1px solid transparent;
         margin-right: 0.75em;
