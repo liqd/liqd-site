@@ -16,6 +16,7 @@ help:
 	@echo
 	@echo "  make install  		-- install dev setup"
 	@echo "  make clean   		-- delete node modules and venv"
+	@echo "  make watch   		-- start a dev server and rebuild js and css files on changes"
 	@echo "  make server	  	-- development server"
 	@echo "  make test     		-- tests on exiting database"
 	@echo "  make lint	  		-- lint javascript and python"
