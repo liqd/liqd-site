@@ -26,7 +26,7 @@
                 <div class="academy-list__topic-parent">
 
                     {% for topic_key,topic_string in page.topics.items %}
-                    <a class="academy-list__topic--link" href="?topic={{ topic_key }}&academy_content_type={{ academy_content_type }}&alphabetical={{ alphabetical }}">
+                    <a class="academy-list__topic--link" href="{% if topic == topic_key %}{{ page.get_url }}{% else %}?topic={{ topic_key }}&academy_content_type={{ academy_content_type }}&alphabetical={{ alphabetical }}{% endif %}">
                         <div class="academy-list__topic-square px-3 py-4 {% if topic == topic_key %}academy-list__topic-selected-square{% endif %}">
                             {% with 'images/'|add:topic_key|add:'-topic.svg' as topic_svg %}
                             <img class="academy-list__topic-img pb-4" src="{% static topic_svg %}" alt="{{ topic }}" width="70" />
