@@ -1,8 +1,11 @@
-all: help
-
 VIRTUAL_ENV ?= venv
 SOURCE_DIRS = apps website_wagtail
+ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
+.PHONY: all
+all: help
+
+.PHONY: help
 help:
 	@echo Liquid Website development tools
 	@echo
@@ -11,16 +14,19 @@ help:
 	@echo
 	@echo usage:
 	@echo
-	@echo   make install  -- install dev setup
-	@echo   make server	  -- development server
-	@echo   make test     -- tests on exiting database
-	@echo   make lint	  -- lint javascript and python
-	@echo   make release  -- build everything required for a release
-	@echo   make po       -- create new po files from the source
-	@echo   make mo       -- create new mo files from the translated po files
+	@echo "  make install  		-- install dev setup"
+	@echo "  make clean   		-- delete node modules and venv"
+	@echo "  make server	  	-- development server"
+	@echo "  make test     		-- tests on exiting database"
+	@echo "  make lint	  		-- lint javascript and python"
+	@echo "  make lint-fix   	-- fix linting for all js files staged in git"
+	@echo "  make release  		-- build everything required for a release"
+	@echo "  make po       		-- create new po files from the source"
+	@echo "  make mo       		-- create new mo files from the translated po files"
 	@echo
 
 
+.PHONY: install
 install:
 	npm install
 	npm run build
@@ -28,19 +34,34 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
+.PHONY: clean
+clean:
+	if [ -f package-lock.json ]; then rm package-lock.json; fi
+	if [ -d node_modules ]; then rm -rf node_modules; fi
+	if [ -d venv ]; then rm -rf venv; fi
+
+.PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8006
 
+.PHONY: server
 server:
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8006
 
+.PHONY: lint
 lint:
 	EXIT_STATUS=0; \
 	$(VIRTUAL_ENV)/bin/isort -rc -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	npm run lint --silent ||  EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
+.PHONY: lint-fix
+lint-fix:
+	EXIT_STATUS=0; \
+	npm run lint-fix ||  EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: po
