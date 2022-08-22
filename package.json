@@ -6,7 +6,6 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-standard": "4.1.0",
-    "popper.js": "1.16.1",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "20.0.0",
     "webpack-cli": "4.10.0"
@@ -20,8 +19,6 @@
     "@babel/runtime": "7.18.9",
     "@liqd/liqd-fonts": "git+ssh://github.com/liqd/liqd-fonts.git",
     "@ykob/js-util": "git+https://github.com/ykob/js-util.git",
-    "acorn": "8.8.0",
-    "ajv": "8.11.0",
     "autoprefixer": "10.4.8",
     "babel-loader": "8.2.5",
     "bootstrap": "5.2.0",
@@ -30,7 +27,6 @@
     "jquery": "3.6.0",
     "liquid-logo": "git+https://github.com/liqd/liquid-logo.git",
     "mini-css-extract-plugin": "2.6.1",
-    "node-libs-browser": "2.2.1",
     "node-sass": "7.0.1",
     "postcss": "8.4.16",
     "postcss-loader": "7.0.1",
@@ -42,6 +38,7 @@
   },
   "scripts": {
     "lint": "eslint apps/core -c package.json && stylelint 'apps/core/**/*.scss' --syntax scss",
+    "lint-fix": "eslint --fix apps/core -c package.json",
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
