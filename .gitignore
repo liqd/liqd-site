@@ -4,7 +4,8 @@
 /static/
 /website_wagtail/static
 media/
-db.sqlite3
+db.sqlite3*
+*.sqlite3
 .sass-cache/*
 *.mo
 /core/static/third-party/bower_components/
