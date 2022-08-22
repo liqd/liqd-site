@@ -207,7 +207,7 @@ class ProjectPage(Page):
         if category_list:
             return random.choice(
                 ProjectPage.objects.filter(categories__in=category_list).live()
-                    .exclude(pk=self.pk)
+                .exclude(pk=self.pk)
             )
 
 
