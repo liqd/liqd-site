@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+
+{% block fb_meta_tags %}
+
+{% endblock %}
+
+{% block menu-color %}style="color: {{ page.textcolor }};"{% endblock %}
+
+{% block content %}
+<section class="intro-screen" style="color: {{ page.textcolor }}; background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});">
+    <div class="container">
+      <h1>{{ page.translated_intro_text }}</h1>
+      <div class="academy-list__intro">
+          <a href="{{ page.intro_link.url }}">{{ page.translated_intro_link_text }}</a>
+      </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -10,9 +10,10 @@ from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 from multiselectfield import MultiSelectField
 from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
-                                  TabbedInterface)
+                                  PageChooserPanel, TabbedInterface)
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
+from wcag_contrast_ratio import contrast
 
 from apps.academy.blocks import ChallengeStepBlock
 from apps.blog.models import AbstractBlogPage
@@ -443,3 +444,114 @@ class AcademyIndexPage(Page):
 
     class Meta:
         verbose_name = 'Academy Index Page'
+
+
+class AcademyLandingPage(Page):
+    subpage_types = ['academy.AcademyIndexPage', 'AcademyChallengePage']
+
+    intro_text_en = models.CharField(
+        max_length=255,
+        verbose_name='intro text en'
+    )
+    intro_text_de = models.CharField(
+        max_length=255,
+        verbose_name='intro text de',
+        blank=True
+    )
+    translated_intro_text = TranslatedField(
+        'intro_text_de',
+        'intro_text_en',
+    )
+
+    intro_link_text_en = models.CharField(
+        max_length=100,
+        verbose_name='intro link text en',
+        blank=True
+    )
+    intro_link_text_de = models.CharField(
+        max_length=100,
+        verbose_name='intro link text de',
+        blank=True
+    )
+    translated_intro_link_text = TranslatedField(
+        'intro_link_text_de',
+        'intro_link_text_en',
+    )
+
+    # common fields
+
+    intro_link = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Choose the page the intro text links to'
+    )
+
+    color1 = models.CharField(max_length=7, default='#d9b058')
+    color2 = models.CharField(max_length=7, default='#a37146')
+
+    en_content_panels = [
+        FieldPanel('intro_text_en'),
+        FieldPanel('intro_link_text_en'),
+    ]
+
+    de_content_panels = [
+        FieldPanel('intro_text_de'),
+        FieldPanel('intro_link_text_de'),
+    ]
+
+    common_panels = [
+        PageChooserPanel('intro_link'),
+        FieldPanel('color1'),
+        FieldPanel('color2')
+    ]
+
+    promote_panels = [
+        MultiFieldPanel([
+            FieldPanel('title'),
+            FieldPanel('slug'),
+        ],
+            heading="Slug and CMS Page Name"),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+        ],
+            heading="SEO settings",
+            classname="collapsible"),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(en_content_panels, heading='English'),
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(common_panels, heading='Common'),
+        ObjectList(promote_panels, heading='Promote'),
+    ])
+
+    @staticmethod
+    def _color_to_rgb(value):
+        value = value.lstrip('#')
+        lv = len(value)
+        return tuple(
+            int(value[i:i + lv // 3], 16) / 255 for i in range(0, lv, lv // 3))
+
+    @property
+    def textcolor(self):
+        rgb_1 = self._color_to_rgb(self.color1)
+        rgb_2 = self._color_to_rgb(self.color2)
+        # check the darker color of both gradient points
+        rgb_to_check = rgb_1 if sum(rgb_1) < sum(rgb_2) else rgb_2
+
+        contrast_dark = contrast.rgb(
+            rgb_to_check,
+            self._color_to_rgb('#060606')
+        )
+        contrast_bright = contrast.rgb(
+            rgb_to_check,
+            self._color_to_rgb('#fbfbfb')
+        )
+        return '#fbfbfb' if contrast_bright > contrast_dark else '#060606'
+
+    class Meta:
+        verbose_name = 'Academy Landing Page'
