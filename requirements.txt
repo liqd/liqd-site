@@ -9,7 +9,7 @@ django-cloudflare-push==0.2.1
 django_csp==3.7
 django-multiselectfield==0.1.12
 django-sites==0.11
-flake8==4.0.1
+flake8==5.0.4
 html5lib==1.1
 isort==5.10.1
 psycopg2==2.9.3
