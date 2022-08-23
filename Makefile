@@ -14,16 +14,17 @@ help:
 	@echo
 	@echo usage:
 	@echo
-	@echo "  make install  		-- install dev setup"
-	@echo "  make clean   		-- delete node modules and venv"
-	@echo "  make watch   		-- start a dev server and rebuild js and css files on changes"
-	@echo "  make server	  	-- development server"
-	@echo "  make test     		-- tests on exiting database"
-	@echo "  make lint	  		-- lint javascript and python"
-	@echo "  make lint-fix   	-- fix linting for all js files staged in git"
-	@echo "  make release  		-- build everything required for a release"
-	@echo "  make po       		-- create new po files from the source"
-	@echo "  make mo       		-- create new mo files from the translated po files"
+	@echo "  make install           -- install dev setup"
+	@echo "  make clean             -- delete node modules and venv"
+	@echo "  make watch             -- start a dev server and rebuild js and css files on changes"
+	@echo "  make server            -- development server"
+	@echo "  make lighthouse        -- run lighthouse test on stage server"
+	@echo "  make lighthouse-local  -- run lighthouse test on local (requires the server to be running/make watch)"
+	@echo "  make lint              -- lint javascript and python"
+	@echo "  make lint-fix          -- fix linting for all js files staged in git"
+	@echo "  make release           -- build everything required for a release"
+	@echo "  make po                -- create new po files from the source"
+	@echo "  make mo                -- create new mo files from the translated po files"
 	@echo
 
 
@@ -50,6 +51,14 @@ watch:
 .PHONY: server
 server:
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8006
+
+.PHONY: lighthouse
+lighthouse:
+	npm run lighthouse
+
+.PHONY: lighthouse-local
+lighthouse-local:
+	npm run lighthouse-local
 
 .PHONY: lint
 lint:

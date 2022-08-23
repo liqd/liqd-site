@@ -15,3 +15,4 @@ db.sqlite3*
 /venv/
 package-lock.json
 .idea
+reports/
