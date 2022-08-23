@@ -15,7 +15,8 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
 from wcag_contrast_ratio import contrast
 
-from apps.academy.blocks import AcademySingleTeaserBlock, ChallengeStepBlock
+from apps.academy.blocks import (AcademyCallToActionBlock,
+                                 AcademySingleTeaserBlock, ChallengeStepBlock)
 from apps.blog.models import AbstractBlogPage
 from contrib.translations.translations import TranslatedField
 
@@ -48,7 +49,12 @@ STREAMFIELD_CHALLENGE_BLOCKS = [
 ]
 
 STREAMFIELD_LP_BLOCKS = [
-    ('single_teaser', AcademySingleTeaserBlock())
+    ('single_teaser', AcademySingleTeaserBlock()),
+    ('call_to_action_teaser', AcademyCallToActionBlock())
+]
+
+STREAMFIELD_EXTRA_BLOCKS = [
+    ('call_to_action_teaser', AcademyCallToActionBlock())
 ]
 
 
@@ -77,18 +83,30 @@ class AcademyPage(AbstractBlogPage):
     class Meta:
         verbose_name = 'Academy Page'
 
+    teaser_en = StreamField(STREAMFIELD_EXTRA_BLOCKS,
+                            null=True,
+                            verbose_name="Body",
+                            use_json_field=True)
+    teaser_de = StreamField(STREAMFIELD_EXTRA_BLOCKS,
+                            null=True, blank=True, verbose_name="Body",
+                            use_json_field=True)
+    body = TranslatedField(
+        'teaser_de',
+        'teaser_en'
+    )
+
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
         FieldPanel('intro_en'),
-        FieldPanel('body_en'),
+        FieldPanel('teaser_en'),
     ]
 
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
         FieldPanel('intro_de'),
-        FieldPanel('body_de'),
+        FieldPanel('teaser_de'),
     ]
 
     common_panels = [
@@ -278,12 +296,25 @@ class AcademyChallengePage(Page):
         'body_en'
     )
 
+    teaser_en = StreamField(STREAMFIELD_EXTRA_BLOCKS,
+                            null=True,
+                            verbose_name="Body",
+                            use_json_field=True)
+    teaser_de = StreamField(STREAMFIELD_EXTRA_BLOCKS,
+                            null=True, blank=True, verbose_name="Body",
+                            use_json_field=True)
+    teaser = TranslatedField(
+        'teaser_de',
+        'teaser_en'
+    )
+
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
         FieldPanel('completion_time_en'),
         FieldPanel('intro_en'),
         FieldPanel('body_en'),
+        FieldPanel('teaser_en'),
     ]
 
     de_content_panels = [
@@ -292,6 +323,7 @@ class AcademyChallengePage(Page):
         FieldPanel('completion_time_de'),
         FieldPanel('intro_de'),
         FieldPanel('body_de'),
+        FieldPanel('teaser_de'),
     ]
 
     common_panels = [
@@ -341,14 +373,26 @@ class AcademyIndexPage(Page):
         'intro_en',
     )
 
+    body_en = StreamField(STREAMFIELD_EXTRA_BLOCKS,
+                          null=True, verbose_name="Body", use_json_field=True)
+    body_de = StreamField(STREAMFIELD_EXTRA_BLOCKS,
+                          null=True, blank=True, verbose_name="Body",
+                          use_json_field=True)
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
+
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('intro_en'),
+        FieldPanel('body_en'),
     ]
 
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('intro_de'),
+        FieldPanel('body_de'),
     ]
 
     promote_panels = [
