@@ -153,3 +153,26 @@
         }
     }
 }
+
+.academy-block__img {
+    width: 81px;
+    height: 75px;
+    object-fit: contain;
+    display: block;
+}
+
+.academy-block__title {
+    font-family: $font-family-monospace;
+    font-size: $font-size-xs;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.academy-block__text {
+    font-size: $font-size-sm;
+    text-align: center;
+}
+
+.academy-block__link {
+    text-align: center;
+}
