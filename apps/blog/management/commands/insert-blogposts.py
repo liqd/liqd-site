@@ -3,6 +3,7 @@ from datetime import date, timedelta
 from urllib.request import urlopen
 
 import bleach
+from bleach.css_sanitizer import CSSSanitizer
 from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 from django.template.defaultfilters import slugify
@@ -82,10 +83,11 @@ class Command(BaseCommand):
 
             result = result + '<a href="' + link + '">' + link + '</a>'
 
+            css_sanitizer = CSSSanitizer(allowed_css_properties=[])
             clean_result = bleach.clean(result,
                                         tags=[],
                                         attributes={},
-                                        styles=[],
+                                        css_sanitizer=css_sanitizer,
                                         strip=True
                                         )
             subtitle_en = clean_result[0:100]
