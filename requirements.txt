@@ -2,7 +2,7 @@
 Django==3.2.13 # pyup: <3.3
 wagtail==3.0.1
 
-bleach==4.1.0
+bleach==5.0.1
 brotli==1.0.9
 django-bleach==0.6.1
 django-cloudflare-push==0.2.2
