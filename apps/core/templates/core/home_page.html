@@ -12,7 +12,7 @@
 
 {% block content %}
 <div class="home-logo">
-    <canvas id="canvas-home" class="home-logo__canvas"></canvas>
+    <canvas id="canvas-home" class="home-logo__canvas" role="img" aria-label="Liquid Democracy moving logo"></canvas>
 </div>
 <section class="container home-logo__lead">
     <div class="lead">
@@ -24,7 +24,7 @@
 
 {% blog_entries %}
 
-    <div class="row-right align-items-center">
+    <section class="row-right align-items-center" aria-label="{% trans 'Contact information' %}">
         <div class="col-sm-4">
             {% if settings.core.AddressSettings %}
                 <p>
@@ -75,6 +75,6 @@
                 </div>
             {% endif %}
         </div>
-    </div>
+    </section>
 
 {% endblock %}

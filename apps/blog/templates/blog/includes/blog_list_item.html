@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="blog-list__item fade-teaser">
+<article class="blog-list__item fade-teaser">
     <a class="fade-teaser__link" href="{% pageurl blog %}">
         <span class="visually-hidden">{{ blog.translated_title }}</span>
     </a>
@@ -11,4 +11,4 @@
             {{ blog.translated_intro | richtext }}
         {% endif %}
     </div>
-</div>
+</article>

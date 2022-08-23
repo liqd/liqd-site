@@ -28,16 +28,18 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
+        <a href="#main" class="visually-hidden-focusable">{% trans "Skip to content "%}</a>
+
 
         {% wagtailuserbar 'bottom-right' %}
         <div {% block menu-color %}{% endblock %}>
             {% include "navbar-simple.html" %}
         </div>
 
-        <div class="content">
+        <main class="content" role="main" id="main">
             {% block content %}
             {% endblock %}
-        </div>
+        </main>
 
         {% include "footer.html" %}
 
