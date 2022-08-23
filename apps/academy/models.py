@@ -15,7 +15,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
 from wcag_contrast_ratio import contrast
 
-from apps.academy.blocks import (AcademySingleTeaserBlock, ChallengeStepBlock)
+from apps.academy.blocks import AcademySingleTeaserBlock, ChallengeStepBlock
 from apps.blog.models import AbstractBlogPage
 from contrib.translations.translations import TranslatedField
 
