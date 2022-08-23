@@ -1,0 +1,29 @@
+{% load wagtailimages_tags %}
+<section class="block block__col-cta--dark">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for column in value.columns %}
+            {% if forloop.counter == 2 %}
+            <div class="col-md-1 block__col-cta__border"></div>
+            <div class="col-md-1"></div>
+            {% endif %}
+            <article class="col-md-4 block__col-cta" id="{{ column.anchor_link }}">
+                <h2>{{ column.headline }}</h2>
+                {% image column.image width-40 jpegquality-100 as block_image %}
+                <figure>
+                    <img class="photo" src="{{ block_image.url }}" alt="{{ block_image.alt }}">
+                </figure>
+                <div>
+                    <p>{{ column.body_text }}</p>
+
+                    {% if column.cta_link.internal_link %}
+                    <a href="{{ column.cta_link.internal_link.url }}" target="_blank">{{ column.link_text }}</a>
+                    {% elif column.cta_link.external_link %}
+                    <a href="{{ column.cta_link.external_link.url }}">{{ column.link_text }}</a>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>

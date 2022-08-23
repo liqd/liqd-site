@@ -9,8 +9,8 @@
         margin-bottom: $spacer-v;
     }
 
-    p,
-    li {
+    li,
+    p {
         font-size: $font-size-base;
     }
 }
@@ -52,9 +52,9 @@
     }
 }
 
-.block--image img,
 .block--aligned_image--left img,
-.block--aligned_image--right img {
+.block--aligned_image--right img,
+.block--image img {
     max-height: 80vh;
 }
 
@@ -82,7 +82,9 @@
     }
 }
 
-.block--projects h2 {
+.block--all_persons_list h2,
+.block--projects h2,
+.block__col-cta h2 {
     text-align: center;
 
     @extend .h4;
@@ -91,14 +93,6 @@
 .collapse-mt + .collapse-mt {
     .block {
         margin-top: 0;
-    }
-}
-
-.block--all_persons_list {
-    h2 {
-        text-align: center;
-
-        @extend .h4;
     }
 }
 
@@ -127,5 +121,35 @@
 
     &:hover .block--all_persons_list__container {
         opacity: 1;
+    }
+}
+
+.block--call_to_action_teaser {
+    margin-bottom: 0;
+}
+
+.block__col-cta--dark {
+    background-color: $black;
+    color: $white;
+    text-align: center;
+    margin-bottom: 0;
+
+    .block__col-cta__border {
+        @include media-breakpoint-up(md) {
+            border-right: 1px solid $white;
+            margin: $spacer-v 0;
+        }
+    }
+
+    a {
+        color: $white;
+    }
+
+    .block__col-cta {
+        padding: ($spacer-v * 0.75) 0;
+
+        @include media-breakpoint-up(md) {
+            padding: $spacer-v 0;
+        }
     }
 }
