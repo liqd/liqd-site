@@ -1,5 +1,6 @@
 from wagtail.blocks import (CharBlock, ListBlock, PageChooserBlock,
-                            RichTextBlock, StructBlock)
+                            RichTextBlock, StructBlock, TextBlock, URLBlock)
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class ChallengeLinkBlock(StructBlock):
@@ -36,3 +37,22 @@ class ChallengeStepBlock(StructBlock):
         icon = 'grip'
         label = 'Academy challenge step'
         help_text = 'Select the pages to be included in this challenge step'
+
+
+class AcademySingleTeaserBlock(StructBlock):
+    category = CharBlock(required=False, length=32)
+    headline = CharBlock(required=True, length=74)
+    body_text = TextBlock(required=True, length=164)
+    link = PageChooserBlock(required=False)
+    external_link = URLBlock(
+        required=False,
+        label="External Link",
+        help_text="The external link overwrites the link to a local page."
+    )
+    link_text = CharBlock(required=True, length=24)
+    image = ImageChooserBlock(required=True)
+
+    class Meta:
+        template = 'academy/blocks/single_teaser_block.html'
+        icon = 'image'
+        label = 'Single teaser block'
