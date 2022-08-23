@@ -1,7 +1,7 @@
 {% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags i18n bleach_tags %}
 
-<div class="col-12 col-sm-6 col-md-4 academy-list__item mb-4">
-  <a class="" href="{% if content.external_link %}
+<li class="col-12 col-sm-6 col-md-4 academy-list__item mb-4">
+  <a href="{% if content.external_link %}
 {{ content.external_link }} {% else %} {% pageurl content %}{% endif %}">
         <div>
             {% if content.get_academy_content_type_display %}
@@ -26,4 +26,4 @@
             <div class="academy__sans-serif mb-4">{{ content.date }}</div>
         </div>
     </a>
-</div>
+</li>

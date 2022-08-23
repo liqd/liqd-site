@@ -1,5 +1,5 @@
 {% load i18n %}
-<section class="container blog-list">
+<section class="container blog-list" aria-label="{% trans 'blogposts '%}">
     <h2>{% trans "Our latest blogposts" %}</h2>
 
     {% for blog in blog_entries %}
@@ -7,6 +7,3 @@
     {% endfor %}
 
 </section>
-
-
-

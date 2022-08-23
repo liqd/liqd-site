@@ -120,16 +120,17 @@ a.header__brand {
 }
 
 .header__brand-canvas {
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    max-height: 50px;
-    max-width: 60px;
+    display: none;
 
-    vertical-align: top;
-
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(xl) {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        max-height: 50px;
+        max-width: 60px;
         margin-top: -$spacer;
+
+        vertical-align: top;
     }
 }
 

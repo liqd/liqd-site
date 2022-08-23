@@ -41,11 +41,11 @@
         </div>
     </div>
 
-    <div class="row justify-content-center justify-content-sm-start">
+    <ul class="row justify-content-center justify-content-sm-start list-unstyled">
     {% for content in other_content %}
         {% include "academy/includes/academy_list_item.html" with content=content %}
     {% endfor %}
-    </div>
+    </ul>
     {% endif %}
 
 </div>
