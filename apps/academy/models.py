@@ -16,25 +16,17 @@ from wagtail.models import Page
 from wcag_contrast_ratio import contrast
 
 from apps.academy.blocks import (AcademyCallToActionBlock,
-                                 AcademySingleTeaserBlock, ChallengeStepBlock)
+                                 AcademySingleTeaserBlock, ChallengeStepBlock,
+                                 TopicBlockList)
+from apps.academy.choices import TOPIC_CHOICES
 from apps.blog.models import AbstractBlogPage
 from contrib.translations.translations import TranslatedField
-
-LIQDTHEORY = 'LT'
-DIGITALCIVICSOCIETY = 'DS'
-PARTICIPATIONACTION = 'PA'
 
 VIDEO = 'VD'
 WORKSHOP = 'WS'
 LINKLIST = 'LL'
 ARTICLE = 'AR'
 EVENT = 'EV'
-
-TOPIC_CHOICES = [
-    (LIQDTHEORY, _('Liquid Democracy: Theory & Vision')),
-    (DIGITALCIVICSOCIETY, _('Digital Civic Society')),
-    (PARTICIPATIONACTION, _('Digital Participation In Action')),
-]
 
 CONTENT_TYPE_CHOICES = [
     (VIDEO, _('video')),
@@ -50,7 +42,8 @@ STREAMFIELD_CHALLENGE_BLOCKS = [
 
 STREAMFIELD_LP_BLOCKS = [
     ('single_teaser', AcademySingleTeaserBlock()),
-    ('call_to_action_teaser', AcademyCallToActionBlock())
+    ('call_to_action_teaser', AcademyCallToActionBlock()),
+    ('topic_block_list', TopicBlockList())
 ]
 
 STREAMFIELD_EXTRA_BLOCKS = [

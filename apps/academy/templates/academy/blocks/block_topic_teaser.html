@@ -1,0 +1,30 @@
+{% load static wagtailimages_tags i18n %}
+
+<section class="row block" aria-label="three topic teasers">
+    <h2 class="academy-block__title">{{value.title}}</h2>
+    {% for topic in value.topics %}
+        <article class="col-md-4 col-sm-12 container">
+            <figure class="mb-4">
+                {% with 'images/'|add:topic.topic_category|add:'-topic.svg' as topic_svg %}
+                <img
+                    class="academy-block__img mx-auto"
+                    src="{% static topic_svg %}"
+                    alt="{{ topics_dict|get_category_name:topic.topic_category }}"
+                    width="70"
+                />
+                {% endwith %}
+            </figure>
+            <h3 class="academy-block__title">
+                {{ topics_dict|get_category_name:topic.topic_category }}
+            </h3>
+            <p class="academy-block__text">{{topic.topic_text}}</p>
+            <div class="academy-block__link mb-4">
+                <a
+                    href="{{ value.topic_url.url }}?topic={{ topic.topic_category }}&academy_content_type=&alphabetical="
+                >
+                    {{topic.topic_link_text}}
+                </a>
+            </div>
+        </article>
+    {% endfor %}
+</section>
