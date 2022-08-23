@@ -5,15 +5,17 @@
 
 {% endblock %}
 
-{% block menu-color %}style="color: {{ page.textcolor }};"{% endblock %}
-
 {% block content %}
-<section class="intro-screen" style="color: {{ page.textcolor }}; background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});">
+<section class="simple-header-bg" style="color: {{ page.textcolor }}; background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});">
     <div class="container">
-      <h1>{{ page.translated_intro_text }}</h1>
-      <div class="academy-list__intro">
-          <a href="{{ page.intro_link.url }}">{{ page.translated_intro_link_text }}</a>
-      </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1>{{ page.translated_intro_text }}</h1>
+                <div class="mb-md-4">
+                    <a style="color: {{ page.textcolor }};" href="{{ page.intro_link.url }}">{{ page.translated_intro_link_text }}</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
