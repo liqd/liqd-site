@@ -15,7 +15,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
 from wcag_contrast_ratio import contrast
 
-from apps.academy.blocks import ChallengeStepBlock
+from apps.academy.blocks import (AcademySingleTeaserBlock, ChallengeStepBlock)
 from apps.blog.models import AbstractBlogPage
 from contrib.translations.translations import TranslatedField
 
@@ -45,6 +45,10 @@ CONTENT_TYPE_CHOICES = [
 
 STREAMFIELD_CHALLENGE_BLOCKS = [
     ('challenge_tasks', ChallengeStepBlock())
+]
+
+STREAMFIELD_LP_BLOCKS = [
+    ('single_teaser', AcademySingleTeaserBlock())
 ]
 
 
@@ -478,6 +482,16 @@ class AcademyLandingPage(Page):
         'intro_link_text_en',
     )
 
+    body_en = StreamField(STREAMFIELD_LP_BLOCKS,
+                          null=True, verbose_name="Body", use_json_field=True)
+    body_de = StreamField(STREAMFIELD_LP_BLOCKS,
+                          null=True, blank=True, verbose_name="Body",
+                          use_json_field=True)
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
+
     # common fields
 
     intro_link = models.ForeignKey(
@@ -495,11 +509,13 @@ class AcademyLandingPage(Page):
     en_content_panels = [
         FieldPanel('intro_text_en'),
         FieldPanel('intro_link_text_en'),
+        FieldPanel('body_en'),
     ]
 
     de_content_panels = [
         FieldPanel('intro_text_de'),
         FieldPanel('intro_link_text_de'),
+        FieldPanel('body_de'),
     ]
 
     common_panels = [
