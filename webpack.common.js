@@ -27,15 +27,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules\/(?!(bootstrap)\/).*/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
-          plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
-        }
-      },
-      {
         test: /\.s?css$/,
         use: [
           {
@@ -49,7 +40,7 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
-                  require('autoprefixer')
+                  autoprefixer
                 ]
               }
             }

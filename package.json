@@ -2,6 +2,7 @@
   "devDependencies": {
     "eslint": "8.22.0",
     "eslint-config-standard": "17.0.0",
+    "eslint-plugin-compat": "4.0.2",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.0",
@@ -45,7 +46,10 @@
     "precommit": "make lint"
   },
   "eslintConfig": {
-    "extends": "standard",
+    "extends": [
+      "standard",
+      "plugin:compat/recommended"
+    ],
     "rules": {
       "indent": [
         "error",
