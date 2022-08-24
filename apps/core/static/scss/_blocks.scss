@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .block {
-    margin-bottom: $spacer-v / 2;
+    margin-bottom: $spacer-v * 0.5;
 
     @include media-breakpoint-up(sm) {
         margin-bottom: $spacer-v;
@@ -70,7 +70,7 @@
     }
 
     .col-md-6 {
-        margin-bottom: $spacer-v / 2;
+        margin-bottom: $spacer-v * 0.5;
     }
 
     .row:last-child {

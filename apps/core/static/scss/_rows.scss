@@ -13,7 +13,7 @@
 
     @include media-breakpoint-only(xs) {
         $gutter: map-get($grid-gutter-widths, sm);
-        margin-right: ($gutter / 2);
+        margin-right: ($gutter * 0.5);
     }
 
     > :last-child {
@@ -36,7 +36,7 @@
 
     @include media-breakpoint-only(xs) {
         $gutter: map-get($grid-gutter-widths, sm);
-        margin-left: ($gutter / 2);
+        margin-left: ($gutter * 0.5);
     }
 
     > :last-child {

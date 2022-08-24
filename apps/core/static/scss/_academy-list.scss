@@ -1,7 +1,7 @@
 .academy-list__topic-parent {
     display: flex;
     justify-content: space-between;
-    margin-bottom: $spacer-v / 2;
+    margin-bottom: $spacer-v * 0.5;
 }
 
 // tablet size
@@ -47,7 +47,7 @@
 
 .academy-list__sorting {
     justify-content: flex-end;
-    margin-bottom: $spacer-v / 2;
+    margin-bottom: $spacer-v * 0.5;
 }
 
 .academy-list__filter--md {
@@ -55,7 +55,7 @@
 }
 
 .academy-list__intro {
-    margin-bottom: $spacer-v / 2;
+    margin-bottom: $spacer-v * 0.5;
 }
 
 .academy-list__topic-img {
