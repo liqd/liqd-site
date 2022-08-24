@@ -38,7 +38,7 @@ $lead-font-weight: 400;
 $grid-gutter-width-base: 2.6rem;
 $grid-gutter-widths: (
     xs: $grid-gutter-width-base * 0.7,
-    sm: $grid-gutter-width-base / 2,
+    sm: $grid-gutter-width-base * 0.5,
     md: $grid-gutter-width-base,
     lg: $grid-gutter-width-base,
     xl: $grid-gutter-width-base
