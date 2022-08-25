@@ -28,9 +28,9 @@ class ChallengeStepBlock(StructBlock):
 
 
 class AcademySingleTeaserBlock(StructBlock):
-    category = CharBlock(required=False, length=32)
-    headline = CharBlock(required=True, length=74)
-    body_text = TextBlock(required=True, length=164)
+    category = CharBlock(required=False, max_length=32)
+    headline = CharBlock(required=True, max_length=74)
+    body_text = TextBlock(required=True, max_length=164)
     link = PageChooserBlock(
         required=False,
         help_text="Please only add either an internal or external link")
@@ -39,7 +39,7 @@ class AcademySingleTeaserBlock(StructBlock):
         label="External Link",
         help_text="The external link overwrites the link to a local page."
     )
-    link_text = CharBlock(required=True, length=24)
+    link_text = CharBlock(required=True, max_length=24)
     image = ImageChooserBlock(required=True)
 
     class Meta:
@@ -50,11 +50,11 @@ class AcademySingleTeaserBlock(StructBlock):
 
 # sub block for AcademyCallToActionBlock
 class CallToActionBlock(StructBlock):
-    headline = CharBlock(required=True, length=28)
+    headline = CharBlock(required=True, max_length=28)
     image = ImageChooserBlock(
         required=True,
         help_text="Please add image with transparent background")
-    body_text = TextBlock(required=True, length=120)
+    body_text = TextBlock(required=True, max_length=120)
     cta_link = StructBlock([
         ('internal_link', PageChooserBlock(required=False,
                                            help_text="The external link "

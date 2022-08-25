@@ -5,7 +5,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 
 class StandardParagraphBlock(StructBlock):
-    headline = CharBlock(required=False, length=256)
+    headline = CharBlock(required=False, max_length=256)
     text = RichTextBlock(required=True)
 
     class Meta:
@@ -16,7 +16,7 @@ class StandardParagraphBlock(StructBlock):
 
 
 class HTMLBlock(StructBlock):
-    headline = CharBlock(required=False, length=256)
+    headline = CharBlock(required=False, max_length=256)
     body = RawHTMLBlock()
 
     class Meta:
@@ -28,7 +28,7 @@ class HTMLBlock(StructBlock):
 
 
 class HighlightParagraphBlock(StructBlock):
-    headline = CharBlock(required=False, length=256)
+    headline = CharBlock(required=False, max_length=256)
     text = RichTextBlock(required=True)
     link = PageChooserBlock(required=False)
 
@@ -51,7 +51,7 @@ class QuoteParagraph(StructBlock):
         help_text='Please use an image with'
                   ' at least 800x400px or a similar aspect ratio.'
     )
-    author = CharBlock(required=False, length=256)
+    author = CharBlock(required=False, max_length=256)
 
     class Meta:
         template = 'blocks/block_quote_paragraph_image.html'
@@ -62,13 +62,13 @@ class QuoteParagraph(StructBlock):
 
 
 class TeaserBlock(StructBlock):
-    headline = CharBlock(required=False, length=256)
+    headline = CharBlock(required=False, max_length=256)
     text = RichTextBlock(required=True)
     url = URLBlock(required=False)
 
 
 class TeaserBlockList(StructBlock):
-    headline = CharBlock(required=False, length=256)
+    headline = CharBlock(required=False, max_length=256)
     teasers = ListBlock(TeaserBlock())
 
     class Meta:
@@ -76,10 +76,10 @@ class TeaserBlockList(StructBlock):
 
 
 class ColumnBlock(StructBlock):
-    col1_headline = CharBlock(required=False, length=256)
+    col1_headline = CharBlock(required=False, max_length=256)
     col1_text = RichTextBlock(required=True)
     col1_url = URLBlock(required=False)
-    col2_headline = CharBlock(required=False, length=256)
+    col2_headline = CharBlock(required=False, max_length=256)
     col2_text = RichTextBlock(required=True)
     col2_url = URLBlock(required=False)
 
@@ -106,14 +106,14 @@ class ImageSliderBlock(ListBlock):
 
 class LinkwithTitleBlock(StructBlock):
     internal_link = PageChooserBlock()
-    link_text = CharBlock(length=256)
+    link_text = CharBlock(max_length=256)
 
 
 class ImagewithLinkandTitleBlock(StructBlock):
     image = ImageChooserBlock(required=True, label='Image')
     internal_link = PageChooserBlock(required=False)
-    external_url = URLBlock(required=False, length=256)
-    link_text = CharBlock(length=256)
+    external_url = URLBlock(required=False, max_length=256)
+    link_text = CharBlock(max_length=256)
 
 
 class ThreeImageWithLinkBlock(StructBlock):
@@ -128,7 +128,7 @@ class ThreeImageWithLinkBlock(StructBlock):
 
 
 class LinkboxBlock(StructBlock):
-    headline = CharBlock(required=False, length=256)
+    headline = CharBlock(required=False, max_length=256)
     text = RichTextBlock(required=False)
     links = ListBlock(
         LinkwithTitleBlock(),
@@ -148,7 +148,7 @@ class ProjectBlock(StructBlock):
 
 
 class TeaseredProjectsBlock(StructBlock):
-    headline = CharBlock(required=False, length=256)
+    headline = CharBlock(required=False, max_length=256)
     projects = ListBlock(ProjectBlock)
 
     class Meta:
