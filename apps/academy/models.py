@@ -77,7 +77,7 @@ class AcademyPage(AbstractBlogPage):
         verbose_name = 'Academy Page'
 
     teaser_en = StreamField(STREAMFIELD_EXTRA_BLOCKS,
-                            null=True,
+                            null=True, blank=True,
                             verbose_name="Body",
                             use_json_field=True)
     teaser_de = StreamField(STREAMFIELD_EXTRA_BLOCKS,
@@ -280,21 +280,21 @@ class AcademyChallengePage(Page):
 
     body_en = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
                           null=True, verbose_name="Challenge step",
-                          use_json_field=True)
+                          use_json_field=True, min_num=2, max_num=5)
     body_de = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
                           null=True, blank=True, verbose_name="Challenge step",
-                          use_json_field=True)
+                          use_json_field=True, max_num=5)
     body = TranslatedField(
         'body_de',
         'body_en'
     )
 
     teaser_en = StreamField(STREAMFIELD_EXTRA_BLOCKS,
-                            null=True,
-                            verbose_name="Body",
+                            null=True, blank=True,
+                            verbose_name="Teaser",
                             use_json_field=True)
     teaser_de = StreamField(STREAMFIELD_EXTRA_BLOCKS,
-                            null=True, blank=True, verbose_name="Body",
+                            null=True, blank=True, verbose_name="Teaser",
                             use_json_field=True)
     teaser = TranslatedField(
         'teaser_de',
@@ -367,7 +367,8 @@ class AcademyIndexPage(Page):
     )
 
     body_en = StreamField(STREAMFIELD_EXTRA_BLOCKS,
-                          null=True, verbose_name="Body", use_json_field=True)
+                          null=True, blank=True, verbose_name="Body",
+                          use_json_field=True)
     body_de = StreamField(STREAMFIELD_EXTRA_BLOCKS,
                           null=True, blank=True, verbose_name="Body",
                           use_json_field=True)

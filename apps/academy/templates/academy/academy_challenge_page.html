@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container position-relative">
     <div class="row block">
         <div class="col-lg-9">
             <h1>
@@ -26,9 +26,23 @@
               {{ page.translated_completion_time }}
             </div>
         </div>
+        <div class="col-lg-3 progress-circle__container">
+            {% with number_of_steps=page.body|length %}
+            <div class="progress-circle" data-progress="0" data-steps="0/{{ number_of_steps }}" style="--progress: 0deg;">
+              0/{{ number_of_steps }}<span class="visually-hidden">{% trans 'steps of challenge completed' %}</span>
+            </div>
+            {% endwith %}
+            <img class="progress-circle__arrow" src="{% static 'images/arrow_back.svg' %}" alt="{% trans 'Scroll to next step' %}"/>
+        </div>
     </div>
 
-    <div>{{ page.body }}</div>
+    <div>
+      {% for block in page.body %}
+          {# the block's template can now refer to the variable 'index' and page.body counts the blocks #}
+          {% include_block block with index=forloop.counter number_of_steps=page.body|length %}
+      {% endfor %}
+    </div>
+    <div class="progress-circle__line"></div>
 
 </div>
 
