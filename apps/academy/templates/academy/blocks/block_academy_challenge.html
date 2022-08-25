@@ -1,17 +1,28 @@
 {% load static wagtailcore_tags wagtailimages_tags i18n %}
 
-<div class="row block">
-    <div class="col-lg-9">
-        <h2>{{ value.challenge_step_title }}</h2>
-
-        {% if value.challenge_step_text %}
-            <div>{{ value.challenge_step_text }}</div>
-        {% endif %}
+<div class="block">
     <div class="row">
-    {% for link in value.links %}
-            {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_academy_links %}
-            {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_external_links %}
-    {% endfor %}
+        <div class="col-lg-9">
+            <h2>{{ value.challenge_step_title }}</h2>
+
+            {% if value.challenge_step_text %}
+            <div>{{ value.challenge_step_text }}</div>
+            {% endif %}
+        </div>
     </div>
-  </div>
+    <div class="row">
+        {% for link in value.links %}
+        {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_academy_links %}
+        {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_external_links %}
+        {% endfor %}
+        <div class="col-lg-3 progress-circle__container">
+          {% widthratio index number_of_steps 360 as width %}
+            <div class="progress-circle" data-progress="{{ width }}" data-steps="{{ index }}/{{ number_of_steps }}" style="--progress: {{ width }}deg;">
+              {{ index }}/{{ number_of_steps }}<span class="visually-hidden">{% trans 'steps of challenge completed' %}</span>
+            </div>
+            {% if index != number_of_steps %}
+            <img class="progress-circle__arrow" src="{% static 'images/arrow_back.svg' %}" alt="{% trans 'Scroll to next step' %}"/>
+            {% endif %}
+        </div>
+    </div>
 </div>
