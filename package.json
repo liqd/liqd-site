@@ -8,7 +8,9 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.1",
     "eslint-plugin-standard": "4.1.0",
+    "husky": "8.0.1",
     "lighthouse": "9.6.6",
+    "lint-staged": "13.0.3",
     "stylelint": "14.11.0",
     "webpack-cli": "4.10.0"
   },
@@ -43,11 +45,24 @@
     "lighthouse": "node lighthouse.mjs",
     "lighthouse-local": "node lighthouse.mjs local",
     "lint": "eslint apps/core -c package.json && stylelint 'apps/core/**/*.scss'",
+    "lint-staged": "lint-staged",
     "lint-fix": "eslint --fix apps/core -c package.json",
+    "postinstall": "husky install",
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
     "precommit": "make lint"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint"
+    ],
+    "*.py": [
+      "make lint-python-files"
+    ]
   },
   "eslintConfig": {
     "extends": [
