@@ -16,16 +16,37 @@
             <span class="header__toggle-close">{% trans 'Close' %}</span>
         </button>
         <div class="header__menu navbar-collapse collapse" id="navbar-main">
+
             <ul class="navbar-nav header__menu-list">
 
                 {% for menuitem in main_menu_items %}
+                {% if menuitem.subpages %}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle header__link{% if request.path == menuitem.url %} active{% endif %}" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ menuitem.translated_menu_title }}</a>
+                        <!--<div class="header__submenu navbar-collapse collapse" id="navbar-sub" aria-labelledby="navbarDropdown">-->
+                        <ul class="navbar-nav header__menu-list dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for subpage in menuitem.subpages %}
+                            <!--<a class="dropdown-item" href="{{ subpage.value.link.url }}">{{ subpage.value.translated_link_text }}</a>-->
+                            <li class="nav-item">
+                                <a class="dropdown-item nav-link header__link{% if request.path == subpage.value.link.url %} active{% endif %}" href="{{ subpage.value.link.url }}">
+                                {{ subpage.value.translated_link_text }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!--</div>-->
+                    </li>
+                {% else %}
+
                     <li class="nav-item">
                         <a class="nav-link header__link{% if request.path == menuitem.url %} active{% endif %}" href="{{ menuitem.url }}">
                             {{ menuitem.translated_menu_title }}
                         </a>
                     </li>
+                {% endif %}
                 {% endfor %}
             </ul>
+
             <div class="lang-switch hidden-xs-down" id="lang-switch">
                 <button class="lang-switch__active">
                     {{ LANGUAGE_CODE }}
