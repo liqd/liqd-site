@@ -1,18 +1,42 @@
 from django.db import models
+from django.utils import translation
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from wagtail.admin import edit_handlers
 from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.core.blocks import CharBlock, PageChooserBlock, StructBlock, StructValue
+from wagtail.core.fields import StreamField
 from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
 
 from contrib.translations.translations import TranslatedField
 
 
+class TranslatedStructValue(StructValue):
+
+    def translated_link_text(self):
+        if translation.get_language() == 'en' and self.get('link_text_en'):
+            return self.get('link_text_en')
+        else:
+            return self.get('link_text_de')
+
+
+class TranslatedLinkBlock(StructBlock):
+    link = PageChooserBlock()
+    link_text_de = CharBlock(max_length=255)
+    link_text_en = CharBlock(max_length=255, blank=True)
+
+    class Meta:
+        value_class = TranslatedStructValue
+
+
 class LinkFields(models.Model):
     link_page = models.ForeignKey(
         'wagtailcore.Page',
         related_name='+',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
     )
 
     @property
@@ -38,6 +62,18 @@ class MenuItem(LinkFields):
         'menu_title_en',
     )
 
+    subpages = StreamField(
+        [
+            ('submenuitem', TranslatedLinkBlock())
+        ],
+        blank=True,
+        null=True,
+        help_text=(
+            'These links will be displayed in a second level navigation.'
+        ),
+        verbose_name='Submenu'
+    )
+
     @property
     def url(self):
         return self.link
@@ -49,6 +85,7 @@ class MenuItem(LinkFields):
         FieldPanel('menu_title_de'),
         FieldPanel('menu_title_en'),
     ] + LinkFields.panels
+    panels.append(edit_handlers.StreamFieldPanel('subpages'))
 
 
 @register_snippet
