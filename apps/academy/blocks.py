@@ -37,7 +37,8 @@ class AcademySingleTeaserBlock(StructBlock):
     body_text = TextBlock(required=True, max_length=164)
     link = PageChooserBlock(
         required=False,
-        help_text="Please only add either an internal or external link")
+        help_text="Please only add either an internal or external link"
+    )
     external_link = URLBlock(
         required=False,
         label="External Link",
@@ -120,3 +121,26 @@ class TopicBlockList(StructBlock):
 @register.filter
 def get_category_name(dict, key):
     return dict.get(key)
+
+
+class AcademyTeaserColumnBlock(StructBlock):
+    link = PageChooserBlock(
+        required=True,
+        target_model=['academy.AcademyPage',
+                      'academy.AcademyExternalLink',
+                      'academy.AcademyChallengePage']
+    )
+
+
+class AcademyTeaserColumnsListBlock(StructBlock):
+    headline = CharBlock(required=True, max_length=74)
+    teasers = ListBlock(
+        AcademyTeaserColumnBlock(),
+        min_num=2,
+        max_num=3,
+    )
+
+    class Meta:
+        template = 'academy/blocks/teaser_columns_block.html'
+        icon = 'list-ul'
+        label = 'Teaser columns block'
