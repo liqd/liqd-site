@@ -1,9 +1,9 @@
 {% load static wagtailimages_tags i18n %}
 
-<section class="row block" aria-label="three topic teasers">
+<section class="row" aria-label="three topic teasers">
     <h2 class="academy-block__title">{{value.title}}</h2>
     {% for topic in value.topics %}
-        <article class="col-md-4 col-sm-12 container">
+        <article class="col-md-4 col-sm-12">
             <figure class="mb-4">
                 {% with 'images/'|add:topic.topic_category|add:'-topic.svg' as topic_svg %}
                 <img

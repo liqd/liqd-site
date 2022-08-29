@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
-<section class="">
-    {% image value.image width-1000 jpegquality-100 as block_image %}
-    <figure class="image-with-caption">
+<section class="row">
+    {% image value.image width-600 jpegquality-100 as block_image %}
+    <figure class="image-with-caption col-md-5 col-sm-12">
         <img class="photo" src="{{ block_image.url }}" alt="{{ block_image.alt }}">
         {% if block_image.caption or block_image.copyright %}
             <figcaption class="image-with-caption__figcaption">
@@ -19,12 +19,11 @@
             </figcaption>
         {% endif %}
     </figure>
-    <div>
-        <div>{{ value.category }}</div>
-        <h2>{{ value.headline }}</h2>
-        <p>{{ value.body_text }}</p>
-    </div>
-    <div>
+    <div class="offset-md-1 col-md-6 col-sm-12">
+        <div class="mb-2 academy-block__topic">{{ value.category }}</div>
+        <h2 class="mb-2">{{ value.headline }}</h2>
+        <p class="mb-5">{{ value.body_text }}</p>
+
         {% if value.externlink %}
             <a href="{{ value.externlink }}" target="_blank">{{ value.link_text }}</a>
         {% elif value.link.live %}

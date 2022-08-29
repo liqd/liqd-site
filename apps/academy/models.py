@@ -16,8 +16,9 @@ from wagtail.models import Page
 from wcag_contrast_ratio import contrast
 
 from apps.academy.blocks import (AcademyCallToActionBlock,
-                                 AcademySingleTeaserBlock, ChallengeStepBlock,
-                                 TopicBlockList)
+                                 AcademySingleTeaserBlock,
+                                 AcademyTeaserColumnsListBlock,
+                                 ChallengeStepBlock, TopicBlockList)
 from apps.academy.choices import TOPIC_CHOICES
 from apps.blog.models import AbstractBlogPage
 from contrib.translations.translations import TranslatedField
@@ -43,7 +44,8 @@ STREAMFIELD_CHALLENGE_BLOCKS = [
 STREAMFIELD_LP_BLOCKS = [
     ('single_teaser', AcademySingleTeaserBlock()),
     ('call_to_action_teaser', AcademyCallToActionBlock()),
-    ('topic_block_list', TopicBlockList())
+    ('topic_block_list', TopicBlockList()),
+    ('teaser_columns', AcademyTeaserColumnsListBlock())
 ]
 
 STREAMFIELD_EXTRA_BLOCKS = [
@@ -489,7 +491,8 @@ class AcademyIndexPage(Page):
 
 
 class AcademyLandingPage(Page):
-    subpage_types = ['academy.AcademyIndexPage', 'AcademyChallengePage']
+    subpage_types = ['academy.AcademyIndexPage',
+                     'academy.AcademyChallengePage']
 
     intro_text_en = models.CharField(
         max_length=255,
