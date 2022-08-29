@@ -6,8 +6,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   entry: {
     vendor: [
-      'bootstrap/js/src/util',
-      'bootstrap/js/src/collapse',
+      'bootstrap/js/dist/util',
+      'bootstrap/js/dist/collapse',
+      'bootstrap/js/dist/dropdown',
       'jquery/dist/jquery.min.js'
     ],
     all: [

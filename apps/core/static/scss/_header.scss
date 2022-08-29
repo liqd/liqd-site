@@ -42,7 +42,6 @@
 }
 
 .header__link {
-    border-bottom: none;
     font-size: $font-size-h1;
     text-align: center;
     padding: 0.25em 0.5em;
@@ -52,7 +51,19 @@
         text-align: left;
         font-size: inherit;
         padding: 0.5em 1em 0;
+
+        &:not(.active) {
+            border: none;
+        }
     }
+}
+
+.header__link--collapsable {
+  @include media-breakpoint-up(md) {
+      &:not(.collapsed) {
+          border: none;
+      }
+  }
 }
 
 a.header__brand {
@@ -157,6 +168,15 @@ a.header__brand {
             background: linear-gradient(rgba($body-bg, 1) 0%, rgba($body-bg, 0.5) 60%, rgba($body-bg, 0) 100%);
         }
     }
+}
+
+.header__submenu-list {
+    list-style: none;
+    position: fixed;
+
+       li {
+          display: inline-block;
+     }
 }
 
 .project-page .header__menu-list:after {
