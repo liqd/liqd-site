@@ -1,6 +1,6 @@
 {% load static i18n %}
 <!DOCTYPE html>
-<html class="no-js">
+<html>
     <head>
         <meta charset="utf-8" />
         <title>Internal server error</title>
@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{% static 'all.css' %}">
     </head>
     <body>
-        <div class=error>
+        <div class=container-fluid>
             <div class="row">
                 <div class="col-md-5 col-xs-4">
                     <img class="image-left img-responsive" src="{% static 'images/kabel01.png' %}">
@@ -22,10 +22,11 @@
                     <img class="image-left pull-right img-responsive" src="{% static 'images/kabel02.png' %}">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 col-xs-8 col-md-offset-4 col-xs-offset-2 text-center">
-                    <h2>{% trans 'Oh no, something went wrong!' %}</h2>
-                    <p>{% trans 'Internal Server Error. Please try again soon.' %}</p>
+            <div class="row justify-content-center">
+                <div class="col-md-4 col-xs-8 text-center">
+                        <h2>{% trans 'Oh no, something went wrong!' %}</h2>
+                        <p>{% trans 'Internal Server Error. Please try again soon.' %}</p>
+                    </div>
                 </div>
             </div>
         </div>
