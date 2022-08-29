@@ -544,8 +544,8 @@ class AcademyLandingPage(Page):
         help_text='Choose the page the intro text links to'
     )
 
-    color1 = models.CharField(max_length=7, default='#d9b058')
-    color2 = models.CharField(max_length=7, default='#a37146')
+    color1 = models.CharField(max_length=7, default='#eee8aa')
+    color2 = models.CharField(max_length=7, default='#e1bcbd')
 
     en_content_panels = [
         FieldPanel('intro_text_en'),
