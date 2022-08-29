@@ -19,7 +19,7 @@
                     {% if column.cta_link.internal_link %}
                     <a href="{{ column.cta_link.internal_link.url }}" target="_blank">{{ column.link_text }}</a>
                     {% elif column.cta_link.external_link %}
-                    <a href="{{ column.cta_link.external_link.url }}">{{ column.link_text }}</a>
+                    <a href="{{ column.cta_link.external_link }}">{{ column.link_text }}</a>
                     {% endif %}
                 </div>
             </article>
