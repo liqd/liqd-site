@@ -4,7 +4,8 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin import edit_handlers
 from wagtail.admin.panels import FieldPanel, InlinePanel
-from wagtail.core.blocks import CharBlock, PageChooserBlock, StructBlock, StructValue
+from wagtail.core.blocks import (CharBlock, PageChooserBlock, StructBlock,
+                                 StructValue)
 from wagtail.core.fields import StreamField
 from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
