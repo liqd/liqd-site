@@ -6,37 +6,41 @@
     top: 0;
     z-index: 3;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
         max-width: 1920px;
         position: fixed;
-    }
 
-    a,
-    button {
-        color: inherit;
+        // for header colour on coloured heros
+        a,
+        button,
+        .nav-link {
+            color: inherit;
 
-        transition: color $transition-duration;
-    }
+            transition: color $transition-duration;
+        }
 
-    @include media-breakpoint-up(sm) {
+        .nav-link:focus,
+        .nav-link:hover,
+        .nav-link.active {
+            color: inherit;
+            border-color: inherit;
+        }
+
+        // for header colour after scrolling past coloured heros
+        /* stylelint-disable max-nesting-depth -- complexity of alternate solution makes this acceptable. */
+        &.header--past-intro {
+            a,
+            button,
+            .nav-link {
+                color: $body-color;
+            }
+        }
+
         a:focus,
         a:hover,
         button:focus,
         button:hover {
-            color: inherit;
             border-bottom: 1px solid $body-color;
-        }
-    }
-}
-
-.header--past-intro {
-    a,
-    button {
-        color: $body-color;
-
-        &:focus,
-        &:hover {
-            color: $body-color;
         }
     }
 }
@@ -48,8 +52,8 @@ a.header__brand {
 
     @include media-breakpoint-up(md) {
         position: absolute;
-        top: 1.35em;
-        left: 1.7em;
+        top: 1.25rem;
+        left: 1.5rem;
         z-index: 1;
     }
 
@@ -76,7 +80,7 @@ a.header__brand {
 .header__brand-canvas {
     display: none;
 
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(md) {
         display: inline-block;
         position: absolute;
         left: 0;
@@ -99,6 +103,7 @@ a.header__brand {
         left: 0;
         z-index: 2;
 
+        // mobile faded background
         &:after {
             content: "";
             display: block;
@@ -120,6 +125,7 @@ a.header__brand {
     opacity: 0;
 }
 
+// navbar
 .header__menu-list {
     height: 85vh;
     justify-content: center;
@@ -127,14 +133,13 @@ a.header__brand {
     transition: opacity $transition-duration;
 
     @include media-breakpoint-up(md) {
-        position: relative;
         height: auto;
-        color: $body-color;
 
+        // white gradient background
         &:after {
             content: "";
             display: block;
-            height: 6em;
+            height: 12rem;
 
             position: absolute;
             left: 0;
@@ -146,10 +151,19 @@ a.header__brand {
     }
 }
 
+// header link styling mobile and desktop
 .header__link {
+    color: $body-color;
     font-size: $font-size-h1;
     text-align: center;
     padding: 0.25em 0.5em;
+    border: none;
+
+    &.active {
+        text-decoration: underline;
+        text-underline-position: under;
+        text-decoration-thickness: 1px;
+    }
 
     @include media-breakpoint-up(md) {
         display: inline-block;
@@ -157,18 +171,20 @@ a.header__brand {
         font-size: inherit;
         padding: 0.5em 1em 0;
 
-        &:not(.active) {
-            border: none;
+        &.active {
+            text-decoration: none;
+            border-bottom: 1px solid $body-color;
         }
     }
 }
 
+// submenu styling
 .header__submenu-list {
     list-style: none;
     padding-left: 0;
 
     .header__link {
-        font-size: $font-size-base;
+        font-size: $font-size-h3;
     }
 
     @include media-breakpoint-up(md) {
@@ -178,14 +194,19 @@ a.header__brand {
         left: -11rem;
         right: -11rem;
 
+        .header__link {
+            font-size: $font-size-base;
+        }
+
         li {
             display: inline-block;
         }
     }
 }
 
-.project-page .header__menu-list:after,
-.hero-bg .header__menu-list:after {
+// ensuring coloured hero pages only show header gradient on scroll
+.project-page .header:not(.header--past-intro) .header__menu-list:after,
+.hero-bg .header:not(.header--past-intro) .header__menu-list:after {
     content: none;
 }
 
@@ -193,7 +214,7 @@ a.header__brand {
     opacity: 0;
 }
 
-// Mobile
+// mobile toggle
 button.header__bar__toggle {
     position: fixed;
     right: $spacer - $navbar-toggler-padding-x;
@@ -202,7 +223,7 @@ button.header__bar__toggle {
     z-index: 3;
     font-family: $font-family-monospace;
     font-size: $font-size-xs;
-    border-bottom: none;
+    border: none;
 
     @include media-breakpoint-up(md) {
         position: static;

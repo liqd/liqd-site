@@ -9,7 +9,7 @@ all: help
 help:
 	@echo Liquid Website development tools
 	@echo
-	@echo It will either use am exisiting virtualenv if it was entered
+	@echo It will either use an exisiting virtualenv if it was entered
 	@echo before or create a new one in the same directory.
 	@echo
 	@echo usage:
