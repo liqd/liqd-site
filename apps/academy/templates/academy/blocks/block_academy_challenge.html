@@ -11,10 +11,14 @@
         </div>
     </div>
     <div class="row">
-        {% for link in value.links %}
-        {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_academy_links %}
-        {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_external_links %}
-        {% endfor %}
+        <div class="col-lg-9">
+            <div class="row">
+            {% for link in value.links %}
+            {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_academy_links %}
+            {% include "academy/includes/academy_challenge_list_item.html" with link=link.challenge_step_external_links %}
+            {% endfor %}
+            </div>
+        </div>
         <div class="col-lg-3 progress-circle__container">
           {% widthratio index number_of_steps 360 as width %}
             <div class="progress-circle" data-progress="{{ width }}" data-steps="{{ index }}/{{ number_of_steps }}" style="--progress: {{ width }}deg;">
