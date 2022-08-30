@@ -1,7 +1,7 @@
 {% load static wagtailcore_tags wagtailimages_tags i18n %}
 
 {% if link.url %}
-    <div class="col-12 col-sm-6 col-lg-3 academy-list__item">
+    <div class="col-12 col-sm-6 col-lg-4 academy-list__item">
         <a href="{% if link.external_link %}{{ link.external_link }} {% else %} {{ link.url }}{% endif %}">
           {% if link.get_academy_content_type_display %}
           <div class="academy__sans-serif text--upper mb-3">
