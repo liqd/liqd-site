@@ -58,6 +58,12 @@
     width: auto;
 }
 
+.academy-list__item {
+    img {
+        width: 100%;
+    }
+}
+
 // desktop size
 @include media-breakpoint-up(md) {
     .academy-list__filter--sm {

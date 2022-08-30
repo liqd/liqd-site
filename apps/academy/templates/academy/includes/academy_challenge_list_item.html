@@ -20,7 +20,7 @@
           {% endif %}
 
             {% if link.tile_image %}
-            {% image link.tile_image fill-500x350 as image %}
+            {% image link.tile_image fill-500x350-c50 as image %}
             <img class="mb-3" src="{{ image.url }}" alt="{{ image.alt }}" />
             {% else %}
             <img class="mb-3" src="{% static 'images/tile-backup.png' %}" alt="default background image"/>
