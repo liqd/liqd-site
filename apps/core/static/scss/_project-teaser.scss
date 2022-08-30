@@ -25,6 +25,10 @@
     &:hover .project-teaser__container {
         opacity: 1;
     }
+
+    @include media-breakpoint-up(xl) {
+        min-width: 970px;
+    }
 }
 
 // replace image on md screens us as on small screen content overflowed image
@@ -39,6 +43,7 @@
 
     @include media-breakpoint-up(sm) {
         display: block;
+        width: 100%;
     }
 }
 
