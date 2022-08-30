@@ -47,7 +47,7 @@
             {% for topic_key,topic_string in page.topics.items %}
             {% if topic == topic_key %}
             {% with 'images/'|add:topic_key|add:'-topic.svg' as topic_svg %}
-            <img class="mb-5" src="{% static topic_svg %}" alt="{{ topic }}" width="70" />
+            <img class="academy-list__topic-img mb-5" src="{% static topic_svg %}" alt="{{ topic }}" width="70" />
             {% endwith %}
             {% endif %}
             {% endfor %}
