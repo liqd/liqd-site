@@ -17,7 +17,7 @@ class ChallengeStepBlock(StructBlock):
                 required=False,
                 help_text='Add link to a challenge page either internal '
                 'or external'
-                )),
+            )),
             ("challenge_step_external_links", PageChooserBlock(
                 target_model='academy.AcademyExternalLink',
                 required=False, ))
