@@ -72,7 +72,8 @@ class MenuItem(LinkFields):
         help_text=(
             'These links will be displayed in a second level navigation.'
         ),
-        verbose_name='Submenu'
+        verbose_name='Submenu',
+        max_num=5
     )
 
     @property

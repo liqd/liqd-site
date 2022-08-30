@@ -20,38 +20,36 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-            <span class="header__toggle-open">{% trans 'Menu' %}</span>
-            <span class="header__toggle-close">{% trans 'Close' %}</span>
+            <span class="header__toggle-open">
+              <img src="{% static 'images/icon_menu.svg' %}" alt="{% trans 'Menu' %}"/>
+            </span>
+            <span class="header__toggle-close">
+              <img src="{% static 'images/icon_close.svg' %}" alt="{% trans 'Close' %}"/>
+            </span>
         </button>
         <div class="header__menu navbar-collapse collapse" id="navbar-main">
 
             <ul class="navbar-nav header__menu-list">
 
                 {% for menuitem in main_menu_items %}
+                <li class="nav-item">
+                    <a class="nav-link header__link{% if request.path == menuitem.url %} active{% endif %}" href="{{ menuitem.url }}">
+                        {{ menuitem.translated_menu_title }}
+                    </a>
                     {% if menuitem.subpages %}
+                    {% if menuitem.url in request.path %}
+                    <ul class="header__submenu-list">
+                        {% for subpage in menuitem.subpages %}
                         <li class="nav-item">
-                            <a class="nav-link header__link{% if request.path == menuitem.url %} active{% endif %}" href="{{ menuitem.url }}">
-                                {{ menuitem.translated_menu_title }}
-                            </a>
-                            {% if menuitem.url in request.path %}
-                            <ul class="header__submenu-list">
-                                {% for subpage in menuitem.subpages %}
-                                <li class="nav-item">
-                                    <a class="nav-link header__link {% if request.path == subpage.value.link.url %} active{% endif %}" href="{{ subpage.value.link.url }}">
-                                    {{ subpage.value.translated_link_text }}
-                                    </a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link header__link{% if request.path == menuitem.url %} active{% endif %}" href="{{ menuitem.url }}">
-                                {{ menuitem.translated_menu_title }}
+                            <a class="nav-link header__link {% if request.path == subpage.value.link.url %} active{% endif %}" href="{{ subpage.value.link.url }}">
+                            {{ subpage.value.translated_link_text }}
                             </a>
                         </li>
+                        {% endfor %}
+                    </ul>
                     {% endif %}
+                    {% endif %}
+                </li>
                 {% endfor %}
             </ul>
 

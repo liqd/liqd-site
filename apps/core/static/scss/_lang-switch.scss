@@ -1,7 +1,12 @@
 .lang-switch {
     position: absolute;
-    right: 1.7em;
-    top: 1.25em;
+    top: 4.5rem;
+    right: 1rem;
+
+    @include media-breakpoint-up(md) {
+        top: 1.25rem;
+        right: 1.5rem;
+    }
 }
 
 .lang-switch__active {
