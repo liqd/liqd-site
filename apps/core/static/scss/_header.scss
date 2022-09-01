@@ -139,14 +139,15 @@ a.header__brand {
         &:after {
             content: "";
             display: block;
-            height: 12rem;
+            height: 8rem;
 
             position: absolute;
             left: 0;
             right: 0;
             top: 0;
             z-index: -1;
-            background: linear-gradient(rgba($body-bg, 1) 0%, rgba($body-bg, 0.5) 60%, rgba($body-bg, 0) 100%);
+            /* stylelint-disable-next-line max-line-length */
+            background: linear-gradient(rgba($body-bg, 1) 0%, rgba($body-bg, 0.5) 60%, rgba($body-bg, 0.35) 85%, rgba($body-bg, 0) 100%);
         }
     }
 }
