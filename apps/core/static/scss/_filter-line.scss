@@ -38,6 +38,7 @@ span.filter-line__prefix {
     position: relative;
 
     font-size: $font-size-h1;
+    color: $body-color;
     border-bottom: 1px solid $body-color;
 
     @include media-breakpoint-up(md) {
