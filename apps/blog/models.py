@@ -182,7 +182,7 @@ class BlogIndexPage(TranslatedStreamFieldPage):
         context = self.get_context(request)
         blogs = context['blogs']
 
-        if request.is_ajax():
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             html = render_to_string(
                 'blog/ajax/blog_list.html',
                 {'request': request, 'blogs': blogs.object_list})

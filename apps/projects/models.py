@@ -256,7 +256,7 @@ class ProjectIndexPage(TranslatedStreamFieldPage):
         if 'category' in context:
             category = context['category']
 
-        if request.is_ajax():
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             html = render_to_string(
                 'projects/project_list.html',
                 {'request': request, 'projects': projects.object_list})
