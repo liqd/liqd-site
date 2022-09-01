@@ -1,10 +1,10 @@
 from django.db import models
 from wagtail.admin.panels import FieldPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
 
 @register_setting
-class SocialMediaSettings(BaseSetting):
+class SocialMediaSettings(BaseSiteSetting):
     facebook = models.URLField(
         help_text='Your Facebook page URL', blank=True)
     twitter = models.CharField(
@@ -17,7 +17,7 @@ class SocialMediaSettings(BaseSetting):
 
 
 @register_setting
-class AddressSettings(BaseSetting):
+class AddressSettings(BaseSiteSetting):
     organisation_name = models.CharField(
         max_length=255, help_text='The name of your organisation')
     organisation_street = models.CharField(
