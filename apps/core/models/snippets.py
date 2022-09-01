@@ -67,6 +67,7 @@ class MenuItem(LinkFields):
         [
             ('submenuitem', TranslatedLinkBlock())
         ],
+        use_json_field=True,
         blank=True,
         null=True,
         help_text=(
@@ -87,7 +88,7 @@ class MenuItem(LinkFields):
         FieldPanel('menu_title_de'),
         FieldPanel('menu_title_en'),
     ] + LinkFields.panels
-    panels.append(edit_handlers.StreamFieldPanel('subpages'))
+    panels.append(edit_handlers.FieldPanel('subpages'))
 
 
 @register_snippet
