@@ -23,18 +23,18 @@ from apps.academy.choices import TOPIC_CHOICES
 from apps.blog.models import AbstractBlogPage
 from contrib.translations.translations import TranslatedField
 
-VIDEO = 'VD'
 WORKSHOP = 'WS'
-LINKLIST = 'LL'
 ARTICLE = 'AR'
+VIDEO = 'VD'
 EVENT = 'EV'
+LINKLIST = 'LL'
 
 CONTENT_TYPE_CHOICES = [
-    (VIDEO, _('video')),
     (WORKSHOP, _('workshop')),
-    (LINKLIST, _('link collection')),
     (ARTICLE, _('article')),
+    (VIDEO, _('video')),
     (EVENT, _('event')),
+    (LINKLIST, _('link collection')),
 ]
 
 STREAMFIELD_CHALLENGE_BLOCKS = [
