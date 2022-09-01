@@ -1,4 +1,11 @@
+.image-with-caption {
+    display: table;
+}
+
 .image-with-caption__figcaption {
+    display: table-caption; // stops caption oveflowing floated img
+    caption-side: bottom;
+
     font-family: $font-family-monospace;
     font-size: $font-size-xs !important;
 
@@ -7,6 +14,7 @@
     text-transform: none;
 
     @include media-breakpoint-down(sm) {
+        padding: 0.5rem 0 0.5rem 0.5rem;
         font-size: 0.7rem;
         line-height: 1.5;
     }
