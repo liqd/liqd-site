@@ -41,7 +41,7 @@ class ProjectPage(Page):
 
     # translateable fields
     title_en = models.CharField(
-        max_length=255, verbose_name="Title")
+        max_length=255, blank=True, verbose_name="Title")
     title_de = models.CharField(
         max_length=255, blank=True, verbose_name="Title")
 
@@ -60,7 +60,7 @@ class ProjectPage(Page):
         null=True, blank=True, verbose_name="Body", use_json_field=True)
     body_en = StreamField(
         STREAMFIELD_PROJECT_BLOCKS,
-        null=True, verbose_name="Body", use_json_field=True)
+        null=True, blank=True, verbose_name="Body", use_json_field=True)
 
     timescale_en = models.CharField(max_length=256, blank=True)
     timescale_de = models.CharField(max_length=256, blank=True)

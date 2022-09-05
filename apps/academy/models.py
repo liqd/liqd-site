@@ -165,15 +165,15 @@ class AcademyPage(AbstractBlogPage):
 class AcademyExternalLink(Page):
     # Translatable Fields
     title_en = models.CharField(
-        max_length=255, verbose_name="Title en")
+        max_length=255, blank=True, verbose_name="Title en")
     title_de = models.CharField(
-        max_length=255, blank=True, verbose_name="Title dt")
+        max_length=255, blank=True, verbose_name="Title de")
     translated_title = TranslatedField(
         'title_de',
         'title_en',
     )
 
-    intro_en = RichTextField(verbose_name="Teasertext")
+    intro_en = RichTextField(blank=True, verbose_name="Teasertext")
     intro_de = RichTextField(blank=True, verbose_name="Teasertext")
     translated_intro = TranslatedField(
         'intro_de',
@@ -247,7 +247,8 @@ class AcademyChallengePage(Page):
         help_text='The image used for the tile teaser'
     )
 
-    title_en = models.CharField(max_length=255, verbose_name="Title")
+    title_en = models.CharField(
+        max_length=255, blank=True, verbose_name="Title")
     title_de = models.CharField(
         max_length=255, blank=True, verbose_name="Title")
     translated_title = TranslatedField(
@@ -256,7 +257,7 @@ class AcademyChallengePage(Page):
     )
 
     subtitle_en = models.CharField(
-        blank=True, max_length=255, verbose_name="Subtitle")
+        max_length=500, blank=True, verbose_name="Subtitle")
     subtitle_de = models.CharField(
         max_length=500, blank=True, verbose_name="Subtitle")
     translated_subtitle = TranslatedField(
@@ -265,7 +266,7 @@ class AcademyChallengePage(Page):
     )
 
     completion_time_en = models.CharField(
-        blank=True, max_length=255, verbose_name="Time to complete")
+        max_length=500, blank=True, verbose_name="Time to complete")
     completion_time_de = models.CharField(
         max_length=500, blank=True, verbose_name="Time to complete")
     translated_completion_time = TranslatedField(
@@ -273,7 +274,7 @@ class AcademyChallengePage(Page):
         'completion_time_en',
     )
 
-    intro_en = RichTextField(verbose_name="Teaser text")
+    intro_en = RichTextField(blank=True, verbose_name="Teaser text")
     intro_de = RichTextField(blank=True, verbose_name="Teaser text")
     translated_intro = TranslatedField(
         'intro_de',
@@ -281,7 +282,7 @@ class AcademyChallengePage(Page):
     )
 
     body_en = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
-                          null=True, verbose_name="Challenge step",
+                          null=True, blank=True, verbose_name="Challenge step",
                           use_json_field=True, min_num=2, max_num=5)
     body_de = StreamField(STREAMFIELD_CHALLENGE_BLOCKS,
                           null=True, blank=True, verbose_name="Challenge step",
@@ -353,7 +354,8 @@ class AcademyChallengePage(Page):
 class AcademyIndexPage(Page):
     subpage_types = ['academy.AcademyPage', 'academy.AcademyExternalLink']
 
-    title_en = models.CharField(max_length=255, verbose_name="Title")
+    title_en = models.CharField(
+        max_length=255, blank=True, verbose_name="Title")
     title_de = models.CharField(
         max_length=255, blank=True, verbose_name="Title")
     translated_title = TranslatedField(
@@ -496,7 +498,8 @@ class AcademyLandingPage(Page):
 
     intro_text_en = models.CharField(
         max_length=255,
-        verbose_name='intro text en'
+        verbose_name='intro text en',
+        blank=True
     )
     intro_text_de = models.CharField(
         max_length=255,
@@ -524,7 +527,8 @@ class AcademyLandingPage(Page):
     )
 
     body_en = StreamField(STREAMFIELD_LP_BLOCKS,
-                          null=True, verbose_name="Body", use_json_field=True)
+                          null=True, blank=True, verbose_name="Body",
+                          use_json_field=True)
     body_de = StreamField(STREAMFIELD_LP_BLOCKS,
                           null=True, blank=True, verbose_name="Body",
                           use_json_field=True)

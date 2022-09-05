@@ -39,7 +39,8 @@ STREAMFIELD_DEFAULT_BLOCKS = [
 
 
 class TranslatedStreamFieldPage(Page):
-    title_en = models.CharField(max_length=255, verbose_name="Title")
+    title_en = models.CharField(
+        max_length=255, blank=True, verbose_name="Title")
     title_de = models.CharField(
         max_length=255, blank=True, verbose_name="Title")
 
@@ -47,7 +48,8 @@ class TranslatedStreamFieldPage(Page):
     intro_de = RichTextField(blank=True, verbose_name="Teasertext")
 
     body_en = StreamField(STREAMFIELD_DEFAULT_BLOCKS,
-                          null=True, verbose_name="Body", use_json_field=True)
+                          null=True, blank=True, verbose_name="Body",
+                          use_json_field=True)
     body_de = StreamField(STREAMFIELD_DEFAULT_BLOCKS,
                           null=True, blank=True, verbose_name="Body",
                           use_json_field=True)

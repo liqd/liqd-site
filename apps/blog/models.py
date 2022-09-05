@@ -37,12 +37,12 @@ class AbstractBlogPage(Page):
 
     # Translatable Fields
     title_en = models.CharField(
-        max_length=255, verbose_name="Title")
+        max_length=255, blank=True, verbose_name="Title")
     title_de = models.CharField(
         max_length=255, blank=True, verbose_name="Title")
 
     subtitle_en = models.CharField(
-        max_length=255, default="", verbose_name="Subtitle")
+        max_length=255, default="", blank=True, verbose_name="Subtitle")
     subtitle_de = models.CharField(
         max_length=255, default="", blank=True, verbose_name="Subtitle")
 
@@ -50,7 +50,8 @@ class AbstractBlogPage(Page):
     intro_de = RichTextField(blank=True, verbose_name="Teasertext")
 
     body_en = StreamField(STREAMFIELD_BLOG_BLOCKS,
-                          null=True, verbose_name="Body", use_json_field=True)
+                          null=True, blank=True, verbose_name="Body",
+                          use_json_field=True)
     body_de = StreamField(STREAMFIELD_BLOG_BLOCKS,
                           null=True, blank=True, verbose_name="Body",
                           use_json_field=True)
