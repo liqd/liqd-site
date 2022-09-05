@@ -25,7 +25,7 @@ class TranslatedStructValue(StructValue):
 class TranslatedLinkBlock(StructBlock):
     link = PageChooserBlock()
     link_text_de = CharBlock(max_length=255)
-    link_text_en = CharBlock(max_length=255, blank=True)
+    link_text_en = CharBlock(max_length=255)
 
     class Meta:
         value_class = TranslatedStructValue
@@ -56,7 +56,7 @@ class MenuItem(LinkFields):
     menu_title_de = models.CharField(
         max_length=255, verbose_name="Menu Title de")
     menu_title_en = models.CharField(
-        max_length=255, blank=True, verbose_name="Menu Title en")
+        max_length=255, verbose_name="Menu Title en")
 
     translated_menu_title = TranslatedField(
         'menu_title_de',
