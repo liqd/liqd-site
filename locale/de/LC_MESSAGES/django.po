@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 17:04+0200\n"
+"POT-Creation-Date: 2022-09-06 17:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,11 +50,18 @@ msgstr "Event"
 msgid "link collection"
 msgstr "Linksammlung"
 
-#: apps/academy/templates/academy/academy_challenge_page.html:32
-msgid "steps of challenge completed"
-msgstr "steps of challenge completed"
+#: apps/academy/templates/academy/academy_challenge_page.html:34
+#, python-format
+msgid ""
+"\n"
+"                  Step 0 of %(number_of_steps)s finished\n"
+"                  "
+msgstr ""
+"\n"
+"                  Step 0 of %(number_of_steps)s finished\n"
+"                  "
 
-#: apps/academy/templates/academy/academy_challenge_page.html:35
+#: apps/academy/templates/academy/academy_challenge_page.html:40
 #: apps/academy/templates/academy/blocks/block_academy_challenge.html:33
 msgid "Scroll to next step"
 msgstr "Scroll to next step"
@@ -275,6 +282,9 @@ msgstr "Deutsch"
 #: website_wagtail/settings/base.py:136
 msgid "English"
 msgstr "Englisch"
+
+#~ msgid "steps of challenge completed"
+#~ msgstr "steps of challenge completed"
 
 #~ msgid "how-to"
 #~ msgstr "How-To"
