@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 09:28+0200\n"
+"POT-Creation-Date: 2022-09-06 17:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,12 +51,11 @@ msgid "link collection"
 msgstr "Linksammlung"
 
 #: apps/academy/templates/academy/academy_challenge_page.html:32
-#: apps/academy/templates/academy/blocks/block_academy_challenge.html:25
 msgid "steps of challenge completed"
 msgstr "steps of challenge completed"
 
 #: apps/academy/templates/academy/academy_challenge_page.html:35
-#: apps/academy/templates/academy/blocks/block_academy_challenge.html:28
+#: apps/academy/templates/academy/blocks/block_academy_challenge.html:33
 msgid "Scroll to next step"
 msgstr "Scroll to next step"
 
@@ -107,6 +106,17 @@ msgstr "Zur Übersicht"
 #, python-format
 msgid "More about %(topics)s"
 msgstr "Mehr über %(topics)s"
+
+#: apps/academy/templates/academy/blocks/block_academy_challenge.html:27
+#, python-format
+msgid ""
+"\n"
+"                    Step %(index)s of %(number_of_steps)s finished\n"
+"                    "
+msgstr ""
+"\n"
+"                    Step %(index)s of %(number_of_steps)s finished\n"
+"                    "
 
 #: apps/academy/templates/academy/includes/academy_challenge_list_item.html:10
 msgid "Read this article"
