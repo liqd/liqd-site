@@ -29,7 +29,12 @@
         <div class="col-lg-3 progress-circle__container">
             {% with number_of_steps=page.body|length %}
             <div class="progress-circle" data-progress="0" data-steps="0/{{ number_of_steps }}" style="--progress: 0deg;">
-              0/{{ number_of_steps }}<span class="visually-hidden">{% trans 'steps of challenge completed' %}</span>
+              0/{{ number_of_steps }}
+              <span class="visually-hidden">
+                  {% blocktranslate with number_of_steps=number_of_steps %}
+                  Step 0 of {{ number_of_steps }} finished
+                  {% endblocktranslate %}
+              </span>
             </div>
             {% endwith %}
             <img class="progress-circle__arrow" src="{% static 'images/icon_arrow_back.svg' %}" alt="{% trans 'Scroll to next step' %}"/>
