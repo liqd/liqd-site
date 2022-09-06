@@ -29,5 +29,9 @@ class TranslatedField(object):
 
         if translation.get_language() == 'de' and self.hasContent(de):
             return de
+        elif (translation.get_language() == 'en'
+              and not self.hasContent(en)
+              and self.hasContent(de)):
+            return de
         else:
             return en
