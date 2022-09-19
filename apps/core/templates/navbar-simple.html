@@ -33,7 +33,7 @@
 
                 {% for menuitem in main_menu_items %}
                 <li class="nav-item">
-                    <a class="nav-link header__link{% if request.path == menuitem.url %} active{% endif %}" href="{{ menuitem.url }}">
+                    <a class="nav-link header__link{% if menuitem.url in request.path %} active{% endif %}" href="{{ menuitem.url }}">
                         {{ menuitem.translated_menu_title }}
                     </a>
                     {% if menuitem.subpages %}
