@@ -80,12 +80,12 @@ class AcademyPage(AbstractBlogPage):
 
     teaser_en = StreamField(STREAMFIELD_EXTRA_BLOCKS,
                             null=True, blank=True,
-                            verbose_name="Body",
+                            verbose_name="Teaser",
                             use_json_field=True)
     teaser_de = StreamField(STREAMFIELD_EXTRA_BLOCKS,
-                            null=True, blank=True, verbose_name="Body",
+                            null=True, blank=True, verbose_name="Teaser",
                             use_json_field=True)
-    body = TranslatedField(
+    teaser = TranslatedField(
         'teaser_de',
         'teaser_en'
     )
@@ -94,6 +94,7 @@ class AcademyPage(AbstractBlogPage):
         FieldPanel('title_en'),
         FieldPanel('subtitle_en'),
         FieldPanel('intro_en'),
+        FieldPanel('body_en'),
         FieldPanel('teaser_en'),
     ]
 
@@ -101,6 +102,7 @@ class AcademyPage(AbstractBlogPage):
         FieldPanel('title_de'),
         FieldPanel('subtitle_de'),
         FieldPanel('intro_de'),
+        FieldPanel('body_de'),
         FieldPanel('teaser_de'),
     ]
 
