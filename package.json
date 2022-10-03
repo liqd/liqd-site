@@ -24,7 +24,7 @@
     "@liqd/liqd-fonts": "git+ssh://github.com/liqd/liqd-fonts.git",
     "autoprefixer": "10.4.12",
     "babel-loader": "8.2.5",
-    "bootstrap": "5.2.1",
+    "bootstrap": "5.2.2",
     "css-loader": "6.7.1",
     "glslify-loader": "2.0.0",
     "jquery": "3.6.1",
