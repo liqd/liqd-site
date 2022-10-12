@@ -4,7 +4,7 @@ wagtail==4.0.1
 
 bleach[css]==5.0.1
 brotli==1.0.9
-django-bleach==3.0.0
+django-bleach==3.0.1
 django-cloudflare-push==0.2.2
 django_csp==3.7
 django-multiselectfield==0.1.12
