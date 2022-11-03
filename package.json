@@ -23,7 +23,7 @@
     "@babel/runtime": "7.20.1",
     "@liqd/liqd-fonts": "git+ssh://github.com/liqd/liqd-fonts.git",
     "autoprefixer": "10.4.13",
-    "babel-loader": "8.3.0",
+    "babel-loader": "9.1.0",
     "bootstrap": "5.2.2",
     "css-loader": "6.7.1",
     "glslify-loader": "2.0.0",
