@@ -29,7 +29,7 @@
     "glslify-loader": "2.0.0",
     "jquery": "3.6.1",
     "liquid-logo": "git+https://github.com/liqd/liquid-logo.git",
-    "mini-css-extract-plugin": "2.6.1",
+    "mini-css-extract-plugin": "2.7.0",
     "postcss": "8.4.19",
     "postcss-loader": "7.0.1",
     "raw-loader": "4.0.2",
