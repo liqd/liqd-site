@@ -31,7 +31,7 @@
     "liquid-logo": "git+https://github.com/liqd/liquid-logo.git",
     "mini-css-extract-plugin": "2.7.1",
     "postcss": "8.4.19",
-    "postcss-loader": "7.0.1",
+    "postcss-loader": "7.0.2",
     "raw-loader": "4.0.2",
     "sass": "1.56.1",
     "sass-loader": "13.2.0",
