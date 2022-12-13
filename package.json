@@ -27,7 +27,7 @@
     "bootstrap": "5.2.3",
     "css-loader": "6.7.2",
     "glslify-loader": "2.0.0",
-    "jquery": "3.6.1",
+    "jquery": "3.6.2",
     "liquid-logo": "git+https://github.com/liqd/liquid-logo.git",
     "mini-css-extract-plugin": "2.7.2",
     "postcss": "8.4.20",
