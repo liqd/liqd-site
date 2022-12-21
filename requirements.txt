@@ -11,7 +11,7 @@ django-multiselectfield==0.1.12
 django-sites==0.11
 flake8==5.0.4
 html5lib==1.1
-isort==5.10.1
+isort==5.11.4
 wcag-contrast-ratio==0.9
 whitenoise==6.2.0
 sentry-sdk==1.9.8
