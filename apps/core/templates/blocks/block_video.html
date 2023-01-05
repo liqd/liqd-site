@@ -1,0 +1,52 @@
+{% load static core_tags i18n wagtailimages_tags %}
+
+{% if value.title %}
+  <h2 class="h3">{{ value.title }}</h2>
+{% endif %}
+
+<figure class="media-with-caption" style="width: 100%;">
+{% if value.media_type == 'audio' %}
+  <audio controls style="width: 100%;">
+      <source src="{{ value.media.url }}" type="{% file_type value.media.url %}" >
+      <a href="{{ value.media.url }}">
+        Download audio
+      </a>
+  </audio>
+{% else %}
+  <video
+    id="123"
+    fill="true"
+    responsive="true"
+    class="video-js"
+    preload="auto"
+    width="100%"
+    height="auto"
+    controls
+  >
+    <source src="{{ value.media.url }}" type="{% file_type value.media.url %}" >
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+  </video>
+{% endif %}
+
+{% if value.description %}
+  <figcaption class="media-with-caption__figcaption">
+    {{ value.description }}
+  </figcaption>
+{% endif %}
+</figure>
+
+{% if value.transcript %}
+<details>
+  <summary>
+    <h3>{% trans 'Media transcript' %}</h3>
+    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+  </summary>
+  <p>{{ value.transcript }}</p>
+</details>
+{% endif %}
