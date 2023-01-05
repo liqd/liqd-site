@@ -1,10 +1,10 @@
 {% load wagtailimages_tags %}
 <section class="row">
     {% image value.image width-600 jpegquality-100 as block_image %}
-    <figure class="image-with-caption col-md-5 col-sm-12">
+    <figure class="media-with-caption col-md-5 col-sm-12">
         <img class="photo" src="{{ block_image.url }}" alt="{{ block_image.alt }}">
         {% if block_image.caption or block_image.copyright %}
-            <figcaption class="image-with-caption__figcaption">
+            <figcaption class="media-with-caption__figcaption">
                 {% if block_image.caption %}
                 <div>
                     {{ block_image.caption }}
@@ -12,7 +12,7 @@
                 {% endif %}
 
               {% if block_image.copyright %}
-                <div class="image-with-caption__copyright">
+                <div class="media-with-caption__copyright">
                     {{ block_image.copyright }}
                 </div>
               {% endif %}

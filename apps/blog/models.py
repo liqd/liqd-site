@@ -14,7 +14,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 
-from apps.core.blocks import AlignedImageBlock, HTMLBlock
+from apps.core.blocks import AlignedImageBlock, HTMLBlock, VideoBlock
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
 from apps.core.models.snippets import BlogCategory
 from contrib.translations.translations import TranslatedField
@@ -25,7 +25,8 @@ STREAMFIELD_BLOG_BLOCKS = [
     ('image', ImageChooserBlock(icon="image")),
     ('aligned_image', AlignedImageBlock(icon="image")),
     ('video', EmbedBlock(icon="media")),
-    ('Raw_HTML', HTMLBlock())
+    ('Raw_HTML', HTMLBlock()),
+    ('video_block', VideoBlock())
 ]
 
 

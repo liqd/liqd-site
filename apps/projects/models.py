@@ -30,6 +30,7 @@ STREAMFIELD_PROJECT_BLOCKS = [
     ('video', EmbedBlock(icon="media")),
     ('Raw_HTML', core_blocks.HTMLBlock()),
     ('persons', persons_models.PersonListBlock()),
+    ('video_block', core_blocks.VideoBlock())
 ]
 
 

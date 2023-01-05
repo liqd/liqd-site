@@ -1,8 +1,8 @@
-.image-with-caption {
+.media-with-caption {
     display: table;
 }
 
-.image-with-caption__figcaption {
+.media-with-caption__figcaption {
     display: table-caption; // stops caption oveflowing floated img
     caption-side: bottom;
 
@@ -20,6 +20,6 @@
     }
 }
 
-.image-with-caption__copyright {
+.media-with-caption__copyright {
     color: $text-light;
 }

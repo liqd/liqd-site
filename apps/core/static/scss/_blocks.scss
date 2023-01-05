@@ -38,7 +38,7 @@
 .block--aligned_image--right {
     @include clearfix;
 
-    .image-with-caption {
+    .media-with-caption {
         float: right;
     }
 }
@@ -46,7 +46,7 @@
 .block--aligned_image--left {
     @include clearfix;
 
-    .image-with-caption {
+    .media-with-caption {
         float: left;
     }
 }
