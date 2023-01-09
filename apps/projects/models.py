@@ -11,7 +11,6 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail import blocks
 from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
                                   TabbedInterface)
-from wagtail.embeds.blocks import EmbedBlock
 from wagtail.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
@@ -27,7 +26,6 @@ STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
     ('image', ImageChooserBlock(icon="image")),
     ('aligned_image', core_blocks.AlignedImageBlock(icon="image")),
-    ('video', EmbedBlock(icon="media")),
     ('Raw_HTML', core_blocks.HTMLBlock()),
     ('persons', persons_models.PersonListBlock()),
     ('video_block', core_blocks.VideoBlock())
