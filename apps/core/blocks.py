@@ -1,6 +1,7 @@
 from wagtail.blocks import (CharBlock, ChoiceBlock, ListBlock,
                             PageChooserBlock, RawHTMLBlock, RichTextBlock,
                             StructBlock, URLBlock)
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -165,3 +166,30 @@ class AlignedImageBlock(StructBlock):
 
     class Meta:
         template = 'blocks/block_alignedimage.html'
+
+
+class VideoBlock(StructBlock):
+    title = CharBlock(max_length=130, required=False)
+    description = CharBlock(
+        max_length=500,
+        required=False,
+        help_text='Please insert a short description of the video '
+                  '(character limit 500).')
+    media = DocumentChooserBlock(help_text='Please upload or choose a media '
+                                 'file with any of the following extensions: '
+                                 'MP4, WebM, MP3, WAV')
+    media_type = ChoiceBlock(choices=[
+        ('audio', 'Audio file'),
+        ('video', 'Video file')
+    ])
+    transcript = RichTextBlock(features=['bold', 'italic', 'ol', 'ul',
+                                         'link', 'document-link'],
+                               help_text='You can add the video\'s '
+                               'transcript here (unlimited '
+                               'characters).',
+                               required=False)
+
+    class Meta:
+        template = 'blocks/block_video.html'
+        icon = 'media'
+        label = 'Video Block'

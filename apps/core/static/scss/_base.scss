@@ -138,3 +138,12 @@ h5,
 .text--upper {
     text-transform: uppercase;
 }
+
+// Accordion component using details and summary elements styling
+details summary {
+    cursor: pointer;
+}
+
+details summary > * {
+    display: inline;
+}
