@@ -21,7 +21,9 @@ from contrib.translations.translations import TranslatedField
 STREAMFIELD_BLOG_BLOCKS = [
     ('heading', blocks.CharBlock(classname="full title", icon="title")),
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-    ('image', ImageChooserBlock(icon="image")),
+    ('image', ImageChooserBlock(
+        icon="image",
+        template="blocks/block_image.html")),
     ('aligned_image', AlignedImageBlock(icon="image")),
     ('Raw_HTML', HTMLBlock()),
     ('video_block', VideoBlock())

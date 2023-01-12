@@ -1,25 +1,23 @@
 {% load static wagtailimages_tags wagtailcore_tags %}
 
-<div class="block--image">
-    {% image value width-960 jpegquality-100 as my_image %}
-    <figure class="image-with-caption">
-        <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
-        {% if value.caption or value.copyright %}
-            <figcaption class="image-with-caption__figcaption">
-              {% if value.caption %}
-              <div>
-                {{ value.caption }}
-              </div>
-              {% endif %}
+{% image value width-960 jpegquality-100 as my_image %}
+<figure class="media-with-caption">
+    <img class="photo" src="{{ my_image.url }}" alt="{{ my_image.alt }}">
+    {% if value.caption or value.copyright %}
+        <figcaption class="media-with-caption__figcaption">
+          {% if value.caption %}
+          <div>
+            {{ value.caption }}
+          </div>
+          {% endif %}
 
-              {% if value.copyright %}
-                <div class="image-with-caption__copyright">
-                  {{ value.copyright }}
-                </div>
-              {% endif %}
+          {% if value.copyright %}
+            <div class="media-with-caption__copyright">
+              {{ value.copyright }}
+            </div>
+          {% endif %}
 
-            </figcaption>
-        {% endif %}
+        </figcaption>
+    {% endif %}
 
-    </figure>
-</div>
+</figure>
