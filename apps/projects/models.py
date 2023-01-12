@@ -24,7 +24,9 @@ from contrib.translations.translations import TranslatedField
 
 STREAMFIELD_PROJECT_BLOCKS = [
     ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
-    ('image', ImageChooserBlock(icon="image")),
+    ('image', ImageChooserBlock(
+        icon="image",
+        template="blocks/block_image.html")),
     ('aligned_image', core_blocks.AlignedImageBlock(icon="image")),
     ('Raw_HTML', core_blocks.HTMLBlock()),
     ('persons', persons_models.PersonListBlock()),
