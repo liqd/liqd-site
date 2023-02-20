@@ -365,7 +365,7 @@ class AcademyIndexPage(Page):
         'title_en',
     )
 
-    intro_en = RichTextField(verbose_name="intro text")
+    intro_en = RichTextField(blank=True, verbose_name="intro text")
     intro_de = RichTextField(blank=True, verbose_name="intro text")
     translated_intro = TranslatedField(
         'intro_de',

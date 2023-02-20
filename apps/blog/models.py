@@ -47,7 +47,7 @@ class AbstractBlogPage(Page):
     subtitle_de = models.CharField(
         max_length=255, default="", blank=True, verbose_name="Subtitle")
 
-    intro_en = RichTextField(verbose_name="Teasertext")
+    intro_en = RichTextField(blank=True, verbose_name="Teasertext")
     intro_de = RichTextField(blank=True, verbose_name="Teasertext")
 
     body_en = StreamField(STREAMFIELD_BLOG_BLOCKS,
