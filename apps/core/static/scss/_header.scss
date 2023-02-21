@@ -207,7 +207,7 @@ a.header__brand {
 
 // ensuring coloured hero pages only show header gradient on scroll
 .project-page .header:not(.header--past-intro) .header__menu-list:after,
-.hero-bg .header:not(.header--past-intro) .header__menu-list:after {
+.hero-bg .header:not(.header--past-intro) {
     content: none;
 }
 
