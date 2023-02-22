@@ -45,6 +45,15 @@
     }
 }
 
+// making sure current nav-link has spacing to adjacent nav-links
+.navbar-expand-md .navbar-nav .nav-link {
+    padding-right: $spacer * 0.1;
+    padding-left: $spacer * 0.1;
+    margin-right: $spacer * 0.3;
+    margin-left: $spacer * 0.3;
+    line-height: 1.1;
+}
+
 a.header__brand {
     border-bottom: none;
     font-size: inherit;
