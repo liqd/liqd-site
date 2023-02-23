@@ -443,15 +443,15 @@ class AcademyIndexPage(Page):
         alphabetical = request.GET.get('alphabetical')
         topic = request.GET.get('topic')
         content_type = request.GET.get('academy_content_type')
-        if year:
+        if year and year.isdigit() and int(year) <= 9999:
             academy_pages = academy_pages.filter(date__year=year)
             external_links = external_links.filter(date__year=year)
 
-        if topic:
+        if topic and topic in dict(TOPIC_CHOICES):
             academy_pages = academy_pages.filter(topics__contains=topic)
             external_links = external_links.filter(topics__contains=topic)
 
-        if content_type:
+        if content_type and content_type in dict(CONTENT_TYPE_CHOICES):
             academy_pages = academy_pages.filter(
                 academy_content_type=content_type)
             external_links = external_links.filter(
@@ -481,10 +481,10 @@ class AcademyIndexPage(Page):
         context['all_content'] = all_content
         if alphabetical:
             context['alphabetical'] = alphabetical
-        if topic:
+        if topic and topic in dict(TOPIC_CHOICES):
             context['topic'] = topic
             context['get_topic_display'] = self.topics[topic]
-        if content_type:
+        if content_type and content_type in dict(CONTENT_TYPE_CHOICES):
             context['academy_content_type'] = content_type
             context['get_academy_content_type_display'] = \
                 self.academy_content_types[content_type]
