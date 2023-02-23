@@ -1,6 +1,6 @@
 {% load i18n wagtailcore_tags wagtailimages_tags %}
 
-<div onclick="" class="project-teaser {% if number %}project-teaser--right{% else %}project-teaser--left{% endif %}" style="color: {{ project.textcolor }}">
+<div onclick="" data-contrast-checking='["{{ project.color1 }}", "{{ project.color2 }}"]' class="project-teaser {% if number %}project-teaser--right{% else %}project-teaser--left{% endif %}">
     {% image project.image height-600 jpegquality-100 as img %}
 
     <img class="project-teaser__image--md" src="{{ img.url }}" alt="{{ img.alt }}" />
