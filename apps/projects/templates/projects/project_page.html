@@ -15,10 +15,14 @@
 {% endblock %}
 
 {% block body_class %}project-page{% endblock %}
-{% block menu-color %}style="color: {{ page.textcolor }};"{% endblock %}
+{% block menu-color %}data-contrast-checking='["{{ page.color1 }}", "{{ page.color2 }}"]'{% endblock %}
 {% block content %}
 <div class="project-page">
-<section class="intro-screen" style="color: {{ page.textcolor }}; background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});">
+<section
+    class="intro-screen"
+    data-contrast-checking='["{{ page.color1 }}", "{{ page.color2 }}"]'
+    style="background-image: linear-gradient(148deg, {{ page.color1 }}, {{ page.color2 }});"
+>
     <div class="container">
         <h1>{{ page.translated_title }}</h1>
     </div>

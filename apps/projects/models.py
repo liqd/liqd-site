@@ -14,7 +14,6 @@ from wagtail.admin.panels import (FieldPanel, MultiFieldPanel, ObjectList,
 from wagtail.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
-from wcag_contrast_ratio import contrast
 
 from apps.core import blocks as core_blocks
 from apps.core.models.abstract_page_model import TranslatedStreamFieldPage
@@ -177,30 +176,6 @@ class ProjectPage(Page):
     ])
 
     subpage_types = []
-
-    @staticmethod
-    def _color_to_rgb(value):
-        value = value.lstrip('#')
-        lv = len(value)
-        return tuple(
-            int(value[i:i + lv // 3], 16) / 255 for i in range(0, lv, lv // 3))
-
-    @property
-    def textcolor(self):
-        rgb_1 = self._color_to_rgb(self.color1)
-        rgb_2 = self._color_to_rgb(self.color2)
-        # check the darker color of both gradient points
-        rgb_to_check = rgb_1 if sum(rgb_1) < sum(rgb_2) else rgb_2
-
-        contrast_dark = contrast.rgb(
-            rgb_to_check,
-            self._color_to_rgb('#060606')
-        )
-        contrast_bright = contrast.rgb(
-            rgb_to_check,
-            self._color_to_rgb('#fbfbfb')
-        )
-        return '#fbfbfb' if contrast_bright > contrast_dark else '#060606'
 
     @cached_property
     def other_project(self):
