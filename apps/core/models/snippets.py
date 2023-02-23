@@ -1,25 +1,15 @@
 from django.db import models
-from django.utils import translation
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin import edit_handlers
 from wagtail.admin.panels import FieldPanel, InlinePanel
-from wagtail.core.blocks import (CharBlock, PageChooserBlock, StructBlock,
-                                 StructValue)
+from wagtail.core.blocks import CharBlock, PageChooserBlock, StructBlock
 from wagtail.core.fields import StreamField
 from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
 
-from contrib.translations.translations import TranslatedField
-
-
-class TranslatedStructValue(StructValue):
-
-    def translated_link_text(self):
-        if translation.get_language() == 'en' and self.get('link_text_en'):
-            return self.get('link_text_en')
-        else:
-            return self.get('link_text_de')
+from contrib.translations.translations import (TranslatedField,
+                                               TranslatedStructValue)
 
 
 class TranslatedLinkBlock(StructBlock):
