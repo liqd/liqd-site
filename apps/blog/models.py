@@ -157,11 +157,12 @@ class BlogIndexPage(TranslatedStreamFieldPage):
 
         year = request.GET.get('year')
         category = request.GET.get('category')
+        category_pks = self.categories.values_list('id', flat=True)
 
-        if year:
+        if year and year.isdigit() and int(year) <= 9999:
             blogs = blogs.filter(date__year=year)
 
-        if category:
+        if category and category.isdigit() and int(category) in category_pks:
             blogs = blogs.filter(categories__pk=category)
 
         page = request.GET.get('page', 1)
@@ -174,9 +175,9 @@ class BlogIndexPage(TranslatedStreamFieldPage):
 
         context = super().get_context(request)
         context['blogs'] = blogs
-        if category:
+        if category and category.isdigit() and int(category) in category_pks:
             context['category'] = BlogCategory.objects.get(pk=int(category))
-        if year:
+        if year and year.isdigit() and int(year) <= 9999:
             context['year'] = year
         return context
 
