@@ -233,6 +233,9 @@ class AcademyExternalLink(Page):
         ObjectList(common_panels, heading='Common'),
     ])
 
+    preview_modes = []
+    url = None
+
     def save(self, *args, **kwargs):
         self.slug = self.id
         self.title = self.title_en
