@@ -1,5 +1,5 @@
 # Minimal requirements
-Django==3.2.13 # pyup: <3.3
+Django==3.2.18 # pyup: <3.3
 wagtail==4.1.2
 
 bleach[css]==5.0.1
