@@ -32,7 +32,9 @@ class LinkFields(models.Model):
 
     @property
     def link(self):
-        return self.link_page.url
+        if self.link_page:
+            return self.link_page.url
+        return None
 
     panels = [
         FieldPanel('link_page')
