@@ -13,7 +13,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a class="btn btn-none ps-0 mb-3" href="{{ page.get_parent.url }}" aria-label="{% trans 'To overview' %}">
+            <a
+                class="btn btn-none ps-0 mb-3"
+                href="{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER|escape }}{% else %}{{ page.get_parent.url }}{% endif %}"
+                aria-label="{% trans 'To overview' %}">
               <img class="academy__btn--back" src="{% static 'images/icon_arrow_back.svg' %}" alt="{% trans 'To overview' %}"/>
             </a>
             <div class="academy__sans-serif mb-4 text--upper">{{ page.get_topics_display }}
