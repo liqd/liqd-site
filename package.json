@@ -21,7 +21,7 @@
     "husky": "8.0.3",
     "mini-css-extract-plugin": "2.7.3",
     "lighthouse": "10.0.2",
-    "lint-staged": "13.1.2",
+    "lint-staged": "13.2.0",
     "postcss": "8.4.21",
     "postcss-loader": "7.0.2",
     "raw-loader": "4.0.2",
