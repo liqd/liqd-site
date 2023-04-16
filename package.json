@@ -22,7 +22,7 @@
     "mini-css-extract-plugin": "2.7.5",
     "lighthouse": "10.1.1",
     "lint-staged": "13.2.1",
-    "postcss": "8.4.21",
+    "postcss": "8.4.22",
     "postcss-loader": "7.2.4",
     "raw-loader": "4.0.2",
     "sass": "1.62.0",
