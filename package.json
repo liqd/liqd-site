@@ -38,7 +38,7 @@
   "dependencies": {
     "@liqd/liqd-fonts": "git+ssh://github.com/liqd/liqd-fonts.git",
     "bootstrap": "5.2.3",
-    "jquery": "3.6.4",
+    "jquery": "3.7.0",
     "liquid-logo": "git+https://github.com/liqd/liquid-logo.git"
   },
   "scripts": {
