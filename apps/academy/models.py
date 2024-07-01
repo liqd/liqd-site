@@ -25,14 +25,12 @@ from contrib.translations.translations import TranslatedField
 WORKSHOP = 'WS'
 ARTICLE = 'AR'
 VIDEO = 'VD'
-EVENT = 'EV'
 LINKLIST = 'LL'
 
 CONTENT_TYPE_CHOICES = [
     (WORKSHOP, _('workshop')),
     (ARTICLE, _('article')),
     (VIDEO, _('video')),
-    (EVENT, _('event')),
     (LINKLIST, _('link collection')),
 ]
 
