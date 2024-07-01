@@ -40,7 +40,7 @@
     "@liqd/liqd-fonts": "git+ssh://github.com/liqd/liqd-fonts.git",
     "bootstrap": "5.3.3",
     "jquery": "3.7.1",
-    "liquid-logo": "git+https://github.com/liqd/liquid-logo.git"
+    "liquid-logo": "git+https://github.com/liqd/liquid-logo.git#v2407.1"
   },
   "scripts": {
     "lighthouse": "node lighthouse.mjs",
