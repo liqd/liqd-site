@@ -1,6 +1,8 @@
 # Minimal requirements
-Django==3.2.18 # pyup: <3.3
+Django==3.2.18
 wagtail==4.1.4
+# To be removed after upgrade to Django 4.2
+djangorestframework==3.15.1
 
 bleach[css]==5.0.1
 brotli==1.1.0
