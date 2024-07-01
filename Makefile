@@ -79,6 +79,7 @@ lint-quick:
 .PHONY: lint-python-files
 lint-python-files:
 	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
@@ -87,6 +88,7 @@ lint-python-files:
 lint-fix:
 	EXIT_STATUS=0; \
 	npm run lint-fix ||  EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/isort $(SOURCE_DIRS) --filter-files || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: po
