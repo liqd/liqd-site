@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Liquid Website"
+authors = [
+    {name = "Liquid Democracy e.V.", email = "info@liqd.net"},
+]
+description = "Website of Liquid Democracy e.V."
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["digital participation", "liquid democracy"]
+license = {text = "AGPL-3"}
+classifiers = [
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
+]
+dependencies = [
+    "Django >= 3.2, < 4.3",
+    "bleach[css]",
+    "brotli",
+    "django-bleach",
+    "django-cloudflare-push",
+    "django-multiselectfield",
+    "django_csp",
+    "html5lib",
+    "sentry-sdk",
+    "wagtail >=4.1, < 5.3",
+    "whitenoise",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/liqd/liqd-site"
+"Bug Tracker" = "https://github.com/liqd/liqd-site/issues"
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.setuptools_scm]
+
+[tool.black]
+line_length = 79
+
+[tool.isort]
+profile = "black"
+skip = ["node_modules", "venv"]
+skip_glob = ["*/migrations/*.py"]
+known_first_party = ["website_wagtail"]
+force_single_line = true
