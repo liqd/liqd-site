@@ -1,6 +1,6 @@
 from django.utils import translation
+from wagtail.blocks import StructValue
 from wagtail.blocks.stream_block import StreamValue
-from wagtail.core.blocks import StructValue
 
 
 class TranslatedField(object):
@@ -28,7 +28,7 @@ class TranslatedField(object):
         de = getattr(instance, self.de_field)
         en = getattr(instance, self.en_field)
 
-        if translation.get_language() == 'en' and self.hasContent(en):
+        if translation.get_language() == "en" and self.hasContent(en):
             return en
         elif self.hasContent(de):
             return de
@@ -38,8 +38,8 @@ class TranslatedField(object):
 class TranslatedStructValue(StructValue):
 
     def translated_link_text(self):
-        if translation.get_language() == 'en' and self.get('link_text_en'):
-            return self.get('link_text_en')
-        elif self.get('link_text_de'):
-            return self.get('link_text_de')
-        return self.get('link_text_en')
+        if translation.get_language() == "en" and self.get("link_text_en"):
+            return self.get("link_text_en")
+        elif self.get("link_text_de"):
+            return self.get("link_text_de")
+        return self.get("link_text_en")
