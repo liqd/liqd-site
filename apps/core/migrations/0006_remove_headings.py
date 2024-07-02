@@ -8,28 +8,28 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0005_auto_20170607_1421'),
+        ("core", "0005_auto_20170607_1421"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='joinuspage',
-            options={'verbose_name': 'Default Page with several Blocks'},
+            name="joinuspage",
+            options={"verbose_name": "Default Page with several Blocks"},
         ),
         migrations.RemoveField(
-            model_name='homepage',
-            name='heading1_de',
+            model_name="homepage",
+            name="heading1_de",
         ),
         migrations.RemoveField(
-            model_name='homepage',
-            name='heading1_en',
+            model_name="homepage",
+            name="heading1_en",
         ),
         migrations.RemoveField(
-            model_name='homepage',
-            name='heading2_de',
+            model_name="homepage",
+            name="heading2_de",
         ),
         migrations.RemoveField(
-            model_name='homepage',
-            name='heading2_en',
+            model_name="homepage",
+            name="heading2_en",
         ),
     ]

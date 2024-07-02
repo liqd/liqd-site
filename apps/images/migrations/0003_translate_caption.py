@@ -4,8 +4,9 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
+
 def translate_caption(apps, schema_editor):
-    CustomImage = apps.get_model('images', 'CustomImage')
+    CustomImage = apps.get_model("images", "CustomImage")
 
     for image in CustomImage.objects.all():
         image.caption_en = image.caption
@@ -15,23 +16,23 @@ def translate_caption(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('images', '0002_copy_images'),
+        ("images", "0002_copy_images"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customimage',
-            name='caption_de',
+            model_name="customimage",
+            name="caption_de",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='customimage',
-            name='caption_en',
+            model_name="customimage",
+            name="caption_en",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.RunPython(translate_caption),
         migrations.RemoveField(
-            model_name='customimage',
-            name='caption',
-        )
+            model_name="customimage",
+            name="caption",
+        ),
     ]

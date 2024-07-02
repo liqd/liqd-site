@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('academy', '0015_add_column_teaser_block'),
+        ("academy", "0015_add_column_teaser_block"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='academylandingpage',
-            name='color1',
-            field=models.CharField(default='#eee8aa', max_length=7),
+            model_name="academylandingpage",
+            name="color1",
+            field=models.CharField(default="#eee8aa", max_length=7),
         ),
         migrations.AlterField(
-            model_name='academylandingpage',
-            name='color2',
-            field=models.CharField(default='#e1bcbd', max_length=7),
+            model_name="academylandingpage",
+            name="color2",
+            field=models.CharField(default="#e1bcbd", max_length=7),
         ),
     ]

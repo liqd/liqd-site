@@ -6,23 +6,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('images', '0004_customimage_file_hash'),
+        ("images", "0004_customimage_file_hash"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customimage',
-            name='alt_de',
-            field=models.CharField(blank=True, help_text='Add an alternative text for image accessibility', max_length=255),
+            model_name="customimage",
+            name="alt_de",
+            field=models.CharField(
+                blank=True,
+                help_text="Add an alternative text for image accessibility",
+                max_length=255,
+            ),
         ),
         migrations.AddField(
-            model_name='customimage',
-            name='alt_en',
-            field=models.CharField(blank=True, help_text='Add an alternative text for image accessibility', max_length=255),
+            model_name="customimage",
+            name="alt_en",
+            field=models.CharField(
+                blank=True,
+                help_text="Add an alternative text for image accessibility",
+                max_length=255,
+            ),
         ),
         migrations.AddField(
-            model_name='customimage',
-            name='copyright',
-            field=models.CharField(blank=True, help_text='Add copyright information for image', max_length=255),
+            model_name="customimage",
+            name="copyright",
+            field=models.CharField(
+                blank=True,
+                help_text="Add copyright information for image",
+                max_length=255,
+            ),
         ),
     ]

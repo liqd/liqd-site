@@ -8,23 +8,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0014_add_english_facts'),
+        ("projects", "0014_add_english_facts"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='projectpage',
-            name='partner_de',
+            model_name="projectpage",
+            name="partner_de",
             field=models.CharField(blank=True, max_length=256),
         ),
         migrations.AddField(
-            model_name='projectpage',
-            name='timescale_de',
+            model_name="projectpage",
+            name="timescale_de",
             field=models.CharField(blank=True, max_length=256),
         ),
         migrations.AddField(
-            model_name='projectpage',
-            name='user_count_de',
-            field=models.CharField(blank=True, max_length=256, verbose_name='Number of users per month'),
+            model_name="projectpage",
+            name="user_count_de",
+            field=models.CharField(
+                blank=True,
+                max_length=256,
+                verbose_name="Number of users per month",
+            ),
         ),
     ]

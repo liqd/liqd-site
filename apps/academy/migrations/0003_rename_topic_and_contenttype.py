@@ -7,28 +7,66 @@ import multiselectfield.db.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('academy', '0002_create_academy_index_page_and_external_link'),
+        ("academy", "0002_create_academy_index_page_and_external_link"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='academyexternallink',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('HT', 'how-to'), ('TK', 'talk'), ('LL', 'link collection'), ('BP', 'blogpost'), ('WB', 'webinar')], max_length=2),
+            model_name="academyexternallink",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("VD", "video"),
+                    ("WS", "workshop"),
+                    ("HT", "how-to"),
+                    ("TK", "talk"),
+                    ("LL", "link collection"),
+                    ("BP", "blogpost"),
+                    ("WB", "webinar"),
+                ],
+                max_length=2,
+            ),
         ),
         migrations.AlterField(
-            model_name='academyexternallink',
-            name='topics',
-            field=multiselectfield.db.fields.MultiSelectField(choices=[('LT', 'Liquid Democracy: Theory & Vision'), ('DS', 'Digital Civic Society'), ('PA', 'Digital Participation In Action')], max_length=8),
+            model_name="academyexternallink",
+            name="topics",
+            field=multiselectfield.db.fields.MultiSelectField(
+                choices=[
+                    ("LT", "Liquid Democracy: Theory & Vision"),
+                    ("DS", "Digital Civic Society"),
+                    ("PA", "Digital Participation In Action"),
+                ],
+                max_length=8,
+            ),
         ),
         migrations.AlterField(
-            model_name='academypage',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('HT', 'how-to'), ('TK', 'talk'), ('LL', 'link collection'), ('BP', 'blogpost'), ('WB', 'webinar')], max_length=2),
+            model_name="academypage",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("VD", "video"),
+                    ("WS", "workshop"),
+                    ("HT", "how-to"),
+                    ("TK", "talk"),
+                    ("LL", "link collection"),
+                    ("BP", "blogpost"),
+                    ("WB", "webinar"),
+                ],
+                max_length=2,
+            ),
         ),
         migrations.AlterField(
-            model_name='academypage',
-            name='topics',
-            field=multiselectfield.db.fields.MultiSelectField(choices=[('LT', 'Liquid Democracy: Theory & Vision'), ('DS', 'Digital Civic Society'), ('PA', 'Digital Participation In Action')], max_length=8),
+            model_name="academypage",
+            name="topics",
+            field=multiselectfield.db.fields.MultiSelectField(
+                choices=[
+                    ("LT", "Liquid Democracy: Theory & Vision"),
+                    ("DS", "Digital Civic Society"),
+                    ("PA", "Digital Participation In Action"),
+                ],
+                max_length=8,
+            ),
         ),
     ]

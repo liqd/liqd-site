@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class PersonsConfig(AppConfig):
-    name = 'apps.persons'
-    label = 'persons'
+    name = "apps.persons"
+    label = "persons"

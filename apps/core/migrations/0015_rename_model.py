@@ -14,12 +14,10 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0039_collectionviewrestriction'),
-        ('wagtailredirects', '0005_capitalizeverbose'),
-        ('wagtailforms', '0003_capitalizeverbose'),
-        ('core', '0014_auto_20170628_1747'),
+        ("wagtailcore", "0039_collectionviewrestriction"),
+        ("wagtailredirects", "0005_capitalizeverbose"),
+        ("wagtailforms", "0003_capitalizeverbose"),
+        ("core", "0014_auto_20170628_1747"),
     ]
 
-    operations = [
-        migrations.RenameModel("JoinUsPage", "TextPageWithBlocks")
-    ]
+    operations = [migrations.RenameModel("JoinUsPage", "TextPageWithBlocks")]

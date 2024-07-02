@@ -13,18 +13,131 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0005_add-factlist'),
+        ("projects", "0005_add-factlist"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='projectpage',
-            name='body_de',
-            field=wagtail.fields.StreamField((('paragraph', wagtail.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.blocks.StructBlock((('headline', wagtail.blocks.CharBlock(length=256, required=False)), ('body', wagtail.blocks.RawHTMLBlock())))), ('persons', wagtail.blocks.StructBlock((('title', wagtail.blocks.CharBlock(classname='full title', required=False)), ('background', wagtail.blocks.ChoiceBlock(choices=[('grey', 'grey'), ('white', 'white')])), ('personlist', wagtail.blocks.ListBlock(apps.persons.models.PersonDisplayBlock)))))), blank=True, null=True, verbose_name='Body'),
+            model_name="projectpage",
+            name="body_de",
+            field=wagtail.fields.StreamField(
+                (
+                    (
+                        "paragraph",
+                        wagtail.blocks.RichTextBlock(icon="pilcrow"),
+                    ),
+                    (
+                        "image",
+                        wagtail.images.blocks.ImageChooserBlock(icon="image"),
+                    ),
+                    ("video", wagtail.embeds.blocks.EmbedBlock(icon="media")),
+                    (
+                        "Raw_HTML",
+                        wagtail.blocks.StructBlock(
+                            (
+                                (
+                                    "headline",
+                                    wagtail.blocks.CharBlock(
+                                        length=256, required=False
+                                    ),
+                                ),
+                                ("body", wagtail.blocks.RawHTMLBlock()),
+                            )
+                        ),
+                    ),
+                    (
+                        "persons",
+                        wagtail.blocks.StructBlock(
+                            (
+                                (
+                                    "title",
+                                    wagtail.blocks.CharBlock(
+                                        classname="full title", required=False
+                                    ),
+                                ),
+                                (
+                                    "background",
+                                    wagtail.blocks.ChoiceBlock(
+                                        choices=[
+                                            ("grey", "grey"),
+                                            ("white", "white"),
+                                        ]
+                                    ),
+                                ),
+                                (
+                                    "personlist",
+                                    wagtail.blocks.ListBlock(
+                                        apps.persons.models.PersonDisplayBlock
+                                    ),
+                                ),
+                            )
+                        ),
+                    ),
+                ),
+                blank=True,
+                null=True,
+                verbose_name="Body",
+            ),
         ),
         migrations.AlterField(
-            model_name='projectpage',
-            name='body_en',
-            field=wagtail.fields.StreamField((('paragraph', wagtail.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.blocks.StructBlock((('headline', wagtail.blocks.CharBlock(length=256, required=False)), ('body', wagtail.blocks.RawHTMLBlock())))), ('persons', wagtail.blocks.StructBlock((('title', wagtail.blocks.CharBlock(classname='full title', required=False)), ('background', wagtail.blocks.ChoiceBlock(choices=[('grey', 'grey'), ('white', 'white')])), ('personlist', wagtail.blocks.ListBlock(apps.persons.models.PersonDisplayBlock)))))), null=True, verbose_name='Body'),
+            model_name="projectpage",
+            name="body_en",
+            field=wagtail.fields.StreamField(
+                (
+                    (
+                        "paragraph",
+                        wagtail.blocks.RichTextBlock(icon="pilcrow"),
+                    ),
+                    (
+                        "image",
+                        wagtail.images.blocks.ImageChooserBlock(icon="image"),
+                    ),
+                    ("video", wagtail.embeds.blocks.EmbedBlock(icon="media")),
+                    (
+                        "Raw_HTML",
+                        wagtail.blocks.StructBlock(
+                            (
+                                (
+                                    "headline",
+                                    wagtail.blocks.CharBlock(
+                                        length=256, required=False
+                                    ),
+                                ),
+                                ("body", wagtail.blocks.RawHTMLBlock()),
+                            )
+                        ),
+                    ),
+                    (
+                        "persons",
+                        wagtail.blocks.StructBlock(
+                            (
+                                (
+                                    "title",
+                                    wagtail.blocks.CharBlock(
+                                        classname="full title", required=False
+                                    ),
+                                ),
+                                (
+                                    "background",
+                                    wagtail.blocks.ChoiceBlock(
+                                        choices=[
+                                            ("grey", "grey"),
+                                            ("white", "white"),
+                                        ]
+                                    ),
+                                ),
+                                (
+                                    "personlist",
+                                    wagtail.blocks.ListBlock(
+                                        apps.persons.models.PersonDisplayBlock
+                                    ),
+                                ),
+                            )
+                        ),
+                    ),
+                ),
+                null=True,
+                verbose_name="Body",
+            ),
         ),
     ]

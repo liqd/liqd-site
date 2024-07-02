@@ -7,41 +7,61 @@ from django.db import models
 def merge_content_types_academy_and_external_link_pages(apps, schema_editor):
     def merge_content_types(pages):
         for page in pages:
-            if page.academy_content_type == 'TK':
-                page.academy_content_type = 'VD'
+            if page.academy_content_type == "TK":
+                page.academy_content_type = "VD"
                 page.save()
-            elif page.academy_content_type == 'WB':
-                page.academy_content_type = 'WS'
+            elif page.academy_content_type == "WB":
+                page.academy_content_type = "WS"
                 page.save()
-            elif page.academy_content_type == 'HT':
-                page.academy_content_type = 'AR'
+            elif page.academy_content_type == "HT":
+                page.academy_content_type = "AR"
                 page.save()
-    AcademyPage = apps.get_model('academy', 'AcademyPage')
+
+    AcademyPage = apps.get_model("academy", "AcademyPage")
     merge_content_types(AcademyPage.objects.all())
 
-    AcademyExternalLink = apps.get_model('academy', 'AcademyExternalLink')
+    AcademyExternalLink = apps.get_model("academy", "AcademyExternalLink")
     merge_content_types(AcademyExternalLink.objects.all())
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('academy', '0007_auto_20220818_1219'),
+        ("academy", "0007_auto_20220818_1219"),
     ]
 
     operations = [
-        migrations.RunPython(merge_content_types_academy_and_external_link_pages),
-        migrations.AlterField(
-            model_name='academyexternallink',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('LL', 'link collection'),
-                                                        ('AR', 'article'), ('EV', 'event')], max_length=2),
+        migrations.RunPython(
+            merge_content_types_academy_and_external_link_pages
         ),
         migrations.AlterField(
-            model_name='academypage',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('LL', 'link collection'),
-                                                        ('AR', 'article'), ('EV', 'event')], max_length=2),
+            model_name="academyexternallink",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("VD", "video"),
+                    ("WS", "workshop"),
+                    ("LL", "link collection"),
+                    ("AR", "article"),
+                    ("EV", "event"),
+                ],
+                max_length=2,
+            ),
         ),
-
+        migrations.AlterField(
+            model_name="academypage",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("VD", "video"),
+                    ("WS", "workshop"),
+                    ("LL", "link collection"),
+                    ("AR", "article"),
+                    ("EV", "event"),
+                ],
+                max_length=2,
+            ),
+        ),
     ]

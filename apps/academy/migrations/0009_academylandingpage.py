@@ -7,26 +7,72 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0069_log_entry_jsonfield'),
-        ('academy', '0008_merge_cts_and_add_ct_event'),
+        ("wagtailcore", "0069_log_entry_jsonfield"),
+        ("academy", "0008_merge_cts_and_add_ct_event"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AcademyLandingPage',
+            name="AcademyLandingPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('intro_text_en', models.CharField(max_length=255, verbose_name='intro text en')),
-                ('intro_text_de', models.CharField(blank=True, max_length=255, verbose_name='intro text de')),
-                ('intro_link_text_en', models.CharField(blank=True, max_length=100, verbose_name='intro link text en')),
-                ('intro_link_text_de', models.CharField(blank=True, max_length=100, verbose_name='intro link text de')),
-                ('color1', models.CharField(default='#d9b058', max_length=7)),
-                ('color2', models.CharField(default='#a37146', max_length=7)),
-                ('intro_link', models.ForeignKey(blank=True, help_text='Choose the page the intro text links to', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.page",
+                    ),
+                ),
+                (
+                    "intro_text_en",
+                    models.CharField(
+                        max_length=255, verbose_name="intro text en"
+                    ),
+                ),
+                (
+                    "intro_text_de",
+                    models.CharField(
+                        blank=True,
+                        max_length=255,
+                        verbose_name="intro text de",
+                    ),
+                ),
+                (
+                    "intro_link_text_en",
+                    models.CharField(
+                        blank=True,
+                        max_length=100,
+                        verbose_name="intro link text en",
+                    ),
+                ),
+                (
+                    "intro_link_text_de",
+                    models.CharField(
+                        blank=True,
+                        max_length=100,
+                        verbose_name="intro link text de",
+                    ),
+                ),
+                ("color1", models.CharField(default="#d9b058", max_length=7)),
+                ("color2", models.CharField(default="#a37146", max_length=7)),
+                (
+                    "intro_link",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Choose the page the intro text links to",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailcore.page",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Academy Landing Page',
+                "verbose_name": "Academy Landing Page",
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

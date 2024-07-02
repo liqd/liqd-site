@@ -8,38 +8,41 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-
-
     def set_custom_image_id(apps, schema_editor):
-        CustomImage = apps.get_model('images', 'CustomImage')
-        Project = apps.get_model('projects', 'ProjectPage')
+        CustomImage = apps.get_model("images", "CustomImage")
+        Project = apps.get_model("projects", "ProjectPage")
 
         for project in Project.objects.all():
             if project.image:
                 image = project.image.pk
                 project.custom_image = CustomImage.objects.get(id=image)
-                project.save(update_fields=['custom_image'])
+                project.save(update_fields=["custom_image"])
 
     dependencies = [
-        ('images', '0002_copy_images'),
-        ('projects', '0008_merge_20170612_1654')
+        ("images", "0002_copy_images"),
+        ("projects", "0008_merge_20170612_1654"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='projectpage',
-            name='custom_image',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.CustomImage'),
+            model_name="projectpage",
+            name="custom_image",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="images.CustomImage",
+            ),
         ),
         migrations.RunPython(set_custom_image_id),
         migrations.RemoveField(
-            model_name='projectpage',
-            name='image',
+            model_name="projectpage",
+            name="image",
         ),
         migrations.RenameField(
-            model_name='projectpage',
-            old_name='custom_image',
-            new_name='image',
-        )
-
+            model_name="projectpage",
+            old_name="custom_image",
+            new_name="image",
+        ),
     ]

@@ -9,18 +9,20 @@ import modelcluster.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0008_blogcategory_projectcategory'),
-        ('projects', '0006_remove-heading'),
+        ("core", "0008_blogcategory_projectcategory"),
+        ("projects", "0006_remove-heading"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='projectindexpage',
-            options={'verbose_name': 'Project List'},
+            name="projectindexpage",
+            options={"verbose_name": "Project List"},
         ),
         migrations.AddField(
-            model_name='projectpage',
-            name='categories',
-            field=modelcluster.fields.ParentalManyToManyField(blank=True, to='core.ProjectCategory'),
+            model_name="projectpage",
+            name="categories",
+            field=modelcluster.fields.ParentalManyToManyField(
+                blank=True, to="core.ProjectCategory"
+            ),
         ),
     ]

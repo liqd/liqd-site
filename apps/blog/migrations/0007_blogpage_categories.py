@@ -9,14 +9,16 @@ import modelcluster.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0012_update_tags'),
-        ('blog', '0006_add_aligned_image_block'),
+        ("core", "0012_update_tags"),
+        ("blog", "0006_add_aligned_image_block"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='blogpage',
-            name='categories',
-            field=modelcluster.fields.ParentalManyToManyField(blank=True, to='core.BlogCategory'),
+            model_name="blogpage",
+            name="categories",
+            field=modelcluster.fields.ParentalManyToManyField(
+                blank=True, to="core.BlogCategory"
+            ),
         ),
     ]

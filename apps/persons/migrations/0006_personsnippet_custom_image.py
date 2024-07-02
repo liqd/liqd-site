@@ -7,8 +7,8 @@ import django.db.models.deletion
 
 
 def set_custom_image_id(apps, schema_editor):
-    CustomImage = apps.get_model('images', 'CustomImage')
-    PersonSnippet = apps.get_model('persons', 'PersonSnippet')
+    CustomImage = apps.get_model("images", "CustomImage")
+    PersonSnippet = apps.get_model("persons", "PersonSnippet")
 
     for person in PersonSnippet.objects.all():
         if person.image:
@@ -20,24 +20,30 @@ def set_custom_image_id(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('images', '0002_copy_images'),
-        ('persons', '0005_auto_20161216_1333')
+        ("images", "0002_copy_images"),
+        ("persons", "0005_auto_20161216_1333"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='personsnippet',
-            name='custom_image',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.CustomImage'),
+            model_name="personsnippet",
+            name="custom_image",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="images.CustomImage",
+            ),
         ),
         migrations.RunPython(set_custom_image_id),
         migrations.RemoveField(
-            model_name='personsnippet',
-            name='image',
+            model_name="personsnippet",
+            name="image",
         ),
         migrations.RenameField(
-            model_name='personsnippet',
-            old_name='custom_image',
-            new_name='image',
-        )
+            model_name="personsnippet",
+            old_name="custom_image",
+            new_name="image",
+        ),
     ]

@@ -9,18 +9,184 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('academy', '0018_rm_required_en'),
+        ("academy", "0018_rm_required_en"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='academypage',
-            name='teaser_de',
-            field=wagtail.fields.StreamField([('call_to_action_teaser', wagtail.blocks.StructBlock([('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('headline', wagtail.blocks.CharBlock(max_length=28, required=True)), ('image', wagtail.images.blocks.ImageChooserBlock(help_text='Please add image with transparent background', required=True)), ('body_text', wagtail.blocks.TextBlock(max_length=120, required=True)), ('cta_link', wagtail.blocks.StructBlock([('internal_link', wagtail.blocks.PageChooserBlock(help_text='The external link overwrites the link to a local page. Please only add 1 link.', required=False)), ('external_link', wagtail.blocks.URLBlock(required=False))])), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=28, required=False)), ('anchor_link', wagtail.blocks.CharBlock(help_text='Anchor link should be all one word.', label='Anchor Link', max_length=28, required=False))], label='List and Image'), max_num=2))]))], blank=True, null=True, use_json_field=True, verbose_name='Teaser'),
+            model_name="academypage",
+            name="teaser_de",
+            field=wagtail.fields.StreamField(
+                [
+                    (
+                        "call_to_action_teaser",
+                        wagtail.blocks.StructBlock(
+                            [
+                                (
+                                    "columns",
+                                    wagtail.blocks.ListBlock(
+                                        wagtail.blocks.StructBlock(
+                                            [
+                                                (
+                                                    "headline",
+                                                    wagtail.blocks.CharBlock(
+                                                        max_length=28,
+                                                        required=True,
+                                                    ),
+                                                ),
+                                                (
+                                                    "image",
+                                                    wagtail.images.blocks.ImageChooserBlock(
+                                                        help_text="Please add image with transparent background",
+                                                        required=True,
+                                                    ),
+                                                ),
+                                                (
+                                                    "body_text",
+                                                    wagtail.blocks.TextBlock(
+                                                        max_length=120,
+                                                        required=True,
+                                                    ),
+                                                ),
+                                                (
+                                                    "cta_link",
+                                                    wagtail.blocks.StructBlock(
+                                                        [
+                                                            (
+                                                                "internal_link",
+                                                                wagtail.blocks.PageChooserBlock(
+                                                                    help_text="The external link overwrites the link to a local page. Please only add 1 link.",
+                                                                    required=False,
+                                                                ),
+                                                            ),
+                                                            (
+                                                                "external_link",
+                                                                wagtail.blocks.URLBlock(
+                                                                    required=False
+                                                                ),
+                                                            ),
+                                                        ]
+                                                    ),
+                                                ),
+                                                (
+                                                    "link_text",
+                                                    wagtail.blocks.CharBlock(
+                                                        label="Link Text",
+                                                        max_length=28,
+                                                        required=False,
+                                                    ),
+                                                ),
+                                                (
+                                                    "anchor_link",
+                                                    wagtail.blocks.CharBlock(
+                                                        help_text="Anchor link should be all one word.",
+                                                        label="Anchor Link",
+                                                        max_length=28,
+                                                        required=False,
+                                                    ),
+                                                ),
+                                            ],
+                                            label="List and Image",
+                                        ),
+                                        max_num=2,
+                                    ),
+                                )
+                            ]
+                        ),
+                    )
+                ],
+                blank=True,
+                null=True,
+                use_json_field=True,
+                verbose_name="Teaser",
+            ),
         ),
         migrations.AlterField(
-            model_name='academypage',
-            name='teaser_en',
-            field=wagtail.fields.StreamField([('call_to_action_teaser', wagtail.blocks.StructBlock([('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('headline', wagtail.blocks.CharBlock(max_length=28, required=True)), ('image', wagtail.images.blocks.ImageChooserBlock(help_text='Please add image with transparent background', required=True)), ('body_text', wagtail.blocks.TextBlock(max_length=120, required=True)), ('cta_link', wagtail.blocks.StructBlock([('internal_link', wagtail.blocks.PageChooserBlock(help_text='The external link overwrites the link to a local page. Please only add 1 link.', required=False)), ('external_link', wagtail.blocks.URLBlock(required=False))])), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=28, required=False)), ('anchor_link', wagtail.blocks.CharBlock(help_text='Anchor link should be all one word.', label='Anchor Link', max_length=28, required=False))], label='List and Image'), max_num=2))]))], blank=True, null=True, use_json_field=True, verbose_name='Teaser'),
+            model_name="academypage",
+            name="teaser_en",
+            field=wagtail.fields.StreamField(
+                [
+                    (
+                        "call_to_action_teaser",
+                        wagtail.blocks.StructBlock(
+                            [
+                                (
+                                    "columns",
+                                    wagtail.blocks.ListBlock(
+                                        wagtail.blocks.StructBlock(
+                                            [
+                                                (
+                                                    "headline",
+                                                    wagtail.blocks.CharBlock(
+                                                        max_length=28,
+                                                        required=True,
+                                                    ),
+                                                ),
+                                                (
+                                                    "image",
+                                                    wagtail.images.blocks.ImageChooserBlock(
+                                                        help_text="Please add image with transparent background",
+                                                        required=True,
+                                                    ),
+                                                ),
+                                                (
+                                                    "body_text",
+                                                    wagtail.blocks.TextBlock(
+                                                        max_length=120,
+                                                        required=True,
+                                                    ),
+                                                ),
+                                                (
+                                                    "cta_link",
+                                                    wagtail.blocks.StructBlock(
+                                                        [
+                                                            (
+                                                                "internal_link",
+                                                                wagtail.blocks.PageChooserBlock(
+                                                                    help_text="The external link overwrites the link to a local page. Please only add 1 link.",
+                                                                    required=False,
+                                                                ),
+                                                            ),
+                                                            (
+                                                                "external_link",
+                                                                wagtail.blocks.URLBlock(
+                                                                    required=False
+                                                                ),
+                                                            ),
+                                                        ]
+                                                    ),
+                                                ),
+                                                (
+                                                    "link_text",
+                                                    wagtail.blocks.CharBlock(
+                                                        label="Link Text",
+                                                        max_length=28,
+                                                        required=False,
+                                                    ),
+                                                ),
+                                                (
+                                                    "anchor_link",
+                                                    wagtail.blocks.CharBlock(
+                                                        help_text="Anchor link should be all one word.",
+                                                        label="Anchor Link",
+                                                        max_length=28,
+                                                        required=False,
+                                                    ),
+                                                ),
+                                            ],
+                                            label="List and Image",
+                                        ),
+                                        max_num=2,
+                                    ),
+                                )
+                            ]
+                        ),
+                    )
+                ],
+                blank=True,
+                null=True,
+                use_json_field=True,
+                verbose_name="Teaser",
+            ),
         ),
     ]

@@ -7,23 +7,28 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '__latest__'),
+        ("wagtailcore", "__latest__"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HomePage',
+            name="HomePage",
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True,
-                                                  auto_created=True,
-                                                  primary_key=True,
-                                                  serialize=False,
-                                                  to='wagtailcore.Page',
-                                                  on_delete=models.CASCADE)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        parent_link=True,
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                        on_delete=models.CASCADE,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]
