@@ -1,13 +1,12 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.admin import edit_handlers
 from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import InlinePanel
-from wagtail.core.blocks import CharBlock
-from wagtail.core.blocks import PageChooserBlock
-from wagtail.core.blocks import StructBlock
-from wagtail.core.fields import StreamField
+from wagtail.blocks import CharBlock
+from wagtail.blocks import PageChooserBlock
+from wagtail.blocks import StructBlock
+from wagtail.fields import StreamField
 from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
 
@@ -81,7 +80,7 @@ class MenuItem(LinkFields):
         FieldPanel("menu_title_de"),
         FieldPanel("menu_title_en"),
     ] + LinkFields.panels
-    panels.append(edit_handlers.FieldPanel("subpages"))
+    panels.append(FieldPanel("subpages"))
 
 
 @register_snippet
