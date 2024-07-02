@@ -247,10 +247,12 @@ class AcademyExternalLink(Page):
     preview_modes = []
     url = None
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.slug = self.id
         self.title = self.title_en
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"slug", "title"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class AcademyChallengePage(Page):

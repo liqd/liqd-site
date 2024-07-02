@@ -1,8 +1,6 @@
 # Minimal requirements
-Django==4.0
+Django==4.2
 wagtail==5.2.5
-# To be removed after upgrade to Django 4.2
-djangorestframework==3.15.1
 
 bleach[css]==5.0.1
 brotli==1.1.0
