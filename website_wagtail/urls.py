@@ -40,3 +40,11 @@ if settings.DEBUG:
         settings.MEDIA_URL + "images/",
         document_root=os.path.join(settings.MEDIA_ROOT, "images"),
     )
+    try:
+        import debug_toolbar
+    except ImportError:
+        pass
+    else:
+        urlpatterns = [
+            path("__debug__/", include(debug_toolbar.urls)),
+        ] + urlpatterns
