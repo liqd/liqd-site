@@ -1,5 +1,5 @@
 VIRTUAL_ENV ?= venv
-SOURCE_DIRS = apps website_wagtail
+SOURCE_DIRS = apps website_wagtail contrib
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
 .PHONY: all
