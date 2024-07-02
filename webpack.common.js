@@ -13,6 +13,9 @@ module.exports = {
     all: [
       './apps/core/static/scss/all.scss',
       './apps/core/static/js/app.js'
+    ],
+    matomo: [
+      './apps/core/static/js/matomo.js'
     ]
   },
 
