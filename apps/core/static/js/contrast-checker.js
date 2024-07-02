@@ -44,25 +44,28 @@ function getDarker (color1, color2) {
 const elementsToBeChecked = document.querySelectorAll('[data-contrast-checking]')
 const brighterFgHex = '#fbfbfb'
 const darkerFgHex = '#060606'
-const bgColors = JSON.parse(elementsToBeChecked[0].getAttribute('data-contrast-checking'))
 
-if (bgColors.every(i => i !== '')) {
-  // compare darker colors (bg colors) from backend
-  const darkerBgColor = getDarker(bgColors[0], bgColors[1])
+if (elementsToBeChecked.length > 0) {
+  const bgColors = JSON.parse(elementsToBeChecked[0].getAttribute('data-contrast-checking'))
 
-  // converts the two textcolor options to rgb values (black and white)
-  const brighterFgColor = hexToRgb(brighterFgHex)
-  const darkerFgColor = hexToRgb(darkerFgHex)
+  if (bgColors.every(i => i !== '')) {
+    // compare darker colors (bg colors) from backend
+    const darkerBgColor = getDarker(bgColors[0], bgColors[1])
 
-  // calculate contrast. Results are floating numbers.
-  const contrastRatioBright = contrast(brighterFgColor, darkerBgColor)
-  const contrastRatioDark = contrast(darkerFgColor, darkerBgColor)
+    // converts the two textcolor options to rgb values (black and white)
+    const brighterFgColor = hexToRgb(brighterFgHex)
+    const darkerFgColor = hexToRgb(darkerFgHex)
 
-  // compare contrast ratios. Higher value wins.
-  const textcolor = contrastRatioBright > contrastRatioDark
-    ? brighterFgHex
-    : darkerFgHex
+    // calculate contrast. Results are floating numbers.
+    const contrastRatioBright = contrast(brighterFgColor, darkerBgColor)
+    const contrastRatioDark = contrast(darkerFgColor, darkerBgColor)
 
-  // set inline style text color
-  elementsToBeChecked.forEach(element => { element.style.color = textcolor })
+    // compare contrast ratios. Higher value wins.
+    const textcolor = contrastRatioBright > contrastRatioDark
+      ? brighterFgHex
+      : darkerFgHex
+
+    // set inline style text color
+    elementsToBeChecked.forEach(element => { element.style.color = textcolor })
+  }
 }
