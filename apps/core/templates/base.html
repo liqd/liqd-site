@@ -19,6 +19,8 @@
 
         {# External stylesheets #}
         <link rel="stylesheet" href="{% static 'all.css' %}">
+        {% matomo_enabled as matomo %}
+        {% if matomo %} {% matomo_tracking_code %} {% endif %}
 
         {% block extra_css %}
 
