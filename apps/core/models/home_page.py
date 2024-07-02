@@ -2,6 +2,8 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import MultiFieldPanel
 from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import TabbedInterface
+from wagtail.admin.panels.title_field_panel import TitleFieldPanel
+from wagtail.admin.widgets.slug import SlugInput
 from wagtail.models import Page
 
 from .abstract_page_model import TranslatedStreamFieldPage
@@ -21,8 +23,8 @@ class HomePage(TranslatedStreamFieldPage):
     promote_panels = [
         MultiFieldPanel(
             [
-                FieldPanel("slug"),
-                FieldPanel("title"),
+                FieldPanel("slug", widget=SlugInput),
+                TitleFieldPanel("title"),
             ],
             heading="Slug and CMS Page Name",
         ),

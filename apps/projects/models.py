@@ -15,6 +15,8 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import MultiFieldPanel
 from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import TabbedInterface
+from wagtail.admin.panels.title_field_panel import TitleFieldPanel
+from wagtail.admin.widgets.slug import SlugInput
 from wagtail.fields import RichTextField
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -171,8 +173,8 @@ class ProjectPage(Page):
     promote_panels = [
         MultiFieldPanel(
             [
-                FieldPanel("title"),
-                FieldPanel("slug"),
+                TitleFieldPanel("title"),
+                FieldPanel("slug", widget=SlugInput),
             ],
             heading="Slug and CMS Page Name",
         ),
