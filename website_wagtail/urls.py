@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
-from django.urls import re_path
 from django.views.generic import TemplateView
 from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 
@@ -16,8 +15,8 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include("wagtail.admin.urls")),
     path("documents/", include("wagtail.documents.urls")),
-    re_path(
-        r"^robots\.txt$",
+    path(
+        "robots.txt",
         TemplateView.as_view(
             template_name="robots.txt", content_type="text/plain"
         ),
@@ -28,7 +27,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     # url(r'^search/', include('wagtail.search.urls')),
     path("latest/feed/", LatestEntriesFeed()),
-    re_path(r"^sitemap\.xml$", wagtail_sitemap),
+    path("sitemap.xml", wagtail_sitemap),
     path("", include("wagtail.urls")),
 )
 
