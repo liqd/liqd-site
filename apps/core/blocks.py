@@ -11,14 +11,13 @@ from wagtail.images.blocks import ImageChooserBlock
 
 
 class StandardParagraphBlock(StructBlock):
-    headline = CharBlock(required=False, max_length=256)
     text = RichTextBlock(required=True)
 
     class Meta:
         template = "blocks/block_standard_paragraph.html"
         icon = "pilcrow"
         label = "Basic Paragraph"
-        help_text = "Basic text paragraph with optional heading."
+        help_text = "Basic text paragraph."
 
 
 class HTMLBlock(StructBlock):
