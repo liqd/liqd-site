@@ -19,7 +19,7 @@
     "eslint-plugin-standard": "4.1.0",
     "glslify-loader": "2.0.0",
     "husky": "8.0.3",
-    "lighthouse": "10.2.0",
+    "lighthouse": "10.4.0",
     "lint-staged": "13.2.2",
     "mini-css-extract-plugin": "2.7.6",
     "postcss": "8.4.39",
