@@ -15,6 +15,8 @@ from wagtail.admin.panels import MultiFieldPanel
 from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import PageChooserPanel
 from wagtail.admin.panels import TabbedInterface
+from wagtail.admin.panels.title_field_panel import TitleFieldPanel
+from wagtail.admin.widgets.slug import SlugInput
 from wagtail.fields import RichTextField
 from wagtail.fields import StreamField
 from wagtail.models import Page
@@ -118,8 +120,8 @@ class AcademyPage(AbstractBlogPage):
     promote_panels = [
         MultiFieldPanel(
             [
-                FieldPanel("title"),
-                FieldPanel("slug"),
+                TitleFieldPanel("title"),
+                FieldPanel("slug", widget=SlugInput),
             ],
             heading="Slug and CMS Page Name",
         ),
@@ -361,8 +363,8 @@ class AcademyChallengePage(Page):
     promote_panels = [
         MultiFieldPanel(
             [
-                FieldPanel("title"),
-                FieldPanel("slug"),
+                TitleFieldPanel("title"),
+                FieldPanel("slug", widget=SlugInput),
             ],
             heading="Slug and CMS Page Name",
         ),
@@ -441,8 +443,8 @@ class AcademyIndexPage(Page):
     promote_panels = [
         MultiFieldPanel(
             [
-                FieldPanel("title"),
-                FieldPanel("slug"),
+                TitleFieldPanel("title"),
+                FieldPanel("slug", widget=SlugInput),
             ],
             heading="Slug and CMS Page Name",
         ),
@@ -629,8 +631,8 @@ class AcademyLandingPage(Page):
     promote_panels = [
         MultiFieldPanel(
             [
-                FieldPanel("title"),
-                FieldPanel("slug"),
+                TitleFieldPanel("title"),
+                FieldPanel("slug", widget=SlugInput),
             ],
             heading="Slug and CMS Page Name",
         ),
