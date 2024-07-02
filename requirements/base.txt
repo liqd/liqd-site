@@ -1,6 +1,6 @@
 # Minimal requirements
 Django==3.2.18
-wagtail==4.1.4
+wagtail==4.1.9
 # To be removed after upgrade to Django 4.2
 djangorestframework==3.15.1
 
