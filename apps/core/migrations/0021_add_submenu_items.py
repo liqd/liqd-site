@@ -9,19 +9,51 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0069_log_entry_jsonfield'),
-        ('core', '0020_fix_max_length'),
+        ("wagtailcore", "0069_log_entry_jsonfield"),
+        ("core", "0020_fix_max_length"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='menuitem',
-            name='subpages',
-            field=wagtail.fields.StreamField([('submenuitem', wagtail.blocks.StructBlock([('link', wagtail.blocks.PageChooserBlock()), ('link_text_de', wagtail.blocks.CharBlock(max_length=255)), ('link_text_en', wagtail.blocks.CharBlock(blank=True, max_length=255))]))], blank=True, help_text='These links will be displayed in a second level navigation.', null=True, use_json_field=None, verbose_name='Submenu'),
+            model_name="menuitem",
+            name="subpages",
+            field=wagtail.fields.StreamField(
+                [
+                    (
+                        "submenuitem",
+                        wagtail.blocks.StructBlock(
+                            [
+                                ("link", wagtail.blocks.PageChooserBlock()),
+                                (
+                                    "link_text_de",
+                                    wagtail.blocks.CharBlock(max_length=255),
+                                ),
+                                (
+                                    "link_text_en",
+                                    wagtail.blocks.CharBlock(
+                                        blank=True, max_length=255
+                                    ),
+                                ),
+                            ]
+                        ),
+                    )
+                ],
+                blank=True,
+                help_text="These links will be displayed in a second level navigation.",
+                null=True,
+                use_json_field=None,
+                verbose_name="Submenu",
+            ),
         ),
         migrations.AlterField(
-            model_name='menuitem',
-            name='link_page',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='wagtailcore.page'),
+            model_name="menuitem",
+            name="link_page",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="+",
+                to="wagtailcore.page",
+            ),
         ),
     ]

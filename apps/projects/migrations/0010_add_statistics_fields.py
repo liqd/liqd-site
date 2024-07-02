@@ -8,23 +8,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0009_projectpage_custom_image'),
+        ("projects", "0009_projectpage_custom_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='projectpage',
-            name='partner',
+            model_name="projectpage",
+            name="partner",
             field=models.CharField(blank=True, max_length=256),
         ),
         migrations.AddField(
-            model_name='projectpage',
-            name='timescale',
+            model_name="projectpage",
+            name="timescale",
             field=models.CharField(blank=True, max_length=256),
         ),
         migrations.AddField(
-            model_name='projectpage',
-            name='user_count',
-            field=models.CharField(blank=True, max_length=256, verbose_name='Number of users per month'),
+            model_name="projectpage",
+            name="user_count",
+            field=models.CharField(
+                blank=True,
+                max_length=256,
+                verbose_name="Number of users per month",
+            ),
         ),
     ]

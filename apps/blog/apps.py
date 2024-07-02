@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class BlogConfig(AppConfig):
-    name = 'apps.blog'
-    label = 'blog'
+    name = "apps.blog"
+    label = "blog"

@@ -6,18 +6,36 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('academy', '0023_alter_academyindexpage_and_academypage_intro_en'),
+        ("academy", "0023_alter_academyindexpage_and_academypage_intro_en"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='academyexternallink',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('WS', 'workshop'), ('AR', 'article'), ('VD', 'video'), ('LL', 'link collection')], max_length=2),
+            model_name="academyexternallink",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("WS", "workshop"),
+                    ("AR", "article"),
+                    ("VD", "video"),
+                    ("LL", "link collection"),
+                ],
+                max_length=2,
+            ),
         ),
         migrations.AlterField(
-            model_name='academypage',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('WS', 'workshop'), ('AR', 'article'), ('VD', 'video'), ('LL', 'link collection')], max_length=2),
+            model_name="academypage",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("WS", "workshop"),
+                    ("AR", "article"),
+                    ("VD", "video"),
+                    ("LL", "link collection"),
+                ],
+                max_length=2,
+            ),
         ),
     ]

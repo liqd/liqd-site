@@ -1,5 +1,7 @@
 from django.db import models
-from wagtail.images.models import AbstractImage, AbstractRendition, Image
+from wagtail.images.models import AbstractImage
+from wagtail.images.models import AbstractRendition
+from wagtail.images.models import Image
 
 from contrib.translations.translations import TranslatedField
 
@@ -12,28 +14,31 @@ class CustomImage(AbstractImage):
     alt_de = models.CharField(
         max_length=255,
         blank=True,
-        help_text='Add an alternative text for image accessibility'
+        help_text="Add an alternative text for image accessibility",
     )
     alt_en = models.CharField(
         max_length=255,
         blank=True,
-        help_text='Add an alternative text for image accessibility'
+        help_text="Add an alternative text for image accessibility",
     )
 
     copyright = models.CharField(
         max_length=255,
         blank=True,
-        help_text='Add copyright information for image'
+        help_text="Add copyright information for image",
     )
 
     admin_form_fields = Image.admin_form_fields + (
-        'caption_en', 'caption_de', 'alt_de',
-        'alt_en', 'copyright'
+        "caption_en",
+        "caption_de",
+        "alt_de",
+        "alt_en",
+        "copyright",
     )
 
-    caption = TranslatedField('caption_de', 'caption_en')
+    caption = TranslatedField("caption_de", "caption_en")
 
-    alt = TranslatedField('alt_de', 'alt_en')
+    alt = TranslatedField("alt_de", "alt_en")
 
     @property
     def default_alt_text(self):
@@ -42,11 +47,9 @@ class CustomImage(AbstractImage):
 
 
 class CustomRendition(AbstractRendition):
-    image = models.ForeignKey(CustomImage,
-                              related_name='renditions',
-                              on_delete=models.CASCADE)
+    image = models.ForeignKey(
+        CustomImage, related_name="renditions", on_delete=models.CASCADE
+    )
 
     class Meta:
-        unique_together = (
-            ('image', 'filter_spec', 'focal_point_key'),
-        )
+        unique_together = (("image", "filter_spec", "focal_point_key"),)

@@ -6,18 +6,42 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('academy', '0005_academychallengepage'),
+        ("academy", "0005_academychallengepage"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='academyexternallink',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('HT', 'how-to'), ('TK', 'talk'), ('LL', 'link collection'), ('AR', 'article'), ('WB', 'webinar')], max_length=2),
+            model_name="academyexternallink",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("VD", "video"),
+                    ("WS", "workshop"),
+                    ("HT", "how-to"),
+                    ("TK", "talk"),
+                    ("LL", "link collection"),
+                    ("AR", "article"),
+                    ("WB", "webinar"),
+                ],
+                max_length=2,
+            ),
         ),
         migrations.AlterField(
-            model_name='academypage',
-            name='academy_content_type',
-            field=models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('HT', 'how-to'), ('TK', 'talk'), ('LL', 'link collection'), ('AR', 'article'), ('WB', 'webinar')], max_length=2),
+            model_name="academypage",
+            name="academy_content_type",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("VD", "video"),
+                    ("WS", "workshop"),
+                    ("HT", "how-to"),
+                    ("TK", "talk"),
+                    ("LL", "link collection"),
+                    ("AR", "article"),
+                    ("WB", "webinar"),
+                ],
+                max_length=2,
+            ),
         ),
     ]

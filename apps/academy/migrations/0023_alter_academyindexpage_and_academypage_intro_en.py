@@ -7,18 +7,22 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('academy', '0022_fix_image_block'),
+        ("academy", "0022_fix_image_block"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='academyindexpage',
-            name='intro_en',
-            field=wagtail.fields.RichTextField(blank=True, verbose_name='intro text'),
+            model_name="academyindexpage",
+            name="intro_en",
+            field=wagtail.fields.RichTextField(
+                blank=True, verbose_name="intro text"
+            ),
         ),
         migrations.AlterField(
-            model_name='academypage',
-            name='intro_en',
-            field=wagtail.fields.RichTextField(blank=True, verbose_name='Teasertext'),
+            model_name="academypage",
+            name="intro_en",
+            field=wagtail.fields.RichTextField(
+                blank=True, verbose_name="Teasertext"
+            ),
         ),
     ]

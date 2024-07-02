@@ -8,18 +8,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('persons', '0006_personsnippet_custom_image'),
+        ("persons", "0006_personsnippet_custom_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='personsnippet',
-            name='color1',
-            field=models.CharField(default='#d9b058', max_length=7),
+            model_name="personsnippet",
+            name="color1",
+            field=models.CharField(default="#d9b058", max_length=7),
         ),
         migrations.AddField(
-            model_name='personsnippet',
-            name='color2',
-            field=models.CharField(default='#a37146', max_length=7),
+            model_name="personsnippet",
+            name="color2",
+            field=models.CharField(default="#a37146", max_length=7),
         ),
     ]

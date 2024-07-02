@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0016_auto_20170907_1009'),
+        ("core", "0016_auto_20170907_1009"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='addresssettings',
-            name='map_link',
+            model_name="addresssettings",
+            name="map_link",
             field=models.CharField(blank=True, max_length=255),
         ),
     ]

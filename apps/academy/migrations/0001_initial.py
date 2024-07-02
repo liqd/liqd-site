@@ -14,30 +14,238 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
+        (
+            "wagtailcore",
+            "0041_group_collection_permissions_verbose_name_plural",
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AcademyPage',
+            name="AcademyPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('title_en', models.CharField(max_length=255, verbose_name='Title')),
-                ('title_de', models.CharField(blank=True, max_length=255, verbose_name='Title')),
-                ('subtitle_en', models.CharField(default='', max_length=255, verbose_name='Subtitle')),
-                ('subtitle_de', models.CharField(blank=True, default='', max_length=255, verbose_name='Subtitle')),
-                ('intro_en', wagtail.fields.RichTextField(verbose_name='Teasertext')),
-                ('intro_de', wagtail.fields.RichTextField(blank=True, verbose_name='Teasertext')),
-                ('body_en', wagtail.fields.StreamField([('heading', wagtail.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('aligned_image', wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(label='Image')), ('display', wagtail.blocks.ChoiceBlock(choices=[('left', 'left'), ('right', 'right')], help_text='Decide on which side the image should be displayed'))], icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.blocks.StructBlock([('headline', wagtail.blocks.CharBlock(length=256, required=False)), ('body', wagtail.blocks.RawHTMLBlock())]))], null=True, verbose_name='Body')),
-                ('body_de', wagtail.fields.StreamField([('heading', wagtail.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.blocks.RichTextBlock(icon='pilcrow')), ('image', wagtail.images.blocks.ImageChooserBlock(icon='image')), ('aligned_image', wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(label='Image')), ('display', wagtail.blocks.ChoiceBlock(choices=[('left', 'left'), ('right', 'right')], help_text='Decide on which side the image should be displayed'))], icon='image')), ('video', wagtail.embeds.blocks.EmbedBlock(icon='media')), ('Raw_HTML', wagtail.blocks.StructBlock([('headline', wagtail.blocks.CharBlock(length=256, required=False)), ('body', wagtail.blocks.RawHTMLBlock())]))], blank=True, null=True, verbose_name='Body')),
-                ('author', models.CharField(blank=True, max_length=255, null=True)),
-                ('date', models.DateField(verbose_name='Post date')),
-                ('topics', multiselectfield.db.fields.MultiSelectField(choices=[('LT', 'Liquid Democracy & Theory'), ('DS', 'Digital Civic Society'), ('PA', 'Digital Participation In Action')], max_length=8)),
-                ('page_content_type', models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('TK', 'talk'), ('LL', 'link list'), ('BP', 'blogpost'), ('WB', 'webinar')], max_length=2)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "title_en",
+                    models.CharField(max_length=255, verbose_name="Title"),
+                ),
+                (
+                    "title_de",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="Title"
+                    ),
+                ),
+                (
+                    "subtitle_en",
+                    models.CharField(
+                        default="", max_length=255, verbose_name="Subtitle"
+                    ),
+                ),
+                (
+                    "subtitle_de",
+                    models.CharField(
+                        blank=True,
+                        default="",
+                        max_length=255,
+                        verbose_name="Subtitle",
+                    ),
+                ),
+                (
+                    "intro_en",
+                    wagtail.fields.RichTextField(verbose_name="Teasertext"),
+                ),
+                (
+                    "intro_de",
+                    wagtail.fields.RichTextField(
+                        blank=True, verbose_name="Teasertext"
+                    ),
+                ),
+                (
+                    "body_en",
+                    wagtail.fields.StreamField(
+                        [
+                            (
+                                "heading",
+                                wagtail.blocks.CharBlock(
+                                    classname="full title", icon="title"
+                                ),
+                            ),
+                            (
+                                "paragraph",
+                                wagtail.blocks.RichTextBlock(icon="pilcrow"),
+                            ),
+                            (
+                                "image",
+                                wagtail.images.blocks.ImageChooserBlock(
+                                    icon="image"
+                                ),
+                            ),
+                            (
+                                "aligned_image",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                label="Image"
+                                            ),
+                                        ),
+                                        (
+                                            "display",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("left", "left"),
+                                                    ("right", "right"),
+                                                ],
+                                                help_text="Decide on which side the image should be displayed",
+                                            ),
+                                        ),
+                                    ],
+                                    icon="image",
+                                ),
+                            ),
+                            (
+                                "video",
+                                wagtail.embeds.blocks.EmbedBlock(icon="media"),
+                            ),
+                            (
+                                "Raw_HTML",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "headline",
+                                            wagtail.blocks.CharBlock(
+                                                length=256, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.blocks.RawHTMLBlock(),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                        ],
+                        null=True,
+                        verbose_name="Body",
+                    ),
+                ),
+                (
+                    "body_de",
+                    wagtail.fields.StreamField(
+                        [
+                            (
+                                "heading",
+                                wagtail.blocks.CharBlock(
+                                    classname="full title", icon="title"
+                                ),
+                            ),
+                            (
+                                "paragraph",
+                                wagtail.blocks.RichTextBlock(icon="pilcrow"),
+                            ),
+                            (
+                                "image",
+                                wagtail.images.blocks.ImageChooserBlock(
+                                    icon="image"
+                                ),
+                            ),
+                            (
+                                "aligned_image",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                label="Image"
+                                            ),
+                                        ),
+                                        (
+                                            "display",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("left", "left"),
+                                                    ("right", "right"),
+                                                ],
+                                                help_text="Decide on which side the image should be displayed",
+                                            ),
+                                        ),
+                                    ],
+                                    icon="image",
+                                ),
+                            ),
+                            (
+                                "video",
+                                wagtail.embeds.blocks.EmbedBlock(icon="media"),
+                            ),
+                            (
+                                "Raw_HTML",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "headline",
+                                            wagtail.blocks.CharBlock(
+                                                length=256, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.blocks.RawHTMLBlock(),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                        null=True,
+                        verbose_name="Body",
+                    ),
+                ),
+                (
+                    "author",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                ("date", models.DateField(verbose_name="Post date")),
+                (
+                    "topics",
+                    multiselectfield.db.fields.MultiSelectField(
+                        choices=[
+                            ("LT", "Liquid Democracy & Theory"),
+                            ("DS", "Digital Civic Society"),
+                            ("PA", "Digital Participation In Action"),
+                        ],
+                        max_length=8,
+                    ),
+                ),
+                (
+                    "page_content_type",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("VD", "video"),
+                            ("WS", "workshop"),
+                            ("TK", "talk"),
+                            ("LL", "link list"),
+                            ("BP", "blogpost"),
+                            ("WB", "webinar"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Academy Page',
+                "verbose_name": "Academy Page",
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

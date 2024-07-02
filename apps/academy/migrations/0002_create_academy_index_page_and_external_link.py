@@ -9,53 +9,152 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
-        ('images', '0004_customimage_file_hash'),
-        ('academy', '0001_initial'),
+        (
+            "wagtailcore",
+            "0041_group_collection_permissions_verbose_name_plural",
+        ),
+        ("images", "0004_customimage_file_hash"),
+        ("academy", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AcademyIndexPage',
+            name="AcademyIndexPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('title_en', models.CharField(max_length=255, verbose_name='Title')),
-                ('title_de', models.CharField(blank=True, max_length=255, verbose_name='Title')),
-                ('intro_en', wagtail.fields.RichTextField(verbose_name='intro text')),
-                ('intro_de', wagtail.fields.RichTextField(blank=True, verbose_name='intro text')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "title_en",
+                    models.CharField(max_length=255, verbose_name="Title"),
+                ),
+                (
+                    "title_de",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="Title"
+                    ),
+                ),
+                (
+                    "intro_en",
+                    wagtail.fields.RichTextField(verbose_name="intro text"),
+                ),
+                (
+                    "intro_de",
+                    wagtail.fields.RichTextField(
+                        blank=True, verbose_name="intro text"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Academy Index Page',
+                "verbose_name": "Academy Index Page",
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.RenameField(
-            model_name='academypage',
-            old_name='page_content_type',
-            new_name='academy_content_type',
+            model_name="academypage",
+            old_name="page_content_type",
+            new_name="academy_content_type",
         ),
         migrations.AddField(
-            model_name='academypage',
-            name='tile_image',
-            field=models.ForeignKey(blank=True, help_text='The image used for the tile teaser', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.CustomImage'),
+            model_name="academypage",
+            name="tile_image",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="The image used for the tile teaser",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="images.CustomImage",
+            ),
         ),
         migrations.CreateModel(
-            name='AcademyExternalLink',
+            name="AcademyExternalLink",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('title_en', models.CharField(max_length=255, verbose_name='Title en')),
-                ('title_de', models.CharField(blank=True, max_length=255, verbose_name='Title dt')),
-                ('intro_en', wagtail.fields.RichTextField(verbose_name='Teasertext')),
-                ('intro_de', wagtail.fields.RichTextField(blank=True, verbose_name='Teasertext')),
-                ('date', models.DateField(verbose_name='Post date')),
-                ('external_link', models.URLField(help_text='URL to an external website')),
-                ('topics', multiselectfield.db.fields.MultiSelectField(choices=[('LT', 'Liquid Democracy & Theory'), ('DS', 'Digital Civic Society'), ('PA', 'Digital Participation In Action')], max_length=8)),
-                ('academy_content_type', models.CharField(blank=True, choices=[('VD', 'video'), ('WS', 'workshop'), ('TK', 'talk'), ('LL', 'link list'), ('BP', 'blogpost'), ('WB', 'webinar')], max_length=2)),
-                ('tile_image', models.ForeignKey(blank=True, help_text='The image used for the tile teaser', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.CustomImage')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "title_en",
+                    models.CharField(max_length=255, verbose_name="Title en"),
+                ),
+                (
+                    "title_de",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="Title dt"
+                    ),
+                ),
+                (
+                    "intro_en",
+                    wagtail.fields.RichTextField(verbose_name="Teasertext"),
+                ),
+                (
+                    "intro_de",
+                    wagtail.fields.RichTextField(
+                        blank=True, verbose_name="Teasertext"
+                    ),
+                ),
+                ("date", models.DateField(verbose_name="Post date")),
+                (
+                    "external_link",
+                    models.URLField(help_text="URL to an external website"),
+                ),
+                (
+                    "topics",
+                    multiselectfield.db.fields.MultiSelectField(
+                        choices=[
+                            ("LT", "Liquid Democracy & Theory"),
+                            ("DS", "Digital Civic Society"),
+                            ("PA", "Digital Participation In Action"),
+                        ],
+                        max_length=8,
+                    ),
+                ),
+                (
+                    "academy_content_type",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("VD", "video"),
+                            ("WS", "workshop"),
+                            ("TK", "talk"),
+                            ("LL", "link list"),
+                            ("BP", "blogpost"),
+                            ("WB", "webinar"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                (
+                    "tile_image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="The image used for the tile teaser",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="images.CustomImage",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

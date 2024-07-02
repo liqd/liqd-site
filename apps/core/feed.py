@@ -8,7 +8,7 @@ class LatestEntriesFeed(Feed):
     link = "/"
 
     def items(self):
-        return BlogPage.objects.all().live().order_by('-date')[:5]
+        return BlogPage.objects.all().live().order_by("-date")[:5]
 
     def item_title(self, item):
         return item.translated_title
