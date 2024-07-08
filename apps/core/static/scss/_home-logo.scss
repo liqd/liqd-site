@@ -1,13 +1,14 @@
 .home-logo {
+    position: relative;
     height: 70vh;
     width: 100vw;
+    z-index: -1;
 }
 
 .home-logo__canvas {
     position: fixed;
     top: 0;
     left: 0;
-
     transition: opacity 0.1s;
 }
 
