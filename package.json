@@ -23,7 +23,7 @@
     "lint-staged": "13.3.0",
     "mini-css-extract-plugin": "2.9.0",
     "postcss": "8.4.39",
-    "postcss-loader": "7.3.4",
+    "postcss-loader": "8.1.1",
     "postcss-scss": "4.0.9",
     "raw-loader": "4.0.2",
     "sass": "1.77.6",
