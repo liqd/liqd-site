@@ -3,8 +3,10 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http import Http404
 from django.urls import resolve
+from django.utils.safestring import SafeString
 
 from apps.core.models import NavigationMenu
+from contrib import transforms
 
 register = template.Library()
 
@@ -82,3 +84,8 @@ def matomo_tracking_code():
         "url": settings.MATOMO_URL,
         "cookie_disabled": cookie_disabled,
     }
+
+
+@register.filter()
+def clean_html_all(text: str) -> SafeString:
+    return transforms.clean_html_all(text)

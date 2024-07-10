@@ -74,7 +74,6 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "wagtail.contrib.settings",
-    "django_bleach",
     "taggit",
     "modelcluster",
     "wagtail",
@@ -140,13 +139,6 @@ STATICFILES_DIRS = (os.path.join(PROJECT_DIR, "static"),)
 
 MEDIA_ROOT = join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
-
-# Template configuration
-
-BLEACH_ALLOWED_TAGS = []
-BLEACH_ALLOWED_ATTRIBUTES = []
-BLEACH_STRIP_TAGS = True
-
 
 # Wagtail settings
 

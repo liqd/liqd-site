@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags i18n bleach_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags i18n core_tags %}
 
 {% block fb_meta_tags %}
     <meta property="og:type" content="content" />
     <meta property="og:title" content="{{ page.translated_title }}" />
     {% with description=page.translated_intro|richtext %}
-    <meta property="og:description" content="{{ description|bleach }}" />
+    <meta property="og:description" content="{{ description|clean_html_all }}" />
     {% endwith %}
 {% endblock %}
 
