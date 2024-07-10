@@ -3,14 +3,13 @@ from datetime import date
 from datetime import timedelta
 from urllib.request import urlopen
 
-import bleach
-from bleach.css_sanitizer import CSSSanitizer
 from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 from django.template.defaultfilters import slugify
 
 from apps.blog.models import BlogIndexPage
 from apps.blog.models import BlogPage
+from contrib.transforms import clean_html_all
 
 
 class Command(BaseCommand):
@@ -86,14 +85,7 @@ class Command(BaseCommand):
 
             result = result + '<a href="' + link + '">' + link + "</a>"
 
-            css_sanitizer = CSSSanitizer(allowed_css_properties=[])
-            clean_result = bleach.clean(
-                result,
-                tags=[],
-                attributes={},
-                css_sanitizer=css_sanitizer,
-                strip=True,
-            )
+            clean_result = clean_html_all(result)
             subtitle_en = clean_result[0:100]
             intro_en = clean_result[0:100]
             title_en = title

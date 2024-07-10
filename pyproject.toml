@@ -19,9 +19,8 @@ classifiers = [
 ]
 dependencies = [
     "Django >= 3.2, < 4.3",
-    "bleach[css]",
+    "bleach[css] >= 6.0",
     "brotli",
-    "django-bleach",
     "django-cloudflare-push",
     "django-multiselectfield",
     "django_csp",
