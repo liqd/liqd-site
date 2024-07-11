@@ -1,6 +1,6 @@
 # Minimal requirements
 Django==4.2.14
-wagtail==5.2.5
+wagtail==5.2.6
 
 bleach[css]==6.1.0
 brotli==1.1.0
