@@ -1,5 +1,5 @@
 # Minimal requirements
-Django==4.2.14
+Django==4.2.27
 wagtail==5.2.6
 
 bleach[css]==6.1.0
