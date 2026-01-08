@@ -48,6 +48,11 @@ TEMPLATES = [
 
 ALLOWED_HOSTS = []
 
+# CSRF settings
+# In Django 5.2, CSRF_TRUSTED_ORIGINS should be set if you have external domains
+# Set this in your environment-specific settings (dev.py, production.py) if needed
+# Example: CSRF_TRUSTED_ORIGINS = ["https://example.com"]
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {

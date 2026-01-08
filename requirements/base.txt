@@ -1,12 +1,12 @@
 # Minimal requirements
-Django==4.2.14
-wagtail==5.2.6
+Django==5.2.2
+wagtail==6.3.4
 
 bleach[css]==6.1.0
 brotli==1.1.0
-django-cloudflare-push==0.2.2
+git+https://github.com/skorokithakis/django-cloudflare-push.git@fcfcfc57826ecb87b9f138fd882cfb361047d850
 django_csp==3.8
-django-multiselectfield==0.1.13
+django-multiselectfield==1.0.1
 html5lib==1.1
 whitenoise==6.7.0
 sentry-sdk==2.9.0
