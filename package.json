@@ -6,6 +6,7 @@
     "@babel/preset-env": "7.26.0",
     "@babel/preset-react": "7.25.9",
     "@babel/runtime": "7.26.0",
+    "@playwright/test": "^1.40.0",
     "autoprefixer": "10.4.20",
     "babel-loader": "9.2.1",
     "chrome-launcher": "1.1.2",
@@ -51,7 +52,10 @@
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
-    "precommit": "make lint"
+    "precommit": "make lint",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
   },
   "lint-staged": {
     "*.{js,jsx}": [
