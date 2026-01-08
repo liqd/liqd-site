@@ -71,8 +71,7 @@ test:
 .PHONY: _setup-e2e
 _setup-e2e:
 	@if [ -f package.json ] && grep -q "@playwright/test" package.json; then \
-		if ls $$HOME/.cache/ms-playwright/chromium-* 1>/dev/null 2>&1; then \
-		else \
+		if ! ls $$HOME/.cache/ms-playwright/chromium-* 1>/dev/null 2>&1; then \
 			echo "Installing Playwright browsers..."; \
 			npx playwright install --with-deps chromium || true; \
 		fi; \
