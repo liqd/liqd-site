@@ -3,6 +3,7 @@ from django.core.paginator import InvalidPage
 from django.core.paginator import Paginator
 from django.db import models
 from django.db.models import Count
+from django.db.models.functions import ExtractYear
 from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -165,10 +166,10 @@ class BlogIndexPage(TranslatedStreamFieldPage):
     @property
     def years(self):
         return (
-            BlogPage.objects.extra(select={"year": "strftime('%%Y',date)"})
+            BlogPage.objects.annotate(year=ExtractYear("date"))
             .values("year")
-            .order_by()
-            .annotate(Count("id"))
+            .order_by("year")
+            .annotate(count=Count("id"))
         )
 
     @property
