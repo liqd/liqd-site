@@ -77,7 +77,7 @@ _setup-e2e:
 		fi; \
 	fi
 	@echo "Creating admin user for E2E tests..."
-	@$(VIRTUAL_ENV)/bin/python3 manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@test.com', 'password')" || true
+	@$(VIRTUAL_ENV)/bin/python3 manage.py shell -c "import json; creds = json.load(open('tests/e2e/test-credentials.json')); from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username=creds['username']).exists() or User.objects.create_superuser(creds['username'], creds['email'], creds['password'])" || true
 
 # Internal target to run E2E tests with server
 # Usage: $(MAKE) _run-e2e-tests TEST_CMD="npm run test:e2e"

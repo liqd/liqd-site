@@ -10,19 +10,12 @@
  */
 
 import { test, expect } from '@playwright/test'
-import { loginToAdmin, navigateToAddPage, savePage, getAdminCredentials, openTab } from './helpers.js'
+import { loginToAdmin, navigateToAddPage, savePage, ADMIN_CREDENTIALS, openTab } from './helpers.js'
 
 test.describe('MultiSelectField in AcademyPage', () => {
-  let adminCredentials
-
-  test.beforeAll(async () => {
-    // Get admin credentials (user should be created by Makefile)
-    adminCredentials = await getAdminCredentials('admin', 'password', 'admin@test.com')
-  })
-
   test.beforeEach(async ({ page }) => {
     // Login to admin
-    await loginToAdmin(page, adminCredentials.username, adminCredentials.password)
+    await loginToAdmin(page, ADMIN_CREDENTIALS.username, ADMIN_CREDENTIALS.password)
   })
 
   test('should display MultiSelectField in the form', async ({ page }) => {

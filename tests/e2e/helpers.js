@@ -2,6 +2,17 @@
  * Helper functions for Playwright E2E tests
  */
 
+import { readFileSync } from 'fs'
+import { join } from 'path'
+
+/**
+ * Admin user credentials for E2E tests
+ * Loaded from test-credentials.json
+ * Note: User should be created by Makefile before tests run
+ */
+const credentialsPath = join(process.cwd(), 'tests', 'e2e', 'test-credentials.json')
+export const ADMIN_CREDENTIALS = JSON.parse(readFileSync(credentialsPath, 'utf-8'))
+
 /**
  * Login to Wagtail admin
  * @param {import('@playwright/test').Page} page - Playwright page object
@@ -49,17 +60,6 @@ export async function loginToAdmin (page, username = 'admin', password = 'passwo
     const currentUrl = page.url()
     throw new Error(`Login failed - did not redirect to /admin/. Current URL: ${currentUrl}`)
   }
-}
-
-/**
- * Get admin user credentials
- * Note: User should be created by Makefile before tests run
- * @param {string} username - Username for admin user
- * @param {string} password - Password for admin user
- * @param {string} email - Email for admin user
- */
-export async function getAdminCredentials (username = 'admin', password = 'password', email = 'admin@test.com') {
-  return { username, password, email }
 }
 
 /**
