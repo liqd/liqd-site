@@ -58,7 +58,7 @@ STREAMFIELD_EXTRA_BLOCKS = [
 
 class AcademyPage(AbstractBlogPage):
     topics = MultiSelectField(
-        max_length=8, max_choices=3, choices=TOPIC_CHOICES
+        max_length=8, max_choices=3, choices=TOPIC_CHOICES, blank=True
     )
 
     academy_content_type = models.CharField(

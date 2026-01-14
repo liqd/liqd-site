@@ -2,7 +2,9 @@ from django import forms
 from django.core.paginator import InvalidPage
 from django.core.paginator import Paginator
 from django.db import models
+from django.db.models import CharField
 from django.db.models import Count
+from django.db.models.functions import Cast
 from django.db.models.functions import ExtractYear
 from django.http import Http404
 from django.http import HttpResponse
@@ -166,10 +168,11 @@ class BlogIndexPage(TranslatedStreamFieldPage):
     @property
     def years(self):
         return (
-            BlogPage.objects.annotate(year=ExtractYear("date"))
+            BlogPage.objects.annotate(year_int=ExtractYear("date"))
+            .annotate(year=Cast("year_int", output_field=CharField()))
             .values("year")
-            .order_by("year")
-            .annotate(count=Count("id"))
+            .order_by("-year")
+            .annotate(id__count=Count("id"))
         )
 
     @property
