@@ -2,7 +2,7 @@
 Django==5.2.2
 wagtail==6.3.4
 
-bleach[css]==6.1.0
+bleach[css]==6.3.0
 brotli==1.1.0
 git+https://github.com/skorokithakis/django-cloudflare-push.git@fcfcfc57826ecb87b9f138fd882cfb361047d850
 django_csp==3.8
