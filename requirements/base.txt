@@ -8,5 +8,5 @@ git+https://github.com/skorokithakis/django-cloudflare-push.git@fcfcfc57826ecb87
 django_csp==3.8
 django-multiselectfield==1.0.1
 html5lib==1.1
-whitenoise==6.7.0
+whitenoise==6.11.0
 sentry-sdk==2.9.0
