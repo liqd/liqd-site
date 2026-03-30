@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
     services:
       postgres:
         image: postgres:12
@@ -46,7 +48,7 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json', '**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
@@ -63,8 +65,24 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install Dependencies
+        env:
+          PAT: ${{ secrets.PAT }}
         run: |
-          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf ssh://git@github.com/
+          set -euo pipefail
+          # If PAT is empty, use GITHUB_TOKEN (for other private org repos, enable access under
+          # Organization Settings → Actions → Workflow permissions)
+          TOKEN="${PAT:-${{ github.token }}}"
+          if [ -z "${TOKEN}" ]; then
+            echo "::error::No token available for private git dependencies (neither secrets.PAT nor github.token)."
+            exit 1
+          fi
+          # Auth via credential store (npm/git can drop embedded tokens from rewritten URLs).
+          printf 'https://x-access-token:%s@github.com\n' "${TOKEN}" > ~/.git-credentials
+          chmod 600 ~/.git-credentials
+          git config --global credential.helper store
+          # Map SSH/SCP-style GitHub URLs to HTTPS; credentials come from ~/.git-credentials above.
+          git config --global --add url."https://github.com/".insteadOf "ssh://git@github.com/"
+          git config --global --add url."https://github.com/".insteadOf "git@github.com:"
           npm install
           npm run build
           pip install -r requirements/dev.txt
