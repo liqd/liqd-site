@@ -20,7 +20,7 @@
     "glslify-loader": "2.0.0",
     "husky": "9.1.7",
     "lighthouse": "12.8.2",
-    "lint-staged": "15.2.10",
+    "lint-staged": "15.5.2",
     "mini-css-extract-plugin": "2.10.2",
     "postcss": "8.4.47",
     "postcss-loader": "8.1.1",
