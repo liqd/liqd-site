@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 Since version v2407.1 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2604.1
+
+### Changed
+
+- **Wagtail** to 6.3.x (pinned 6.3.4), including model and settings updates and
+  migrations (e.g. `CustomImage` description field)
+- **Django** to 5.2.x (pinned 5.2.13)
+- Build and frontend dependencies updated (e.g. Webpack 5.10x, Sass, PostCSS,
+  Stylelint, Babel, ESLint toolchain; Bootstrap 5.3.8; Bleach 6.3; Sentry SDK 2.5x)
+
 ## v2407.1
 
 ### Added
