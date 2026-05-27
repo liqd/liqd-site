@@ -1,0 +1,51 @@
+@import "insight-shared";
+
+.block--main_insight {
+    .main-insight__list {
+        display: flex;
+        flex-direction: column;
+        gap: $insight-list-gap-mobile;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-insight__item {
+        margin: 0;
+    }
+
+    .main-insight__card {
+        border: 1px solid $body-color;
+        display: flex;
+        flex-direction: column;
+        gap: $insight-main-inner-gap;
+        margin: 0;
+        padding: $insight-card-padding;
+        word-break: break-word;
+    }
+
+    .main-insight__category {
+        @include insight-category-text;
+    }
+
+    .main-insight__value {
+        @include insight-value-text;
+    }
+
+    .main-insight__information {
+        @include insight-information-text;
+    }
+
+    @include media-breakpoint-up(md) {
+        .main-insight__list {
+            align-items: center;
+            flex-direction: row;
+            gap: $insight-list-gap-desktop;
+        }
+
+        .main-insight__item {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+    }
+}

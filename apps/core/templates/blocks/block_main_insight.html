@@ -1,0 +1,17 @@
+{% load i18n %}
+<section class="main-insight" aria-labelledby="main-insight-{{ block.id }}">
+    <h2 id="main-insight-{{ block.id }}" class="visually-hidden">{% trans "Main insights" %}</h2>
+    <ul class="main-insight__list">
+        {% for item in value.items %}
+            <li class="main-insight__item">
+                <article class="main-insight__card" aria-labelledby="main-insight-{{ block.id }}-{{ forloop.counter }}-value">
+                    <p class="main-insight__category">{{ item.category }}</p>
+                    <p class="main-insight__value" id="main-insight-{{ block.id }}-{{ forloop.counter }}-value">
+                        <span class="visually-hidden">{{ item.category }}: </span>{{ item.value }}
+                    </p>
+                    <p class="main-insight__information">{{ item.information }}</p>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

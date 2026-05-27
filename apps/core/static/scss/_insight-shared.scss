@@ -1,0 +1,39 @@
+// Figma: Headline 5 / Headline 1 / Headline 3 (12.8px / 38.4px / 24px)
+$insight-category-font-size: 0.8rem;
+$insight-category-line-height: calc(18 / 12.8);
+$insight-value-font-size: 2.4rem;
+$insight-value-line-height: calc(48 / 38.4);
+$insight-information-font-size: 1.5rem;
+$insight-information-line-height: calc(32 / 24);
+$insight-card-padding: 24px;
+$insight-main-inner-gap: 16px;
+$insight-full-width-inner-gap: 5px;
+$insight-list-gap-mobile: 24px;
+$insight-list-gap-desktop: 25px;
+$insight-full-width-section-padding-y: 25px;
+$insight-full-width-column-padding-y: 24px;
+$insight-full-width-column-padding-x: 21px 20px;
+
+@mixin insight-category-text {
+    font-family: $font-family-monospace;
+    font-size: $insight-category-font-size;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: $insight-category-line-height;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+@mixin insight-value-text {
+    font-size: $insight-value-font-size;
+    letter-spacing: 0;
+    line-height: $insight-value-line-height;
+    margin-bottom: 0;
+}
+
+@mixin insight-information-text {
+    font-size: $insight-information-font-size;
+    letter-spacing: 0;
+    line-height: $insight-information-line-height;
+    margin-bottom: 0;
+}

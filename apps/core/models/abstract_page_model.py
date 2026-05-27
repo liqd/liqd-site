@@ -51,6 +51,12 @@ STREAMFIELD_DEFAULT_BLOCKS = [
     ("video_block", blocks.VideoBlock()),
 ]
 
+STREAMFIELD_SIMPLE_PAGE_BLOCKS = [
+    *STREAMFIELD_DEFAULT_BLOCKS,
+    ("main_insight", blocks.MainInsightBlock()),
+    ("full_width_insight", blocks.FullWidthInsightBlock()),
+]
+
 
 class TranslatedStreamFieldPage(Page):
     title_en = models.CharField(
