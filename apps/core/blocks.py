@@ -171,6 +171,64 @@ class AlignedImageBlock(StructBlock):
         template = "blocks/block_alignedimage.html"
 
 
+class MainInsightItemBlock(StructBlock):
+    category = CharBlock(
+        required=True,
+        max_length=128,
+        label="Category",
+        help_text="Short label shown above the value (e.g. topic name).",
+    )
+    value = CharBlock(
+        required=True,
+        max_length=64,
+        label="Value",
+        help_text="Primary figure or short headline (e.g. a number).",
+    )
+    information = CharBlock(
+        required=True,
+        max_length=256,
+        label="Information",
+        help_text="Supporting text describing the insight.",
+    )
+
+    class Meta:
+        icon = "doc-full"
+        label = "Insight card"
+
+
+class MainInsightBlock(StructBlock):
+    items = ListBlock(
+        MainInsightItemBlock(),
+        min_num=1,
+        label="Insight cards",
+    )
+
+    class Meta:
+        template = "blocks/block_main_insight.html"
+        icon = "list-ul"
+        label = "Main insight"
+        help_text = (
+            "Highlight key facts about Liquid Democracy in bordered cards."
+        )
+
+
+class FullWidthInsightBlock(StructBlock):
+    items = ListBlock(
+        MainInsightItemBlock(),
+        min_num=1,
+        label="Insight columns",
+    )
+
+    class Meta:
+        template = "blocks/block_full_width_insight.html"
+        icon = "list-ul"
+        label = "Full width insight"
+        help_text = (
+            "Statistics or key facts on a full-width dark band "
+            "(spans the entire page width)."
+        )
+
+
 class VideoBlock(StructBlock):
     title = CharBlock(max_length=130, required=False)
     description = CharBlock(

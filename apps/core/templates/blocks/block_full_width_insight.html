@@ -1,0 +1,19 @@
+{% load i18n %}
+<section class="full-width-insight" aria-labelledby="full-width-insight-{{ block.id }}">
+    <h2 id="full-width-insight-{{ block.id }}" class="visually-hidden">{% trans "Impact insights" %}</h2>
+    <div class="container">
+        <ul class="full-width-insight__list">
+            {% for item in value.items %}
+                <li class="full-width-insight__item">
+                    <article class="full-width-insight__column" aria-labelledby="full-width-insight-{{ block.id }}-{{ forloop.counter }}-value">
+                        <p class="full-width-insight__category">{{ item.category }}</p>
+                        <p class="full-width-insight__value" id="full-width-insight-{{ block.id }}-{{ forloop.counter }}-value">
+                            <span class="visually-hidden">{{ item.category }}: </span>{{ item.value }}
+                        </p>
+                        <p class="full-width-insight__information">{{ item.information }}</p>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
