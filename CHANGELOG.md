@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 Since version v2407.1 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Wagtail stream block Horizontal Gallery
+- Wagtail stream block Main Insights
+- Wagtail stream block Insights Banner
+- Wagtail stream block Cheat Sheet
+
+
 ## v2604.2
 
 ### Fixed
