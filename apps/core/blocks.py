@@ -5,6 +5,7 @@ from wagtail.blocks import PageChooserBlock
 from wagtail.blocks import RawHTMLBlock
 from wagtail.blocks import RichTextBlock
 from wagtail.blocks import StructBlock
+from wagtail.blocks import TextBlock
 from wagtail.blocks import URLBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -222,10 +223,98 @@ class FullWidthInsightBlock(StructBlock):
     class Meta:
         template = "blocks/block_full_width_insight.html"
         icon = "list-ul"
-        label = "Full width insight"
+        label = "Insight Banner"
         help_text = (
             "Statistics or key facts on a full-width dark band "
             "(spans the entire page width)."
+        )
+
+
+class ProjectCheatSheetContactBlock(StructBlock):
+    name = CharBlock(
+        required=True,
+        max_length=128,
+        label="Name",
+    )
+    link = URLBlock(required=False, label="Link URL")
+    page = PageChooserBlock(required=False, label="Internal page")
+    pronouns = CharBlock(
+        required=False,
+        max_length=64,
+        label="Pronouns",
+        help_text='Optional, e.g. "he/him" (parentheses are added automatically).',
+    )
+
+    class Meta:
+        icon = "user"
+        label = "Contact"
+
+
+class ProjectCheatSheetBlock(StructBlock):
+    url_label = CharBlock(
+        required=False,
+        max_length=128,
+        default="URL",
+        label="URL heading",
+    )
+    url = URLBlock(required=False, label="URL")
+    url_text = CharBlock(
+        required=False,
+        max_length=256,
+        label="Link text",
+        help_text="Display text for the link. Defaults to the URL.",
+    )
+    partners_label = CharBlock(
+        required=False,
+        max_length=128,
+        default="Project partners",
+        label="Project partners heading",
+    )
+    partners = CharBlock(
+        required=False,
+        max_length=512,
+        label="Project partners",
+    )
+    timescale_label = CharBlock(
+        required=False,
+        max_length=128,
+        default="Zeitraum",
+        label="Timescale heading",
+    )
+    timescale = CharBlock(
+        required=False,
+        max_length=512,
+        label="Timescale",
+    )
+    contact_label = CharBlock(
+        required=False,
+        max_length=128,
+        default="Contact",
+        label="Contact heading",
+    )
+    contacts = ListBlock(
+        ProjectCheatSheetContactBlock(),
+        required=False,
+        label="Contacts",
+    )
+    intro_quote = TextBlock(
+        required=False,
+        label="Intro quote",
+        help_text="Large introductory quote shown beside the fact list.",
+    )
+    intro_text = TextBlock(
+        required=False,
+        label="Intro text",
+        help_text="Supporting paragraph below the intro quote.",
+    )
+
+    class Meta:
+        template = "blocks/block_project_cheat_sheet.html"
+        icon = "list-ul"
+        label = "Project Cheat Sheet"
+        help_text = (
+            "Project facts with optional intro quote and text in a "
+            "two-column layout (stacked on mobile)."
         )
 
 

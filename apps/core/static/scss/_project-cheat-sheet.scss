@@ -1,0 +1,161 @@
+// Figma node 226:1499 — fact list (gap 20px between groups, 10px label/value)
+// Labels: Favorit Light 12.8px / 18px, uppercase
+// Values: Plantin 21px / 29.4px
+// Figma node 226:1511 — intro quote: Plantin 32px / 44.8px (Headline 2)
+// Figma node 226:1510 — intro text: Plantin 21px / 29.4px
+// Figma Group 4 — gap quote → text: 10px (3730 − (3540 + 180))
+
+$project-cheat-sheet-facts-width: 294px;
+$project-cheat-sheet-intro-max-width: 606px;
+$project-cheat-sheet-layout-gap-mobile: 40px;
+$project-cheat-sheet-layout-gap-desktop: 22px;
+$project-cheat-sheet-group-gap: 20px;
+$project-cheat-sheet-inner-gap: 10px;
+$project-cheat-sheet-intro-gap: 10px;
+$project-cheat-sheet-label-font-size: 12.8px;
+$project-cheat-sheet-label-line-height: 18px;
+$project-cheat-sheet-value-font-size: 21px;
+$project-cheat-sheet-value-line-height: 29.4px;
+$project-cheat-sheet-quote-font-size: 32px;
+$project-cheat-sheet-quote-line-height: 44.8px;
+
+.block--project_cheat_sheet {
+    .project-cheat-sheet {
+        margin-bottom: $spacer-v * 0.5;
+        word-break: break-word;
+    }
+
+    // Override .block p (21px) so the quote keeps Figma Headline 2 size.
+    .project-cheat-sheet__quote {
+        border: 0;
+        font-family: $font-family-base;
+        font-size: $project-cheat-sheet-quote-font-size;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: $project-cheat-sheet-quote-line-height;
+        margin: 0;
+        padding: 0;
+
+        p {
+            font-size: inherit;
+            letter-spacing: inherit;
+            line-height: inherit;
+            margin: 0;
+        }
+    }
+
+    .project-cheat-sheet__description {
+        font-family: $font-family-base;
+        font-size: $project-cheat-sheet-value-font-size;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: $project-cheat-sheet-value-line-height;
+        margin: 0;
+    }
+}
+
+.project-cheat-sheet__layout {
+    display: flex;
+    flex-direction: column;
+    gap: $project-cheat-sheet-layout-gap-mobile;
+
+    @include media-breakpoint-up(md) {
+        align-items: flex-start;
+        flex-direction: row;
+        gap: $project-cheat-sheet-layout-gap-desktop;
+    }
+}
+
+.project-cheat-sheet__facts {
+    display: flex;
+    flex-direction: column;
+    gap: $project-cheat-sheet-group-gap;
+    margin: 0;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+        flex: 0 0 $project-cheat-sheet-facts-width;
+        width: $project-cheat-sheet-facts-width;
+    }
+}
+
+.project-cheat-sheet__intro {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    gap: $project-cheat-sheet-intro-gap;
+    margin: 0;
+    max-width: 100%;
+    min-width: 0;
+
+    @include media-breakpoint-up(md) {
+        max-width: $project-cheat-sheet-intro-max-width;
+    }
+}
+
+.project-cheat-sheet__group {
+    display: flex;
+    flex-direction: column;
+    gap: $project-cheat-sheet-inner-gap;
+    margin: 0;
+}
+
+.project-cheat-sheet__label {
+    font-family: $font-family-monospace;
+    font-size: $project-cheat-sheet-label-font-size;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: $project-cheat-sheet-label-line-height;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.project-cheat-sheet__value {
+    font-family: $font-family-base;
+    font-size: $project-cheat-sheet-value-font-size;
+    letter-spacing: 0;
+    line-height: $project-cheat-sheet-value-line-height;
+    margin: 0;
+}
+
+.project-cheat-sheet__contacts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.project-cheat-sheet__contact {
+    font-family: $font-family-base;
+    font-size: $project-cheat-sheet-value-font-size;
+    letter-spacing: 0;
+    line-height: $project-cheat-sheet-value-line-height;
+    margin: 0;
+
+    + .project-cheat-sheet__contact {
+        margin-top: 0;
+    }
+}
+
+.project-cheat-sheet__link {
+    border-bottom: 0;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-position: from-font;
+
+    &:hover,
+    &:focus {
+        border-bottom: 0;
+        text-decoration: underline;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $body-color;
+        outline-offset: 2px;
+    }
+}
+
+.project-cheat-sheet__pronouns {
+    white-space: pre-wrap;
+}

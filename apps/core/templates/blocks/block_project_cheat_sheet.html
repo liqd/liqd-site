@@ -1,0 +1,67 @@
+{% load core_tags i18n wagtailcore_tags %}
+<section class="project-cheat-sheet" aria-labelledby="project-cheat-sheet-{{ block.id }}">
+    <h2 id="project-cheat-sheet-{{ block.id }}" class="visually-hidden">{% trans "Project cheat sheet" %}</h2>
+    <div class="project-cheat-sheet__layout">
+        {% if value.url or value.partners or value.timescale or value.contacts %}
+            <dl class="project-cheat-sheet__facts">
+                {% if value.url %}
+                    <div class="project-cheat-sheet__group">
+                        <dt class="project-cheat-sheet__label">{{ value.url_label }}</dt>
+                        <dd class="project-cheat-sheet__value">
+                            <a class="project-cheat-sheet__link" href="{{ value.url }}">
+                                {{ value.url_text|default:value.url }}
+                            </a>
+                        </dd>
+                    </div>
+                {% endif %}
+                {% if value.partners %}
+                    <div class="project-cheat-sheet__group">
+                        <dt class="project-cheat-sheet__label">{{ value.partners_label }}</dt>
+                        <dd class="project-cheat-sheet__value">{{ value.partners }}</dd>
+                    </div>
+                {% endif %}
+                {% if value.timescale %}
+                    <div class="project-cheat-sheet__group">
+                        <dt class="project-cheat-sheet__label">{{ value.timescale_label }}</dt>
+                        <dd class="project-cheat-sheet__value">{{ value.timescale }}</dd>
+                    </div>
+                {% endif %}
+                {% if value.contacts %}
+                    <div class="project-cheat-sheet__group">
+                        <dt class="project-cheat-sheet__label">{{ value.contact_label }}</dt>
+                        <dd class="project-cheat-sheet__value">
+                            <ul class="project-cheat-sheet__contacts">
+                                {% for contact in value.contacts %}
+                                    <li class="project-cheat-sheet__contact">
+                                        {% if contact.page %}
+                                            <a class="project-cheat-sheet__link" href="{% pageurl contact.page %}">{{ contact.name }}</a>
+                                        {% elif contact.link %}
+                                            <a class="project-cheat-sheet__link" href="{{ contact.link }}">{{ contact.name }}</a>
+                                        {% else %}
+                                            <span>{{ contact.name }}</span>
+                                        {% endif %}
+                                        {% if contact.pronouns %}
+                                            <span class="project-cheat-sheet__pronouns"> {{ contact.pronouns|parenthesize }}</span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </dd>
+                    </div>
+                {% endif %}
+            </dl>
+        {% endif %}
+        {% if value.intro_quote or value.intro_text %}
+            <div class="project-cheat-sheet__intro">
+                {% if value.intro_quote %}
+                    <blockquote class="project-cheat-sheet__quote">
+                        <p>{{ value.intro_quote|linebreaksbr }}</p>
+                    </blockquote>
+                {% endif %}
+                {% if value.intro_text %}
+                    <p class="project-cheat-sheet__description">{{ value.intro_text|linebreaksbr }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>

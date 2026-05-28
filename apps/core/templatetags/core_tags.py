@@ -89,3 +89,13 @@ def matomo_tracking_code():
 @register.filter()
 def clean_html_all(text: str) -> SafeString:
     return transforms.clean_html_all(text)
+
+
+@register.filter()
+def parenthesize(value: str) -> str:
+    value = (value or "").strip()
+    if not value:
+        return ""
+    if value.startswith("(") and value.endswith(")"):
+        return value
+    return f"({value})"
