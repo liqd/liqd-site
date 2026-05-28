@@ -318,6 +318,31 @@ class ProjectCheatSheetBlock(StructBlock):
         )
 
 
+class HorizontalGalleryBlock(ListBlock):
+    def __init__(self, **kwargs):
+        super().__init__(
+            ImageChooserBlock(
+                label="Image",
+                help_text=(
+                    "Landscape images recommended (approx. 1061×588px). "
+                    "Add at least two images."
+                ),
+            ),
+            min_num=2,
+            **kwargs,
+        )
+
+    class Meta:
+        template = "blocks/block_horizontal_gallery.html"
+        icon = "image"
+        label = "Horizontal Gallery"
+        help_text = (
+            "Horizontally scrollable gallery: one image fully visible, "
+            "the next image peeks at the side. Scroll or swipe to navigate "
+            "(no buttons)."
+        )
+
+
 class VideoBlock(StructBlock):
     title = CharBlock(max_length=130, required=False)
     description = CharBlock(

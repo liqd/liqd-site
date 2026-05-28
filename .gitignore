@@ -17,5 +17,6 @@ package-lock.json
 .idea
 reports/
 # Playwright test artifacts
+.playwright-mcp
 playwright-report/
 test-results/

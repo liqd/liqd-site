@@ -1,0 +1,25 @@
+{% load i18n wagtailimages_tags %}
+
+<section class="horizontal-gallery" aria-roledescription="{% trans 'Gallery' %}">
+    <h2 class="visually-hidden">{% trans "Image gallery" %}</h2>
+    <div class="horizontal-gallery__viewport" tabindex="0">
+        <ul class="horizontal-gallery__track" role="list">
+            {% for image in value %}
+                {% image image width-1061 as gallery_image %}
+                <li class="horizontal-gallery__slide" role="listitem">
+                    <figure class="horizontal-gallery__figure">
+                        <img
+                            src="{{ gallery_image.url }}"
+                            alt="{{ gallery_image.alt }}"
+                            class="horizontal-gallery__image"
+                            width="{{ gallery_image.width }}"
+                            height="{{ gallery_image.height }}"
+                            {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}
+                            decoding="async"
+                        >
+                    </figure>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
