@@ -38,6 +38,7 @@ STREAMFIELD_PROJECT_BLOCKS = [
     ("Raw_HTML", core_blocks.HTMLBlock()),
     ("persons", persons_models.PersonListBlock()),
     ("video_block", core_blocks.VideoBlock()),
+    ("horizontal_gallery", core_blocks.HorizontalGalleryBlock()),
 ]
 
 

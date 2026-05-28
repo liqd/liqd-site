@@ -1,0 +1,107 @@
+// Figma: slide 1061×588, peek 466px, gap 35px — scroll-snap start (left edge on text line).
+
+$horizontal-gallery-gap: 35px;
+$horizontal-gallery-gap-min: 18px;
+$horizontal-gallery-gap-scale-from: 400px;
+$horizontal-gallery-gap-scale-to: 1440px;
+$horizontal-gallery-slide-width: 1061px;
+$horizontal-gallery-slide-height: 588px;
+$horizontal-gallery-aspect-ratio: 1061 / 588;
+$horizontal-gallery-peek: 466px;
+$horizontal-gallery-mobile-peek: 10vw;
+$horizontal-gallery-right-peek-ratio: 1.1; // slide + 10% peek + gap = visible width
+
+.block--horizontal_gallery {
+  --horizontal-gallery-gap: #{$horizontal-gallery-gap};
+  --horizontal-gallery-peek: #{$horizontal-gallery-peek};
+  --horizontal-gallery-scrollport-width: calc(100% + (100vw - 100%) / 2);
+
+  .horizontal-gallery__viewport {
+    --horizontal-gallery-track-end-pad: max(
+      0px,
+      calc(var(--horizontal-gallery-scrollport-width) - var(--horizontal-gallery-slide-width))
+    );
+    margin-left: calc(-1 * var(--horizontal-gallery-peek));
+    max-width: none;
+    overflow: auto hidden;
+    overscroll-behavior-x: contain;
+    padding-inline-start: var(--horizontal-gallery-peek);
+    scroll-behavior: smooth;
+    scroll-padding-inline-start: var(--horizontal-gallery-peek);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    width: calc(var(--horizontal-gallery-scrollport-width) + var(--horizontal-gallery-peek));
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $body-color;
+      outline-offset: 2px;
+    }
+  }
+
+  .horizontal-gallery__track {
+    display: flex;
+    gap: var(--horizontal-gallery-gap);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-inline-end: var(--horizontal-gallery-track-end-pad);
+    width: max-content;
+  }
+
+  .horizontal-gallery__slide {
+    flex: 0 0 var(--horizontal-gallery-slide-width);
+    margin: 0;
+    scroll-snap-align: start;
+  }
+
+  .horizontal-gallery__figure {
+    aspect-ratio: $horizontal-gallery-aspect-ratio;
+    height: var(--horizontal-gallery-slide-height, auto);
+    margin: 0;
+  }
+
+  .horizontal-gallery__image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  // Below xl (1440px): scale slide, gap and right peek to the viewport.
+  @include media-breakpoint-down(xl) {
+    --horizontal-gallery-gap: clamp(
+      #{$horizontal-gallery-gap-min},
+      calc(#{$horizontal-gallery-gap-min} + (100vw - #{$horizontal-gallery-gap-scale-from}) * #{($horizontal-gallery-gap - $horizontal-gallery-gap-min) / ($horizontal-gallery-gap-scale-to - $horizontal-gallery-gap-scale-from)}),
+      #{$horizontal-gallery-gap}
+    );
+    --horizontal-gallery-peek: #{$horizontal-gallery-mobile-peek};
+
+    .horizontal-gallery__viewport {
+      --horizontal-gallery-slide-height: auto;
+      --horizontal-gallery-slide-width: calc(
+        (100vw - var(--horizontal-gallery-peek) - var(--horizontal-gallery-gap)) /
+          #{$horizontal-gallery-right-peek-ratio}
+      );
+      --horizontal-gallery-track-end-pad: max(
+        0px,
+        calc(100vw - var(--horizontal-gallery-slide-width) - var(--horizontal-gallery-peek))
+      );
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .horizontal-gallery__viewport {
+      --horizontal-gallery-slide-height: #{$horizontal-gallery-slide-height};
+      --horizontal-gallery-slide-width: #{$horizontal-gallery-slide-width};
+      --horizontal-gallery-track-end-pad: max(
+        0px,
+        calc(var(--horizontal-gallery-scrollport-width) - var(--horizontal-gallery-slide-width))
+      );
+    }
+  }
+}
