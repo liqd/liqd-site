@@ -37,6 +37,10 @@
         @include insight-value-text;
     }
 
+    .full-width-insight__link {
+        @include insight-headline-link($insight-full-width-inner-gap);
+    }
+
     .full-width-insight__information {
         @include insight-information-text;
     }

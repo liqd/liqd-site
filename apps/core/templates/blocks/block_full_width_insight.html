@@ -6,10 +6,7 @@
             {% for item in value.items %}
                 <li class="full-width-insight__item">
                     <article class="full-width-insight__column" aria-labelledby="full-width-insight-{{ block.id }}-{{ forloop.counter }}-value">
-                        <p class="full-width-insight__category">{{ item.category }}</p>
-                        <p class="full-width-insight__value" id="full-width-insight-{{ block.id }}-{{ forloop.counter }}-value">
-                            <span class="visually-hidden">{{ item.category }}: </span>{{ item.value }}
-                        </p>
+                        {% include "blocks/includes/insight_item_linked_headline.html" with item=item css_prefix="full-width-insight" block_uid=block.id item_index=forloop.counter %}
                         <p class="full-width-insight__information">{{ item.information }}</p>
                     </article>
                 </li>
