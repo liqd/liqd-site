@@ -191,6 +191,12 @@ class MainInsightItemBlock(StructBlock):
         label="Information",
         help_text="Supporting text describing the insight.",
     )
+    link = URLBlock(
+        required=False,
+        max_length=512,
+        label="Link",
+        help_text="Optional URL. Makes the category and value clickable.",
+    )
 
     class Meta:
         icon = "doc-full"

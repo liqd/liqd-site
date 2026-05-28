@@ -32,6 +32,10 @@
         @include insight-value-text;
     }
 
+    .main-insight__link {
+        @include insight-headline-link($insight-main-inner-gap);
+    }
+
     .main-insight__information {
         @include insight-information-text;
     }
