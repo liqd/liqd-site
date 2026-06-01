@@ -20,6 +20,8 @@ $project-cheat-sheet-quote-font-size: 32px;
 $project-cheat-sheet-quote-line-height: 44.8px;
 
 .block--project_cheat_sheet {
+    text-align: left;
+
     .project-cheat-sheet {
         margin-bottom: $spacer-v * 0.5;
         word-break: break-word;

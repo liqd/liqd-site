@@ -1,0 +1,82 @@
+// Shared outer frame for stream blocks (Figma: 1px border, 24px padding)
+$block-frame-padding: 24px;
+$block-category-font-size: 12.8px;
+$block-category-line-height: 18px;
+$block-title-font-size: 32px;
+$block-title-line-height: 44.8px;
+$block-header-gap: 16px;
+
+@mixin block-frame {
+    border: 1px solid $body-color;
+    padding: $block-frame-padding;
+}
+
+@mixin block-category-text {
+    font-family: $font-family-monospace;
+    font-size: $block-category-font-size;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: $block-category-line-height;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+@mixin block-title-text {
+    font-family: $font-family-base;
+    font-size: $block-title-font-size;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: $block-title-line-height;
+    margin: 0;
+}
+
+// .block p sets 21px — category labels must stay at 12.8px
+.block .block-category {
+    @include block-category-text;
+}
+
+.block-category {
+    @include block-category-text;
+}
+
+.block-title {
+    @include block-title-text;
+}
+
+.block-header {
+    display: flex;
+    flex-direction: column;
+    gap: $block-header-gap;
+    margin-bottom: $block-header-gap;
+}
+
+@mixin block-bordered-button {
+    align-items: center;
+    border: 1px solid $body-color;
+    box-sizing: border-box;
+    color: $body-color;
+    display: inline-flex;
+    font-family: $font-family-monospace;
+    font-size: $block-category-font-size;
+    font-weight: 300;
+    justify-content: center;
+    letter-spacing: 0;
+    line-height: $block-category-line-height;
+    min-height: 48px;
+    padding: 14px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus {
+        background-color: $body-color;
+        border-bottom: 1px solid $body-color;
+        color: $body-bg;
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $body-color;
+        outline-offset: 2px;
+    }
+}

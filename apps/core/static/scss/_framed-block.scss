@@ -1,0 +1,274 @@
+@import "block-frame";
+
+// BEM block: framed-block (blog, download, CTA with image)
+// Figma desktop 226:277 / 226:300 / 226:374 — mobile 226:720
+
+$framed-block-media-width: 294px;
+$framed-block-thumb-mobile: 72px;
+$framed-block-gap: 16px;
+$framed-block-padding: 24px;
+$framed-block-content-gap-desktop: 40px;
+$framed-block-title-font-size-mobile: 24px;
+$framed-block-title-line-height-mobile: 32px;
+
+.framed-block {
+    @include block-frame;
+    padding: 0;
+    word-break: break-word;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: $framed-block-gap;
+
+        @include media-breakpoint-up(md) {
+            align-items: stretch;
+            flex-direction: row;
+            gap: 0;
+        }
+    }
+
+    &__media {
+        flex: 0 0 auto;
+        margin: 0;
+        width: 100%;
+
+        @include media-breakpoint-up(md) {
+            flex: 0 0 $framed-block-media-width;
+            width: $framed-block-media-width;
+        }
+    }
+
+    &__image {
+        display: block;
+        height: auto;
+        object-fit: cover;
+        width: 100%;
+
+        @include media-breakpoint-up(md) {
+            aspect-ratio: 1;
+            height: 100%;
+            min-height: $framed-block-media-width;
+            width: 100%;
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        gap: $framed-block-gap;
+        min-width: 0;
+        padding: $framed-block-padding;
+        width: 100%;
+
+        @include media-breakpoint-up(md) {
+            justify-content: center;
+            width: auto;
+        }
+    }
+
+    &__header.block-header {
+        margin-bottom: 0;
+    }
+
+    &__actions {
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+    }
+
+    &__btn {
+        @include block-bordered-button;
+    }
+
+    &__btn-icon {
+        display: inline-flex;
+        flex-shrink: 0;
+        line-height: 0;
+    }
+
+    &__btn-icon-image {
+        display: block;
+        height: 24px;
+        width: 24px;
+    }
+
+    &__btn:hover &__btn-icon-image,
+    &__btn:focus &__btn-icon-image {
+        filter: brightness(0) invert(1);
+    }
+}
+
+@mixin framed-block-compact-mobile-layout {
+    .framed-block__inner {
+        @include media-breakpoint-down(md) {
+            display: grid;
+            gap: $framed-block-gap;
+            grid-template-columns: $framed-block-thumb-mobile minmax(0, 1fr);
+            grid-template-areas:
+                "media header"
+                "actions actions";
+            padding: $framed-block-padding;
+
+            &:not(:has(.framed-block__media)) {
+                grid-template-areas:
+                    "header"
+                    "actions";
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    }
+
+    .framed-block__media {
+        @include media-breakpoint-down(md) {
+            grid-area: media;
+            width: $framed-block-thumb-mobile;
+        }
+    }
+
+    .framed-block__image {
+        @include media-breakpoint-down(md) {
+            aspect-ratio: 1;
+            height: $framed-block-thumb-mobile;
+            width: $framed-block-thumb-mobile;
+        }
+    }
+
+    .framed-block__main {
+        @include media-breakpoint-down(md) {
+            display: contents;
+            padding: 0;
+        }
+    }
+
+    .framed-block__header {
+        @include media-breakpoint-down(md) {
+            align-self: center;
+            grid-area: header;
+            min-width: 0;
+        }
+    }
+
+    .framed-block__actions {
+        @include media-breakpoint-down(md) {
+            grid-area: actions;
+            padding: 0;
+        }
+    }
+
+    .block-title {
+        @include media-breakpoint-down(md) {
+            font-size: $framed-block-title-font-size-mobile;
+            line-height: $framed-block-title-line-height-mobile;
+        }
+    }
+}
+
+// Desktop: image | copy | button bottom-right (blog)
+.framed-block--blog {
+    .framed-block__inner {
+        @include media-breakpoint-down(md) {
+            align-items: center;
+        }
+    }
+
+    .framed-block__main {
+        @include media-breakpoint-down(md) {
+            padding: $framed-block-padding;
+        }
+    }
+
+    .framed-block__actions {
+        justify-content: flex-end;
+        padding: 0 $framed-block-padding $framed-block-padding;
+
+        @include media-breakpoint-up(md) {
+            align-self: flex-end;
+            margin-left: auto;
+            padding: 0 $framed-block-padding $framed-block-padding;
+            width: auto;
+        }
+    }
+
+    .framed-block__btn {
+        white-space: nowrap;
+        width: auto;
+
+        @include media-breakpoint-down(md) {
+            width: 100%;
+        }
+    }
+}
+
+// Download + CTA: 40px between image and copy on desktop (Figma)
+.framed-block--download,
+.framed-block--cta {
+    .framed-block__main {
+        @include media-breakpoint-up(md) {
+            padding-left: $framed-block-content-gap-desktop;
+        }
+    }
+}
+
+// Download: stacked buttons, optional second button in a row on desktop
+.framed-block--download {
+    @include framed-block-compact-mobile-layout;
+
+    .framed-block__actions {
+        flex-direction: column;
+        gap: $framed-block-gap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        @include media-breakpoint-up(md) {
+            flex-flow: row wrap;
+            padding: 0;
+        }
+    }
+
+    .framed-block__action {
+        margin: 0;
+        width: 100%;
+
+        @include media-breakpoint-up(md) {
+            width: auto;
+        }
+    }
+
+    .framed-block__btn {
+        gap: 10px;
+        width: 100%;
+
+        @include media-breakpoint-up(md) {
+            width: auto;
+        }
+    }
+}
+
+// CTA: single full-width button on mobile
+.framed-block--cta {
+    @include framed-block-compact-mobile-layout;
+
+    .framed-block__actions {
+        @include media-breakpoint-up(md) {
+            align-self: flex-start;
+            padding: 0;
+        }
+    }
+
+    .framed-block__btn {
+        width: 100%;
+
+        @include media-breakpoint-up(md) {
+            display: inline-block;
+            white-space: nowrap;
+            width: auto;
+        }
+    }
+}
+
+.block--blog_block .block-title {
+    @include block-title-text;
+}

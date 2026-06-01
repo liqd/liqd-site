@@ -57,6 +57,10 @@ STREAMFIELD_SIMPLE_PAGE_BLOCKS = [
     ("full_width_insight", blocks.FullWidthInsightBlock()),
     ("project_cheat_sheet", blocks.ProjectCheatSheetBlock()),
     ("horizontal_gallery", blocks.HorizontalGalleryBlock()),
+    ("simple_item", blocks.SimpleItemBlock()),
+    ("cta_with_image", blocks.CtaWithImageBlock()),
+    ("download_block", blocks.DownloadBlock()),
+    ("blog_block", blocks.BlogBlock()),
 ]
 
 

@@ -324,6 +324,245 @@ class ProjectCheatSheetBlock(StructBlock):
         )
 
 
+def _blog_body_stream(page, parent_context=None):
+    """Return the language-appropriate blog body stream value."""
+    request = (parent_context or {}).get("request")
+    lang = getattr(request, "LANGUAGE_CODE", None) if request else None
+    if not lang:
+        from django.utils import translation
+
+        lang = translation.get_language() or ""
+    if lang.startswith("de") and page.body_de:
+        return page.body_de
+    if page.body_en:
+        return page.body_en
+    return page.body_de
+
+
+def _first_image_from_blog_body(page, parent_context=None):
+    for block in _blog_body_stream(page, parent_context):
+        if block.block_type == "image" and block.value:
+            return block.value
+        if block.block_type == "aligned_image" and block.value:
+            return block.value.get("image")
+    return None
+
+
+def _resolve_blog_post(post_value):
+    if not post_value:
+        return None
+    if hasattr(post_value, "specific"):
+        return post_value.specific
+    return post_value
+
+
+def _blog_display_title(post):
+    """Title for teaser: translated fields, then Wagtail page title."""
+    for attr in ("translated_title", "title_de", "title_en", "title"):
+        value = getattr(post, attr, None)
+        if value and str(value).strip():
+            return str(value).strip()
+    return ""
+
+
+def _blog_post_public_url(post, request=None):
+    """Return a public URL or None (e.g. page not under the site root)."""
+    url = post.get_url(request) if request else post.url
+    if url in (None, ""):
+        return None
+    return url
+
+
+class SimpleItemEntryBlock(StructBlock):
+    title = CharBlock(
+        required=True,
+        max_length=128,
+        label="",
+    )
+
+    class Meta:
+        icon = "doc-full"
+        label = ""
+
+
+class SimpleItemBlock(StructBlock):
+    items = ListBlock(
+        SimpleItemEntryBlock(),
+        min_num=1,
+        max_num=8,
+        label_format="{title}",
+    )
+
+    class Meta:
+        template = "blocks/block_simple_item.html"
+        icon = "list-ul"
+        label = "Simple Item Block"
+        help_text = (
+            "List of titles in a bordered box. The selected item is shown "
+            "in large type; use arrow keys to move between items."
+        )
+
+
+class CtaImageLinkBlock(StructBlock):
+    internal_link = PageChooserBlock(
+        required=False,
+        help_text="Add either an internal or external link (external wins).",
+    )
+    external_link = URLBlock(required=False, label="External link")
+
+    class Meta:
+        label = "Link target"
+
+
+class CtaWithImageBlock(StructBlock):
+    category = CharBlock(
+        required=False,
+        max_length=128,
+        label="Category",
+    )
+    title = CharBlock(required=True, max_length=128, label="Title")
+    image = ImageChooserBlock(
+        required=True,
+        help_text="Image on the left inside the frame (approx. 294×294px or square).",
+    )
+    link = CtaImageLinkBlock(required=False)
+    link_text = CharBlock(required=True, max_length=64, label="Button text")
+
+    class Meta:
+        template = "blocks/block_cta_with_image.html"
+        icon = "image"
+        label = "CTA Block with Image"
+        help_text = "Bordered call-to-action: image left, category, title and button on the right."
+
+
+class DownloadFileBlock(StructBlock):
+    file = DocumentChooserBlock(required=True, label="File")
+    button_label = CharBlock(
+        required=False,
+        max_length=64,
+        label="Button label",
+        help_text="Defaults to the document title.",
+    )
+
+    class Meta:
+        icon = "doc-full"
+        label = "Download file"
+
+
+class DownloadBlock(StructBlock):
+    category = CharBlock(
+        required=False,
+        max_length=128,
+        label="Category",
+    )
+    title = CharBlock(required=False, max_length=128, label="Title")
+    image = ImageChooserBlock(
+        required=False,
+        label="Image",
+        help_text="Optional image on the left (approx. 294×294px or square).",
+    )
+    downloads = ListBlock(
+        DownloadFileBlock(),
+        min_num=1,
+        max_num=2,
+        label="Download files",
+    )
+
+    class Meta:
+        template = "blocks/block_download.html"
+        icon = "doc-full"
+        label = "Download Block"
+        help_text = "One or two download buttons for attached documents."
+
+
+class BlogBlock(StructBlock):
+    post = PageChooserBlock(
+        required=True,
+        target_model="blog.BlogPage",
+        label="Blog post",
+    )
+    link_text = CharBlock(
+        required=False,
+        max_length=64,
+        default="Button",
+        label="Button text",
+    )
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        post = _resolve_blog_post(value.get("post"))
+
+        context["blog_post"] = None
+        context["blog_post_url"] = None
+        context["blog_image"] = None
+        context["blog_display_title"] = ""
+        context["blog_has_category"] = False
+        context["blog_category_label"] = ""
+        context["blog_missing_message"] = ""
+        request = (parent_context or {}).get("request")
+        context["show_blog_admin_hints"] = bool(
+            request
+            and getattr(request, "user", None)
+            and request.user.is_authenticated
+            and request.user.is_staff
+        )
+
+        if not post:
+            return context
+
+        display_title = _blog_display_title(post)
+        category_names = [
+            category.translated_name
+            for category in post.categories.all()
+            if category.translated_name
+        ]
+
+        post_url = _blog_post_public_url(post, request)
+        messages = []
+
+        if not display_title:
+            messages.append(
+                "Der gewählte Blogpost hat keinen Titel "
+                "(title_de/title_en oder Seitentitel)."
+            )
+        if not category_names:
+            messages.append(
+                "Der gewählte Blogpost hat keine Kategorie. "
+                "Bitte mindestens eine Kategorie am Blogpost hinterlegen."
+            )
+        if not post_url:
+            messages.append(
+                "Der Blogpost ist nicht unter der Startseite eingehängt "
+                "und hat keine öffentliche URL."
+            )
+
+        if messages and context["show_blog_admin_hints"]:
+            context["blog_missing_message"] = " ".join(messages)
+
+        if not display_title:
+            return context
+
+        context["blog_post"] = post
+        context["blog_post_url"] = post_url
+        context["blog_display_title"] = display_title
+        context["blog_has_category"] = bool(category_names)
+        context["blog_category_label"] = ", ".join(category_names)
+        context["blog_image"] = _first_image_from_blog_body(
+            post, parent_context
+        )
+        return context
+
+    class Meta:
+        template = "blocks/block_blog.html"
+        icon = "doc-full"
+        label = "Blog Block"
+        help_text = (
+            "Teaser für einen Blogpost (Figma 226:277): Bild links, Kategorie "
+            "und Titel aus dem Post, Button rechts. Der Post braucht Titel und "
+            "mindestens eine Kategorie."
+        )
+
+
 class HorizontalGalleryBlock(ListBlock):
     def __init__(self, **kwargs):
         super().__init__(
