@@ -1,0 +1,17 @@
+{% load i18n %}
+<section class="simple-item-block" data-simple-item-block>
+    <ul class="simple-item-block__list" role="list">
+        {% for item in value.items %}
+            <li class="simple-item-block__list-item">
+                <button
+                    type="button"
+                    class="simple-item-block__item{% if forloop.first %} simple-item-block__item--selected{% endif %}"
+                    aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                    data-simple-item-button
+                >
+                    {{ item.title }}
+                </button>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

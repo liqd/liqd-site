@@ -1,0 +1,10 @@
+@import "block-frame";
+
+// Blog stream block — layout via framed-block BEM (_framed-block.scss)
+
+.framed-block__missing {
+    font-family: $font-family-monospace;
+    font-size: $block-category-font-size;
+    line-height: $block-category-line-height;
+    margin: 0 0 16px;
+}

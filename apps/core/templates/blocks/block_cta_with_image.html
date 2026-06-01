@@ -1,0 +1,25 @@
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+<section
+    class="framed-block framed-block--cta"
+    {% if value.title %}aria-labelledby="block-title-{{ block.id }}"{% else %}aria-label="{% trans 'Call to action' %}"{% endif %}
+>
+    <div class="framed-block__inner">
+        <figure class="framed-block__media">
+            {% image value.image width-600 jpegquality=90 class="framed-block__image" alt="" %}
+        </figure>
+        <div class="framed-block__main">
+            <div class="framed-block__header block-header">
+                {% include "blocks/includes/block_category_title.html" with block_id=block.id %}
+            </div>
+            {% if value.link_text %}
+                <div class="framed-block__actions">
+                    {% if value.link.external_link %}
+                        <a class="framed-block__btn" href="{{ value.link.external_link }}">{{ value.link_text }}</a>
+                    {% elif value.link.internal_link %}
+                        <a class="framed-block__btn" href="{% pageurl value.link.internal_link %}">{{ value.link_text }}</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

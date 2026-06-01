@@ -1,0 +1,41 @@
+{% load i18n wagtailimages_tags %}
+<section class="framed-block framed-block--download" aria-labelledby="download-block-{{ block.id }}">
+    {% if value.title %}
+        <span id="download-block-{{ block.id }}" class="visually-hidden">{{ value.title }}</span>
+    {% else %}
+        <span id="download-block-{{ block.id }}" class="visually-hidden">{% trans "Downloads" %}</span>
+    {% endif %}
+    <div class="framed-block__inner">
+        {% if value.image %}
+            <figure class="framed-block__media">
+                {% image value.image width-600 jpegquality=90 class="framed-block__image" alt="" %}
+            </figure>
+        {% endif %}
+        <div class="framed-block__main">
+            {% if value.category or value.title %}
+                <div class="framed-block__header block-header">
+                    {% include "blocks/includes/block_category_title.html" with block_id=block.id %}
+                </div>
+            {% endif %}
+            <ul class="framed-block__actions" role="list">
+                {% for download in value.downloads %}
+                    <li class="framed-block__action">
+                        <a
+                            class="framed-block__btn"
+                            href="{{ download.file.url }}"
+                            download
+                        >
+                            <span class="framed-block__btn-label">
+                                {{ download.button_label|default:download.file.title }}
+                            </span>
+                            {% include "blocks/includes/icon_download.html" %}
+                            <span class="visually-hidden">
+                                {% blocktrans with filename=download.file.title %}Download file {{ filename }}{% endblocktrans %}
+                            </span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>

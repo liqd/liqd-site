@@ -1,15 +1,19 @@
 // Figma: slide 1061×588, peek 466px, gap 35px — scroll-snap start (left edge on text line).
+// Below xl: 100vw = left peek + slide + gap + right peek (e.g. 400 − 12 − 6 − 8 = 374px).
 
 $horizontal-gallery-gap: 35px;
-$horizontal-gallery-gap-min: 18px;
-$horizontal-gallery-gap-scale-from: 400px;
-$horizontal-gallery-gap-scale-to: 1440px;
+$horizontal-gallery-gap-min: 6px;
+$horizontal-gallery-scale-from: 400px;
+$horizontal-gallery-scale-to: 1440px;
+$horizontal-gallery-scale-range: $horizontal-gallery-scale-to - $horizontal-gallery-scale-from;
+$horizontal-gallery-gap-slope: ($horizontal-gallery-gap - $horizontal-gallery-gap-min) / $horizontal-gallery-scale-range;
 $horizontal-gallery-slide-width: 1061px;
 $horizontal-gallery-slide-height: 588px;
 $horizontal-gallery-aspect-ratio: 1061 / 588;
 $horizontal-gallery-peek: 466px;
-$horizontal-gallery-mobile-peek: 10vw;
-$horizontal-gallery-right-peek-ratio: 1.1; // slide + 10% peek + gap = visible width
+$horizontal-gallery-peek-left-min: 12px;
+$horizontal-gallery-peek-right-min: 8px;
+$horizontal-gallery-peek-right-md: 18px;
 
 .block--horizontal_gallery {
   --horizontal-gallery-gap: #{$horizontal-gallery-gap};
@@ -57,6 +61,14 @@ $horizontal-gallery-right-peek-ratio: 1.1; // slide + 10% peek + gap = visible w
     flex: 0 0 var(--horizontal-gallery-slide-width);
     margin: 0;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .horizontal-gallery__tail {
+    flex: 0 0 0;
+    margin: 0;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
   }
 
   .horizontal-gallery__figure {
@@ -72,24 +84,72 @@ $horizontal-gallery-right-peek-ratio: 1.1; // slide + 10% peek + gap = visible w
     width: 100%;
   }
 
-  // Below xl (1440px): scale slide, gap and right peek to the viewport.
   @include media-breakpoint-down(xl) {
     --horizontal-gallery-gap: clamp(
       #{$horizontal-gallery-gap-min},
-      calc(#{$horizontal-gallery-gap-min} + (100vw - #{$horizontal-gallery-gap-scale-from}) * #{($horizontal-gallery-gap - $horizontal-gallery-gap-min) / ($horizontal-gallery-gap-scale-to - $horizontal-gallery-gap-scale-from)}),
+      calc(#{$horizontal-gallery-gap-min} + (100vw - #{$horizontal-gallery-scale-from}) * #{$horizontal-gallery-gap-slope}),
       #{$horizontal-gallery-gap}
     );
-    --horizontal-gallery-peek: #{$horizontal-gallery-mobile-peek};
+    --horizontal-gallery-peek-right: #{$horizontal-gallery-peek-right-min};
 
     .horizontal-gallery__viewport {
       --horizontal-gallery-slide-height: auto;
-      --horizontal-gallery-slide-width: calc(
-        (100vw - var(--horizontal-gallery-peek) - var(--horizontal-gallery-gap)) /
-          #{$horizontal-gallery-right-peek-ratio}
-      );
-      --horizontal-gallery-track-end-pad: max(
-        0px,
-        calc(100vw - var(--horizontal-gallery-slide-width) - var(--horizontal-gallery-peek))
+      scroll-padding-inline-end: var(--horizontal-gallery-peek-right);
+    }
+
+    .horizontal-gallery__tail {
+      flex: 0 0 calc(var(--horizontal-gallery-gap) + var(--horizontal-gallery-peek-right));
+    }
+
+    .horizontal-gallery__track {
+      padding-inline-end: 0;
+    }
+  }
+
+  @mixin horizontal-gallery-fluid-slides {
+    .horizontal-gallery__viewport {
+      --horizontal-gallery-slide-width: calc(100vw - var(--horizontal-gallery-peek) - var(--horizontal-gallery-gap) - var(--horizontal-gallery-peek-right));
+    }
+  }
+
+  // Fluid container (<576px): fixed 12px inset to text line.
+  @include media-breakpoint-down(sm) {
+    --horizontal-gallery-peek: #{$horizontal-gallery-peek-left-min};
+
+    @include horizontal-gallery-fluid-slides;
+  }
+
+  // Centered container (576–1439px): peek to text line.
+  @mixin horizontal-gallery-centered-range($container-max-width) {
+    --horizontal-gallery-peek: calc((100vw - #{$container-max-width}) / 2 + #{$horizontal-gallery-peek-left-min});
+
+    .horizontal-gallery__viewport {
+      --horizontal-gallery-slide-width: calc((100vw + #{$container-max-width}) / 2 - #{$horizontal-gallery-peek-left-min} - var(--horizontal-gallery-gap) - var(--horizontal-gallery-peek-right));
+    }
+  }
+
+  @include media-breakpoint-between(sm, md) {
+    @include horizontal-gallery-centered-range(map-get($container-max-widths, sm));
+  }
+
+  @include media-breakpoint-between(md, lg) {
+    @include horizontal-gallery-centered-range(map-get($container-max-widths, md));
+  }
+
+  @include media-breakpoint-between(lg, xl) {
+    @include horizontal-gallery-centered-range(map-get($container-max-widths, lg));
+  }
+
+  @include media-breakpoint-down(md) {
+    --horizontal-gallery-peek-right: #{$horizontal-gallery-peek-right-min};
+  }
+
+  @include media-breakpoint-up(md) {
+    @include media-breakpoint-down(xl) {
+      --horizontal-gallery-peek-right: clamp(
+        #{$horizontal-gallery-peek-right-md},
+        calc(#{$horizontal-gallery-peek-right-min} + (100vw - #{$horizontal-gallery-scale-from}) * 0.02),
+        48px
       );
     }
   }
