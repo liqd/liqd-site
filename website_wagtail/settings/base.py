@@ -153,14 +153,13 @@ LOGIN_REDIRECT_URL = "wagtailadmin_home"
 WAGTAIL_SITE_NAME = "liquidsite"
 WAGTAILIMAGES_IMAGE_MODEL = "images.CustomImage"
 
-# Use Elasticsearch as the search backend for extra performance and better search results:
-# http://wagtail.readthedocs.org/en/latest/howto/performance.html#search
-# http://wagtail.readthedocs.org/en/latest/core_components/search/backends.html#elasticsearch-backend
+# Optional Elasticsearch/OpenSearch backend (Wagtail 7.2+ via django-modelsearch):
+# https://docs.wagtail.org/en/stable/topics/search/backends.html
 #
 # WAGTAILSEARCH_BACKENDS = {
-#     'default': {
-#         'BACKEND': 'wagtail.search.backends.elasticsearch.ElasticSearch',
-#         'INDEX': 'liquidsite',
+#     "default": {
+#         "BACKEND": "wagtail.search.backends.elasticsearch8",
+#         "INDEX_PREFIX": "liquidsite_",
 #     },
 # }
 
