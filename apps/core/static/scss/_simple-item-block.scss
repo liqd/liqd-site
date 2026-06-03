@@ -1,13 +1,5 @@
 @import "block-frame";
 
-// Figma node 226:681 — bordered list; only titles, no category/label styling
-
-$simple-item-list-gap: 16px;
-$simple-item-title-selected-font-size: 32px;
-$simple-item-title-selected-line-height: 44.8px;
-$simple-item-title-font-size: 21px;
-$simple-item-title-line-height: 29.4px;
-
 .block--simple_item {
     .simple-item-block {
         @include block-frame;
@@ -15,46 +7,7 @@ $simple-item-title-line-height: 29.4px;
     }
 }
 
-.simple-item-block__list {
-    display: flex;
-    flex-direction: column;
-    gap: $simple-item-list-gap;
-    list-style: none;
+.simple-item-block__title {
+    font-size: 1.2em;
     margin: 0;
-    padding: 0;
-}
-
-.simple-item-block__list-item {
-    margin: 0;
-}
-
-.simple-item-block__item {
-    background: transparent;
-    border: 0;
-    color: $body-color;
-    font-family: $font-family-base;
-    font-size: $simple-item-title-font-size;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: $simple-item-title-line-height;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    text-transform: none;
-    width: 100%;
-
-    &:hover,
-    &:focus {
-        color: $body-color;
-    }
-
-    &:focus-visible {
-        outline: 2px solid $body-color;
-        outline-offset: 2px;
-    }
-}
-
-.simple-item-block__item--selected {
-    font-size: $simple-item-title-selected-font-size;
-    line-height: $simple-item-title-selected-line-height;
 }
