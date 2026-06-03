@@ -373,34 +373,18 @@ def _blog_post_public_url(post, request=None):
     return url
 
 
-class SimpleItemEntryBlock(StructBlock):
+class SimpleItemBlock(StructBlock):
     title = CharBlock(
         required=True,
         max_length=128,
-        label="",
-    )
-
-    class Meta:
-        icon = "doc-full"
-        label = ""
-
-
-class SimpleItemBlock(StructBlock):
-    items = ListBlock(
-        SimpleItemEntryBlock(),
-        min_num=1,
-        max_num=8,
-        label_format="{title}",
+        label="Title",
     )
 
     class Meta:
         template = "blocks/block_simple_item.html"
-        icon = "list-ul"
+        icon = "doc-full"
         label = "Simple Item Block"
-        help_text = (
-            "List of titles in a bordered box. The selected item is shown "
-            "in large type; use arrow keys to move between items."
-        )
+        help_text = "Single title in a bordered box."
 
 
 class CtaImageLinkBlock(StructBlock):
