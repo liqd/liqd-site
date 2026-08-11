@@ -38,18 +38,43 @@
 
     .main-insight__information {
         @include insight-information-text;
+        margin-top: auto;
     }
 
     @include media-breakpoint-up(md) {
         .main-insight__list {
-            align-items: center;
+            align-items: stretch;
             flex-direction: row;
             gap: $insight-list-gap-desktop;
         }
 
         .main-insight__item {
+            display: flex;
             flex: 1 1 0;
             min-width: 0;
+        }
+
+        .main-insight__card {
+            height: 100%;
+            width: 100%;
+        }
+
+        .main-insight__value {
+            font-size: 1.5rem;
+        }
+
+        .main-insight__information {
+            font-size: 1.2rem;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .main-insight__value {
+            font-size: $insight-value-font-size;
+        }
+
+        .main-insight__information {
+            font-size: $insight-information-font-size;
         }
     }
 }
