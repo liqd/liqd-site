@@ -269,6 +269,74 @@ $framed-block-title-line-height-mobile: 32px;
     }
 }
 
-.block--blog_block .block-title {
+.block--single_blog_block .block-title {
     @include block-title-text;
+}
+
+// Blog block grid (Figma 226:560): teaser cards side by side on desktop
+.blog-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(auto-fill, minmax(309px, 1fr));
+    }
+}
+
+// Blog teaser card (Figma 226:560): category, image, title, date
+.blog-teaser {
+    color: $body-color;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-decoration: none;
+
+    &__missing {
+        @include block-category-text;
+        margin-bottom: $block-header-gap;
+    }
+
+    &__category {
+        @include block-category-text;
+    }
+
+    &__media {
+        aspect-ratio: 309 / 206;
+        background: #d9d9d9;
+        margin-bottom: 8px;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    &__image {
+        display: block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__title {
+        font-family: $font-family-base;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 32px;
+        margin: 0;
+    }
+
+    &__date {
+        @include block-category-text;
+    }
+
+    &:hover &__title,
+    &:focus &__title {
+        text-decoration: underline;
+    }
 }

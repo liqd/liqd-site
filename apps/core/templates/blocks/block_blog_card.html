@@ -1,0 +1,30 @@
+{% load i18n wagtailcore_tags wagtailimages_tags %}
+{% if blog_missing_message and show_blog_admin_hints %}
+    <p class="blog-teaser__missing" role="status">{{ blog_missing_message }}</p>
+{% endif %}
+{% if blog_post %}
+    {% if blog_post_url %}
+        <a class="blog-teaser" href="{{ blog_post_url }}" aria-label="{{ blog_display_title }}">
+    {% else %}
+        <article class="blog-teaser">
+    {% endif %}
+    {% if blog_has_category %}
+        <p class="blog-teaser__category">{{ blog_category_label }}</p>
+    {% endif %}
+    <div class="blog-teaser__media">
+        {% if blog_image %}
+            {% image blog_image width-800 jpegquality=90 class="blog-teaser__image" alt="" %}
+        {% endif %}
+    </div>
+    <div class="blog-teaser__body">
+        <h2 class="blog-teaser__title">{{ blog_display_title }}</h2>
+        {% if blog_date %}
+            <p class="blog-teaser__date">{{ blog_date|date:"j. F Y" }}</p>
+        {% endif %}
+    </div>
+    {% if blog_post_url %}
+        </a>
+    {% else %}
+        </article>
+    {% endif %}
+{% endif %}

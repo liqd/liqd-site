@@ -1,30 +1,8 @@
-{% load wagtailcore_tags wagtailimages_tags i18n %}
-{% if blog_missing_message and show_blog_admin_hints %}
-    <p class="framed-block__missing" role="status">{{ blog_missing_message }}</p>
-{% endif %}
-{% if blog_post %}
-    <section class="framed-block framed-block--blog" aria-labelledby="blog-block-title-{{ block.id }}">
-        <div class="framed-block__inner">
-            {% if blog_image %}
-                <figure class="framed-block__media">
-                    {% image blog_image width-600 jpegquality=90 class="framed-block__image" alt="" %}
-                </figure>
-            {% endif %}
-            <div class="framed-block__main">
-                {% if blog_has_category %}
-                    <p class="block-category">{{ blog_category_label }}</p>
-                {% endif %}
-                <h2 class="block-title" id="blog-block-title-{{ block.id }}">
-                    {{ blog_display_title }}
-                </h2>
-            </div>
-            {% if blog_post_url %}
-                <div class="framed-block__actions">
-                    <a class="framed-block__btn" href="{{ blog_post_url }}">
-                        {{ value.link_text|default:"Button" }}
-                    </a>
-                </div>
-            {% endif %}
-        </div>
-    </section>
+{% load wagtailcore_tags %}
+{% if value %}
+    <div class="blog-grid">
+        {% for card in value %}
+            {% include_block card %}
+        {% endfor %}
+    </div>
 {% endif %}

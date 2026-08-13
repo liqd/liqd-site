@@ -459,7 +459,7 @@ class DownloadBlock(StructBlock):
         help_text = "One or two download buttons for attached documents."
 
 
-class BlogBlock(StructBlock):
+class SingleBlogBlock(StructBlock):
     post = PageChooserBlock(
         required=True,
         target_model="blog.BlogPage",
@@ -537,13 +537,111 @@ class BlogBlock(StructBlock):
         return context
 
     class Meta:
+        template = "blocks/block_single_blog.html"
+        icon = "doc-full"
+        label = "Single Blog Block"
+        help_text = (
+            "Teaser für einen einzelnen Blogpost: Bild links, Kategorie und "
+            "Titel aus dem Post, Button rechts. Der Post braucht Titel und "
+            "mindestens eine Kategorie."
+        )
+
+
+class BlogCardBlock(StructBlock):
+    post = PageChooserBlock(
+        required=True,
+        target_model="blog.BlogPage",
+        label="Blog post",
+    )
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        post = _resolve_blog_post(value.get("post"))
+
+        context["blog_post"] = None
+        context["blog_post_url"] = None
+        context["blog_image"] = None
+        context["blog_display_title"] = ""
+        context["blog_has_category"] = False
+        context["blog_category_label"] = ""
+        context["blog_missing_message"] = ""
+        request = (parent_context or {}).get("request")
+        context["show_blog_admin_hints"] = bool(
+            request
+            and getattr(request, "user", None)
+            and request.user.is_authenticated
+            and request.user.is_staff
+        )
+
+        if not post:
+            return context
+
+        display_title = _blog_display_title(post)
+        category_names = [
+            category.translated_name
+            for category in post.categories.all()
+            if category.translated_name
+        ]
+
+        post_url = _blog_post_public_url(post, request)
+        messages = []
+
+        if not display_title:
+            messages.append(
+                "Der gewählte Blogpost hat keinen Titel "
+                "(title_de/title_en oder Seitentitel)."
+            )
+        if not category_names:
+            messages.append(
+                "Der gewählte Blogpost hat keine Kategorie. "
+                "Bitte mindestens eine Kategorie am Blogpost hinterlegen."
+            )
+        if not post_url:
+            messages.append(
+                "Der Blogpost ist nicht unter der Startseite eingehängt "
+                "und hat keine öffentliche URL."
+            )
+
+        if messages and context["show_blog_admin_hints"]:
+            context["blog_missing_message"] = " ".join(messages)
+
+        if not display_title:
+            return context
+
+        context["blog_post"] = post
+        context["blog_post_url"] = post_url
+        context["blog_display_title"] = display_title
+        context["blog_has_category"] = bool(category_names)
+        context["blog_category_label"] = ", ".join(category_names)
+        context["blog_date"] = post.date
+        context["blog_image"] = _first_image_from_blog_body(
+            post, parent_context
+        )
+        return context
+
+    class Meta:
+        template = "blocks/block_blog_card.html"
+        icon = "doc-full"
+        label = "Blog post"
+        help_text = (
+            "Teaser für einen Blogpost (Figma 226:560): Kategorie, Bild, "
+            "Titel und Datum. Der Post braucht Titel und mindestens eine "
+            "Kategorie."
+        )
+
+
+class BlogBlock(ListBlock):
+    def __init__(self, **kwargs):
+        super().__init__(BlogCardBlock(), **kwargs)
+
+    class Meta:
         template = "blocks/block_blog.html"
         icon = "doc-full"
         label = "Blog Block"
         help_text = (
-            "Teaser für einen Blogpost (Figma 226:277): Bild links, Kategorie "
-            "und Titel aus dem Post, Button rechts. Der Post braucht Titel und "
-            "mindestens eine Kategorie."
+            "Mehrere Blogpost-Teaser (Figma 226:560). Jeder Sub-Block zeigt "
+            "Kategorie, Bild, Titel und Datum eines Blogposts. Auf Desktop "
+            "werden die Karten nebeneinander angezeigt."
         )
 
 

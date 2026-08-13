@@ -60,6 +60,7 @@ STREAMFIELD_SIMPLE_PAGE_BLOCKS = [
     ("simple_item", blocks.SimpleItemBlock()),
     ("cta_with_image", blocks.CtaWithImageBlock()),
     ("download_block", blocks.DownloadBlock()),
+    ("single_blog_block", blocks.SingleBlogBlock()),
     ("blog_block", blocks.BlogBlock()),
 ]
 
