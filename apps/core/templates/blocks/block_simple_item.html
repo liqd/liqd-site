@@ -1,3 +1,9 @@
-<section class="simple-item-block">
-    <p class="simple-item-block__title">{{ value.title }}</p>
-</section>
+{% if simple_item_url %}
+    <a class="simple-item-block" href="{{ simple_item_url }}">
+        <p class="simple-item-block__title">{{ simple_item_title }}</p>
+    </a>
+{% else %}
+    <div class="simple-item-block">
+        <p class="simple-item-block__title">{{ simple_item_title }}</p>
+    </div>
+{% endif %}
