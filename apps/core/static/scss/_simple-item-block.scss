@@ -3,7 +3,17 @@
 .block--simple_item {
     .simple-item-block {
         @include block-frame;
+        border-color: $stroke-grey;
+        display: block;
+        text-decoration: none;
+        transition: border-color 0.2s ease, padding 0.2s ease;
         word-break: break-word;
+
+        &:hover,
+        &:focus {
+            border-color: $body-color;
+            padding: $block-frame-padding 32px;
+        }
     }
 }
 

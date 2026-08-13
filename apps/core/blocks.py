@@ -375,16 +375,37 @@ def _blog_post_public_url(post, request=None):
 
 class SimpleItemBlock(StructBlock):
     title = CharBlock(
-        required=True,
+        required=False,
         max_length=128,
         label="Title",
+        help_text="Optional; defaults to the linked page's title.",
     )
+    link = PageChooserBlock(
+        required=True,
+        label="Link",
+        help_text="The whole block links to this page.",
+    )
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        page = value.get("link")
+        request = (parent_context or {}).get("request")
+        context["simple_item_title"] = value.get("title") or ""
+        context["simple_item_url"] = None
+        if page:
+            if not context["simple_item_title"]:
+                context["simple_item_title"] = _blog_display_title(page)
+            context["simple_item_url"] = _blog_post_public_url(page, request)
+        return context
 
     class Meta:
         template = "blocks/block_simple_item.html"
         icon = "doc-full"
         label = "Simple Item Block"
-        help_text = "Single title in a bordered box."
+        help_text = (
+            "Single title in a bordered box. The whole block links to a "
+            "page; the title defaults to the linked page's title."
+        )
 
 
 class CtaImageLinkBlock(StructBlock):
