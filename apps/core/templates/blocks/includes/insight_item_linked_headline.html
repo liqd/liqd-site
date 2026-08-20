@@ -4,10 +4,12 @@
         <p class="{{ css_prefix }}__value" id="{{ css_prefix }}-{{ block_uid }}-{{ item_index }}-value">
             <span class="visually-hidden">{{ item.category }}: </span>{{ item.value }}
         </p>
+        <p class="{{ css_prefix }}__information">{{ item.information }}</p>
     </a>
 {% else %}
     <p class="{{ css_prefix }}__category">{{ item.category }}</p>
     <p class="{{ css_prefix }}__value" id="{{ css_prefix }}-{{ block_uid }}-{{ item_index }}-value">
         <span class="visually-hidden">{{ item.category }}: </span>{{ item.value }}
     </p>
+    <p class="{{ css_prefix }}__information">{{ item.information }}</p>
 {% endif %}

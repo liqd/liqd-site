@@ -6,7 +6,6 @@
             <li class="main-insight__item">
                 <article class="main-insight__card" aria-labelledby="main-insight-{{ block.id }}-{{ forloop.counter }}-value">
                     {% include "blocks/includes/insight_item_linked_headline.html" with item=item css_prefix="main-insight" block_uid=block.id item_index=forloop.counter %}
-                    <p class="main-insight__information">{{ item.information }}</p>
                 </article>
             </li>
         {% endfor %}
