@@ -34,6 +34,7 @@
 
     .main-insight__link {
         @include insight-headline-link($insight-main-inner-gap);
+        height: 100%;
     }
 
     .main-insight__information {
