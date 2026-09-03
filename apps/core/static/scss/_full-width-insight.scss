@@ -40,6 +40,7 @@
 
     .full-width-insight__link {
         @include insight-headline-link($insight-full-width-inner-gap);
+        height: 100%;
     }
 
     .full-width-insight__information {
