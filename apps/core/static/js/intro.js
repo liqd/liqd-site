@@ -113,9 +113,12 @@ export function initIntro () {
   }
 
   const MOBILE_BREAKPOINT = 768
-  const START_FACTOR = { mobile: 0.64, desktop: 0.46 }
-  const MID_FACTOR = { mobile: 0.86, desktop: 0.68 }
-  const MAX_SIZE = { start: 620, mid: 760 }
+  // start/mid are factors of the smaller viewport side. The max caps the shape
+  // on desktop only, where the viewport can get large; mobile is small enough.
+  const SIZE = {
+    mobile: { start: 0.64, mid: 0.86, maxStart: Infinity, maxMid: Infinity },
+    desktop: { start: 0.46, mid: 0.68, maxStart: 620, maxMid: 760 }
+  }
   const MORPH_SPLIT = 0.5 // circle -> rounded square, then -> fullscreen
 
   let viewportWidth = 0
@@ -139,13 +142,11 @@ export function initIntro () {
     sectionTop = rect.top + window.scrollY
     scrollRange = Math.max(intro.offsetHeight - sticky.offsetHeight, 1)
 
-    const mobile = viewportWidth < MOBILE_BREAKPOINT
     const base = Math.min(viewportWidth, viewportHeight)
-    const maxStart = mobile ? Infinity : MAX_SIZE.start
-    const maxMid = mobile ? Infinity : MAX_SIZE.mid
+    const size = SIZE[viewportWidth < MOBILE_BREAKPOINT ? 'mobile' : 'desktop']
 
-    startSize = Math.min(base * START_FACTOR[mobile ? 'mobile' : 'desktop'], maxStart)
-    midSize = Math.min(base * MID_FACTOR[mobile ? 'mobile' : 'desktop'], maxMid)
+    startSize = Math.min(base * size.start, size.maxStart)
+    midSize = Math.min(base * size.mid, size.maxMid)
   }
 
   function render () {
@@ -158,7 +159,7 @@ export function initIntro () {
 
     if (progress <= MORPH_SPLIT) {
       const t = progress / MORPH_SPLIT
-      width = midSize === 0 ? startSize : lerp(startSize, midSize, t)
+      width = lerp(startSize, midSize, t)
       height = width
       radius = lerp(50, 18, t)
     } else {
