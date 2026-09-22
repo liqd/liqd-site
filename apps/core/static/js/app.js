@@ -4,7 +4,7 @@ import './lang-switch'
 import './menu'
 import './filter-line'
 import './load-more'
-import './home-logo'
+import './intro'
 import './contrast-checker'
 
 $(function () {
