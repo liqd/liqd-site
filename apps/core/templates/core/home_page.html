@@ -11,10 +11,34 @@
 {% block body_class %}homepage{% endblock %}
 
 {% block content %}
-<div class="home-logo">
-    <canvas id="canvas-home" class="home-logo__canvas" role="img" aria-label="Liquid Democracy moving logo"></canvas>
-</div>
-<section class="container home-logo__lead">
+<noscript>
+    <style>.intro__head h1 { opacity: 1 !important; }</style>
+</noscript>
+
+<section class="intro" id="intro">
+    <div class="intro__sticky">
+        <div class="intro__head">
+            <h1>{{ page.translated_title }}</h1>
+        </div>
+
+        <div class="intro__shape" id="introShape">
+            <video
+                class="intro__video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                aria-label="{% trans 'Liquid Democracy' %}"
+            >
+                <source src="{% static 'videos/Video-move-updated-loop.webm' %}" type="video/webm">
+                <source src="{% static 'videos/Video-move-updated-loop.mp4' %}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</section>
+
+<section class="container intro__foot">
     <div class="lead">
         {{ page.translated_intro|richtext }}
     </div>

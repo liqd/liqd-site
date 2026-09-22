@@ -1,0 +1,161 @@
+// Entry animation on the homepage: a video inside a shape that morphs while
+// scrolling (circle -> rounded square -> fullscreen).
+// Start state: the title is centered and the video sits at the bottom edge
+// (half visible). While scrolling the title moves up and out of the way and the
+// video grows from the bottom to fullscreen. The text below the video lives in
+// its own section (intro__foot), so the fullscreen video can never cover it.
+// The morph itself is driven by JS (see js/intro.js); the values below are the
+// fallback / initial state and the reduced-motion layout.
+
+// Remove the fixed-header offset on the homepage so the intro starts at the top
+// and the navigation overlays the animation.
+.homepage {
+    padding-top: 0;
+}
+
+// The pinned section: gives the scroll distance for the morph.
+.intro {
+    position: relative;
+    height: 240vh;
+
+    @include media-breakpoint-down(md) {
+        height: 200vh;
+    }
+}
+
+.intro__sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; // follow the visible viewport (mobile browser bars)
+    overflow: hidden;
+}
+
+// Title: centered on load, JS moves it up while scrolling.
+.intro__head {
+    position: absolute;
+    top: 42%; // a little above the centre
+    left: 50%;
+    z-index: 3;
+    width: 100%;
+    max-width: 46rem;
+    padding-right: $grid-gutter-width-base * 0.5;
+    padding-left: $grid-gutter-width-base * 0.5;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+
+    h1 {
+        margin-bottom: 0;
+        opacity: 0; // revealed by the JS letter animation
+    }
+}
+
+.intro__head.is-revealed h1 {
+    opacity: 1;
+}
+
+// Typewriter reveal (spans are created by js/intro.js).
+.intro__letter-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.intro__letter {
+    visibility: hidden;
+}
+
+.intro__letter.is-typed {
+    visibility: visible;
+}
+
+.intro__cursor {
+    display: inline-block;
+    width: 0.07em;
+    height: 0.85em;
+    margin-left: 0.04em;
+    vertical-align: -0.06em;
+    background: currentcolor;
+    animation: intro-cursor-blink 1s step-end infinite;
+}
+
+@keyframes intro-cursor-blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    50.01%,
+    100% {
+        opacity: 0;
+    }
+}
+
+// Video: starts at the bottom edge (half visible) and grows to fullscreen.
+.intro__shape {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 2;
+    width: 46vmin;
+    height: 46vmin;
+    overflow: hidden;
+    border-radius: 50%;
+    background: $body-bright-bg;
+    transform: translate(-50%, -50%);
+    will-change: width, height, border-radius, top;
+}
+
+.intro__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+// Text below the video: normal flow with a large gap, so the fullscreen video
+// can never reach it.
+.intro__foot {
+    position: relative;
+    z-index: 4;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    text-align: center;
+
+    .lead {
+        margin-bottom: 0;
+    }
+}
+
+// Reduced motion: no pin/morph, title and video stacked in normal flow.
+.intro--reduced {
+    height: auto;
+
+    .intro__sticky {
+        position: static;
+        height: auto;
+        padding: 8rem 0 4rem;
+    }
+
+    .intro__head {
+        position: static;
+        margin: 0 auto 3rem;
+        transform: none;
+    }
+
+    .intro__shape {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 70vmin;
+        max-width: calc(100% - #{$grid-gutter-width-base});
+        height: auto;
+        margin: 0 auto;
+        aspect-ratio: 1 / 1;
+        transform: none;
+    }
+}

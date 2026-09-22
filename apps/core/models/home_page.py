@@ -11,11 +11,13 @@ from .abstract_page_model import TranslatedStreamFieldPage
 
 class HomePage(TranslatedStreamFieldPage):
     en_content_panels = [
+        FieldPanel("title_en"),
         FieldPanel("intro_en"),
         FieldPanel("body_en"),
     ]
 
     de_content_panels = [
+        FieldPanel("title_de"),
         FieldPanel("intro_de"),
         FieldPanel("body_de"),
     ]
