@@ -3,7 +3,7 @@
     top: 4.5rem;
     right: 1rem;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(nav) {
         top: 1.25rem;
         right: 1.5rem;
     }

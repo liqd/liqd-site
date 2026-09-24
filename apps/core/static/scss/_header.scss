@@ -6,7 +6,7 @@
     top: 0;
     z-index: 3;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(nav) {
         max-width: 1920px;
         position: fixed;
 
@@ -46,7 +46,7 @@
 }
 
 // making sure current nav-link has spacing to adjacent nav-links
-.navbar-expand-md .navbar-nav .nav-link {
+.navbar-expand-nav .navbar-nav .nav-link {
     padding-right: $spacer * 0.1;
     padding-left: $spacer * 0.1;
     margin-right: $spacer * 0.3;
@@ -59,7 +59,7 @@ a.header__brand {
     font-size: inherit;
     padding: 0;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(nav) {
         position: absolute;
         top: 1.25rem;
         left: 1.5rem;
@@ -74,37 +74,17 @@ a.header__brand {
 
 .header__brand-label {
     height: 0.95em;
-    display: none;
-
-    @include media-breakpoint-down(md) {
-        margin-top: 0.6em;
-    }
-}
-
-.homepage .header__brand-label {
-    // only show on homepage
     display: inline-block;
-}
 
-.header__brand-canvas {
-    display: none;
-
-    @include media-breakpoint-up(md) {
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        max-height: 50px;
-        max-width: 60px;
-        margin-top: -$spacer;
-
-        vertical-align: top;
+    @include media-breakpoint-down(nav) {
+        margin-top: 0.6em;
     }
 }
 
 .header__menu {
     justify-content: center;
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(nav) {
         position: fixed;
         inset: 0;
         z-index: 2;
@@ -135,7 +115,7 @@ a.header__brand {
 
     transition: opacity $transition-duration;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(nav) {
         height: auto;
 
         // white gradient background
@@ -169,11 +149,14 @@ a.header__brand {
         text-decoration-thickness: 1px;
     }
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(nav) {
         display: inline-block;
         text-align: left;
         font-size: inherit;
-        padding: 0.5em 1em 0;
+
+        // align the menu links with the "Liquid Democracy" wordmark and the
+        // language switch on a shared baseline
+        padding: 0.15em 1em 0;
 
         &.active {
             text-decoration: none;
@@ -191,7 +174,7 @@ a.header__brand {
         font-size: $font-size-h3;
     }
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(nav) {
         display: flex;
         justify-content: center;
         position: absolute;
@@ -229,7 +212,7 @@ button.header__bar__toggle {
     font-size: $font-size-xs;
     border: none;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(nav) {
         position: static;
     }
 
