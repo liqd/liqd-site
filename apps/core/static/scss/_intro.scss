@@ -16,10 +16,10 @@
 // The pinned section: gives the scroll distance for the morph.
 .intro {
     position: relative;
-    height: 240vh;
+    height: 144vh;
 
     @include media-breakpoint-down(md) {
-        height: 200vh;
+        height: 120vh;
     }
 }
 

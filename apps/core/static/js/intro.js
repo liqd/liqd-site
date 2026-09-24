@@ -10,7 +10,7 @@ import { throttle } from './helpers'
 // mask, so no extra animation dependency is required.
 
 // Speed of the typewriter effect in ms per letter. Lower = faster.
-const TYPE_SPEED = 55
+const TYPE_SPEED = 40
 
 // Split the title into per-letter spans and type them out one after another
 // with a blinking cursor. Words are wrapped in their own span so line wrapping
@@ -104,7 +104,7 @@ export function initIntro () {
   if (header) {
     window.setTimeout(() => {
       header.style.opacity = 1
-    }, 1200)
+    }, 870)
   }
 
   if (!shape || !sticky || reduceMotion) {
@@ -178,9 +178,10 @@ export function initIntro () {
     shape.style.top = `${shapeCenterY}px`
     shape.style.borderRadius = `${radius}%`
 
-    // The title moves up with the scroll and leaves the viewport.
+    // The title scrolls up with the page and is fully out of the viewport by
+    // the time the video reaches fullscreen (its bottom edge reaches the top).
     if (head) {
-      const titleShift = clamp(scrolled, 0, viewportHeight)
+      const titleShift = (head.offsetTop + head.offsetHeight) * progress
       head.style.transform = `translate(-50%, calc(-50% - ${titleShift}px))`
     }
   }
