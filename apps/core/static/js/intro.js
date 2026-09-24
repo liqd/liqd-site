@@ -28,6 +28,9 @@ function revealTitle (head, reduceMotion) {
   }
 
   const text = title.textContent
+  // Keep the full title as the accessible name so screen readers announce it
+  // even while the letters are still visually hidden by the typewriter effect.
+  title.setAttribute('aria-label', text.trim())
   title.textContent = ''
   const letters = []
 
