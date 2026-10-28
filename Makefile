@@ -1,6 +1,7 @@
 VIRTUAL_ENV ?= venv
 SOURCE_DIRS = apps website_wagtail contrib
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
+WATCH_ADDRESS=$(or $(firstword $(ARGUMENTS)),8006)
 
 .PHONY: all
 all: help
@@ -17,6 +18,7 @@ help:
 	@echo "  make install           -- install dev setup"
 	@echo "  make clean             -- delete node modules and venv"
 	@echo "  make watch             -- start a dev server and rebuild js and css files on changes"
+	@echo "  make watch <port> | <host:port>  -- same, but bind to the given port/host (default 8006)"
 	@echo "  make server            -- development server"
 	@echo "  make lighthouse        -- run lighthouse test on stage server"
 	@echo "  make lighthouse-local  -- run lighthouse test on local (requires the server to be running/make watch)"
@@ -49,7 +51,7 @@ clean:
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8006
+	$(VIRTUAL_ENV)/bin/python3 manage.py runserver $(WATCH_ADDRESS)
 
 .PHONY: server
 server:
@@ -159,3 +161,7 @@ release:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
 	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
+
+# allow positional arguments for other targets (e.g. `make watch 8017`)
+%:
+	@:
