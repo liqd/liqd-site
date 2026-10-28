@@ -12,12 +12,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - New Wagtail StreamField blocks on **TextPageWithBlocks** :
   - **Main insight** — bordered cards with category, value, supporting text, optional link
   - **Insight Banner** (`full_width_insight`) — same insight cards on a full-width band
-  - **Project Cheat Sheet** — project facts, contacts (with optional pronouns), intro quote/text
   - **Horizontal Gallery** — horizontally scrollable image gallery
   - **Simple Item Block** — single title in a bordered frame
   - **CTA Block with Image** — category, title, image, and button link
   - **Download Block** — optional image, up to two downloadable files
   - **Blog Block** — teaser for a chosen blog post with button text
+- **Project Cheat Sheet** block on **project pages** — project facts, contacts
+  (with optional pronouns), intro quote/text
 
 ### Changed
 
