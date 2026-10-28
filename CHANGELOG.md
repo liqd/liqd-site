@@ -17,8 +17,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   - **CTA Block with Image** — category, title, image, and button link
   - **Download Block** — optional image, up to two downloadable files
   - **Blog Block** — teaser for a chosen blog post with button text
-- **Project Cheat Sheet** block on **project pages** — project facts, contacts
-  (with optional pronouns), intro quote/text
+  - **Project Cheat Sheet** block on **project pages**
 
 ### Changed
 
