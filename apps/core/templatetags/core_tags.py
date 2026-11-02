@@ -26,8 +26,8 @@ def load_site_menu(menu_name):
 def do_translate_url(context, language):
     try:
         view = resolve(context["request"].path)
-        if view.args:
-            url = "/" + language + "/" + view.args[0]
+        if view.args and view.args[0]:
+            url = "/" + language + "/" + str(view.args[0])
         else:
             url = "/" + language + "/"
         if context["request"].GET:
