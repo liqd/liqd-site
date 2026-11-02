@@ -21,6 +21,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+### Fixed
+
+- Project page previews no longer fail
+
 ## v2604.2
 
 ### Fixed
